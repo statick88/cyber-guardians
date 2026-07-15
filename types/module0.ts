@@ -66,4 +66,5 @@ export interface GameProgress {
   categoryScores: Record<string, number>
   completedScenarios: string[]
   gameState: GameState
+  timestamp: number
 }

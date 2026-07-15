@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Escenario } from '@/types/module0'
 
 interface ScenarioCardProps {
@@ -13,6 +13,12 @@ interface ScenarioCardProps {
 export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
+
+  // Reset internal state when scenario changes (belt-and-suspenders with key prop)
+  useEffect(() => {
+    setSelectedOption(null)
+    setShowFeedback(false)
+  }, [scenario.id])
 
   const handleSelect = (opcionId: string, puntos: number, esCorrecta: boolean) => {
     if (selectedOption) return

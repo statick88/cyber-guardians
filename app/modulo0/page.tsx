@@ -13,6 +13,7 @@ import { navigateTo } from '@/lib/navigation'
 import { STORAGE_KEYS } from '@/lib/storage-keys'
 
 const STORAGE_KEY = STORAGE_KEYS.MODULE0
+const STALE_MS = 24 * 60 * 60 * 1000 // 24 hours
 
 function loadData(): ModuloData {
   const data = module0Raw as ModuloData
@@ -32,8 +33,13 @@ function loadProgress(): GameProgressType | null {
       typeof parsed.currentScenarioIndex !== 'number' ||
       typeof parsed.totalScore !== 'number' ||
       !parsed.categoryScores ||
-      !Array.isArray(parsed.completedScenarios)
+      !Array.isArray(parsed.completedScenarios) ||
+      typeof parsed.timestamp !== 'number'
     ) {
+      return null
+    }
+    if (Date.now() - parsed.timestamp > STALE_MS) {
+      localStorage.removeItem(STORAGE_KEY)
       return null
     }
     return parsed as GameProgressType
@@ -97,6 +103,7 @@ export default function Modulo0Page() {
         categoryScores,
         completedScenarios,
         gameState,
+        timestamp: Date.now(),
       })
     }
   }, [gameState, currentScenarioIndex, totalScore, categoryScores, completedScenarios])
@@ -171,6 +178,7 @@ export default function Modulo0Page() {
 
             <div className="flex-1 flex items-center w-full">
               <ScenarioCard
+                key={data.escenarios[currentScenarioIndex].id ?? currentScenarioIndex}
                 scenario={data.escenarios[currentScenarioIndex]}
                 onAnswer={handleAnswer}
               />
