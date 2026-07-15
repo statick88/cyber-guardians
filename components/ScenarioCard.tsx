@@ -85,7 +85,7 @@ export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) 
             <h3 className="text-slate-400 text-xs font-medium uppercase tracking-wider mb-2 code-font">
               Situación
             </h3>
-            <p className="text-slate-100 text-base sm:text-lg leading-relaxed">
+            <p className="text-slate-100 text-base sm:text-lg leading-relaxed break-words">
               {scenario.situacion}
             </p>
           </div>

@@ -264,7 +264,7 @@ export function PasswordStrengthSim({ onScore, onComplete }: PasswordStrengthSim
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg p-2 text-slate-400 hover:text-cyan-400 transition-colors"
                     aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -286,7 +286,7 @@ export function PasswordStrengthSim({ onScore, onComplete }: PasswordStrengthSim
                   value={Math.min((analysis?.entropy || 0) / 80 * 100, 100)} 
                   className="h-3"
                 />
-                <div className="flex items-center justify-between text-xs text-slate-500">
+                <div className="flex items-center justify-between text-xs text-slate-400">
                   <span>0 bits</span>
                   <span>80+ bits (Inquebrantable)</span>
                 </div>
@@ -305,7 +305,7 @@ export function PasswordStrengthSim({ onScore, onComplete }: PasswordStrengthSim
                     <p className={`${config.text} text-2xl font-bold font-mono`}>
                       {analysis?.crackTime || "Instantáneo"}
                     </p>
-                    <p className="text-slate-500 text-xs mt-1">
+                    <p className="text-slate-400 text-xs mt-1">
                       Basado en 1 billón de intentos/segundo (cluster GPU moderno)
                     </p>
                   </div>

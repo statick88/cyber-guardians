@@ -142,7 +142,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
                     draggable={!showResult}
                     onDragStart={() => handleDragStart(item.id)}
                     onClick={() => handleItemClick(item.id)}
-                    className={`cursor-grab active:cursor-grabbing p-3 rounded-lg border-2 transition-all ${
+                    className={`cursor-grab active:cursor-grabbing p-3.5 min-h-[44px] rounded-lg border-2 transition-all ${
                       draggedItem === item.id
                         ? "border-cyan-500 bg-cyan-500/10 ring-2 ring-cyan-500/30"
                         : "border-slate-600 hover:border-cyan-500/50"
@@ -206,7 +206,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
                   >
                     {target.label}
                   </p>
-                  <div className={`text-xs text-slate-500 mb-3 ${showResult ? "hidden" : ""}`}>
+                  <div className={`text-xs text-slate-400 mb-3 ${showResult ? "hidden" : ""}`}>
                     {target.descripcion}
                   </div>
                   <div className="space-y-1 min-h-[80px]">
@@ -231,7 +231,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
                                 return next;
                               });
                             }}
-                            className="text-slate-400 hover:text-rose-400 h-6 w-6 p-0 ml-1"
+                            className="text-slate-400 hover:text-rose-400 min-h-[44px] min-w-[44px] h-10 w-10 p-0 ml-1"
                           >
                             <X className="w-3 h-3" />
                           </Button>

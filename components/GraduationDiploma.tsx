@@ -282,7 +282,7 @@ export default function GraduationDiploma({
               <button
                 onClick={handleGenerate}
                 disabled={studentName.trim().length < 2}
-                className="w-full py-3 rounded-lg font-bold text-white bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-neon"
+                className="w-full py-3 min-h-[44px] rounded-lg font-bold text-white bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-neon"
               >
                 Generar Certificado
               </button>
@@ -362,7 +362,7 @@ export default function GraduationDiploma({
 
               {/* Footer */}
               <div className="h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent mb-4" />
-              <p className="text-center text-xs text-slate-600">Completado: {completionDate}</p>
+              <p className="text-center text-xs text-slate-400">Completado: {completionDate}</p>
               <p className="text-center text-sm font-bold font-mono text-purple-400 mt-2">
                 CyberGuardians Academy
               </p>
@@ -376,7 +376,7 @@ export default function GraduationDiploma({
             transition={{ delay: 0.5 }}
             onClick={handleDownload}
             disabled={isDownloading}
-            className="w-full max-w-md mx-auto flex items-center justify-center gap-2 py-3 rounded-lg font-bold text-white bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 disabled:opacity-50 transition-all shadow-neon-purple"
+            className="w-full max-w-md mx-auto flex items-center justify-center gap-2 py-3 min-h-[44px] rounded-lg font-bold text-white bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 disabled:opacity-50 transition-all shadow-neon-purple"
           >
             <Download className="w-5 h-5" />
             {isDownloading ? 'Generando...' : 'Descargar Certificado (PNG)'}

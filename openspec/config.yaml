@@ -1,0 +1,47 @@
+# SDD Configuration for CyberGuardians
+# Generated: 2026-07-15
+
+project:
+  name: cyber-guardians
+  version: "1.0.0"
+  description: "CyberGuardians - Next.js 14 security education platform"
+
+stack:
+  framework: next
+  framework_version: "14.2.0"
+  language: typescript
+  ui:
+    - tailwindcss
+    - framer-motion
+    - radix-ui
+    - lucide-react
+  package_manager: pnpm
+  node_version: "20.0.0"
+
+persistence:
+  mode: openspec
+  strict_tdd: false
+  testing_framework: none
+
+conventions:
+  typescript:
+    strict: true
+    target: es5
+    module_resolution: bundler
+    path_aliases:
+      "@/*": "./*"
+  formatting:
+    tool: none
+    config: none
+  linting:
+    tool: next lint
+    config: default
+  architecture: app_router
+
+testing:
+  framework: none
+  runner: none
+  coverage: none
+  layers: []
+  strict_tdd: false
+  note: "No test framework detected. Recommend installing vitest or jest for testing."

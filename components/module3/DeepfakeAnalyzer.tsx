@@ -113,7 +113,7 @@ export function DeepfakeAnalyzer({ cases, onScore, onComplete }: DeepfakeAnalyze
             </div>
           </div>
           <div className="text-right">
-            <div className="text-sm text-gray-400">Puntos</div>
+            <div className="text-sm text-slate-400">Puntos</div>
             <div className="text-xl font-bold text-purple-400">{scanState.score}/{currentCase.puntos}</div>
           </div>
         </div>
@@ -149,7 +149,7 @@ export function DeepfakeAnalyzer({ cases, onScore, onComplete }: DeepfakeAnalyze
                 </div>
 
                 <div className="space-y-3">
-                  <h4 className="text-sm font-medium text-gray-400">Selecciona las pistas que detectas:</h4>
+                  <h4 className="text-sm font-medium text-slate-400">Selecciona las pistas que detectas:</h4>
                   {currentCase.pistas.map((pista, idx) => {
                     const isSelected = scanState.selectedClues.includes(pista);
                     const isRevealed = scanState.revealedClues.includes(pista);
@@ -160,7 +160,7 @@ export function DeepfakeAnalyzer({ cases, onScore, onComplete }: DeepfakeAnalyze
                         whileTap={{ scale: 0.98 }}
                         onClick={() => handleClueSelect(pista)}
                         disabled={isSelected || scanState.completed}
-                        className={`w-full p-3 rounded-lg border text-left transition-all ${
+                        className={`w-full p-3 min-h-[44px] rounded-lg border text-left transition-all ${
                           isRevealed
                             ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
                             : isSelected
@@ -193,7 +193,7 @@ export function DeepfakeAnalyzer({ cases, onScore, onComplete }: DeepfakeAnalyze
               >
                 <Button
                   onClick={() => setShowExplanation(true)}
-                  className="bg-cyan-500 hover:bg-cyan-600 text-white"
+                  className="bg-cyan-500 hover:bg-cyan-600 text-white min-h-[44px]"
                 >
                   <Zap className="w-4 h-4 mr-2" />
                   Ver Análisis
@@ -228,7 +228,7 @@ export function DeepfakeAnalyzer({ cases, onScore, onComplete }: DeepfakeAnalyze
             <div className="mt-4 text-center">
               <Button
                 onClick={handleNext}
-                className="bg-cyan-500 hover:bg-cyan-600 text-white"
+                className="bg-cyan-500 hover:bg-cyan-600 text-white min-h-[44px]"
               >
                 {currentIndex + 1 < cases.length ? "Siguiente Caso" : "Continuar"}
               </Button>

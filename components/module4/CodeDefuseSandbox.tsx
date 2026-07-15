@@ -131,7 +131,7 @@ export function CodeDefuseSandbox({ challenges, onScore, onComplete }: CodeDefus
             </div>
           </div>
           <div className="text-right">
-            <div className="text-sm text-gray-400">Puntos</div>
+            <div className="text-sm text-slate-400">Puntos</div>
             <div className="text-xl font-bold text-purple-400">{sandboxState.score}/{currentChallenge.puntos}</div>
           </div>
         </div>
@@ -153,7 +153,7 @@ export function CodeDefuseSandbox({ challenges, onScore, onComplete }: CodeDefus
                   <Code className="w-5 h-5" />
                   Código Vulnerable
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription className="text-slate-300">
                   {currentChallenge.descripcion}
                 </CardDescription>
               </CardHeader>
@@ -230,7 +230,7 @@ export function CodeDefuseSandbox({ challenges, onScore, onComplete }: CodeDefus
               >
                 <Button
                   onClick={handleCompile}
-                  className="bg-cyan-500 hover:bg-cyan-600 text-white"
+                  className="bg-cyan-500 hover:bg-cyan-600 text-white min-h-[44px]"
                 >
                   <Zap className="w-4 h-4 mr-2" />
                   Compilar y Verificar
@@ -246,7 +246,7 @@ export function CodeDefuseSandbox({ challenges, onScore, onComplete }: CodeDefus
               >
                 <Button
                   onClick={() => setShowExplanation(true)}
-                  className="bg-purple-500 hover:bg-purple-600 text-white"
+                  className="bg-purple-500 hover:bg-purple-600 text-white min-h-[44px]"
                 >
                   <Shield className="w-4 h-4 mr-2" />
                   Ver Explicación
@@ -281,7 +281,7 @@ export function CodeDefuseSandbox({ challenges, onScore, onComplete }: CodeDefus
             <div className="mt-4 text-center">
               <Button
                 onClick={handleNext}
-                className="bg-cyan-500 hover:bg-cyan-600 text-white"
+                className="bg-cyan-500 hover:bg-cyan-600 text-white min-h-[44px]"
               >
                 {currentIndex + 1 < challenges.length ? "Siguiente Desafío" : "Continuar"}
               </Button>

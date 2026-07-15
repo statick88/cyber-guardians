@@ -78,7 +78,7 @@ function DataFlowPuzzle({ onComplete }: { onComplete: () => void }) {
           Tu orden:
         </p>
         {placed.length === 0 && (
-          <div className="p-4 rounded-xl border border-dashed border-slate-700 text-center text-slate-600 text-sm">
+          <div className="p-4 rounded-xl border border-dashed border-slate-700 text-center text-slate-400 text-sm">
             Haz clic en los pasos arriba para ordenarlos
           </div>
         )}
@@ -110,7 +110,7 @@ function DataFlowPuzzle({ onComplete }: { onComplete: () => void }) {
           </p>
           <button
             onClick={handleReset}
-            className="mt-2 inline-flex items-center gap-1 text-xs text-rose-400 hover:text-rose-300 code-font"
+            className="mt-2 inline-flex items-center gap-1 text-xs text-rose-400 hover:text-rose-300 code-font px-3 py-2 min-h-[44px] min-w-[44px] rounded-lg hover:bg-rose-500/10 transition-colors"
           >
             <RotateCcw className="w-3 h-3" /> Reiniciar
           </button>
@@ -233,7 +233,7 @@ function PasswordChainPuzzle({ onComplete }: { onComplete: () => void }) {
           <p className="text-rose-300 text-sm">Algunas respuestas no son correctas. ¡Revisa las explicaciones e inténtalo de nuevo!</p>
           <button
             onClick={() => { setAnswers({ q1: null, q2: null, q3: null }); setCompleted(false) }}
-            className="mt-2 inline-flex items-center gap-1 text-xs text-rose-400 hover:text-rose-300 code-font"
+            className="mt-2 inline-flex items-center gap-1 text-xs text-rose-400 hover:text-rose-300 code-font px-3 py-2 min-h-[44px] min-w-[44px] rounded-lg hover:bg-rose-500/10 transition-colors"
           >
             <RotateCcw className="w-3 h-3" /> Reiniciar
           </button>

@@ -131,7 +131,7 @@ export function VishingCallSimulator({ scenarios, onScore, onComplete }: Vishing
             {getTypeLabel(currentScenario.tipo)}
           </Badge>
           <div className="text-right">
-            <div className="text-sm text-gray-400">Nivel de Sospecha</div>
+            <div className="text-sm text-slate-400">Nivel de Sospecha</div>
             <div className={`text-xl font-bold ${callState.suspicionLevel > 50 ? "text-rose-400" : "text-emerald-400"}`}>
               {callState.suspicionLevel}%
             </div>
@@ -175,7 +175,7 @@ export function VishingCallSimulator({ scenarios, onScore, onComplete }: Vishing
                     <div className="flex justify-center gap-4">
                       <Button
                         onClick={handleAnswer}
-                        className="bg-emerald-500 hover:bg-emerald-600 text-white"
+                        className="bg-emerald-500 hover:bg-emerald-600 text-white min-h-[44px]"
                       >
                         <Phone className="w-4 h-4 mr-2" />
                         Contestar
@@ -183,7 +183,7 @@ export function VishingCallSimulator({ scenarios, onScore, onComplete }: Vishing
                       <Button
                         onClick={handleDecline}
                         variant="outline"
-                        className="border-rose-500/50 text-rose-400 hover:bg-rose-500/10"
+                        className="border-rose-500/50 text-rose-400 hover:bg-rose-500/10 min-h-[44px]"
                       >
                         <PhoneOff className="w-4 h-4 mr-2" />
                         Rechazar
@@ -223,7 +223,7 @@ export function VishingCallSimulator({ scenarios, onScore, onComplete }: Vishing
                           currentDialogueIndex: prev.currentDialogueIndex + 1,
                         }))}
                         variant="outline"
-                        className="w-full border-cyan-500/50 text-cyan-400"
+                        className="w-full border-cyan-500/50 text-cyan-400 min-h-[44px]"
                       >
                         <MessageCircle className="w-4 h-4 mr-2" />
                         Responder
@@ -243,7 +243,7 @@ export function VishingCallSimulator({ scenarios, onScore, onComplete }: Vishing
                               whileTap={{ scale: 0.98 }}
                               onClick={() => handleQuestionSelect(question)}
                               disabled={isSelected || callState.completed}
-                              className={`w-full p-3 rounded-lg border text-left transition-all ${
+                              className={`w-full p-3 min-h-[44px] rounded-lg border text-left transition-all ${
                                 isSelected
                                   ? isGoodQuestion
                                     ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
@@ -270,7 +270,7 @@ export function VishingCallSimulator({ scenarios, onScore, onComplete }: Vishing
               >
                 <Button
                   onClick={() => setShowExplanation(true)}
-                  className="bg-purple-500 hover:bg-purple-600 text-white"
+                  className="bg-purple-500 hover:bg-purple-600 text-white min-h-[44px]"
                 >
                   <Shield className="w-4 h-4 mr-2" />
                   Ver Análisis
@@ -311,7 +311,7 @@ export function VishingCallSimulator({ scenarios, onScore, onComplete }: Vishing
             <div className="mt-4 text-center">
               <Button
                 onClick={handleNext}
-                className="bg-purple-500 hover:bg-purple-600 text-white"
+                className="bg-purple-500 hover:bg-purple-600 text-white min-h-[44px]"
               >
                 {currentIndex + 1 < scenarios.length ? "Siguiente Escenario" : "Continuar"}
               </Button>

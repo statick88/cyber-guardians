@@ -102,7 +102,7 @@ export function MicroActivities({
               <Button
                 onClick={() => handleTrueFalse("verdadero")}
                 disabled={!!selectedAnswer}
-                className={`min-w-[120px] ${
+                className={`min-w-[120px] min-h-[44px] ${
                   selectedAnswer === "verdadero"
                     ? isCorrect
                       ? "bg-emerald-500 hover:bg-emerald-600"
@@ -116,7 +116,7 @@ export function MicroActivities({
               <Button
                 onClick={() => handleTrueFalse("falso")}
                 disabled={!!selectedAnswer}
-                className={`min-w-[120px] ${
+                className={`min-w-[120px] min-h-[44px] ${
                   selectedAnswer === "falso"
                     ? isCorrect
                       ? "bg-emerald-500 hover:bg-emerald-600"
@@ -136,7 +136,7 @@ export function MicroActivities({
           <div className="space-y-4">
             <p className="text-lg text-gray-200 text-center">{currentActivity.pregunta}</p>
             {currentActivity.codigo && (
-              <div className="bg-slate-800 rounded-lg p-4 font-mono text-sm text-cyan-400">
+              <div className="bg-slate-800 rounded-lg p-4 font-mono text-sm text-cyan-400 overflow-x-auto">
                 {currentActivity.codigo}
               </div>
             )}
@@ -144,7 +144,7 @@ export function MicroActivities({
               <Button
                 onClick={handleCodeSubmit}
                 disabled={selectedAnswer === null}
-                className="bg-purple-500 hover:bg-purple-600"
+                className="bg-purple-500 hover:bg-purple-600 min-h-[44px]"
               >
                 <Code className="w-4 h-4 mr-2" />
                 Verificar
@@ -171,7 +171,7 @@ export function MicroActivities({
             <div className="flex justify-center">
               <Button
                 onClick={() => handleOrderSubmit(currentActivity.pasos?.map(p => p.texto) || [])}
-                className="bg-purple-500 hover:bg-purple-600"
+                className="bg-purple-500 hover:bg-purple-600 min-h-[44px]"
               >
                 <ListOrdered className="w-4 h-4 mr-2" />
                 Verificar Orden
@@ -197,7 +197,7 @@ export function MicroActivities({
             Micro-Actividad {currentIndex + 1}/{actividades.length}
           </Badge>
           <div className="text-right">
-            <div className="text-sm text-gray-400">Puntos</div>
+            <div className="text-sm text-slate-400">Puntos</div>
             <div className="text-xl font-bold text-purple-400">{totalPoints}</div>
           </div>
         </div>

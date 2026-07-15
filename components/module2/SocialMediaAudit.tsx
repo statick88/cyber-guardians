@@ -214,7 +214,7 @@ export function SocialMediaAudit({ perfiles, onScore, onComplete }: SocialMediaA
                                 variant="outline"
                                 onClick={() => handleConfigChange(config.id, state.value)}
                                 disabled={!!userChoice}
-                                className={`h-auto py-2.5 text-xs ${
+                                className={`h-auto py-3 text-xs ${
                                   isSelected
                                     ? isCorrect
                                       ? "border-emerald-500 bg-emerald-500/10 text-emerald-300"
@@ -304,7 +304,7 @@ export function SocialMediaAudit({ perfiles, onScore, onComplete }: SocialMediaA
                                 </Badge>
                               )}
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 flex-wrap">
                               <Badge
                                 className={`text-xs ${getStateColor(config.estadoRecomendado)}`}
                               >

@@ -189,10 +189,10 @@ function PracticePhaseContent({
                     <h3 className="text-xl font-bold text-rose-300 mb-2">MFA FATIGUE DETECTADO!</h3>
                     <p className="text-slate-300 mb-4">Recibes notificaciones push seguidas. El atacante espera que te canses y apruebes por error.</p>
                     <div className="flex gap-3">
-                      <Button variant="outline" onClick={onFatigueReject} className="flex-1 border-rose-500 text-rose-300 hover:bg-rose-500/10">
+                      <Button variant="outline" onClick={onFatigueReject} className="flex-1 min-h-[44px] border-rose-500 text-rose-300 hover:bg-rose-500/10">
                         <X className="w-4 h-4 mr-2" />DENEGAR (Correcto)
                       </Button>
-                      <Button onClick={() => {}} className="flex-1 bg-rose-600 hover:bg-rose-700">
+                      <Button onClick={() => {}} className="flex-1 min-h-[44px] bg-rose-600 hover:bg-rose-700">
                         <Check className="w-4 h-4 mr-2" />Aprobar (TRAMPA!)
                       </Button>
                     </div>

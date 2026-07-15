@@ -105,11 +105,11 @@ export function DesinformacionDetector({ cases, onScore, onComplete }: Desinform
             <div className="text-3xl">{getTypeIcon(currentCase.tipo)}</div>
             <div>
               <h3 className="text-lg font-bold text-rose-400">{currentCase.titulo}</h3>
-              <p className="text-sm text-gray-400">{getTypeLabel(currentCase.tipo)}</p>
+              <p className="text-sm text-slate-400">{getTypeLabel(currentCase.tipo)}</p>
             </div>
           </div>
           <div className="text-right">
-            <div className="text-sm text-gray-400">Puntos</div>
+            <div className="text-sm text-slate-400">Puntos</div>
             <div className="text-xl font-bold text-purple-400">{detectionState.score}/{currentCase.puntos}</div>
           </div>
         </div>
@@ -154,7 +154,7 @@ export function DesinformacionDetector({ cases, onScore, onComplete }: Desinform
                         whileTap={{ scale: 0.98 }}
                         onClick={() => handleIndicatorSelect(indicador)}
                         disabled={isSelected || detectionState.completed}
-                        className={`w-full p-3 rounded-lg border text-left transition-all ${
+                        className={`w-full p-3 min-h-[44px] rounded-lg border text-left transition-all ${
                           isCorrect
                             ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
                             : isSelected
@@ -187,7 +187,7 @@ export function DesinformacionDetector({ cases, onScore, onComplete }: Desinform
               >
                 <Button
                   onClick={() => setShowExplanation(true)}
-                  className="bg-rose-500 hover:bg-rose-600 text-white"
+                  className="bg-rose-500 hover:bg-rose-600 text-white min-h-[44px]"
                 >
                   <Shield className="w-4 h-4 mr-2" />
                   Ver Análisis
@@ -222,7 +222,7 @@ export function DesinformacionDetector({ cases, onScore, onComplete }: Desinform
             <div className="mt-4 text-center">
               <Button
                 onClick={handleNext}
-                className="bg-rose-500 hover:bg-rose-600 text-white"
+                className="bg-rose-500 hover:bg-rose-600 text-white min-h-[44px]"
               >
                 {currentIndex + 1 < cases.length ? "Siguiente Caso" : "Continuar"}
               </Button>

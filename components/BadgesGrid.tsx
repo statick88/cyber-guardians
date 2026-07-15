@@ -74,16 +74,16 @@ export default function BadgesGrid({ unlockedBadges }: BadgesGridProps) {
               <motion.div
                 className="text-5xl mb-3"
                 animate={isUnlocked ? { scale: [1, 1.1, 1] } : {}}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{ duration: 2, repeat: 3, ease: 'easeInOut' }}
               >
                 {badge.icon}
               </motion.div>
 
-              <h3 className={`text-sm font-bold mb-1 ${isUnlocked ? neon.text : 'text-slate-500'}`}>
+              <h3 className={`text-sm font-bold mb-1 ${isUnlocked ? neon.text : 'text-slate-400'}`}>
                 {badge.title}
               </h3>
 
-              <p className={`text-xs ${isUnlocked ? 'text-slate-400' : 'text-slate-600'}`}>
+              <p className={`text-xs ${isUnlocked ? 'text-slate-400' : 'text-slate-500'}`}>
                 {badge.description}
               </p>
 

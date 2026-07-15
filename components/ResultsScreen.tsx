@@ -143,7 +143,7 @@ export default function ResultsScreen({
                 }`}>
                   {percentage}%
                 </p>
-                <p className="text-slate-500 text-xs code-font">
+                <p className="text-slate-400 text-xs code-font">
                   {score}/{maxScore} pts
                 </p>
               </div>
@@ -187,7 +187,7 @@ export default function ResultsScreen({
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-slate-400 truncate">{cat.nombre}</span>
-                      <span className="text-xs text-slate-500 code-font ml-2">
+                      <span className="text-xs text-slate-400 code-font ml-2">
                         {catScore}/{maxCatScore}
                       </span>
                     </div>

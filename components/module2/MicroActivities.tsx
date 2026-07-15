@@ -318,7 +318,7 @@ function OrderSteps({
           onDragOver={handleDragOver}
           onDrop={() => handleDrop(item.id)}
           whileDrag={{ scale: 1.02, boxShadow: "0 10px 20px rgba(0,0,0,0.3)" }}
-          className={`flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 border ${
+          className={`flex items-center gap-3 p-3.5 min-h-[44px] rounded-lg bg-slate-800/50 border ${
             draggedId === item.id ? "border-cyan-500 opacity-50" : "border-slate-700"
           }`}
         >
