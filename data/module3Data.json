@@ -1,0 +1,313 @@
+{
+  "modulo": {
+    "id": 3,
+    "nombre": "Deepfakes: No creas todo lo que ves",
+    "descripcion": "Detecta contenido sintético generado por IA: deepfakes de imagen, audio clonado y video manipulado",
+    "umbralAprobacion": 70,
+    "tiempoEstimado": "15-20 minutos",
+    "icono": "🎭"
+  },
+  "categorias": [
+    {
+      "id": "analisis-deepfake",
+      "nombre": "Análisis de Deepfakes",
+      "emoji": "🔍",
+      "descripcion": "Identificar artefactos visuales en imágenes y videos manipulados",
+      "color": "cyan"
+    },
+    {
+      "id": "vishing-simulado",
+      "nombre": "Vishing Simulado",
+      "emoji": "📞",
+      "descripcion": "Detectar y desarmar intentos de fraude por voz",
+      "color": "purple"
+    },
+    {
+      "id": "desinformacion-ia",
+      "nombre": "Desinformación IA",
+      "emoji": "📰",
+      "descripcion": "Identificar contenido generado por inteligencia artificial",
+      "color": "rose"
+    },
+    {
+      "id": "defensa-critica",
+      "nombre": "Defensa Crítica",
+      "emoji": "🧠",
+      "descripcion": "Pensamiento crítico contra la manipulación digital",
+      "color": "emerald"
+    }
+  ],
+  "deepfakeCases": [
+    {
+      "id": "df-01",
+      "tipo": "imagen",
+      "titulo": "Retrato corporativo editado",
+      "descripcion": "Un ejecutivo aparece en una foto de reunión con competidores. La imagen parece legítima pero fue generada con IA para dañar la reputación de la empresa.",
+      "pistas": [
+        "Las sombras del rostro no coinciden con la dirección de la luz",
+        "El fondo tiene un patrón de ruido digital inusual",
+        "Las orejas presentan asimetrías anatómicas"
+      ],
+      "zonaSospechosa": "La zona de las orejas y la línea del cabello",
+      "nivelDificultad": "basico",
+      "puntos": 20,
+      "explicacion": "Los generadores de deepfakes frecuentemente fallan en reproducir la anatomía detallada de las orejas y la transición natural del cabello. Las sombras inconsistentes son otro indicador clave."
+    },
+    {
+      "id": "df-02",
+      "tipo": "imagen",
+      "titulo": "Foto de perfil de red social",
+      "descripcion": "Una cuenta de LinkedIn muestra una foto de perfil profesional que no corresponde a ninguna persona real. Se usa para suplantar identidad.",
+      "pistas": [
+        "El fondo tiene bordes extraños alrededor del cabello",
+        "Los ojos reflejan patrones de iluminación diferentes",
+        "La textura de piel es demasiado uniforme y sin poros visibles"
+      ],
+      "zonaSospechosa": "La zona de los ojos y la transición piel-fondo",
+      "nivelDificultad": "intermedio",
+      "puntos": 25,
+      "explicacion": "Las imágenes generadas por GAN suelen tener artefactos en los reflejos oculares y una textura de piel artificialmente suavizada. Los bordes del cabello contra el fondo son difíciles de generar correctamente."
+    },
+    {
+      "id": "df-03",
+      "tipo": "audio",
+      "titulo": "Llamada de suplantación vocal",
+      "descripcion": "Recibes una llamada de tu 'jefe' pidiendo transferencia urgente. La voz suena idéntica pero hay elementos sospechosos.",
+      "pistas": [
+        "El tono de voz es plano sin variaciones emocionales naturales",
+        "Hay un ligero zumbido de fondo consistente en toda la grabación",
+        "Las pausas entre palabras son demasiado regulares"
+      ],
+      "zonaSospechosa": "La falta de variación entonativa y pausas artificiales",
+      "nivelDificultad": "intermedio",
+      "puntos": 25,
+      "explicacion": "Los clonadores de voz actuales capturan el tono general pero fallan en las micro-variaciones entonativas naturales. Las pausas sintéticas son más regulares que el habla humana espontánea."
+    },
+    {
+      "id": "df-04",
+      "tipo": "audio",
+      "titulo": "Mensaje de WhatsApp sospechoso",
+      "descripcion": "Un familiar te envía un audio pidiendo dinero urgente. La voz suena igual pero algo no cuadra con el contexto.",
+      "pistas": [
+        "El audio no tiene los ruidos ambientales típicos del entorno descrito",
+        "Hay artefactos de compresión diferentes a los de WhatsApp",
+        "El ritmo del habla es demasiado rápido y sin dudas"
+      ],
+      "zonaSospechosa": "El ritmo monótono y la ausencia de dudas naturales",
+      "nivelDificultad": "basico",
+      "puntos": 20,
+      "explicacion": "El audio generado por IA tiende a ser demasiado fluido y sin las vacilaciones naturales del habla espontánea. Los ruidos de fondo son difíciles de sintetizar correctamente."
+    },
+    {
+      "id": "df-05",
+      "tipo": "video",
+      "titulo": "Declaración política manipulada",
+      "descripcion": "Un candidato aparece haciendo declaraciones controvertidas en un video que se viraliza. Los expertos sospechan de manipulación.",
+      "pistas": [
+        "Los movimientos de labios no sincronizan perfectamente con el audio",
+        "Los parpadeos son irregulares y poco frecuentes",
+        "Las manos del orador tienen artefactos de movimiento borroso"
+      ],
+      "zonaSospechosa": "La sincronización labial y los movimientos de manos",
+      "nivelDificultad": "avanzado",
+      "puntos": 30,
+      "explicacion": "Los deepfakes de video fallan frecuentemente en la sincronización labial precisa y en los movimientos complejos de las manos. Los patrones de parpadeo artificial son un indicador avanzado."
+    },
+    {
+      "id": "df-06",
+      "tipo": "video",
+      "titulo": "Testimonio falso de cliente",
+      "descripcion": "Una empresa publica un video testimonio de un 'cliente satisfecho'. El video parece profesional pero fue generado completamente con IA.",
+      "pistas": [
+        "La iluminación del rostro cambia sutilmente entre tomas",
+        "El fondo se 'muelle' y deforma cuando el sujeto se mueve",
+        "Los gestos faciales son repetitivos y poco naturales"
+      ],
+      "zonaSospechosa": "La deformación del fondo y los gestos repetitivos",
+      "nivelDificultad": "avanzado",
+      "puntos": 30,
+      "explicacion": "Los generadores de video con IA crean inestabilidad en los fondos cuando el sujeto se mueve. Los gestos faciales sintéticos tienden a repetirse en ciclos predecibles."
+    }
+  ],
+  "vishingScenarios": [
+    {
+      "id": "vs-01",
+      "tipo": "amigo",
+      "titulo": "Mensaje urgente de un 'amigo'",
+      "descripcion": "Tu amigo Marco te llama pidiendo dinero urgente por un problema. Pero algo no cuadra con la voz.",
+      "dialogo": [
+        { "hablante": "Marco", "texto": "¡Oye, soy Marco! Me robaron la billetera y necesito 500 pesos para el taxi. ¿Me los puedes transferir?", "esSospechoso": true },
+        { "hablante": "Tú", "texto": "¿Marco? ¿En serio? ¿Qué hicimos la última vez que nos vimos?", "esSospechoso": false },
+        { "hablante": "Marco", "texto": "¡Ya sabes, nos fuimos de copas! Por favor, es urgente, necesito el dinero ya.", "esSospechoso": true },
+        { "hablante": "Tú", "texto": "Voy a colgar y te llamo a tu número real. Si eres tú, contesta.", "esSospechoso": false }
+      ],
+      "preguntasSeguridad": [
+        "¿Cuál es la pregunta de seguridad correcta para verificar la identidad?",
+        "Llamar al número real del contacto",
+        "Preguntar un dato que solo la persona real sabría",
+        "Transferir el dinero y arriesgarse"
+      ],
+      "explicacion": "Antes de transferir dinero, siempre verifica la identidad del remitente por un canal diferente. Los estafadores clonan voces de contactos cercanos.",
+      "puntos": 25
+    },
+    {
+      "id": "vs-02",
+      "tipo": "banco",
+      "titulo": "Alerta del banco por fraude",
+      "descripcion": "Recibes una llamada del 'Banco Nacional' informándote de actividad sospechosa en tu cuenta.",
+      "dialogo": [
+        { "hablante": "Agente", "texto": "Buenos días, llamamos del Banco Nacional. Detectamos una transacción no autorizada de 15,000 pesos. ¿La reconoce?", "esSospechoso": true },
+        { "hablante": "Tú", "texto": "No, no hice esa transacción. ¿Qué puedo hacer?", "esSospechoso": false },
+        { "hablante": "Agente", "texto": "Necesitamos verificar su identidad. ¿Cuál es su número de tarjeta y el código CVV?", "esSospechoso": true },
+        { "hablante": "Tú", "texto": "Colgaré y llamaré al número oficial del banco que tengo en mi tarjeta.", "esSospechoso": false }
+      ],
+      "preguntasSeguridad": [
+        "¿Qué debes hacer cuando te llaman del banco?",
+        "Dar los datos solicitados para resolver rápido",
+        "Colgar y llamar al número oficial del banco",
+        "Transferir el dinero a una cuenta 'segura'"
+      ],
+      "explicacion": "Los bancos NUNCA piden datos sensibles por teléfono. Siempre cuelga y llama al número oficial que aparece en tu tarjeta o en el sitio web del banco.",
+      "puntos": 30
+    },
+    {
+      "id": "vs-03",
+      "tipo": "soporte-tecnico",
+      "titulo": "Soporte técnico de Microsoft",
+      "descripcion": "Un 'técnico de Microsoft' te llama informándote de un virus en tu computadora y ofrece ayudarte.",
+      "dialogo": [
+        { "hablante": "Técnico", "texto": "Aquí es Microsoft Support. Hemos detectado actividad maliciosa en tu computadora. Necesitamos acceso remoto para solucionarlo.", "esSospechoso": true },
+        { "hablante": "Tú", "texto": "¿Cómo detectaron eso?", "esSospechoso": false },
+        { "hablante": "Técnico", "texto": "Nuestros servidores muestran que tu PC está enviando datos. Descargue TeamViewer y denos acceso.", "esSospechoso": true },
+        { "hablante": "Tú", "texto": "Microsoft no ofrece soporte por llamada. Colgaré.", "esSospechoso": false }
+      ],
+      "preguntasSeguridad": [
+        "¿Qué ofrecerá el estafador para obtener acceso?",
+        "Acceso remoto a tu computadora",
+        "Un enlace para descargar antivirus",
+        "Una visita técnica a tu domicilio"
+      ],
+      "explicacion": "Microsoft, Google, Apple y otras empresas grandes NUNCA llaman para ofrecer soporte técnico. Este es un scam clásico para obtener acceso remoto a tu computadora.",
+      "puntos": 25
+    },
+    {
+      "id": "vs-04",
+      "tipo": "autoridad",
+      "titulo": "Suplantación de autoridad",
+      "descripcion": "Un 'agente de la policía fiscal' te llama informándote de una multa y te pide pago inmediato.",
+      "dialogo": [
+        { "hablante": "Agente", "texto": "Aquí la Policía Fiscal. Tiene una multa pendiente de 8,000 pesos por infracción tributaria. Si no paga hoy, emitirán orden de arresto.", "esSospechoso": true },
+        { "hablante": "Tú", "texto": "¿Cuál es su nombre y placa?", "esSospechoso": false },
+        { "hablante": "Agente", "texto": "No puedo dar esa información por seguridad. Solo tiene que transferir a esta cuenta CLABE.", "esSospechoso": true },
+        { "hablante": "Tú", "texto": "Colgaré y verificaré con las autoridades oficiales.", "esSospechoso": false }
+      ],
+      "preguntasSeguridad": [
+        "¿Qué hará el estafador para presionarte?",
+        "Amenazar con consecuencias legales inmediatas",
+        "Ofrecer un descuento por pago anticipado",
+        "Enviar un oficial a tu domicilio"
+      ],
+      "explicacion": "Las autoridades reales nunca amenazan por teléfono ni piden pagos por transferencia. Siempre recibes notificaciones escritas y puedes verificar directamente con la institución.",
+      "puntos": 30
+    }
+  ],
+  "desinformacionCases": [
+    {
+      "id": "di-01",
+      "tipo": "imagen-sintetica",
+      "titulo": "Foto de celebridad en evento falso",
+      "descripcion": "Circula una foto de un actor famoso en un evento que nunca existió. La imagen parece real pero fue generada con IA.",
+      "indicadores": [
+        "El fondo del evento no corresponde a ningún lugar conocido",
+        "La sombra del actor no coincide con la iluminación del lugar",
+        "Los detalles de la ropa tienen patrones irregulares"
+      ],
+      "fuenteOriginal": "Cuenta de redes sociales sin verificación",
+      "explicacion": "Las imágenes generadas por IA pueden parecer muy realistas, pero los detalles de iluminación, sombras y texturas suelen revelar la manipulación.",
+      "puntos": 25
+    },
+    {
+      "id": "di-02",
+      "tipo": "audio-clonado",
+      "titulo": "Discurso político clonado",
+      "descripcion": "Un audio de un político haciendo declaraciones controversiales se viraliza. La voz es idéntica pero las palabras fueron generadas por IA.",
+      "indicadores": [
+        "El audio no tiene las pausas naturales del orador",
+        "No hay variación emocional en temas sensibles",
+        "La calidad del audio es inconsistente con grabaciones reales"
+      ],
+      "fuenteOriginal": "Mensaje de WhatsApp reenviado múltiples veces",
+      "explicacion": "Los clonadores de voz pueden replicar el tono pero no las emociones y pausas naturales. Siempre verifica la fuente original antes de compartir.",
+      "puntos": 30
+    },
+    {
+      "id": "di-03",
+      "tipo": "noticia-falsa",
+      "titulo": "Artículo de medio inexistente",
+      "descripcion": "Un artículo de 'El Diario Nacional' reporta una catástrofe que nunca ocurrió. El sitio web fue creado recientemente con IA.",
+      "indicadores": [
+        "El dominio del sitio web fue registrado hace menos de una semana",
+        "Las imágenes del artículo no tienen metadata de fecha",
+        "El texto usa lenguaje genérico sin fuentes específicas"
+      ],
+      "fuenteOriginal": "Enlace compartido en redes sociales",
+      "explicacion": "Verifica siempre la fuente de las noticias. Los sitios falsos suelen tener dominios recientes, falta de historial y contenido genérico sin fuentes verificables.",
+      "puntos": 25
+    },
+    {
+      "id": "di-04",
+      "tipo": "video-manipulado",
+      "titulo": "Video de declaraciones manipuladas",
+      "descripcion": "Un video de un empresario haciendo declaraciones sobre una inversión parece auténtico pero fue sintetizado completamente con IA.",
+      "indicadores": [
+        "Los movimientos de labios son ligeramente diferentes al audio",
+        "El fondo se deforma cuando el sujeto se mueve",
+        "Los gestos faciales son repetitivos"
+      ],
+      "fuenteOriginal": "Cuenta verificada comprometida",
+      "explicacion": "Los videos generados por IA pueden tener artefactos visuales sutiles. La cuenta verificada no garantiza authenticity si fue comprometida.",
+      "puntos": 30
+    }
+  ],
+  "microActividades": [
+    {
+      "id": "m3-01",
+      "tipo": "verdadero-falso",
+      "pregunta": "¿Es cierto que los deepfakes siempre tienen errores visibles en los ojos?",
+      "respuestaCorrecta": "verdadero",
+      "explicacion": "Los generadores de deepfakes frecuentemente fallan en reproducir reflejos oculares consistentes y simétricos. Los ojos son uno de los indicadores más confiables.",
+      "puntos": 15
+    },
+    {
+      "id": "m3-02",
+      "tipo": "verdadero-falso",
+      "pregunta": "¿Un audio clonado siempre suena diferente al original?",
+      "respuestaCorrecta": "falso",
+      "explicacion": "Los clonadores de voz modernos pueden replicar el tono con alta precisión. La diferencia está en las emociones y pausas, no en el tono básico.",
+      "puntos": 15
+    },
+    {
+      "id": "m3-03",
+      "tipo": "ordenar-pasos",
+      "pregunta": "Ordena los pasos para verificar si un contenido es un deepfake:",
+      "respuestaCorrecta": ["Identificar la fuente", "Buscar la imagen original", "Analizar artefactos visuales", "Consultar verificadores", "Compartir con precaución"],
+      "pasos": [
+        { "id": "p1", "texto": "Identificar la fuente", "ordenCorrecto": 0 },
+        { "id": "p2", "texto": "Buscar la imagen original", "ordenCorrecto": 1 },
+        { "id": "p3", "texto": "Analizar artefactos visuales", "ordenCorrecto": 2 },
+        { "id": "p4", "texto": "Consultar verificadores", "ordenCorrecto": 3 },
+        { "id": "p5", "texto": "Compartir con precaución", "ordenCorrecto": 4 }
+      ],
+      "explicacion": "Siempre verifica la fuente primero, luego busca la imagen original antes de analizar detalles. Consulta expertos antes de difundir.",
+      "puntos": 20
+    },
+    {
+      "id": "m3-04",
+      "tipo": "verdadero-falso",
+      "pregunta": "¿Los bancos pueden llamarte para pedir tus datos de tarjeta por seguridad?",
+      "respuestaCorrecta": "falso",
+      "explicacion": "Los bancos NUNCA piden datos sensibles por teléfono. Si recibes una llamada así, es un intento de vishing. Siempre cuelga y llama al número oficial.",
+      "puntos": 15
+    }
+  ]
+}

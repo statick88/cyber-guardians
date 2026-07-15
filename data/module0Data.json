@@ -1,0 +1,395 @@
+{
+  "modulo": {
+    "id": "module0",
+    "titulo": "Cyber-Diagnóstico",
+    "subtitulo": "Elige tu propia aventura digital",
+    "descripcion": "Antes de convertirte en un Cyber-Guardián, necesitamos conocer tu nivel de defensa digital. ¡Responde con honestidad y descubre si estás listo para la misión!",
+    "umbralAprobacion": 70,
+    "tiempoEstimado": "5-8 minutos",
+    "totalPuntosPosibles": 100
+  },
+  "escenarios": [
+    {
+      "id": "scenario-001",
+      "categoria": "Ingeniería Social",
+      "emoji": "🎮",
+      "situacion": "Te llega un mensaje en Discord de una cuenta que se llama 'FreeV-Bucks-Fortnite' ofreciendo 13,000 pavos gratis. Solo necesitas descargar un archivo.exe y ejecutarlo. El mensaje tiene 47 reacciones de personas agradeciendo.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "¡Suena genial! Descargo y ejecuto. ¡47 personas ya lo hicieron!",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Las reacciones pueden ser falsas o de bots. Los archivos .exe nunca son seguros de descargar de fuentes no oficiales. Podrías estar instalando un troyano que robe tus credenciales."
+        },
+        {
+          "id": "b",
+          "texto": "Ignoro el mensaje. Si fuera real, estaría en la tienda oficial de Fortnite.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Correcto! Epic Games nunca regala V-Bucks por Discord. Siempre verifica en fuentes oficiales. Los atacantes usan la urgencia y las reacciones sociales para manipularte."
+        },
+        {
+          "id": "c",
+          "texto": "Le pregunto al remitente si es legítimo antes de descargar.",
+          "esCorrecta": false,
+          "puntos": 5,
+          "retroalimentacion": "Buena intuición al dudar, pero interactuar con el atacante puede ser peligroso. Podría enviarte más enlaces maliciosos o intentar manipularte con más urgencia. Lo mejor es ignorar y reportar."
+        }
+      ]
+    },
+    {
+      "id": "scenario-002",
+      "categoria": "Privacidad",
+      "emoji": "📱",
+      "situacion": "Estás en tu nueva cuenta de Instagram. Una app de 'Análisis de Seguidores' te pide acceso a tu cuenta de Instagram para 'mostrarte quién te dejó de seguir'. Necesitas ingresar tu usuario y contraseña.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Le doy mis credenciales, quiero saber quién me dejó de seguir.",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "¡Riesgoso! Estas apps suelen ser credential harvesters (recolectores de credenciales). Con tu contraseña, pueden tomar control total de tu cuenta, publicar en tu nombre o vender tu información."
+        },
+        {
+          "id": "b",
+          "texto": "No le doy mi contraseña. Si quiero saber quién me dejó de seguir, lo reviso manualmente.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Excelente! Nunca compartas tus credenciales con apps de terceros. Instagram no autoriza estas aplicaciones. La información sobre tus seguidores es información privada que no deberías entregar."
+        },
+        {
+          "id": "c",
+          "texto": "Le doy acceso pero cambio mi contraseña después.",
+          "esCorrecta": false,
+          "puntos": 5,
+          "retroalimentacion": "Cambiar la contraseña después no borra el acceso que ya diste. El atacante pudo haber rogado tu sesión o configurado un acceso persistente. Nunca es seguro dar credenciales primero y arrepentirse después."
+        }
+      ]
+    },
+    {
+      "id": "scenario-003",
+      "categoria": "Seguridad en Dispositivos",
+      "emoji": "💻",
+      "situacion": "Tu amigo te comparte un enlace de una página web que dice 'Gana una PS5 participando en nuestra encuesta'. La página te pide tu nombre, dirección, teléfono y datos de tu tarjeta de crédito para 'enviar el premio'.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Lleno todos los campos. ¡Una PS5 gratis vale la pena!",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Esto es un classic phishing de premios falsos. Nunca un sitio legítimo te pide datos de tarjeta de crédito para enviar un 'premio ganado'. Estás entregando tu identidad y dinero a estafadores."
+        },
+        {
+          "id": "b",
+          "texto": "No lleno nada. Los premios reales no piden datos bancarios.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Perfecto! Ningún premio legítimo necesita tu tarjeta de crédito. Si suena demasiado bueno para ser verdad, probablemente es una estafa. Reporta la página y avisa a tu amigo."
+        },
+        {
+          "id": "c",
+          "texto": "Lleno solo nombre y teléfono, sin datos de tarjeta.",
+          "esCorrecta": false,
+          "puntos": 5,
+          "retroalimentacion": "Incluso con pocos datos, estás cayendo en la trampa. Con tu nombre y teléfono pueden hacerte llamadas de vishing (phishing por voz) o enviarte SMS con más enlaces maliciosos."
+        }
+      ]
+    },
+    {
+      "id": "scenario-004",
+      "categoria": "Redes Sociales",
+      "emoji": "🔒",
+      "situacion": "Tienes una contraseña súper segura para tu cuenta de TikTok: 'MiPerroFido2024!'. Pero como tienes muchas cuentas, decides usar la misma contraseña para tu correo de Gmail, tu banco y tu cuenta de Netflix.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "¡Perfecto! Una contraseña fuerte es suficiente para todo.",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Reusar contraseñas es peligroso. Si una sola cuenta es comprometida (en cualquier servicio), el atacante probará esas mismas credenciales en todas tus cuentas. Se llama 'credential stuffing' y es una de las técnicas más efectivas."
+        },
+        {
+          "id": "b",
+          "texto": "Uso un gestor de contraseñas y creo una contraseña única para cada servicio.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Excelente! Un gestor de contraseñas como Bitwarden o 1Password genera y almacena contraseñas únicas. Si una cuenta es comprometida, las demás siguen seguras. Nunca reutilices credenciales."
+        },
+        {
+          "id": "c",
+          "texto": "Uso la misma contraseña pero le agrego un número diferente al final de cada una.",
+          "esCorrecta": false,
+          "puntos": 5,
+          "retroalimentacion": "El cambio es predecible. Si un atacante ve 'MiPerroFido2024!' en una brecha, probará 'MiPerroFido2024!1', 'MiPerroFido2024!2', etc. Las variaciones obvias no son seguras."
+        }
+      ]
+    },
+    {
+      "id": "scenario-005",
+      "categoria": "Contenido Malicioso",
+      "emoji": "🔗",
+      "situacion": "En TikTok ves un video viral de un 'hacker ético' que muestra cómo obtener cualquier juego gratis. En la descripción hay un enlace a Telegram que promete un generador de códigos digitales. Tiene 200K likes.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Hago clic. ¡200K personas no pueden estar equivocadas!",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Los likes pueden ser comprados o manipulados. Los 'generadores de códigos' son siempre estafas. Pueden instalar malware, robar datos o suscribirte a servicios premium sin tu consentimiento."
+        },
+        {
+          "id": "b",
+          "texto": "No hago clic. Los generadores de código digital no existen realmente.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Correcto! No existe ningún 'generador' que pueda crear códigos legítimos de juegos o servicios digitales. El volumen de likes no valida la seguridad. Siempre desconfía de ofertas que suenan demasiado buenas."
+        },
+        {
+          "id": "c",
+          "texto": "Hago clic pero no descargo nada, solo miro la página.",
+          "esCorrecta": false,
+          "puntos": 5,
+          "retroalimentacion": "Solo visitar una página maliciosa puede ser suficiente para activar exploits en tu navegador (drive-by download). Algunos sitios ejecutan código malicioso automáticamente sin que hagas clic en nada."
+        }
+      ]
+    },
+    {
+      "id": "scenario-006",
+      "categoria": "WiFi y Redes",
+      "emoji": "📶",
+      "situacion": "Estás en un centro comercial y ves una red WiFi gratuita llamada 'Free_WiFi_CentroComercial'. No tiene contraseña. Para conectarte, la página te pide crear una cuenta con tu correo y contraseña.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Me conecto y creo la cuenta. ¡Es WiFi gratis!",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Esta podría ser un Evil Twin Attack (ataque de gemelo malvado). El atacante crea un punto de acceso falso que captura tus credenciales. Con tu correo y contraseña, puede intentar acceder a tus otras cuentas."
+        },
+        {
+          "id": "b",
+          "texto": "No me conecto. Las redes WiFi abiertas que piden registro son sospechosas.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Inteligente! Las redes WiFi públicas con registro sospechoso suelen ser trampas. Si necesitas WiFi en público, usa tu datos móviles o una VPN. Nunca registres credenciales reales en redes no verificadas."
+        },
+        {
+          "id": "c",
+          "texto": "Me conecto pero uso un correo y contraseña falsos.",
+          "esCorrecta": false,
+          "puntos": 10,
+          "retroalimentacion": "Mejor que datos reales, pero aun así te expones a MitM (Man-in-the-Middle). El atacante puede ver todo el tráfico no cifrado: páginas que visitas, búsquedas, etc. Evita estas redes completamente."
+        }
+      ]
+    },
+    {
+      "id": "scenario-007",
+      "categoria": "Ingeniería Social",
+      "emoji": "🎭",
+      "situacion": "Recibes un email de 'soporte@minecraft-official.com' (o el juego que prefieras) diciendo que tu cuenta fue hackeada y que debes 'verificar tu identidad' haciendo clic en un enlace. El email tiene el logo oficial y se ve muy profesional.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Hago clic inmediatamente. ¡Necesito proteger mi cuenta!",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Esto es spear phishing. Los atacantes clonan emails oficiales para robar credenciales. La urgencia es parte de la manipulación. Verifica siempre el remitente real y ve directamente al sitio oficial, no hagas clic en enlaces."
+        },
+        {
+          "id": "b",
+          "texto": "Verifico el remitente real del email y voy directamente al sitio oficial.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Correcto! Siempre verifica que el remitente sea legítimo (no solo el nombre, sino la dirección completa). Los emails de verificación legítimos nunca incluyen enlaces directos para 'verificar datos'."
+        },
+        {
+          "id": "c",
+          "texto": "Respondo al email preguntando si es real.",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Responder al email confirma que tu dirección está activa. El atacante te enviará más phishing o venderá tu email como 'confirmado' en la dark web. Nunca respondas a emails sospechosos."
+        }
+      ]
+    },
+    {
+      "id": "scenario-008",
+      "categoria": "Privacidad",
+      "emoji": "📸",
+      "situacion": "Una amiga te comparte un screenshot de su ubicación en tiempo real en Snapchat Maps. Te pregunta si también puedes compartir la tuya para 'verse en el mapa'. Tu ubicación estaría visible para todos tus amigos de Snapchat.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Comparto mi ubicación. ¡Será divertido vernos en el mapa!",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Compartir tu ubicación en tiempo real con muchos 'amigos' expone tu patrón de movimiento. Cualquiera en tu lista puede saber dónde vives, estudias y tus rutinas. Esto facilita el acoso o robo."
+        },
+        {
+          "id": "b",
+          "texto": "No comparto mi ubicación. Mi ubicación es información privada.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Sabio! La geolocalización en tiempo real es un riesgo serio. Si quieres compartir ubicación, hazlo solo con personas de confianza y por tiempo limitado, no permanentemente con toda tu lista."
+        },
+        {
+          "id": "c",
+          "texto": "Comparto pero solo con ella, no con todos mis amigos.",
+          "esCorrecta": false,
+          "puntos": 10,
+          "retroalimentacion": "Mejor que compartir con todos, pero Snapchat Maps puede mostrar tu ubicación approximate incluso con configuración 'solo amigos'. Verifica los permisos de ubicación de la app y usa el modo 'Fantasma' cuando no quieras ser vista."
+        }
+      ]
+    },
+    {
+      "id": "scenario-009",
+      "categoria": "Dispositivos y Acceso",
+      "emoji": "🔑",
+      "situacion": "Dejas tu celular desbloqueado sobre la mesa mientras vas al baño en el recreo. Cuando regresas, ves que tu amigo está revisando tus notificaciones y mensajes. Se ríe y dice '¡Solo estaba curioseando!'",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "No pasa nada, es mi amigo y solo estaba viendo notificaciones.",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Un amigo de hoy puede no serlo mañana. Además, pudo haber instalado una app espía, leído tus contraseñas o accedido a información sensible. Siempre bloquea tu dispositivo cuando no lo supervisas."
+        },
+        {
+          "id": "b",
+          "texto": "Me molesto y le pido que no vuelva a hacerlo. Activo bloqueo por huella/rostro.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Correcto! Tus dispositivos contienen tu vida digital. Incluso con amigos de confianza, establece límites claros. Activa autenticación biométrica y bloqueo automático inmediato."
+        },
+        {
+          "id": "c",
+          "texto": "Le doy un chance, pero configuro mi celular para que se bloquee más rápido.",
+          "esCorrecta": false,
+          "puntos": 10,
+          "retroalimentacion": "Cambiar el timeout es bueno, pero también necesitas establecer un límite con tu amigo. Si alguien accede a tu celular desbloqueado, puede cambiar configuraciones, instalar apps o acceder a información privada."
+        }
+      ]
+    },
+    {
+      "id": "scenario-010",
+      "categoria": "Desinformación y IA",
+      "emoji": "🤖",
+      "situacion": "En un grupo de WhatsApp de tu colegio comparten un video donde parece que tu profesor de matemáticas está diciendo cosas absurdas y ofensivas. El video parece real, con su cara y su voz. Todos se están riendo y compartiendo.",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Lo comparto inmediatamente. ¡Esto es increíble! Tiene que verlo todo el mundo.",
+          "esCorrecta": false,
+          "puntos": 0,
+          "retroalimentacion": "Podría ser un deepfake (video sintético generado por IA). Los deepfakes pueden ser muy convincentes en 2026. Compartir contenido falso puede dañar la reputación de una persona y tener consecuencias legales."
+        },
+        {
+          "id": "b",
+          "texto": "No lo comparto. Verifico la fuente original antes de creer o compartir.",
+          "esCorrecta": true,
+          "puntos": 20,
+          "retroalimentacion": "¡Excelente! En 2026, los deepfakes son cada vez más realistas. Siempre verifica la fuente original, busca el contexto completo y no te dejes llevar por la emoción del momento. La desinformación se propaga por la urgencia."
+        },
+        {
+          "id": "c",
+          "texto": "Pregunto al profesor si es real antes de compartir.",
+          "esCorrecta": false,
+          "puntos": 10,
+          "retroalimentacion": "Buena intención, pero mientras verificas, el video ya podría estar propagándose. En su lugar, no compartas y reporta el contenido. Si es un deepfake, afecta a la persona incluso si 'solo es un chiste'."
+        }
+      ]
+    }
+  ],
+  "categorias": [
+    {
+      "id": "ingenieria-social",
+      "nombre": "Ingeniería Social",
+      "emoji": "🎭",
+      "descripcion": "Técnicas de manipulación psicológica para engañarte",
+      "color": "purple"
+    },
+    {
+      "id": "privacidad",
+      "nombre": "Privacidad",
+      "emoji": "🔒",
+      "descripcion": "Protección de tu información personal",
+      "color": "cyan"
+    },
+    {
+      "id": "seguridad-dispositivos",
+      "nombre": "Seguridad en Dispositivos",
+      "emoji": "💻",
+      "descripcion": "Protección de tus aparatos digitales",
+      "color": "emerald"
+    },
+    {
+      "id": "redes-sociales",
+      "nombre": "Redes Sociales",
+      "emoji": "📱",
+      "descripcion": "Uso seguro de plataformas sociales",
+      "color": "pink"
+    },
+    {
+      "id": "contenido-malicioso",
+      "nombre": "Contenido Malicioso",
+      "emoji": "🔗",
+      "descripcion": "Identificación de enlaces y archivos peligrosos",
+      "color": "rose"
+    },
+    {
+      "id": "wifi-redes",
+      "nombre": "WiFi y Redes",
+      "emoji": "📶",
+      "descripcion": "Conexiones seguras a internet",
+      "color": "amber"
+    },
+    {
+      "id": "dispositivos-acceso",
+      "nombre": "Dispositivos y Acceso",
+      "emoji": "🔑",
+      "descripcion": "Control de acceso a tus dispositivos",
+      "color": "orange"
+    },
+    {
+      "id": "desinformacion-ia",
+      "nombre": "Desinformación y IA",
+      "emoji": "🤖",
+      "descripcion": "Contenido sintético y fake news",
+      "color": "violet"
+    }
+  ],
+  "resultados": {
+    "nivelAvanzado": {
+      "titulo": "¡Cyber-Guardián Iniciado!",
+      "subtitulo": "Estás listo para la misión",
+      "emoji": "🛡️",
+      "descripcion": "¡Felicidades! Demuestras un nivel sólido de conciencia digital. Tienes las bases para convertirte en un verdadero Cyber-Guardián. ¡Prepárate para el Módulo 1!",
+      "color": "emerald",
+      "insignia": "🛡️",
+      "recomendacion": "continuar"
+    },
+    "nivelBasico": {
+      "titulo": "Nivelación Necesaria",
+      "subtitulo": "Necesitas reforzar tus defenses",
+      "emoji": "⚠️",
+      "descripcion": "No te preocupes, ¡todos aprendemos! Algunos conceptos básicos necesitan refuerzo antes de avanzar. Completa estas micro-actividades para ponerte al día.",
+      "color": "amber",
+      "insignia": "📚",
+      "recomendacion": "nivelacion",
+      "microActividades": [
+        {
+          "id": "micro-001",
+          "tipo": "arrastrar-soltar",
+          "titulo": "¿Cómo viajan tus datos?",
+          "descripcion": "Arrastra cada paso del camino de un dato desde tu teléfono hasta un servidor web."
+        },
+        {
+          "id": "micro-002",
+          "tipo": "rompecabezas-logico",
+          "titulo": "Cadena de contraseñas",
+          "descripcion": "Completa el rompecabezas para entender por qué reutilizar contraseñas es peligroso."
+        }
+      ]
+    }
+  }
+}

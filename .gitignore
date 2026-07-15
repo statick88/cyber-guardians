@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+node_modules/.ignored/
+
+# build output
+.next/
+out/
+
+# pnpm
+pnpm-debug.log*
+
+# misc
+.DS_Store
+*.tsbuildinfo
+.env*.local
