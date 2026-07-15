@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { STORAGE_KEYS } from '@/lib/storage-keys'
 
 interface BadgeItem {
   id: string

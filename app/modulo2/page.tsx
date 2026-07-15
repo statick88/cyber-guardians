@@ -10,6 +10,8 @@ import { MFASimulator } from '@/components/module2/MFASimulator'
 import { SocialMediaAudit } from '@/components/module2/SocialMediaAudit'
 import { IdentityTheftSimulator } from '@/components/module2/IdentityTheftSimulator'
 import { DragDropDefense } from '@/components/module2/DragDropDefense'
+import { navigateTo } from '@/lib/navigation'
+import { STORAGE_KEYS } from '@/lib/storage-keys'
 import { MicroActivities } from '@/components/module2/MicroActivities'
 import { Module2Category, ALL_MODULE2_CATEGORIES, GameProgressModule2 } from '@/types/module2'
 import module2Data from '@/data/module2Data.json'
@@ -29,7 +31,7 @@ const moduloForResults = {
   icono: typedModule2Data.modulo.icono,
 }
 
-const STORAGE_KEY = 'cyber-guardians-module2'
+const STORAGE_KEY = STORAGE_KEYS.MODULE2
 const STALE_MS = 24 * 60 * 60 * 1000 // 24 hours
 
 type GamePhase = 'WELCOME' | 'ACTIVITIES' | 'RESULTS'
@@ -159,7 +161,7 @@ export default function Modulo2Page() {
   }, [])
 
   const handleContinue = useCallback(() => {
-    window.location.href = '/modulo3'
+    navigateTo('/modulo3')
   }, [])
 
   const renderCurrentActivity = () => {

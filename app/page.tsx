@@ -13,7 +13,7 @@ export default function Home() {
         </p>
         <div className="space-y-4">
           <Link
-            href="/game"
+            href="/modulo0"
             className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 rounded-lg transition-colors"
           >
             Comenzar

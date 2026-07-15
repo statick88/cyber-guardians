@@ -9,8 +9,10 @@ import ResultsScreen from '@/components/ResultsScreen'
 import MicroActivity from '@/components/MicroActivity'
 import module0Raw from '@/data/module0Data.json'
 import type { ModuloData, GameState, GameProgress as GameProgressType } from '@/types/module0'
+import { navigateTo } from '@/lib/navigation'
+import { STORAGE_KEYS } from '@/lib/storage-keys'
 
-const STORAGE_KEY = 'cyber-guardians-module0'
+const STORAGE_KEY = STORAGE_KEYS.MODULE0
 
 function loadData(): ModuloData {
   const data = module0Raw as ModuloData
@@ -138,7 +140,7 @@ export default function Modulo0Page() {
   }, [])
 
   const handleContinue = useCallback(() => {
-    window.location.href = '/modulo1'
+    navigateTo('/modulo1')
   }, [])
 
   const handleMicroComplete = useCallback(() => {

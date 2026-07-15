@@ -10,6 +10,8 @@ import { URLInspector } from '@/components/module1/URLInspector'
 import { PhishingSimulator } from '@/components/module1/PhishingSimulator'
 import { DigitalDefense } from '@/components/module1/DigitalDefense'
 import { DragDropActivity } from '@/components/module1/DragDropActivity'
+import { navigateTo } from '@/lib/navigation'
+import { STORAGE_KEYS } from '@/lib/storage-keys'
 import { MicroActivities } from '@/components/module1/MicroActivities'
 import { Module1Category, ALL_MODULE1_CATEGORIES, GameProgressModule1 } from '@/types/module1'
 import module1Data from '@/data/module1Data.json'
@@ -28,7 +30,7 @@ const moduloForResults = {
   icono: typedModule1Data.modulo.icono,
 }
 
-const STORAGE_KEY = 'cyber-guardians-module1'
+const STORAGE_KEY = STORAGE_KEYS.MODULE1
 const STALE_MS = 24 * 60 * 60 * 1000 // 24 hours
 
 type GamePhase = 'WELCOME' | 'ACTIVITIES' | 'RESULTS'
@@ -158,7 +160,7 @@ export default function Module1Game() {
   }, [])
 
   const handleContinue = useCallback(() => {
-    window.location.href = '/modulo2'
+    navigateTo('/modulo2')
   }, [])
 
   const renderCurrentActivity = () => {

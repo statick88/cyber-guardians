@@ -11,6 +11,7 @@ import { CodeDefuseSandbox } from '@/components/module4/CodeDefuseSandbox'
 import { MicroActivities } from '@/components/module4/MicroActivities'
 import { Module4Category, ALL_MODULE4_CATEGORIES, GameProgressModule4 } from '@/types/module4'
 import module4Data from '@/data/module4Data.json'
+import { STORAGE_KEYS } from '@/lib/storage-keys'
 import type { Modulo4Data } from '@/types/module4'
 
 const typedModule4Data = module4Data as Modulo4Data
@@ -26,10 +27,9 @@ const moduloForResults = {
   icono: typedModule4Data.modulo.icono,
 }
 
-const STORAGE_KEY = 'cyber-guardians-module4'
-const BADGES_KEY = 'cyber-guardians-badges'
+const STORAGE_KEY = STORAGE_KEYS.MODULE4
+const BADGES_KEY = STORAGE_KEYS.BADGES
 const STALE_MS = 24 * 60 * 60 * 1000
-const MODULES = ['module0', 'module1', 'module2', 'module3', 'module4'] as const
 
 type GamePhase = 'WELCOME' | 'ACTIVITIES' | 'RESULTS' | 'GRADUATION'
 
@@ -89,9 +89,16 @@ function hashScore(score: number): string {
 
 function readModuleScores(): Record<string, number> {
   const scores: Record<string, number> = {}
-  for (const mod of MODULES) {
+  const moduleMap: Record<string, string> = {
+    module0: STORAGE_KEYS.MODULE0,
+    module1: STORAGE_KEYS.MODULE1,
+    module2: STORAGE_KEYS.MODULE2,
+    module3: STORAGE_KEYS.MODULE3,
+    module4: STORAGE_KEYS.MODULE4,
+  }
+  for (const [mod, key] of Object.entries(moduleMap)) {
     try {
-      const stored = localStorage.getItem(`cyber-guardians-${mod}`)
+      const stored = localStorage.getItem(key)
       if (!stored) continue
       const parsed = JSON.parse(stored)
       if (typeof parsed.score === 'number' && typeof parsed.maxScore === 'number' && parsed.maxScore > 0) {

@@ -10,6 +10,8 @@ import { VishingCallSimulator } from '@/components/module3/VishingCallSimulator'
 import { DesinformacionDetector } from '@/components/module3/DesinformacionDetector'
 import { MicroActivities } from '@/components/module3/MicroActivities'
 import { Module3Category, ALL_MODULE3_CATEGORIES, GameProgressModule3 } from '@/types/module3'
+import { navigateTo } from '@/lib/navigation'
+import { STORAGE_KEYS } from '@/lib/storage-keys'
 import module3Data from '@/data/module3Data.json'
 import type { Modulo3Data } from '@/types/module3'
 
@@ -26,7 +28,7 @@ const moduloForResults = {
   icono: typedModule3Data.modulo.icono,
 }
 
-const STORAGE_KEY = 'cyber-guardians-module3'
+const STORAGE_KEY = STORAGE_KEYS.MODULE3
 const STALE_MS = 24 * 60 * 60 * 1000
 
 type GamePhase = 'WELCOME' | 'ACTIVITIES' | 'RESULTS'
@@ -156,7 +158,7 @@ export default function Modulo3Page() {
   }, [])
 
   const handleContinue = useCallback(() => {
-    window.location.href = '/modulo4'
+    navigateTo('/modulo4')
   }, [])
 
   const renderCurrentActivity = () => {
