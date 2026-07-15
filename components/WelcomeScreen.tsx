@@ -10,6 +10,8 @@ interface WelcomeScreenProps {
   moduleDescription?: string
   moduleIcon?: string
   stats?: string
+  moduleNumber?: number
+  isLoading?: boolean
 }
 
 export default function WelcomeScreen({ 
@@ -18,7 +20,9 @@ export default function WelcomeScreen({
   moduleSubtitle = "Elige tu propia aventura digital",
   moduleDescription = "Antes de convertirte en un Cyber-Guardián, necesitamos conocer tu nivel de defensa digital.",
   moduleIcon = "🛡️",
-  stats = "10 escenarios · 5-8 minutos · Umbral: 70%"
+  stats = "10 escenarios · 5-8 minutos · Umbral: 70%",
+  moduleNumber = 0,
+  isLoading = false,
 }: WelcomeScreenProps) {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -59,7 +63,7 @@ export default function WelcomeScreen({
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
             <Zap className="w-4 h-4 text-cyan-400" />
-            <span className="text-cyan-300 text-sm font-medium code-font">MÓDULO 2</span>
+            <span className="text-cyan-300 text-sm font-medium code-font">MÓDULO {moduleNumber}</span>
           </div>
         </motion.div>
 
@@ -109,12 +113,22 @@ export default function WelcomeScreen({
         >
           <button
             onClick={onStart}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-lg rounded-xl transition-all duration-300 animate-pulse-neon focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+            disabled={isLoading}
+            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-lg rounded-xl transition-all duration-300 animate-pulse-neon focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950 disabled:opacity-60 disabled:cursor-not-allowed"
             aria-label={`Iniciar ${moduleTitle}`}
           >
             <Shield className="w-5 h-5" />
-            Iniciar Misión
-            <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            {isLoading ? (
+              <>
+                <span>Cargando Misión...</span>
+                <div className="animate-spin rounded-full h-4 w-4 border-2 border-slate-950 border-t-transparent" />
+              </>
+            ) : (
+              <>
+                Iniciar Misión
+                <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </>
+            )}
           </button>
         </motion.div>
 

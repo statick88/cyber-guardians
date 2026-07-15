@@ -108,6 +108,7 @@ export default function Module1Game() {
     }
     return base
   })
+  const [isNavigating, setIsNavigating] = useState(false)
 
   const handleStart = useCallback(() => {
     setGamePhase('ACTIVITIES')
@@ -160,6 +161,7 @@ export default function Module1Game() {
   }, [])
 
   const handleContinue = useCallback(() => {
+    setIsNavigating(true)
     navigateTo('/modulo2')
   }, [])
 
@@ -228,7 +230,7 @@ export default function Module1Game() {
     <main className="min-h-screen gradient-bg">
       <AnimatePresence mode="wait">
         {gamePhase === 'WELCOME' && (
-          <WelcomeScreen key="welcome" onStart={handleStart} />
+          <WelcomeScreen key="welcome" onStart={handleStart} moduleNumber={1} />
         )}
 
         {gamePhase === 'ACTIVITIES' && (
@@ -257,6 +259,8 @@ export default function Module1Game() {
               modulo={moduloForResults}
               onRetry={handleRetry}
               onContinue={handleContinue}
+              isNavigating={isNavigating}
+              continueLabel="Continuar al Módulo 2"
             />
           </div>
         )}

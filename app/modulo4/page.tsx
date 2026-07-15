@@ -101,8 +101,12 @@ function readModuleScores(): Record<string, number> {
       const stored = localStorage.getItem(key)
       if (!stored) continue
       const parsed = JSON.parse(stored)
-      if (typeof parsed.score === 'number' && typeof parsed.maxScore === 'number' && parsed.maxScore > 0) {
-        scores[mod] = Math.round((parsed.score / parsed.maxScore) * 100)
+      // Handle both field names: score (modules 1-4) and totalScore (module 0)
+      const score = typeof parsed.score === 'number' ? parsed.score :
+                    typeof parsed.totalScore === 'number' ? parsed.totalScore : null
+      const maxScore = typeof parsed.maxScore === 'number' ? parsed.maxScore : 100
+      if (score !== null && maxScore > 0) {
+        scores[mod] = Math.round((score / maxScore) * 100)
       }
     } catch {
       // invalid data, skip
@@ -224,16 +228,11 @@ export default function Modulo4Page() {
   }, [])
 
   const handleContinue = useCallback(() => {
-    const percentage = Math.round((score / maxScore) * 100)
-    if (percentage >= 70) {
-      const scores = readModuleScores()
-      setModuleScores(scores)
-      const badges = updateUnlockedBadges(scores)
-      setUnlockedBadges(badges)
-      setGamePhase('GRADUATION')
-    } else {
-      alert('¡Felicidades! Has completado CyberGuardians')
-    }
+    const scores = readModuleScores()
+    setModuleScores(scores)
+    const badges = updateUnlockedBadges(scores)
+    setUnlockedBadges(badges)
+    setGamePhase('GRADUATION')
   }, [score, maxScore])
 
   const renderCurrentActivity = () => {
@@ -302,6 +301,7 @@ export default function Modulo4Page() {
             moduleDescription="Detecta vulnerabilidades, sanitiza entradas, implementa autenticación segura y aplica patrones defensivos"
             moduleIcon="💻"
             stats="5 actividades · 15-20 min · Umbral: 70%"
+            moduleNumber={4}
           />
         )}
 

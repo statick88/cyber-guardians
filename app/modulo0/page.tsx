@@ -75,6 +75,7 @@ export default function Modulo0Page() {
   const [categoryScores, setCategoryScores] = useState<Record<string, number>>({})
   const [completedScenarios, setCompletedScenarios] = useState<string[]>([])
   const [microActivitiesComplete, setMicroActivitiesComplete] = useState(0)
+  const [isNavigating, setIsNavigating] = useState(false)
 
   // Restore progress on mount
   useEffect(() => {
@@ -107,6 +108,11 @@ export default function Modulo0Page() {
       })
     }
   }, [gameState, currentScenarioIndex, totalScore, categoryScores, completedScenarios])
+
+  // Clear progress when showing results (matches modules 1-4 pattern)
+  useEffect(() => {
+    if (gameState === 'RESULTS') clearProgress()
+  }, [gameState])
 
   const handleStart = useCallback(() => {
     setGameState('PLAYING')
@@ -147,6 +153,7 @@ export default function Modulo0Page() {
   }, [])
 
   const handleContinue = useCallback(() => {
+    setIsNavigating(true)
     navigateTo('/modulo1')
   }, [])
 
@@ -196,6 +203,8 @@ export default function Modulo0Page() {
               modulo={data.modulo}
               onRetry={handleRetry}
               onContinue={handleContinue}
+              isNavigating={isNavigating}
+              continueLabel="Continuar al Módulo 1"
             />
 
             {percentage < data.modulo.umbralAprobacion && (

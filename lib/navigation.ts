@@ -19,6 +19,10 @@ export function getBasePath(): string {
 
 /** Navigate to a path, automatically prepending the basePath */
 export function navigateTo(path: string): void {
-  const base = getBasePath()
-  window.location.href = `${base}${path}`
+  try {
+    const base = getBasePath()
+    window.location.href = `${base}${path}`
+  } catch {
+    window.location.href = path
+  }
 }

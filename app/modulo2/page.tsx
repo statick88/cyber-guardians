@@ -109,6 +109,7 @@ export default function Modulo2Page() {
     }
     return base
   })
+  const [isNavigating, setIsNavigating] = useState(false)
 
   const handleStart = useCallback(() => {
     setGamePhase('ACTIVITIES')
@@ -161,6 +162,7 @@ export default function Modulo2Page() {
   }, [])
 
   const handleContinue = useCallback(() => {
+    setIsNavigating(true)
     navigateTo('/modulo3')
   }, [])
 
@@ -236,6 +238,7 @@ export default function Modulo2Page() {
             moduleDescription="Domina contraseñas, 2FA, privacidad en redes y defensa contra robo de identidad"
             moduleIcon="🛡️"
             stats="6 actividades · 15-20 min · Umbral: 70%"
+            moduleNumber={2}
           />
         )}
 
@@ -265,6 +268,8 @@ export default function Modulo2Page() {
               modulo={moduloForResults}
               onRetry={handleRetry}
               onContinue={handleContinue}
+              isNavigating={isNavigating}
+              continueLabel="Continuar al Módulo 3"
             />
           </div>
         )}

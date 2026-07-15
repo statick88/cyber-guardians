@@ -106,6 +106,7 @@ export default function Modulo3Page() {
     }
     return base
   })
+  const [isNavigating, setIsNavigating] = useState(false)
 
   const handleStart = useCallback(() => {
     setGamePhase('ACTIVITIES')
@@ -158,6 +159,7 @@ export default function Modulo3Page() {
   }, [])
 
   const handleContinue = useCallback(() => {
+    setIsNavigating(true)
     navigateTo('/modulo4')
   }, [])
 
@@ -235,6 +237,7 @@ export default function Modulo3Page() {
             moduleDescription="Identifica deepfakes de imagen, audio clonado, video manipulado y desinformación generada por IA"
             moduleIcon="🎭"
             stats="6 actividades · 15-20 min · Umbral: 70%"
+            moduleNumber={3}
           />
         )}
 
@@ -264,6 +267,8 @@ export default function Modulo3Page() {
               modulo={moduloForResults}
               onRetry={handleRetry}
               onContinue={handleContinue}
+              isNavigating={isNavigating}
+              continueLabel="Continuar al Módulo 4"
             />
           </div>
         )}

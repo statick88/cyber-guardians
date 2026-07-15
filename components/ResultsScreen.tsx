@@ -13,6 +13,8 @@ interface ResultsScreenProps {
   modulo: ModuloData['modulo']
   onRetry: () => void
   onContinue: () => void
+  isNavigating?: boolean
+  continueLabel?: string
 }
 
 function ConfettiPiece({ index }: { index: number }) {
@@ -54,6 +56,8 @@ export default function ResultsScreen({
   modulo,
   onRetry,
   onContinue,
+  isNavigating = false,
+  continueLabel = 'Continuar',
 }: ResultsScreenProps) {
   const [showConfetti, setShowConfetti] = useState(false)
   const percentage = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0
@@ -223,17 +227,28 @@ export default function ResultsScreen({
           {passed ? (
             <button
               onClick={onContinue}
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition-all duration-300 shadow-neon-emerald focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-950"
-              aria-label="Continuar al Módulo 1"
+              disabled={isNavigating}
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition-all duration-300 shadow-neon-emerald focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-950 disabled:opacity-60 disabled:cursor-not-allowed"
+              aria-label={continueLabel}
             >
               <Trophy className="w-5 h-5" />
-              Continuar al Módulo 1
-              <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              {isNavigating ? (
+                <>
+                  <span>Cargando...</span>
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-cyan-400 border-t-transparent" />
+                </>
+              ) : (
+                <>
+                  {continueLabel}
+                  <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </>
+              )}
             </button>
           ) : (
             <button
               onClick={onRetry}
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl transition-all duration-300 shadow-neon focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+              disabled={isNavigating}
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl transition-all duration-300 shadow-neon focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950 disabled:opacity-60 disabled:cursor-not-allowed"
               aria-label="Reintentar el diagnóstico"
             >
               <RotateCcw className="w-5 h-5" />
@@ -242,7 +257,8 @@ export default function ResultsScreen({
           )}
           <button
             onClick={onRetry}
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-slate-700 hover:border-slate-500 text-slate-400 hover:text-slate-200 font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-950"
+            disabled={isNavigating}
+            className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-slate-700 hover:border-slate-500 text-slate-400 hover:text-slate-200 font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-950 disabled:opacity-60 disabled:cursor-not-allowed"
             aria-label="Volver a empezar"
           >
             <RotateCcw className="w-4 h-4" />
