@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { AlertTriangle, Link, Globe, Hash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -66,7 +67,9 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+        <div className="space-y-6">
       <div className="flex items-center justify-between">
         <Badge variant="outline" className="text-slate-300">
           URL {currentIndex + 1} de {urls.length}
@@ -231,7 +234,7 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
                           {currentURL.elementoSuspeito}
                         </p>
                         <p className="text-slate-400 text-sm">
-                          {currentURL.explicacao}
+                          {currentURL.explicacion}
                         </p>
                       </div>
                     </AlertDescription>
@@ -242,6 +245,38 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
           </Card>
         </motion.div>
       </AnimatePresence>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2 }}
+          className="space-y-4"
+        >
+          <Card className="bg-slate-900/50 border-slate-800">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm text-slate-300">Indicadores Clave</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-xs">
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-400">URLs muito longas ou com muitos parâmetros podem esconder o destino real</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Link className="w-3.5 h-3.5 text-blue-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-400">Subdomínios falsos imitam marcas conhecidas (ex: pay-pal.com)</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Globe className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-400">Verifique sempre o domínio real antes de clicar em qualquer link</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Hash className="w-3.5 h-3.5 text-purple-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-400">Links encurtados podem ocultar destinos maliciosos</span>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
     </div>
   );
 }

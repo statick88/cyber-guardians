@@ -25,7 +25,7 @@ export default function GameProgress<TCategory extends string>({
   const percentage = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-4 mb-6">
+    <div className="w-full max-w-5xl mx-auto px-4 mb-6">
       {/* Top Bar: Progress + Score */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">

@@ -86,7 +86,7 @@ export default function ResultsScreen({
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className="max-w-2xl w-full mx-auto"
+        className="max-w-5xl w-full mx-auto"
       >
         {/* Score Card */}
         <div className={`glass-card rounded-2xl p-6 sm:p-8 mb-6 text-center ${
@@ -180,7 +180,7 @@ export default function ResultsScreen({
               Desglose por Categoría
             </h3>
           </div>
-          <div className="space-y-3">
+          <div className="grid md:grid-cols-2 gap-6">
             {categorias.map((cat) => {
               const catScore = categoryScores[cat.nombre] || 0
               const maxCatScore = 20
