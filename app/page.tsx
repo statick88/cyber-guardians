@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import useAudioSynth from '@/hooks/useAudioSynth'
+import { navigateTo } from '@/lib/navigation'
 import type {
   Mission,
   MissionStatus,
@@ -524,7 +525,7 @@ export default function Home() {
                     if (m.status === 'locked') return
                     playSuccess()
                     // Navigate via Next.js Link behavior — trigger programmatically
-                    window.location.href = `/${m.slug}`
+                    navigateTo(`/${m.slug}`)
                   }}
                 />
               ))}

@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Download, User, RotateCcw, Shield } from 'lucide-react'
+import { navigateTo } from '@/lib/navigation'
 
 interface GraduationDiplomaProps {
   totalScore: number
@@ -393,7 +394,7 @@ export default function GraduationDiploma({
     for (let i = 0; i <= 4; i++) {
       localStorage.removeItem(`cg_2026_module${i}`)
     }
-    window.location.href = '/'
+    navigateTo('/')
   }, [])
 
   return (
