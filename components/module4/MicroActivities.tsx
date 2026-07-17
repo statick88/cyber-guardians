@@ -157,26 +157,11 @@ export function MicroActivities({
         return (
           <div className="space-y-4">
             <p className="text-lg text-gray-200 text-center">{currentActivity.pregunta}</p>
-            <div className="space-y-2">
-              {currentActivity.pasos?.map((paso, idx) => (
-                <div
-                  key={paso.id}
-                  className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/50 text-gray-300"
-                >
-                  <span className="text-cyan-400 mr-2">{idx + 1}.</span>
-                  {paso.texto}
-                </div>
-              ))}
-            </div>
-            <div className="flex justify-center">
-              <Button
-                onClick={() => handleOrderSubmit(currentActivity.pasos?.map(p => p.texto) || [])}
-                className="bg-purple-500 hover:bg-purple-600 min-h-[44px]"
-              >
-                <ListOrdered className="w-4 h-4 mr-2" />
-                Verificar Orden
-              </Button>
-            </div>
+            <OrderSteps
+              pasos={currentActivity.pasos || []}
+              onSubmit={handleOrderSubmit}
+              disabled={isCorrect !== null}
+            />
           </div>
         );
 
@@ -249,6 +234,92 @@ export function MicroActivities({
           </Card>
         </motion.div>
       </AnimatePresence>
+    </div>
+  );
+}
+
+// Order steps component with Fisher-Yates shuffle and move up/down reordering
+function OrderSteps({
+  pasos,
+  onSubmit,
+  disabled,
+}: {
+  pasos: Array<{ id: string; texto: string; ordenCorrecto: number }>;
+  onSubmit: (order: string[]) => void;
+  disabled: boolean;
+}) {
+  const [items, setItems] = useState(() => {
+    const shuffled = [...pasos];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  });
+
+  const moveUp = (index: number) => {
+    if (index === 0 || disabled) return;
+    setItems((prev) => {
+      const next = [...prev];
+      [next[index - 1], next[index]] = [next[index], next[index - 1]];
+      return next;
+    });
+  };
+
+  const moveDown = (index: number) => {
+    if (index === items.length - 1 || disabled) return;
+    setItems((prev) => {
+      const next = [...prev];
+      [next[index], next[index + 1]] = [next[index + 1], next[index]];
+      return next;
+    });
+  };
+
+  const handleSubmit = () => {
+    onSubmit(items.map((item) => item.id));
+  };
+
+  return (
+    <div className="space-y-2">
+      {items.map((item, index) => (
+        <div
+          key={item.id}
+          className="flex items-center gap-3 p-3.5 min-h-[44px] rounded-lg bg-slate-800/50 border border-slate-700"
+        >
+          <div className="w-8 h-8 flex items-center justify-center bg-slate-700 rounded text-white font-mono font-bold">
+            {index + 1}
+          </div>
+          <span className="text-white flex-1">{item.texto}</span>
+          <div className="flex flex-col gap-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => moveUp(index)}
+              disabled={disabled || index === 0}
+              className="h-6 w-6 p-0 text-slate-400 hover:text-white"
+            >
+              ↑
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => moveDown(index)}
+              disabled={disabled || index === items.length - 1}
+              className="h-6 w-6 p-0 text-slate-400 hover:text-white"
+            >
+              ↓
+            </Button>
+          </div>
+        </div>
+      ))}
+      <Button
+        onClick={handleSubmit}
+        disabled={disabled}
+        className="w-full bg-purple-500 hover:bg-purple-600 min-h-[44px]"
+      >
+        <ListOrdered className="w-4 h-4 mr-2" />
+        Enviar Orden
+      </Button>
     </div>
   );
 }

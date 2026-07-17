@@ -232,6 +232,12 @@ export default function Modulo4Page() {
     setModuleScores(scores)
     const badges = updateUnlockedBadges(scores)
     setUnlockedBadges(badges)
+    // Compute accumulated percentage across all modules (scores are already 0-100 percentages)
+    const moduleValues = Object.values(scores)
+    const accumulated = moduleValues.length > 0
+      ? Math.round(moduleValues.reduce((a, b) => a + b, 0) / moduleValues.length)
+      : 0
+    setScore(accumulated)
     setGamePhase('GRADUATION')
   }, [score, maxScore])
 

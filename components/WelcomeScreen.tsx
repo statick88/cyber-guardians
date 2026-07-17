@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Shield, Zap, ChevronRight } from 'lucide-react'
+import { initAudio } from '@/lib/soundEffects'
 
 interface WelcomeScreenProps {
   onStart: () => void
@@ -30,7 +31,7 @@ export default function WelcomeScreen({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="text-center max-w-2xl mx-auto"
+        className="text-center max-w-4xl mx-auto"
       >
         {/* Floating Shield Icon */}
         <motion.div
@@ -112,7 +113,10 @@ export default function WelcomeScreen({
           transition={{ delay: 1.2, duration: 0.5 }}
         >
           <button
-            onClick={onStart}
+            onClick={() => {
+              initAudio()
+              onStart()
+            }}
             disabled={isLoading}
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-lg rounded-xl transition-all duration-300 animate-pulse-neon focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950 disabled:opacity-60 disabled:cursor-not-allowed"
             aria-label={`Iniciar ${moduleTitle}`}

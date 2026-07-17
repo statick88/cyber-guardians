@@ -10,6 +10,7 @@ import { MFASimulator } from '@/components/module2/MFASimulator'
 import { SocialMediaAudit } from '@/components/module2/SocialMediaAudit'
 import { IdentityTheftSimulator } from '@/components/module2/IdentityTheftSimulator'
 import { DragDropDefense } from '@/components/module2/DragDropDefense'
+import PhoneticDecoder from '@/components/module2/PhoneticDecoder'
 import { navigateTo } from '@/lib/navigation'
 import { STORAGE_KEYS } from '@/lib/storage-keys'
 import { MicroActivities } from '@/components/module2/MicroActivities'
@@ -42,6 +43,7 @@ const ACTIVITIES = [
   { key: 'social', component: 'social' as const },
   { key: 'identity', component: 'identity' as const },
   { key: 'defense', component: 'defense' as const },
+  { key: 'vishing', component: 'vishing' as const },
   { key: 'micro', component: 'micro' as const },
 ]
 
@@ -139,6 +141,23 @@ export default function Modulo2Page() {
     })
   }, [currentActivityIndex])
 
+  const handleShieldDamage = useCallback((damage: number) => {
+    setScore((prev) => {
+      const next = Math.max(0, prev - damage)
+      setCategoryScores((prevCat) => {
+        const updated = { ...prevCat, 'proteccion-identidad': Math.max(0, (prevCat['proteccion-identidad'] || 0) - damage) }
+        saveProgress({
+          currentActivityIndex,
+          score: next,
+          categoryScores: updated,
+          timestamp: Date.now(),
+        })
+        return updated
+      })
+      return next
+    })
+  }, [currentActivityIndex])
+
   const handleActivityComplete = useCallback(() => {
     if (currentActivityIndex + 1 < ACTIVITIES.length) {
       setCurrentActivityIndex((prev) => prev + 1)
@@ -211,6 +230,15 @@ export default function Modulo2Page() {
             ejercicios={typedModule2Data.ejercicios}
             onScore={(p) => onScore(p, 'defensa-activa')}
             onComplete={onComplete}
+          />
+        )
+      case 'vishing':
+        return (
+          <PhoneticDecoder
+            calls={typedModule2Data.vishing ?? []}
+            config={{ timeLimit: 120, autoRevealInterval: 6, xpPerFlag: 15, damagePerWrongDecision: 20, callCount: 2 }}
+            onComplete={(xp, _score) => onScore(xp, 'proteccion-identidad')}
+            onShieldDamage={handleShieldDamage}
           />
         )
       case 'micro':

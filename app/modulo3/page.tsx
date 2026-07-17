@@ -5,9 +5,10 @@ import { AnimatePresence } from 'framer-motion'
 import WelcomeScreen from '@/components/WelcomeScreen'
 import GameProgress from '@/components/GameProgress'
 import ResultsScreen from '@/components/ResultsScreen'
-import { DeepfakeAnalyzer } from '@/components/module3/DeepfakeAnalyzer'
-import { VishingCallSimulator } from '@/components/module3/VishingCallSimulator'
-import { DesinformacionDetector } from '@/components/module3/DesinformacionDetector'
+import ChatSimulator from '@/components/module3/ChatSimulator'
+import MulaDineroDetector from '@/components/module3/MulaDineroDetector'
+import ExtorsionResponse from '@/components/module3/ExtorsionResponse'
+import SeñalesDragDrop from '@/components/module3/SeñalesDragDrop'
 import { MicroActivities } from '@/components/module3/MicroActivities'
 import { Module3Category, ALL_MODULE3_CATEGORIES, GameProgressModule3 } from '@/types/module3'
 import { navigateTo } from '@/lib/navigation'
@@ -19,13 +20,13 @@ const typedModule3Data = module3Data as Modulo3Data
 
 const moduloForResults = {
   id: 'module3',
-  titulo: typedModule3Data.modulo.nombre,
-  subtitulo: typedModule3Data.modulo.descripcion,
-  descripcion: typedModule3Data.modulo.descripcion,
-  umbralAprobacion: typedModule3Data.modulo.umbralAprobacion,
-  tiempoEstimado: typedModule3Data.modulo.tiempoEstimado,
+  titulo: 'CyberSentry — Escudo contra Engaños y Mafias Digitales',
+  subtitulo: 'Protege a los jóvenes del reclutamiento criminal, muleo financiero, ciberextorsión y manipulación',
+  descripcion: 'Identifica señales de peligro en reclutamiento, muleo financiero, ciberextorsión y manipulación. Toma decisiones correctas en escenarios reales.',
+  umbralAprobacion: 70,
+  tiempoEstimado: '15-20 min',
   totalPuntosPosibles: 200,
-  icono: typedModule3Data.modulo.icono,
+  icono: '🛡️',
 }
 
 const STORAGE_KEY = STORAGE_KEYS.MODULE3
@@ -33,13 +34,30 @@ const STALE_MS = 24 * 60 * 60 * 1000
 
 type GamePhase = 'WELCOME' | 'ACTIVITIES' | 'RESULTS'
 
+// 6 activity slots:
+// 0: Chat reclutamiento (Instagram)
+// 1: Mula dinero 1
+// 2: Extorsión 1
+// 3: Chat manipulación (TikTok)
+// 4: Drag & drop
+// 5: Micro-activities
 const ACTIVITIES = [
-  { key: 'deepfake', component: 'deepfake' as const },
-  { key: 'vishing', component: 'vishing' as const },
-  { key: 'desinformacion', component: 'desinformacion' as const },
-  { key: 'defense', component: 'defense' as const },
+  { key: 'chat-reclutamiento', component: 'chat-reclutamiento' as const },
+  { key: 'mula-1', component: 'mula-1' as const },
+  { key: 'extorsion-1', component: 'extorsion-1' as const },
+  { key: 'chat-manipulacion', component: 'chat-manipulacion' as const },
   { key: 'dragdrop', component: 'dragdrop' as const },
   { key: 'micro', component: 'micro' as const },
+]
+
+// Categories mapped to each activity index
+const ACTIVITY_CATEGORIES: Module3Category[] = [
+  'reclutamiento',
+  'mula_dinero',
+  'ciberextorsion',
+  'manipulacion',
+  'manipulacion', // dragdrop covers all categories
+  'reclutamiento', // micro covers multiple
 ]
 
 function loadProgress(): GameProgressModule3 | null {
@@ -117,13 +135,12 @@ export default function Modulo3Page() {
     )
   }, [])
 
-  const handleActivityScore = useCallback((points: number, category: Module3Category) => {
+  const handleActivityScore = useCallback((points: number, category?: Module3Category) => {
     setScore((prev) => {
       const next = prev + points
       setCategoryScores((prevCat) => {
-        const updated = category
-          ? { ...prevCat, [category]: (prevCat[category] || 0) + points }
-          : prevCat
+        const cat = category ?? ACTIVITY_CATEGORIES[currentActivityIndex]
+        const updated = { ...prevCat, [cat]: (prevCat[cat] || 0) + points }
         saveProgress({
           currentActivityIndex,
           score: next,
@@ -167,59 +184,114 @@ export default function Modulo3Page() {
     const activity = ACTIVITIES[currentActivityIndex]
     if (!activity) return null
 
-    const onScore = (points: number, category: Module3Category) =>
-      handleActivityScore(points, category)
-    const onComplete = handleActivityComplete
-
     switch (activity.component) {
-      case 'deepfake':
+      case 'chat-reclutamiento': {
+        const scenario = typedModule3Data.escenariosChat.find(s => s.categoria === 'reclutamiento')
+        if (!scenario) return null
         return (
-          <DeepfakeAnalyzer
-            cases={typedModule3Data.deepfakeCases}
-            onScore={(p) => onScore(p, 'analisis-deepfake')}
-            onComplete={onComplete}
+          <ChatSimulator
+            scenario={scenario}
+            onScore={(p) => handleActivityScore(p, 'reclutamiento')}
+            onComplete={handleActivityComplete}
           />
         )
-      case 'vishing':
+      }
+
+      case 'mula-1': {
+        const mulaAct = typedModule3Data.actividadesMula[0]
+        if (!mulaAct) return null
         return (
-          <VishingCallSimulator
-            scenarios={typedModule3Data.vishingScenarios}
-            onScore={(p) => onScore(p, 'vishing-simulado')}
-            onComplete={onComplete}
+          <MulaDineroDetector
+            actividad={mulaAct}
+            onScore={(p) => handleActivityScore(p, 'mula_dinero')}
+            onComplete={handleActivityComplete}
           />
         )
-      case 'desinformacion':
+      }
+
+      case 'extorsion-1': {
+        const extScenario = typedModule3Data.escenariosExtorsion[0]
+        if (!extScenario) return null
         return (
-          <DesinformacionDetector
-            cases={typedModule3Data.desinformacionCases}
-            onScore={(p) => onScore(p, 'desinformacion-ia')}
-            onComplete={onComplete}
+          <ExtorsionResponse
+            scenario={extScenario}
+            onScore={(p) => handleActivityScore(p, 'ciberextorsion')}
+            onComplete={handleActivityComplete}
           />
         )
-      case 'defense':
+      }
+
+      case 'chat-manipulacion': {
+        const scenario = typedModule3Data.escenariosChat.find(s => s.categoria === 'manipulacion')
+        if (!scenario) return null
         return (
-          <DeepfakeAnalyzer
-            cases={typedModule3Data.deepfakeCases.slice(0, 3)}
-            onScore={(p) => onScore(p, 'defensa-critica')}
-            onComplete={onComplete}
+          <ChatSimulator
+            scenario={scenario}
+            onScore={(p) => handleActivityScore(p, 'manipulacion')}
+            onComplete={handleActivityComplete}
           />
         )
+      }
+
       case 'dragdrop':
         return (
-          <DesinformacionDetector
-            cases={typedModule3Data.desinformacionCases.slice(0, 2)}
-            onScore={(p) => onScore(p, 'desinformacion-ia')}
-            onComplete={onComplete}
+          <SeñalesDragDrop
+            mensajes={typedModule3Data.mensajesDragDrop}
+            onScore={(p) => handleActivityScore(p, 'manipulacion')}
+            onComplete={handleActivityComplete}
           />
         )
-      case 'micro':
+
+      case 'micro': {
+        // Collect micro activities from all data
+        const microActividades = [
+          // Verdadero/falso about mule signals
+          {
+            id: 'micro-tf-1',
+            tipo: 'verdadero-falso' as const,
+            pregunta: '¿Es legal recibir dinero en tu cuenta y transferirlo a otra persona por una comisión?',
+            respuestaCorrecta: 'falso',
+            puntos: 3,
+            explicacion: 'Es ILEGAL — estás participando en lavado de dinero aunque no lo sepas.',
+            categoria: 'mula_dinero' as const,
+          },
+          {
+            id: 'micro-tf-2',
+            tipo: 'verdadero-falso' as const,
+            pregunta: 'Si un desconocido te ofrece un trabajo por internet sin contrato, es seguro aceptar.',
+            respuestaCorrecta: 'falso',
+            puntos: 3,
+            explicacion: 'Un trabajo legítimo siempre tiene contrato y datos verificables de la empresa.',
+            categoria: 'reclutamiento' as const,
+          },
+          {
+            id: 'micro-tf-3',
+            tipo: 'verdadero-falso' as const,
+            pregunta: 'Si te amenazan con difundir fotos íntimas, debes pagar para que no lo hagan.',
+            respuestaCorrecta: 'falso',
+            puntos: 3,
+            explicacion: 'NUNCA pagues — no hay garantía de que paren. Guarda evidencia y denuncia.',
+            categoria: 'ciberextorsion' as const,
+          },
+          {
+            id: 'micro-tf-4',
+            tipo: 'verdadero-falso' as const,
+            pregunta: 'El love bombing (amor excesivo rápido) es una táctica de manipulación.',
+            respuestaCorrecta: 'verdadero',
+            puntos: 3,
+            explicacion: 'Correcto. El afecto excesivo muy rápido es una táctica para ganar confianza y luego manipular.',
+            categoria: 'manipulacion' as const,
+          },
+        ]
         return (
           <MicroActivities
-            actividades={typedModule3Data.microActividades}
-            onScore={(p) => onScore(p, 'micro-actividades')}
-            onComplete={onComplete}
+            actividades={microActividades}
+            onScore={handleActivityScore}
+            onComplete={handleActivityComplete}
           />
         )
+      }
+
       default:
         return null
     }
@@ -232,10 +304,10 @@ export default function Modulo3Page() {
           <WelcomeScreen
             key="welcome"
             onStart={handleStart}
-            moduleTitle="Deepfakes: No creas todo lo que ves"
-            moduleSubtitle="Detecta contenido sintético generado por IA"
-            moduleDescription="Identifica deepfakes de imagen, audio clonado, video manipulado y desinformación generada por IA"
-            moduleIcon="🎭"
+            moduleTitle="CyberSentry — Escudo contra Engaños y Mafias Digitales"
+            moduleSubtitle="Protege a los jóvenes del reclutamiento criminal, muleo financiero, ciberextorsión y manipulación"
+            moduleDescription="Identifica señales de peligro en reclutamiento, muleo financiero, ciberextorsión y manipulación. Toma decisiones correctas en escenarios reales."
+            moduleIcon="🛡️"
             stats="6 actividades · 15-20 min · Umbral: 70%"
             moduleNumber={3}
           />
@@ -248,7 +320,22 @@ export default function Modulo3Page() {
               total={ACTIVITIES.length}
               score={score}
               maxScore={maxScore}
-              categorias={typedModule3Data.categorias}
+              categorias={ALL_MODULE3_CATEGORIES.map((cat) => ({
+                id: cat,
+                nombre: cat === 'reclutamiento' ? 'Reclutamiento'
+                  : cat === 'mula_dinero' ? 'Mula Dinero'
+                  : cat === 'ciberextorsion' ? 'Ciberextorsión'
+                  : 'Manipulación',
+                emoji: cat === 'reclutamiento' ? '👥'
+                  : cat === 'mula_dinero' ? '💰'
+                  : cat === 'ciberextorsion' ? '🔒'
+                  : '🎭',
+                descripcion: '',
+                color: cat === 'reclutamiento' ? '#6366f1'
+                  : cat === 'mula_dinero' ? '#f59e0b'
+                  : cat === 'ciberextorsion' ? '#ef4444'
+                  : '#8b5cf6',
+              }))}
               categoryScores={categoryScores}
             />
             <div className="flex-1 flex items-center w-full">
@@ -263,7 +350,22 @@ export default function Modulo3Page() {
               score={score}
               maxScore={maxScore}
               categoryScores={categoryScores}
-              categorias={typedModule3Data.categorias}
+              categorias={ALL_MODULE3_CATEGORIES.map((cat) => ({
+                id: cat,
+                nombre: cat === 'reclutamiento' ? 'Reclutamiento'
+                  : cat === 'mula_dinero' ? 'Mula Dinero'
+                  : cat === 'ciberextorsion' ? 'Ciberextorsión'
+                  : 'Manipulación',
+                emoji: cat === 'reclutamiento' ? '👥'
+                  : cat === 'mula_dinero' ? '💰'
+                  : cat === 'ciberextorsion' ? '🔒'
+                  : '🎭',
+                descripcion: '',
+                color: cat === 'reclutamiento' ? '#6366f1'
+                  : cat === 'mula_dinero' ? '#f59e0b'
+                  : cat === 'ciberextorsion' ? '#ef4444'
+                  : '#8b5cf6',
+              }))}
               modulo={moduloForResults}
               onRetry={handleRetry}
               onContinue={handleContinue}

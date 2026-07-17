@@ -154,7 +154,7 @@
       },
       "elementoSuspeito": "El dominio usa '1' en lugar de 'l' en 'paypal'",
       "classificacao": "phishing",
-      "explicacao": "El dominio 'paypa1.com' es una variante typosquatting de 'paypal.com'. El número '1' sustituye a la letra 'l'. Siempre verifica el dominio exacto antes de ingresar credenciales.",
+      "explicacion": "El dominio 'paypa1.com' es una variante typosquatting de 'paypal.com'. El número '1' sustituye a la letra 'l'. Siempre verifica el dominio exacto antes de ingresar credenciales.",
       "pontos": 15
     },
     {
@@ -168,7 +168,7 @@
       },
       "elementoSuspeito": "El camino mezcla español con inglés y el parámetro 'ref=secure' es inusual",
       "classificacao": "suspeita",
-      "explicacao": "Aunque el dominio es legítimo, la ruta '/accounts/Renovar-sesion' no es un path estándar de Google. Los servicios de Google usan paths en inglés. El parámetro 'ref=secure' intenta dar falsa sensación de seguridad.",
+      "explicacion": "Aunque el dominio es legítimo, la ruta '/accounts/Renovar-sesion' no es un path estándar de Google. Los servicios de Google usan paths en inglés. El parámetro 'ref=secure' intenta dar falsa sensación de seguridad.",
       "pontos": 10
     },
     {
@@ -182,7 +182,7 @@
       },
       "elementoSuspeito": "Puerto no estándar 8443 (HTTPS usa 443 por defecto)",
       "classificacao": "suspeita",
-      "explicacao": "El uso de puertos no estándar como 8443 puede indicar un servidor mal configurado o intencionalmente hostil. Los sitios bancarios legítimos usan el puerto 443 (HTTPS estándar).",
+      "explicacion": "El uso de puertos no estándar como 8443 puede indicar un servidor mal configurado o intencionalmente hostil. Los sitios bancarios legítimos usan el puerto 443 (HTTPS estándar).",
       "pontos": 10
     },
     {
@@ -196,7 +196,7 @@
       },
       "elementoSuspeito": "Ninguno - estructura estándar de Amazon",
       "classificacao": "segura",
-      "explicacao": "El dominio es legítimo (amazon.com), usa HTTPS, y la ruta '/gp/your-account/order-history' es una estructura estándar de Amazon para acceder al historial de pedidos.",
+      "explicacion": "El dominio es legítimo (amazon.com), usa HTTPS, y la ruta '/gp/your-account/order-history' es una estructura estándar de Amazon para acceder al historial de pedidos.",
       "pontos": 5
     },
     {
@@ -210,7 +210,7 @@
       },
       "elementoSuspeito": "Dominio compuesto: 'amaz0n.com.deals' - el TLD real es '.deals' no '.com'",
       "classificacao": "phishing",
-      "explicacao": "El dominio real es 'amaz0n.com.deals' (TLD: .deals). El '.com' es subdominio. El '0' en lugar de 'o' es typosquatting. El parámetro 'code=FREE500' sugiere premio falso.",
+      "explicacion": "El dominio real es 'amaz0n.com.deals' (TLD: .deals). El '.com' es subdominio. El '0' en lugar de 'o' es typosquatting. El parámetro 'code=FREE500' sugiere premio falso.",
       "pontos": 15
     }
   ],
@@ -247,7 +247,7 @@
       "acaoCorreta": "reportar",
       "pontos": 20,
       "dificuldad": "basico",
-      "explicacao": "Nunca hagas clic en enlaces de correos que soliciten credenciales. Contacta directamente a IT por un canal oficial para verificar."
+      "explicacion": "Nunca hagas clic en enlaces de correos que soliciten credenciales. Contacta directamente a IT por un canal oficial para verificar."
     },
     {
       "id": "sim-02",
@@ -281,7 +281,7 @@
       "acaoCorreta": "verificar",
       "pontos": 25,
       "dificuldad": "intermedio",
-      "explicacao": "Los bancos NUNCA envían enlaces por SMS. Llama al número oficial de tu banco (no el del SMS) para verificar movimientos."
+      "explicacion": "Los bancos NUNCA envían enlaces por SMS. Llama al número oficial de tu banco (no el del SMS) para verificar movimientos."
     },
     {
       "id": "sim-03",
@@ -315,7 +315,7 @@
       "acaoCorreta": "bloquear",
       "pontos": 30,
       "dificuldad": "basico",
-      "explicacao": "Nunca reclames premios que no solicitaste. Los pop-ups que piden datos de tarjeta son siempre fraudulentos."
+      "explicacion": "Nunca reclames premios que no solicitaste. Los pop-ups que piden datos de tarjeta son siempre fraudulentos."
     },
     {
       "id": "sim-04",
@@ -349,7 +349,7 @@
       "acaoCorreta": "verificar",
       "pontos": 25,
       "dificuldad": "intermedio",
-      "explicacao": "Si un amigo comparte algo sospechoso, su cuenta puede haber sido comprometida. Verifica directamente con la persona antes de hacer clic."
+      "explicacion": "Si un amigo comparte algo sospechoso, su cuenta puede haber sido comprometida. Verifica directamente con la persona antes de hacer clic."
     }
   ],
   "ejercicios": [
@@ -394,7 +394,7 @@
       "tipo": "verdadero-falso",
       "pergunta": "Verdadero o Falso: Un correo de Netflix con el enlace 'netfIix-security.com' es legítimo porque usa HTTPS.",
       "respuestaCorrecta": "falso",
-      "explicacao": "FALSO. El HTTPS solo indica conexión cifrada, NO que el sitio sea legítimo. El dominio 'netfIix-security.com' usa una 'I' mayúscula en lugar de 'l' — es un dominio falso (typosquatting).",
+      "explicacion": "FALSO. El HTTPS solo indica conexión cifrada, NO que el sitio sea legítimo. El dominio 'netfIix-security.com' usa una 'I' mayúscula en lugar de 'l' — es un dominio falso (typosquatting).",
       "puntos": 10
     },
     {
@@ -402,7 +402,7 @@
       "tipo": "verdadero-falso",
       "pergunta": "Verdadero o Falso: Si un amigo te envía un enlace por WhatsApp, siempre es seguro hacer clic porque lo conoces.",
       "respuestaCorrecta": "falso",
-      "explicacao": "FALSO. La cuenta de tu amigo puede haber sido comprometida. Los atacantes usan contactos de confianza para distribuir phishing. Siempre verifica directamente con la persona.",
+      "explicacion": "FALSO. La cuenta de tu amigo puede haber sido comprometida. Los atacantes usan contactos de confianza para distribuir phishing. Siempre verifica directamente con la persona.",
       "puntos": 10
     },
     {
@@ -411,7 +411,7 @@
       "pergunta": "Completa la función para detectar dominios sospechosos:",
       "codigo": "function esDominioSospechoso(dominio: string): boolean {\n  // Verificar si el dominio contiene caracteres confusos\n  const caracteresConfusos = dominio.includes('0') && dominio.includes('o');\n  const largoInusual = dominio.length > ___;\n  return caracteresConfusos || largoInusual;\n}",
       "respuestaCorrecta": 25,
-      "explicacao": "El valor correcto es 25. Dominios legítimos raramente superan los 25 caracteres. Los dominios de phishing suelen ser más largos para incluir palabras engañosas.",
+      "explicacion": "El valor correcto es 25. Dominios legítimos raramente superan los 25 caracteres. Los dominios de phishing suelen ser más largos para incluir palabras engañosas.",
       "puntos": 15
     },
     {
@@ -425,8 +425,8 @@
         { "id": "step-4", "texto": "Contactar al remitente por canal oficial", "ordenCorrecto": 4 },
         { "id": "step-5", "texto": "Reportar el correo como phishing", "ordenCorrecto": 5 }
       ],
-      "respuestaCorrecta": 0,
-      "explicacao": "El orden correcto es: 1) Examinar dominio, 2) Buscar errores, 3) No hacer clic, 4) Verificar por canal oficial, 5) Reportar.",
+      "respuestaCorrecta": ["step-1", "step-2", "step-3", "step-4", "step-5"],
+      "explicacion": "El orden correcto es: 1) Examinar dominio, 2) Buscar errores, 3) No hacer clic, 4) Verificar por canal oficial, 5) Reportar.",
       "puntos": 20
     }
   ]

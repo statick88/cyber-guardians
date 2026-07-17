@@ -468,9 +468,107 @@
         { "id": "s5", "texto": "Actualizar pagos automáticos con nueva tarjeta", "ordenCorrecto": 5 },
         { "id": "s6", "texto": "Activar alertas de transacción en tiempo real", "ordenCorrecto": 6 }
       ],
-      "respuestaCorrecta": 0,
+      "respuestaCorrecta": ["s1", "s2", "s3", "s4", "s5", "s6"],
       "explicacion": "Orden crítico: 1) Reportar YA (limita responsabilidad legal), 2) Cancelar tarjeta, 3) Auditar historial, 4) Congelar crédito (previene nuevas cuentas), 5-6) Recuperación y prevención futura.",
       "puntos": 25
+    }
+  ],
+  "vishing": [
+    {
+      "id": "call-01",
+      "callerIdentity": "Agente Carlos Mendoza",
+      "organization": "Banco Nacional",
+      "difficulty": "basico",
+      "transcript": [
+        { "id": "l1", "speaker": "caller", "text": "Buenos días, hablo con el titular de la cuenta número ****4521. Soy el agente Carlos Mendoza del Banco Nacional.", "redFlags": ["rf1"] },
+        { "id": "l2", "speaker": "caller", "text": "Estamos detectando actividad sospechosa en tu cuenta. Se realizó una transferencia de $3,200 a una cuenta en el exterior hace 20 minutos.", "redFlags": ["rf2"] },
+        { "id": "l3", "speaker": "caller", "text": "¿Puedes confirmarme si realizaste esa transacción? Necesito verificar por seguridad.", "decisionPointId": "dp1" },
+        { "id": "l4", "speaker": "caller", "text": "Entiendo que no fuiste tú. Para bloquear la transacción ahora mismo, necesito que me confirmes tu número de cédula y los últimos 4 dígitos de tu tarjeta.", "redFlags": ["rf3"], "decisionPointId": "dp2" },
+        { "id": "l5", "speaker": "caller", "text": "Perfecto, ya estoy procesando el bloqueo. También necesito tu código de verificación que te acabamos de enviar por SMS para autorizar la reversión.", "redFlags": ["rf4", "rf5"], "decisionPointId": "dp3" }
+      ],
+      "redFlags": [
+        { "id": "rf1", "phrase": "titular de la cuenta número ****4521", "technique": "Vaguedad inicial", "explanation": "El 'agente' menciona datos parciales para generar confianza. Un banco real no llama para pedir datos que ya tiene.", "xpValue": 10, "discovered": false },
+        { "id": "rf2", "phrase": "actividad sospechosa en tu cuenta", "technique": "Urgencia fabricada", "explanation": "Crear pánico es la técnica #1 del vishing. El miedo Reduce la capacidad de análisis crítico.", "xpValue": 15, "discovered": false },
+        { "id": "rf3", "phrase": "número de cédula y los últimos 4 dígitos de tu tarjeta", "technique": "Solicita datos sensibles", "explanation": "Un banco NUNCA pide datos completos por teléfono. Solo los últimos 4 son suficiente para verificación interna.", "xpValue": 20, "discovered": false },
+        { "id": "rf4", "phrase": "código de verificación que te acabamos de enviar por SMS", "technique": "Robo de 2FA por voz", "explanation": "El código SMS es tu segunda línea de defensa. Compartirlo equivale a entregar la llave de tu casa.", "xpValue": 25, "discovered": false },
+        { "id": "rf5", "phrase": "ya estoy procesando el bloqueo", "technique": "Presión de tiempo", "explanation": "El 'agente' finge que ya está actuando para que no tengas tiempo de pensar o verificar.", "xpValue": 15, "discovered": false }
+      ],
+      "decisionPoints": [
+        {
+          "id": "dp1",
+          "prompt": "¿Confirmas la transacción?",
+          "choices": [
+            { "id": "c1a", "label": "Sí, fui yo", "isSafe": true, "xpDelta": 5, "shieldDamage": 0, "followUpLineId": "l4", "explanation": "Al no confirmar la transacción ficticia, mantienes el control. El estafador no puede proceder sin tu 'confirmación'." },
+            { "id": "c1b", "label": "No, no fui yo", "isSafe": false, "xpDelta": -5, "shieldDamage": 10, "followUpLineId": "l4", "explanation": "Al confirmar que no fuiste tú, activas el siguiente paso del estafador: pedirte datos para 'resolver' el problema." }
+          ]
+        },
+        {
+          "id": "dp2",
+          "prompt": "¿Proporcionas tu cédula y últimos 4 dígitos?",
+          "choices": [
+            { "id": "c2a", "label": "No doy esos datos", "isSafe": true, "xpDelta": 20, "shieldDamage": 0, "followUpLineId": "l5", "explanation": "Correcto. Un banco legítimo ya tiene esos datos. Nunca los pide por teléfono." },
+            { "id": "c2b", "label": "Los doy para 'verificar'", "isSafe": false, "xpDelta": -15, "shieldDamage": 25, "followUpLineId": "l5", "explanation": "Estos datos son suficientes para realizar compras en línea o suplantar tu identidad." }
+          ]
+        },
+        {
+          "id": "dp3",
+          "prompt": "¿Compartes el código SMS?",
+          "choices": [
+            { "id": "c3a", "label": "Cuelgo y llamo al banco", "isSafe": true, "xpDelta": 25, "shieldDamage": 0, "followUpLineId": "l5", "explanation": "La respuesta correcta. Cuelga, busca el número oficial del banco en tu tarjeta o sitio web, y llama tú directamente." },
+            { "id": "c3b", "label": "Doy el código SMS", "isSafe": false, "xpDelta": -25, "shieldDamage": 40, "followUpLineId": "l5", "explanation": "Con tu código SMS, el estafador puede autorizar transferencias, cambiar tu contraseña, o activar 2FA en tu nombre." }
+          ]
+        }
+      ],
+      "summary": "Llamada de vishing detectada. Técnicas empleadas: urgencia fabricada, suplantación de autoridad, robo de 2FA por voz. Nunca compartas códigos SMS, cédula, o datos de tarjeta por teléfono.",
+      "totalXp": 100
+    },
+    {
+      "id": "call-02",
+      "callerIdentity": "Técnico de Soporte — Microsoft",
+      "organization": "Microsoft Support",
+      "difficulty": "intermedio",
+      "transcript": [
+        { "id": "l1", "speaker": "caller", "text": "Hola, soy Miguel de soporte técnico de Microsoft. Tu computadora está enviando señales de error a nuestros servidores. ¿Estás cerca de tu PC ahora?", "redFlags": ["rf1"] },
+        { "id": "l2", "speaker": "caller", "text": "Hemos detectado 47 virus en tu máquina. Necesitamos acceso remoto URGENTE para evitar que se comprometan tus datos bancarios.", "redFlags": ["rf2", "rf3"], "decisionPointId": "dp1" },
+        { "id": "l3", "speaker": "caller", "text": "Abre la aplicación TeamViewer y dime el código que ves. Yo me conecto y limpio todo. Es gratis, pero solo hoy porque el virus está activo.", "redFlags": ["rf4", "rf5"], "decisionPointId": "dp2" },
+        { "id": "l4", "speaker": "caller", "text": "Ya estoy dentro. Veo que tienes cuentas de banco aquí. Déjame verificar que no estén comprometidas. Dame tu usuario y contraseña del banco para revisarlo.", "redFlags": ["rf6"], "decisionPointId": "dp3" }
+      ],
+      "redFlags": [
+        { "id": "rf1", "phrase": "enviando señales de error a nuestros servidores", "technique": "Falsa capacidad técnica", "explanation": "Microsoft no monitorea tu PC individualmente ni recibe 'señales de error' de computadoras personales.", "xpValue": 15, "discovered": false },
+        { "id": "rf2", "phrase": "47 virus en tu máquina", "technique": "Cifra alarmista", "explanation": "Usar un número específico ('47') hace que suene a diagnóstico real. Es una táctica de persuasion.", "xpValue": 15, "discovered": false },
+        { "id": "rf3", "phrase": "URGENTE para evitar que se comprometan tus datos bancarios", "technique": "Urgencia + miedo financiero", "explanation": "Combinar urgencia con amenaza financiera es la receta clásica del vishing. Paraliza el pensamiento crítico.", "xpValue": 20, "discovered": false },
+        { "id": "rf4", "phrase": "Abre TeamViewer", "technique": "Acceso remoto no solicitado", "explanation": "Microsoft NUNCA pide acceso remoto por teléfono. TeamViewer otorga control total de tu computadora.", "xpValue": 25, "discovered": false },
+        { "id": "rf5", "phrase": "Es gratis, pero solo hoy", "technique": "Falsa escasez + presión temporal", "explanation": "La 'oferta limitada' presiona para actuar sin pensar. Microsoft no ofrece 'limpiezas' por teléfono.", "xpValue": 15, "discovered": false },
+        { "id": "rf6", "phrase": "Dame tu usuario y contraseña del banco", "technique": "Escalada de privilegios", "explanation": "El estafador 'escala' de soporte técnico a acceso bancario. Cada paso pide más datos sensibles.", "xpValue": 30, "discovered": false }
+      ],
+      "decisionPoints": [
+        {
+          "id": "dp1",
+          "prompt": "¿Accedes a abrir TeamViewer?",
+          "choices": [
+            { "id": "c1a", "label": "Cierro la llamada", "isSafe": true, "xpDelta": 20, "shieldDamage": 0, "followUpLineId": "l3", "explanation": "Correcto. Microsoft nunca llama para ofrecer soporte. Cuelga inmediatamente." },
+            { "id": "c1b", "label": "Abro TeamViewer", "isSafe": false, "xpDelta": -10, "shieldDamage": 20, "followUpLineId": "l3", "explanation": "TeamViewer otorga acceso remoto total. El estafador puede robar archivos, instalar malware, o acceder a tu banco." }
+          ]
+        },
+        {
+          "id": "dp2",
+          "prompt": "¿Compartes el código de TeamViewer?",
+          "choices": [
+            { "id": "c2a", "label": "No comparto nada", "isSafe": true, "xpDelta": 20, "shieldDamage": 0, "followUpLineId": "l4", "explanation": "Bien. Sin el código, no pueden conectarse. La 'urgencia' es falsa." },
+            { "id": "c2b", "label": "Doy el código", "isSafe": false, "xpDelta": -20, "shieldDamage": 30, "followUpLineId": "l4", "explanation": "Con el código TeamViewer, el estafador tiene acceso remoto completo a tu computadora." }
+          ]
+        },
+        {
+          "id": "dp3",
+          "prompt": "¿Dás tu usuario y contraseña del banco?",
+          "choices": [
+            { "id": "c3a", "label": "Nunca — cuelgo ya", "isSafe": true, "xpDelta": 25, "shieldDamage": 0, "followUpLineId": "l4", "explanation": "Ninguna empresa legítima pide credenciales bancarias por teléfono. Esta es la línea roja definitiva." },
+            { "id": "c3b", "label": "Se los doy 'para revisar'", "isSafe": false, "xpDelta": -25, "shieldDamage": 40, "followUpLineId": "l4", "explanation": "Con usuario y contraseña, el estafador vacía tu cuenta en minutos." }
+          ]
+        }
+      ],
+      "summary": "Vishing de soporte técnico detectado. Microsoft NUNCA llama para ofrecer soporte. No instales software remoto ni compartas credenciales por teléfono.",
+      "totalXp": 120
     }
   ]
 }

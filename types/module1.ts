@@ -1,3 +1,14 @@
+/**
+ * Module 1 — "Shadow Protocol": Privacy & Digital Footprint
+ * Strict TypeScript. Zero `any`. Static-export safe.
+ *
+ * Merges original category/progress types with new Console Edition game types.
+ */
+
+// ---------------------------------------------------------------------------
+// Original activity types (kept for Module1Game.tsx compatibility)
+// ---------------------------------------------------------------------------
+
 export interface Email {
   id: string;
   remetente: {
@@ -30,7 +41,7 @@ export interface URLItem {
   };
   elementoSuspeito: string;
   classificacao: "phishing" | "suspeita" | "segura";
-  explicacao: string;
+  explicacion: string;
   pontos: number;
 }
 
@@ -52,7 +63,7 @@ export interface Escenario {
   acaoCorreta: "reportar" | "verificar" | "bloquear" | "ignorar";
   pontos: number;
   dificuldad: "basico" | "intermedio" | "avancado";
-  explicacao: string;
+  explicacion: string;
 }
 
 export interface DragItem {
@@ -90,7 +101,7 @@ export interface MicroActividad {
   respuestaCorrecta: RespuestaVF | RespuestaCodigo | RespuestaOrden;
   codigo?: string;
   pasos?: Array<{ id: string; texto: string; ordenCorrecto: number }>;
-  explicacao: string;
+  explicacion: string;
   puntos: number;
 }
 
@@ -170,3 +181,150 @@ export type ActivityKey =
   | "defense"
   | "dragdrop"
   | "micro";
+
+// ---------------------------------------------------------------------------
+// Cookie Sweeper ("Destructor de Rastreadores") — Console Edition
+// ---------------------------------------------------------------------------
+
+export type CookieKind = 'tracking' | 'telemetry' | 'pixel' | 'fingerprint'
+
+export interface FallingCookie {
+  id: string
+  kind: CookieKind
+  /** Normalized label shown on the node */
+  label: string
+  /** Horizontal start position (0–100% of container width) */
+  x: number
+  /** Vertical position in px from top */
+  y: number
+  /** Fall speed in px per tick */
+  speed: number
+  /** Whether this cookie has been intercepted */
+  destroyed: boolean
+  /** Whether it passed the shield (reached HP zone) */
+  leaked: boolean
+}
+
+export interface ShieldPaddle {
+  /** Centre X in px */
+  x: number
+  /** Width in px */
+  width: number
+}
+
+export interface CookieSweeperState {
+  /** All active cookies in the current wave */
+  cookies: FallingCookie[]
+  /** Paddle (shield) position */
+  paddle: ShieldPaddle
+  /** Shield HP at module level (mirrors HUD) */
+  shieldHP: number
+  /** Maximum shield HP */
+  maxShieldHP: number
+  /** Total cookies intercepted */
+  destroyedCount: number
+  /** Total cookies that leaked through */
+  leakedCount: number
+  /** XP earned so far */
+  xpEarned: number
+  /** Whether the minigame is over */
+  isGameOver: boolean
+  /** Whether the player won (reached wave end with HP > 0) */
+  isVictory: boolean
+  /** Current wave number (1-indexed) */
+  wave: number
+  /** Total waves in this session */
+  totalWaves: number
+  /** Difficulty knob */
+  difficulty: 'normal' | 'hard' | 'elite'
+}
+
+export interface CookieSweeperConfig {
+  /** How many cookies per wave */
+  cookiesPerWave: number
+  /** Base fall speed (px/tick) — scales with wave */
+  baseSpeed: number
+  /** Shield damage per leaked cookie */
+  damagePerLeak: number
+  /** XP per destroyed cookie */
+  xpPerDestroy: number
+  /** Paddle width in px */
+  paddleWidth: number
+  /** Tick interval in ms (lower = faster) */
+  tickMs: number
+}
+
+// ---------------------------------------------------------------------------
+// MetadataExtractor ("Escaner de Rayos X") — Console Edition
+// ---------------------------------------------------------------------------
+
+export type MetadataField =
+  | 'gps'
+  | 'device'
+  | 'date'
+  | 'software'
+  | 'camera'
+  | 'resolution'
+  | 'orientation'
+
+export interface MetadataEntry {
+  field: MetadataField
+  label: string
+  value: string
+  /** Whether this field is sensitive (should be purged) */
+  isSensitive: boolean
+}
+
+export interface SuspiciousImage {
+  id: string
+  /** Display name / filename */
+  filename: string
+  /** Simulated thumbnail URL (data-URI or path) */
+  thumbnailUrl: string
+  /** EXIF metadata embedded in the image */
+  metadata: MetadataEntry[]
+  /** Mission-required classification */
+  classification: 'public' | 'internal' | 'confidential' | 'secret'
+  /** Whether the player already scanned this image */
+  scanned: boolean
+  /** Player's action: null = pending, 'purge' = purged EXIF, 'approve' = sent safe, 'fail' = leaked */
+  action: 'purge' | 'approve' | 'fail' | null
+}
+
+export interface MetadataExtractorState {
+  /** Queue of images to process */
+  images: SuspiciousImage[]
+  /** Currently selected image index (null = none) */
+  selectedId: string | null
+  /** Whether the scan lens animation is active */
+  isScanning: boolean
+  /** Scan progress 0–100 */
+  scanProgress: number
+  /** Mission score */
+  score: number
+  /** Max possible score */
+  maxScore: number
+  /** Timer remaining in seconds */
+  timeRemaining: number
+  /** XP earned */
+  xpEarned: number
+  /** Whether game is over */
+  isGameOver: boolean
+  /** Whether player won */
+  isVictory: boolean
+  /** Correct purges */
+  correctPurges: number
+  /** Missed leaks (sent confidential without purge) */
+  missedLeaks: number
+}
+
+export interface MetadataExtractorConfig {
+  /** Total time in seconds */
+  timeLimit: number
+  /** XP per correct purge */
+  xpPerPurge: number
+  /** Shield damage per leaked confidential image */
+  damagePerLeak: number
+  /** Number of images in the queue */
+  imageCount: number
+}

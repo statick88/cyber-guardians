@@ -260,7 +260,7 @@ export function PhishingSimulator({
                   </Alert>
                   <div className="bg-slate-800/30 rounded-lg p-4">
                     <p className="text-slate-300 text-sm">
-                      {currentScenario.explicacao}
+                      {currentScenario.explicacion}
                     </p>
                   </div>
                 </motion.div>

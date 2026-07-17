@@ -1,313 +1,287 @@
 {
-  "modulo": {
-    "id": 3,
-    "nombre": "Deepfakes: No creas todo lo que ves",
-    "descripcion": "Detecta contenido sintético generado por IA: deepfakes de imagen, audio clonado y video manipulado",
-    "umbralAprobacion": 70,
-    "tiempoEstimado": "15-20 minutos",
-    "icono": "🎭"
-  },
-  "categorias": [
+  "escenariosChat": [
     {
-      "id": "analisis-deepfake",
-      "nombre": "Análisis de Deepfakes",
-      "emoji": "🔍",
-      "descripcion": "Identificar artefactos visuales en imágenes y videos manipulados",
-      "color": "cyan"
+      "id": "reclut-1",
+      "categoria": "reclutamiento",
+      "titulo": "La oferta de trabajo en Instagram",
+      "contexto": "Un desconocido te envía un DM por Instagram ofreciéndote trabajo.",
+      "mensajes": [
+        { "id": "r1-1", "autor": "reclutador", "texto": "¡Hola! Vi tu perfil y me parece que tienes mucho potencial 💪", "esSeñal": true, "razon": "Halago excesivo de un desconocido — táctica clásica de reclutamiento" },
+        { "id": "r1-2", "autor": "reclutador", "texto": "Busco personas jóvenes y dinámicas para un proyecto internacional. ¿Te interesa?", "esSeñal": true, "razon": "Oferta vaga sin empresa clara — buscan atraer sin compromiso" },
+        { "id": "r1-3", "autor": "victima", "texto": "¿De qué se trata el trabajo?", "esSeñal": false },
+        { "id": "r1-4", "autor": "reclutador", "texto": "Es simple: solo necesitas recibir dinero en tu cuenta bancaria y transferirlo. Te damos 10% de comisión 💰", "esSeñal": true, "razon": "Es una mula financiera — es ILEGAL aunque te digan que no" },
+        { "id": "r1-5", "autor": "victima", "texto": "Suena sospechoso...", "esSeñal": false },
+        { "id": "r1-6", "autor": "reclutador", "texto": "No te preocupes, es completamente legal. Muchos lo hacen. Es solo una transferencia temporaria", "esSeñal": true, "razon": "Mentira: ES ilegal. Te están usando como intermediario de lavado de dinero" }
+      ],
+      "señales": ["Halago excesivo", "Oferta vaga", "Dinero fácil", "Presión para aceptar"],
+      "puntuacionMaxima": 3,
+      "fuente": "Europol EMMA 2023",
+      "edadObjetivo": "14-18",
+      "duracionEstimada": "3 min"
     },
     {
-      "id": "vishing-simulado",
-      "nombre": "Vishing Simulado",
-      "emoji": "📞",
-      "descripcion": "Detectar y desarmar intentos de fraude por voz",
-      "color": "purple"
+      "id": "reclut-2",
+      "categoria": "reclutamiento",
+      "titulo": "El grupo de Telegram",
+      "contexto": "Un amigo te invita a un grupo de Telegram donde hablan de 'oportunidades de negocio'.",
+      "mensajes": [
+        { "id": "r2-1", "autor": "amigo", "texto": "¡Únete! Yo ya gané $500 la semana pasada", "esSeñal": true, "razon": "Amigo puede estar comprometido o ser perfil falso" },
+        { "id": "r2-2", "autor": "reclutador", "texto": "Bienvenido. Aquí te explicamos cómo funciona el sistema", "esSeñal": false },
+        { "id": "r2-3", "autor": "reclutador", "texto": "Solo necesitas tu cédula y datos bancarios para registrarte", "esSeñal": true, "razon": "Piden datos sensibles — posible robo de identidad o uso como mula" },
+        { "id": "r2-4", "autor": "victima", "texto": "¿Qué empresa es?", "esSeñal": false },
+        { "id": "r2-5", "autor": "reclutador", "texto": "Es una plataforma de inversiones internacional. Estamos en fase beta 🚀", "esSeñal": true, "razon": "Sin empresa verificable — esquema piramidal o estafa" },
+        { "id": "r2-6", "autor": "reclutador", "texto": "Si no entras ahora, pierdes el lugar. Hay pocos cupos", "esSeñal": true, "razon": "Urgencia falsa para que no pienses — táctica de presión" }
+      ],
+      "señales": ["Amigo comprometido", "Piden datos bancarios", "Empresa fantasma", "Urgencia falsa"],
+      "puntuacionMaxima": 3,
+      "fuente": "Cifas 2023",
+      "edadObjetivo": "15-19",
+      "duracionEstimada": "3 min"
     },
     {
-      "id": "desinformacion-ia",
-      "nombre": "Desinformación IA",
-      "emoji": "📰",
-      "descripcion": "Identificar contenido generado por inteligencia artificial",
-      "color": "rose"
+      "id": "manip-1",
+      "categoria": "manipulacion",
+      "titulo": "El novio de TikTok",
+      "contexto": "Alguien que conociste en TikTok te escribe por WhatsApp y la conversación se pone intensa rápido.",
+      "mensajes": [
+        { "id": "m1-1", "autor": "sospechoso", "texto": "Eres la persona más especial que he conocido. Siento que te conozco de toda la vida ❤️", "esSeñal": true, "razon": "Amor bomba (love bombing) — afecto excesivo muy rápido" },
+        { "id": "m1-2", "autor": "victima", "texto": "Gracias, tú también pareces increíble", "esSeñal": false },
+        { "id": "m1-3", "autor": "sospechoso", "texto": "¿Puedes enviarme una foto tuya? Quiero tenerte en mi fondo de pantalla 📸", "esSeñal": true, "razon": "Pide fotos íntimas — posible sextorsión futura" },
+        { "id": "m1-4", "autor": "victima", "texto": "No sé si estoy lista para eso...", "esSeñal": false },
+        { "id": "m1-5", "autor": "sospechoso", "texto": "Si me quisieras de verdad, me la enviarías. No confías en mí?", "esSeñal": true, "razon": "Chantaje emocional — usa culpa para manipular" },
+        { "id": "m1-6", "autor": "sospechoso", "texto": "Mira, yo te mandé la mía. Es de confianza mutua 🤝", "esSeñal": true, "razon": "Presión social falsa — puede ser foto robada de otra persona" }
+      ],
+      "señales": ["Amor bomba", "Pide fotos íntimas", "Chantaje emocional", "Presión para reciprocidad"],
+      "puntuacionMaxima": 3,
+      "fuente": "FBI IC3 2022",
+      "edadObjetivo": "12-16",
+      "duracionEstimada": "3 min"
     },
     {
-      "id": "defensa-critica",
-      "nombre": "Defensa Crítica",
-      "emoji": "🧠",
-      "descripcion": "Pensamiento crítico contra la manipulación digital",
-      "color": "emerald"
+      "id": "manip-2",
+      "categoria": "manipulacion",
+      "titulo": "La 'empresa' que te contacta",
+      "contexto": "Recibes un mensaje de una 'empresa de marketing' que vio tu perfil público.",
+      "mensajes": [
+        { "id": "m2-1", "autor": "reclutador", "texto": "¡Hola! Somos de MarketingPro Global. Tu perfil es exactamente lo que buscamos", "esSeñal": true, "razon": "Empresa desconocida con halago — posible phishing o estafa" },
+        { "id": "m2-2", "autor": "victima", "texto": "¿Qué tipo de trabajo ofrecen?", "esSeñal": false },
+        { "id": "m2-3", "autor": "reclutador", "texto": "Embajador de marca. Solo necesitas publicar 3 fotos al día con nuestros productos", "esSeñal": true, "razon": "Trabajo demasiado fácil para ganar dinero — señal de estafa" },
+        { "id": "m2-4", "autor": "reclutador", "texto": "Primero debes comprar el kit de productos por $200. Después te reembolsamos + ganancia", "esSeñal": true, "razon": "Te piden que PAGUES primero — esquema piramidal clásico" },
+        { "id": "m2-5", "autor": "victima", "texto": "¿Puedo ver la empresa en redes?", "esSeñal": false },
+        { "id": "m2-6", "autor": "reclutador", "texto": "Claro, te paso nuestro Instagram @marketingproglobal_oficial", "esSeñal": true, "razon": "Cuenta nueva con pocos seguidores — perfil falso" }
+      ],
+      "señales": ["Halago de empresa desconocida", "Trabajo fácil", "Pago por adelantado", "Redes falsas"],
+      "puntuacionMaxima": 3,
+      "fuente": "Cifas 2023",
+      "edadObjetivo": "16-20",
+      "duracionEstimada": "3 min"
+    },
+    {
+      "id": "reclut-3",
+      "categoria": "reclutamiento",
+      "titulo": "El 'amigo' del juego",
+      "contexto": "Juegas en Roblox/Discord y un jugador mayor te ofrece 'trabajar' en su equipo de diseño de niveles. Te dice que puedes ganar robux/dinero real.",
+      "mensajes": [
+        { "id": "r3-1", "autor": "reclutador", "texto": "¡Hola! Vi tu avatar, tienes buen gusto. ¿Quieres unirte a mi equipo de diseñadores?", "esSeñal": true, "razon": "Halago sobre avatar/perfil en plataforma de gaming — grooming clásico" },
+        { "id": "r3-2", "autor": "victima", "texto": "¿En serio? ¡Sí! ¿Cuánto se gana?", "esSeñal": false },
+        { "id": "r3-3", "autor": "reclutador", "texto": "Depende de tu nivel. Primero necesito saber tu edad para asignarte tareas", "esSeñal": true, "razon": "Pregunta edad — buscan identificar menores como targets prioritarios" },
+        { "id": "r3-4", "autor": "victima", "texto": "Tengo 15 años", "esSeñal": false },
+        { "id": "r3-5", "autor": "reclutador", "texto": "Perfecto, eres la edad ideal. Pásame tu nombre real y una foto para el contrato", "esSeñal": true, "razon": "Pide datos personales reales — primer paso de grooming para extorsión o sextorsión" },
+        { "id": "r3-6", "autor": "reclutador", "texto": "No se lo cuides a tus padres, es trabajo confidencial. Si hablas pierdes el puesto", "esSeñal": true, "razon": "Aísla de figuras de confianza y crea secreto — táctica de grooming documentada" }
+      ],
+      "señales": ["Halago en plataforma de gaming", "Pide edad y datos reales", "Pide foto", "Secreto vs. padres", "Aislamiento"],
+      "puntuacionMaxima": 3,
+      "fuente": "Europol EMMA 2023",
+      "edadObjetivo": "12-16",
+      "duracionEstimada": "4 min"
+    },
+    {
+      "id": "manip-3",
+      "categoria": "manipulacion",
+      "titulo": "El perfil falso del deepfake",
+      "contexto": "Un perfil atractivo te contacta por Instagram. La persona parece real pero usa fotos generadas con IA. Te pide videos íntimos y luego te amenaza.",
+      "mensajes": [
+        { "id": "m3-1", "autor": "sospechoso", "texto": "¡Hola! Vi tus fotos y eres increíble. ¿Quieres salir a un chat de video?", "esSeñal": true, "razon": "Perfiles falsos con fotos generadas por IA (deepfakes) buscan víctimas rápido" },
+        { "id": "m3-2", "autor": "victima", "texto": "¿Quién eres? Tus fotos parecen de modelo", "esSeñal": false },
+        { "id": "m3-3", "autor": "sospechoso", "texto": "Soy modelo freelance. Mira, te mando un video mío para que veas que soy real 📹", "esSeñal": true, "razon": "Envía video generado con deepfake — aparenta autenticidad pero es falso" },
+        { "id": "m3-4", "autor": "victima", "texto": "Guau, se ve muy profesional", "esSeñal": false },
+        { "id": "m3-5", "autor": "sospechoso", "texto": "Ahora tú. Mándame un video tuyo en la ducha, es solo para mí 🙏", "esSeñal": true, "razon": "Pide contenido íntimo para usarlo como material de sextorsión" },
+        { "id": "m3-6", "autor": "sospechoso", "texto": "Si no lo haces, publico el video que ya tengo de ti en TikTok y se lo envío a tu colegio", "esSeñal": true, "razon": "Amenaza con difundir contenido — puede ser un deepfake fabricado o material previamente obtenido" }
+      ],
+      "señales": ["Perfil con fotos de modelo", "Video autogenerado (deepfake)", "Pide contenido íntimo", "Amenaza con difundir", "Amenaza con enviar al colegio"],
+      "puntuacionMaxima": 3,
+      "fuente": "FBI IC3 2022 / Deepfake research 2023",
+      "edadObjetivo": "13-17",
+      "duracionEstimada": "4 min"
     }
   ],
-  "deepfakeCases": [
+  "actividadesMula": [
     {
-      "id": "df-01",
-      "tipo": "imagen",
-      "titulo": "Retrato corporativo editado",
-      "descripcion": "Un ejecutivo aparece en una foto de reunión con competidores. La imagen parece legítima pero fue generada con IA para dañar la reputación de la empresa.",
-      "pistas": [
-        "Las sombras del rostro no coinciden con la dirección de la luz",
-        "El fondo tiene un patrón de ruido digital inusual",
-        "Las orejas presentan asimetrías anatómicas"
-      ],
-      "zonaSospechosa": "La zona de las orejas y la línea del cabello",
-      "nivelDificultad": "basico",
-      "puntos": 20,
-      "explicacion": "Los generadores de deepfakes frecuentemente fallan en reproducir la anatomía detallada de las orejas y la transición natural del cabello. Las sombras inconsistentes son otro indicador clave."
+      "id": "mula-1",
+      "oferta": {
+        "id": "oferta-1",
+        "titulo": "Asistente Virtual Remoto",
+        "descripcion": "Gana $300/semana recibiendo transferencias y enviándolas a otra cuenta. Solo 1 hora al día.",
+        "fuente": "WhatsApp grupo 'Trabajo Joven'",
+        "señalesRiesgo": ["Recepción y transferencia de dinero", "Sin contrato visible", "Empresa no verificable"],
+        "nivelRiesgo": "alto",
+        "esTrampa": true,
+        "explicacion": "Esta oferta describe exactamente una mula financiera. El 'trabajo' es recibir dinero de víctimas y transferirlo a los estafadores. Es ILEGAL y puedes enfrentar penas de prisión.",
+        "plataforma": "WhatsApp",
+        "victimasReales": "Cifas 2023: 28% de aumento en menores de 21 años usados como mules en el Reino Unido. Europol EMMA 2023: 30% de aumento interanual en reclutamiento de mules financieros.",
+        "tecnicaUsada": "Pagador intermediario — recepción y reenvío de fondos ilícitos"
+      },
+      "preguntas": [
+        {
+          "pregunta": "¿Por qué esta oferta es peligrosa?",
+          "opciones": ["Es poco dinero", "Es una mula financiera — es ilegal", "El horario es muy corto", "No ofrece beneficios"],
+          "respuestaCorrecta": 1,
+          "explicacion": "Recibir y transferir dinero de terceros es lavado de dinero. Los estafadores usan tus datos bancarios para operar."
+        },
+        {
+          "pregunta": "¿Qué deberías hacer si recibes esta oferta?",
+          "opciones": ["Aceptar para probar", "Ignorar y bloquear", "Preguntar por más detalles", "Compartir con amigos"],
+          "respuestaCorrecta": 1,
+          "explicacion": "Nunca aceptes ofertas sospechosas. Bloquea y reporta el número."
+        }
+      ]
     },
     {
-      "id": "df-02",
-      "tipo": "imagen",
-      "titulo": "Foto de perfil de red social",
-      "descripcion": "Una cuenta de LinkedIn muestra una foto de perfil profesional que no corresponde a ninguna persona real. Se usa para suplantar identidad.",
-      "pistas": [
-        "El fondo tiene bordes extraños alrededor del cabello",
-        "Los ojos reflejan patrones de iluminación diferentes",
-        "La textura de piel es demasiado uniforme y sin poros visibles"
-      ],
-      "zonaSospechosa": "La zona de los ojos y la transición piel-fondo",
-      "nivelDificultad": "intermedio",
-      "puntos": 25,
-      "explicacion": "Las imágenes generadas por GAN suelen tener artefactos en los reflejos oculares y una textura de piel artificialmente suavizada. Los bordes del cabello contra el fondo son difíciles de generar correctamente."
+      "id": "mula-2",
+      "oferta": {
+        "id": "oferta-2",
+        "titulo": "Influencer de Productos",
+        "descripcion": "Publica fotos con ropa de marca y gana $500/mes. Debes comprar el catálogo inicial por $150.",
+        "fuente": "Instagram DM @moda_joven_oficial",
+        "señalesRiesgo": ["Pago por adelantado", "Perfil nuevo sin historial", "Promesas de ganancias altas"],
+        "nivelRiesgo": "medio",
+        "esTrampa": true,
+        "explicacion": "Es un esquema piramidal disfrazado. Necesitas reclutar más personas para recuperar tu inversión. La mayoría pierde dinero.",
+        "plataforma": "Instagram",
+        "victimasReales": "Cifas 2023: Técnicas de 'money flip' y conversión cripto usadas para atraer jóvenes. Europol EMMA 2023: Las redes sociales son el vector principal de reclutamiento de menores.",
+        "tecnicaUsada": "Money flip / conversión cripto — convence a la víctima de que puede multiplicar su dinero"
+      },
+      "preguntas": [
+        {
+          "pregunta": "¿Cuál es la señal de alerta principal?",
+          "opciones": ["El pago es bajo", "Debes pagar para trabajar", "Es en Instagram", "La ropa es de marca"],
+          "respuestaCorrecta": 1,
+          "explicacion": "En un trabajo legítimo NUNCA debes pagar para empezar. El 'kit inicial' es la estafa."
+        },
+        {
+          "pregunta": "¿Qué tipo de esquema es este?",
+          "opciones": ["Empleo formal", "Freelance legítimo", "Esquema piramidal", "Práctica profesional"],
+          "respuestaCorrecta": 2,
+          "explicacion": "Necesitas reclutar más personas para ganar — eso es piramidal."
+        }
+      ]
     },
     {
-      "id": "df-03",
-      "tipo": "audio",
-      "titulo": "Llamada de suplantación vocal",
-      "descripcion": "Recibes una llamada de tu 'jefe' pidiendo transferencia urgente. La voz suena idéntica pero hay elementos sospechosos.",
-      "pistas": [
-        "El tono de voz es plano sin variaciones emocionales naturales",
-        "Hay un ligero zumbido de fondo consistente en toda la grabación",
-        "Las pausas entre palabras son demasiado regulares"
-      ],
-      "zonaSospechosa": "La falta de variación entonativa y pausas artificiales",
-      "nivelDificultad": "intermedio",
-      "puntos": 25,
-      "explicacion": "Los clonadores de voz actuales capturan el tono general pero fallan en las micro-variaciones entonativas naturales. Las pausas sintéticas son más regulares que el habla humana espontánea."
-    },
-    {
-      "id": "df-04",
-      "tipo": "audio",
-      "titulo": "Mensaje de WhatsApp sospechoso",
-      "descripcion": "Un familiar te envía un audio pidiendo dinero urgente. La voz suena igual pero algo no cuadra con el contexto.",
-      "pistas": [
-        "El audio no tiene los ruidos ambientales típicos del entorno descrito",
-        "Hay artefactos de compresión diferentes a los de WhatsApp",
-        "El ritmo del habla es demasiado rápido y sin dudas"
-      ],
-      "zonaSospechosa": "El ritmo monótono y la ausencia de dudas naturales",
-      "nivelDificultad": "basico",
-      "puntos": 20,
-      "explicacion": "El audio generado por IA tiende a ser demasiado fluido y sin las vacilaciones naturales del habla espontánea. Los ruidos de fondo son difíciles de sintetizar correctamente."
-    },
-    {
-      "id": "df-05",
-      "tipo": "video",
-      "titulo": "Declaración política manipulada",
-      "descripcion": "Un candidato aparece haciendo declaraciones controvertidas en un video que se viraliza. Los expertos sospechan de manipulación.",
-      "pistas": [
-        "Los movimientos de labios no sincronizan perfectamente con el audio",
-        "Los parpadeos son irregulares y poco frecuentes",
-        "Las manos del orador tienen artefactos de movimiento borroso"
-      ],
-      "zonaSospechosa": "La sincronización labial y los movimientos de manos",
-      "nivelDificultad": "avanzado",
-      "puntos": 30,
-      "explicacion": "Los deepfakes de video fallan frecuentemente en la sincronización labial precisa y en los movimientos complejos de las manos. Los patrones de parpadeo artificial son un indicador avanzado."
-    },
-    {
-      "id": "df-06",
-      "tipo": "video",
-      "titulo": "Testimonio falso de cliente",
-      "descripcion": "Una empresa publica un video testimonio de un 'cliente satisfecho'. El video parece profesional pero fue generado completamente con IA.",
-      "pistas": [
-        "La iluminación del rostro cambia sutilmente entre tomas",
-        "El fondo se 'muelle' y deforma cuando el sujeto se mueve",
-        "Los gestos faciales son repetitivos y poco naturales"
-      ],
-      "zonaSospechosa": "La deformación del fondo y los gestos repetitivos",
-      "nivelDificultad": "avanzado",
-      "puntos": 30,
-      "explicacion": "Los generadores de video con IA crean inestabilidad en los fondos cuando el sujeto se mueve. Los gestos faciales sintéticos tienden a repetirse en ciclos predecibles."
+      "id": "mula-3",
+      "oferta": {
+        "id": "oferta-3",
+        "titulo": "Repartidor de Paquetes",
+        "descripcion": "Recibe paquetes en tu casa y repártelos en la ciudad. Gana $25 por paquete entregado.",
+        "fuente": "Telegram canal 'Empleos Express'",
+        "señalesRiesgo": ["Sin verificación de empresa", "Pagos por entregas sin registro", "Posible contenido ilegal"],
+        "nivelRiesgo": "alto",
+        "esTrampa": true,
+        "explicacion": "Puedes estar distribuyendo drogas, dinero falsificado u otros objetos ilegales. Los estafadores usan repartidores como unwitting mules.",
+        "plataforma": "Telegram",
+        "victimasReales": "Europol EMMA 2023: Menores reclutados en plataformas de mensajería para distribuir paquetes sin conocer contenido. Técnicas incluyen lenguaje codificado y gamificación.",
+        "tecnicaUsada": "Mula de paquetes — la víctima transporta drogas o bienes ilícitos sin saberlo"
+      },
+      "preguntas": [
+        {
+          "pregunta": "¿Por qué repartir paquetes sin verificar es peligroso?",
+          "opciones": ["El pago es bajo", "Podrías transportar cosas ilegales", "El horario es irregular", "No hay vacaciones"],
+          "respuestaCorrecta": 1,
+          "explicacion": "Sin saber qué hay en los paquetes, puedes convertirte en transportista de drogas o dinero ilícito."
+        },
+        {
+          "pregunta": "¿Qué deberías pedir antes de aceptar?",
+          "opciones": ["Nada, suena bien", "Contrato formal y verificación de la empresa", "Un adelanto", "Más paquetes"],
+          "respuestaCorrecta": 1,
+          "explicacion": "Siempre verifica la empresa, pide contrato y conoce qué estás transportando."
+        }
+      ]
     }
   ],
-  "vishingScenarios": [
+  "escenariosExtorsion": [
     {
-      "id": "vs-01",
-      "tipo": "amigo",
-      "titulo": "Mensaje urgente de un 'amigo'",
-      "descripcion": "Tu amigo Marco te llama pidiendo dinero urgente por un problema. Pero algo no cuadra con la voz.",
-      "dialogo": [
-        { "hablante": "Marco", "texto": "¡Oye, soy Marco! Me robaron la billetera y necesito 500 pesos para el taxi. ¿Me los puedes transferir?", "esSospechoso": true },
-        { "hablante": "Tú", "texto": "¿Marco? ¿En serio? ¿Qué hicimos la última vez que nos vimos?", "esSospechoso": false },
-        { "hablante": "Marco", "texto": "¡Ya sabes, nos fuimos de copas! Por favor, es urgente, necesito el dinero ya.", "esSospechoso": true },
-        { "hablante": "Tú", "texto": "Voy a colgar y te llamo a tu número real. Si eres tú, contesta.", "esSospechoso": false }
+      "id": "ext-1",
+      "tipo": "sextorsion",
+      "titulo": "Te amenazan con fotos íntimas",
+      "descripcion": "Un desconocido dice que tiene fotos tuyas comprometedoras y amenaza con enviarlas a todos tus contactos si no le pagas $500.",
+      "opciones": [
+        "Pagar para que no las difunda",
+        "Ignorar y bloquear",
+        "Guarda las pruebas, bloquea y reporta a la policía",
+        "Negociar un precio menor"
       ],
-      "preguntasSeguridad": [
-        "¿Cuál es la pregunta de seguridad correcta para verificar la identidad?",
-        "Llamar al número real del contacto",
-        "Preguntar un dato que solo la persona real sabría",
-        "Transferir el dinero y arriesgarse"
-      ],
-      "explicacion": "Antes de transferir dinero, siempre verifica la identidad del remitente por un canal diferente. Los estafadores clonan voces de contactos cercanos.",
-      "puntos": 25
+      "respuestaCorrecta": 2,
+      "explicacion": "NUNCA pagues — no hay garantía de que paren. Guarda capturas como evidencia, bloquea y denuncia. La policía tiene unidades especializadas en ciberextorsión.",
+      "puntuacionMaxima": 3,
+      "fuente": "FBI IC3 2022",
+      "edadObjetivo": "12-15",
+      "consecuenciasReales": "Ideación suicida, abandono escolar, aislamiento social, ansiedad severa. FBI IC3 2022 reportó ~7,000 víctimas menores con pérdidas de $3.2M USD. El 51% de los perpetradores operan desde Filipinas o África Occidental.",
+      "recursosApoyo": ["Childhelp", "Crisis Text Line", "NCMEC"]
     },
     {
-      "id": "vs-02",
-      "tipo": "banco",
-      "titulo": "Alerta del banco por fraude",
-      "descripcion": "Recibes una llamada del 'Banco Nacional' informándote de actividad sospechosa en tu cuenta.",
-      "dialogo": [
-        { "hablante": "Agente", "texto": "Buenos días, llamamos del Banco Nacional. Detectamos una transacción no autorizada de 15,000 pesos. ¿La reconoce?", "esSospechoso": true },
-        { "hablante": "Tú", "texto": "No, no hice esa transacción. ¿Qué puedo hacer?", "esSospechoso": false },
-        { "hablante": "Agente", "texto": "Necesitamos verificar su identidad. ¿Cuál es su número de tarjeta y el código CVV?", "esSospechoso": true },
-        { "hablante": "Tú", "texto": "Colgaré y llamaré al número oficial del banco que tengo en mi tarjeta.", "esSospechoso": false }
+      "id": "ext-2",
+      "tipo": "ransom",
+      "titulo": "Tu computadora está bloqueada",
+      "descripcion": "Aparece un mensaje en tu pantalla: 'Tus archivos han sido encriptados. Paga 0.5 BTC para recuperarlos'. No puedes acceder a nada.",
+      "opciones": [
+        "Pagar el rescate inmediatamente",
+        "Apagar la computadora y llevarla a un técnico",
+        "Hacer captura del mensaje y reportar a la policía cibernética",
+        "Reiniciar la computadora"
       ],
-      "preguntasSeguridad": [
-        "¿Qué debes hacer cuando te llaman del banco?",
-        "Dar los datos solicitados para resolver rápido",
-        "Colgar y llamar al número oficial del banco",
-        "Transferir el dinero a una cuenta 'segura'"
-      ],
-      "explicacion": "Los bancos NUNCA piden datos sensibles por teléfono. Siempre cuelga y llama al número oficial que aparece en tu tarjeta o en el sitio web del banco.",
-      "puntos": 30
+      "respuestaCorrecta": 2,
+      "explicacion": "El ransomware es un delito. Reporta a la policía cibernética. No pagues (financia más ataques) y no reinicies (puede empeorar). Un técnico puede intentar recuperar datos.",
+      "puntuacionMaxima": 3,
+      "fuente": "Europol EMMA 2023",
+      "edadObjetivo": "14-20",
+      "consecuenciasReales": "Pérdida permanente de archivos personales, académicos y familiares. Ransomware dirigido a dispositivos adolescentes ha aumentado con el uso compartido de computadoras domésticas. Europol EMMA 2023 reporta incremento en ransomware dirigido a usuarios jóvenes.",
+      "recursosApoyo": ["StopBullying.gov", "INHOPE", "Europol — Stop Extortion"]
     },
     {
-      "id": "vs-03",
-      "tipo": "soporte-tecnico",
-      "titulo": "Soporte técnico de Microsoft",
-      "descripcion": "Un 'técnico de Microsoft' te llama informándote de un virus en tu computadora y ofrece ayudarte.",
-      "dialogo": [
-        { "hablante": "Técnico", "texto": "Aquí es Microsoft Support. Hemos detectado actividad maliciosa en tu computadora. Necesitamos acceso remoto para solucionarlo.", "esSospechoso": true },
-        { "hablante": "Tú", "texto": "¿Cómo detectaron eso?", "esSospechoso": false },
-        { "hablante": "Técnico", "texto": "Nuestros servidores muestran que tu PC está enviando datos. Descargue TeamViewer y denos acceso.", "esSospechoso": true },
-        { "hablante": "Tú", "texto": "Microsoft no ofrece soporte por llamada. Colgaré.", "esSospechoso": false }
+      "id": "ext-3",
+      "tipo": "amenazas",
+      "titulo": "Amenazas en redes sociales",
+      "descripcion": "Alguien crea un perfil falso con tus fotos y publica información personal tuya (dirección, colegio) amenazando con hacer más daño si no le envías dinero.",
+      "opciones": [
+        "Enviar dinero para que paren",
+        "Hacer caso omiso",
+        "Recolectar evidencias, reportar la cuenta y denunciar ante la policía",
+        "Responder con insultos"
       ],
-      "preguntasSeguridad": [
-        "¿Qué ofrecerá el estafador para obtener acceso?",
-        "Acceso remoto a tu computadora",
-        "Un enlace para descargar antivirus",
-        "Una visita técnica a tu domicilio"
-      ],
-      "explicacion": "Microsoft, Google, Apple y otras empresas grandes NUNCA llaman para ofrecer soporte técnico. Este es un scam clásico para obtener acceso remoto a tu computadora.",
-      "puntos": 25
-    },
-    {
-      "id": "vs-04",
-      "tipo": "autoridad",
-      "titulo": "Suplantación de autoridad",
-      "descripcion": "Un 'agente de la policía fiscal' te llama informándote de una multa y te pide pago inmediato.",
-      "dialogo": [
-        { "hablante": "Agente", "texto": "Aquí la Policía Fiscal. Tiene una multa pendiente de 8,000 pesos por infracción tributaria. Si no paga hoy, emitirán orden de arresto.", "esSospechoso": true },
-        { "hablante": "Tú", "texto": "¿Cuál es su nombre y placa?", "esSospechoso": false },
-        { "hablante": "Agente", "texto": "No puedo dar esa información por seguridad. Solo tiene que transferir a esta cuenta CLABE.", "esSospechoso": true },
-        { "hablante": "Tú", "texto": "Colgaré y verificaré con las autoridades oficiales.", "esSospechoso": false }
-      ],
-      "preguntasSeguridad": [
-        "¿Qué hará el estafador para presionarte?",
-        "Amenazar con consecuencias legales inmediatas",
-        "Ofrecer un descuento por pago anticipado",
-        "Enviar un oficial a tu domicilio"
-      ],
-      "explicacion": "Las autoridades reales nunca amenazan por teléfono ni piden pagos por transferencia. Siempre recibes notificaciones escritas y puedes verificar directamente con la institución.",
-      "puntos": 30
+      "respuestaCorrecta": 2,
+      "explicacion": "Documenta todo (capturas), reporta la cuenta en la plataforma y denuncia. Responder con agresión puede empeorar la situación. Nunca pagues.",
+      "puntuacionMaxima": 3,
+      "fuente": "Cifas 2023",
+      "edadObjetivo": "13-18",
+      "consecuenciasReales": "Doxing, suplantación de identidad, acoso escolar en línea, depresión y ansiedad. Cifas 2023 documenta aumento en amenazas con información personal de jóvenes en redes sociales como táctica de extorsión.",
+      "recursosApoyo": ["CyberBullying Research Center", "StopBullying.gov", "INHOPE"]
     }
   ],
-  "desinformacionCases": [
-    {
-      "id": "di-01",
-      "tipo": "imagen-sintetica",
-      "titulo": "Foto de celebridad en evento falso",
-      "descripcion": "Circula una foto de un actor famoso en un evento que nunca existió. La imagen parece real pero fue generada con IA.",
-      "indicadores": [
-        "El fondo del evento no corresponde a ningún lugar conocido",
-        "La sombra del actor no coincide con la iluminación del lugar",
-        "Los detalles de la ropa tienen patrones irregulares"
-      ],
-      "fuenteOriginal": "Cuenta de redes sociales sin verificación",
-      "explicacion": "Las imágenes generadas por IA pueden parecer muy realistas, pero los detalles de iluminación, sombras y texturas suelen revelar la manipulación.",
-      "puntos": 25
-    },
-    {
-      "id": "di-02",
-      "tipo": "audio-clonado",
-      "titulo": "Discurso político clonado",
-      "descripcion": "Un audio de un político haciendo declaraciones controversiales se viraliza. La voz es idéntica pero las palabras fueron generadas por IA.",
-      "indicadores": [
-        "El audio no tiene las pausas naturales del orador",
-        "No hay variación emocional en temas sensibles",
-        "La calidad del audio es inconsistente con grabaciones reales"
-      ],
-      "fuenteOriginal": "Mensaje de WhatsApp reenviado múltiples veces",
-      "explicacion": "Los clonadores de voz pueden replicar el tono pero no las emociones y pausas naturales. Siempre verifica la fuente original antes de compartir.",
-      "puntos": 30
-    },
-    {
-      "id": "di-03",
-      "tipo": "noticia-falsa",
-      "titulo": "Artículo de medio inexistente",
-      "descripcion": "Un artículo de 'El Diario Nacional' reporta una catástrofe que nunca ocurrió. El sitio web fue creado recientemente con IA.",
-      "indicadores": [
-        "El dominio del sitio web fue registrado hace menos de una semana",
-        "Las imágenes del artículo no tienen metadata de fecha",
-        "El texto usa lenguaje genérico sin fuentes específicas"
-      ],
-      "fuenteOriginal": "Enlace compartido en redes sociales",
-      "explicacion": "Verifica siempre la fuente de las noticias. Los sitios falsos suelen tener dominios recientes, falta de historial y contenido genérico sin fuentes verificables.",
-      "puntos": 25
-    },
-    {
-      "id": "di-04",
-      "tipo": "video-manipulado",
-      "titulo": "Video de declaraciones manipuladas",
-      "descripcion": "Un video de un empresario haciendo declaraciones sobre una inversión parece auténtico pero fue sintetizado completamente con IA.",
-      "indicadores": [
-        "Los movimientos de labios son ligeramente diferentes al audio",
-        "El fondo se deforma cuando el sujeto se mueve",
-        "Los gestos faciales son repetitivos"
-      ],
-      "fuenteOriginal": "Cuenta verificada comprometida",
-      "explicacion": "Los videos generados por IA pueden tener artefactos visuales sutiles. La cuenta verificada no garantiza authenticity si fue comprometida.",
-      "puntos": 30
-    }
-  ],
-  "microActividades": [
-    {
-      "id": "m3-01",
-      "tipo": "verdadero-falso",
-      "pregunta": "¿Es cierto que los deepfakes siempre tienen errores visibles en los ojos?",
-      "respuestaCorrecta": "verdadero",
-      "explicacion": "Los generadores de deepfakes frecuentemente fallan en reproducir reflejos oculares consistentes y simétricos. Los ojos son uno de los indicadores más confiables.",
-      "puntos": 15
-    },
-    {
-      "id": "m3-02",
-      "tipo": "verdadero-falso",
-      "pregunta": "¿Un audio clonado siempre suena diferente al original?",
-      "respuestaCorrecta": "falso",
-      "explicacion": "Los clonadores de voz modernos pueden replicar el tono con alta precisión. La diferencia está en las emociones y pausas, no en el tono básico.",
-      "puntos": 15
-    },
-    {
-      "id": "m3-03",
-      "tipo": "ordenar-pasos",
-      "pregunta": "Ordena los pasos para verificar si un contenido es un deepfake:",
-      "respuestaCorrecta": ["Identificar la fuente", "Buscar la imagen original", "Analizar artefactos visuales", "Consultar verificadores", "Compartir con precaución"],
-      "pasos": [
-        { "id": "p1", "texto": "Identificar la fuente", "ordenCorrecto": 0 },
-        { "id": "p2", "texto": "Buscar la imagen original", "ordenCorrecto": 1 },
-        { "id": "p3", "texto": "Analizar artefactos visuales", "ordenCorrecto": 2 },
-        { "id": "p4", "texto": "Consultar verificadores", "ordenCorrecto": 3 },
-        { "id": "p5", "texto": "Compartir con precaución", "ordenCorrecto": 4 }
-      ],
-      "explicacion": "Siempre verifica la fuente primero, luego busca la imagen original antes de analizar detalles. Consulta expertos antes de difundir.",
-      "puntos": 20
-    },
-    {
-      "id": "m3-04",
-      "tipo": "verdadero-falso",
-      "pregunta": "¿Los bancos pueden llamarte para pedir tus datos de tarjeta por seguridad?",
-      "respuestaCorrecta": "falso",
-      "explicacion": "Los bancos NUNCA piden datos sensibles por teléfono. Si recibes una llamada así, es un intento de vishing. Siempre cuelga y llama al número oficial.",
-      "puntos": 15
-    }
+  "mensajesDragDrop": [
+    { "id": "dd-1", "texto": "Gana $1000 por solo recibir transferencias en tu cuenta bancaria", "tipo": "mula", "dificultad": "facil", "fuente": "Cifas 2023" },
+    { "id": "dd-2", "texto": "Eres la persona más importante de mi vida, no podría vivir sin ti", "tipo": "manipulacion", "dificultad": "facil", "fuente": "FBI IC3 2022" },
+    { "id": "dd-3", "texto": "Si no me envías $200, publico tus fotos en internet", "tipo": "extorsion", "dificultad": "facil", "fuente": "FBI IC3 2022" },
+    { "id": "dd-4", "texto": "Necesito que trabajes 8 horas de lunes a viernes en nuestra oficina", "tipo": "seguro", "dificultad": "facil", "fuente": null },
+    { "id": "dd-5", "texto": "Únete a nuestro grupo de inversiones, solo necesitas tu cédula", "tipo": "reclutamiento", "dificultad": "medio", "fuente": "Europol EMMA 2023" },
+    { "id": "dd-6", "texto": "No puedes confiar en nadie, solo en mí. Aléjate de tus amigos", "tipo": "manipulacion", "dificultad": "medio", "fuente": "FBI IC3 2022" },
+    { "id": "dd-7", "texto": "Recibe paquetes en tu casa y repártelos, no preguntes qué hay dentro", "tipo": "mula", "dificultad": "medio", "fuente": "Europol EMMA 2023" },
+    { "id": "dd-8", "texto": "Tu tarea es vender este producto y reclutar a 3 amigos más", "tipo": "reclutamiento", "dificultad": "medio", "fuente": "Cifas 2023" },
+    { "id": "dd-9", "texto": "Si no me das tu contraseña, te hackeo todas tus cuentas", "tipo": "extorsion", "dificultad": "medio", "fuente": "Cifas 2023" },
+    { "id": "dd-10", "texto": "El puesto tiene contrato, horario definido y empresa verificable", "tipo": "seguro", "dificultad": "medio", "fuente": null },
+    { "id": "dd-11", "texto": "Te enviaré dinero a tu cuenta, solo transfírelo a otro banco", "tipo": "mula", "dificultad": "medio", "fuente": "Cifas 2023" },
+    { "id": "dd-12", "texto": "Estoy preocupado por ti, ¿necesitas hablar con alguien de confianza?", "tipo": "seguro", "dificultad": "medio", "fuente": null },
+    { "id": "dd-13", "texto": "Tu cuenta de Roblox tiene potencial monetario, solo dame tu correo para la 'colaboración'", "tipo": "reclutamiento", "dificultad": "dificil", "fuente": "Europol EMMA 2023" },
+    { "id": "dd-14", "texto": "Mira este video tuyo, se ve genial. ¿Quieres que lo suba a mi canal o prefieres que me pares?", "tipo": "extorsion", "dificultad": "dificil", "fuente": "Deepfake research 2023" },
+    { "id": "dd-15", "texto": "Eres la única persona que me entiende. No le cuentes a nadie lo nuestro", "tipo": "manipulacion", "dificultad": "dificil", "fuente": "Europol EMMA 2023" },
+    { "id": "dd-16", "texto": "Publicaremos tu perfil en redes con tus fotos reales si no cooperas", "tipo": "extorsion", "dificultad": "dificil", "fuente": "FBI IC3 2022" }
   ]
 }

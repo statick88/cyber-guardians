@@ -208,7 +208,7 @@ export default function Modulo0Page() {
             />
 
             {percentage < data.modulo.umbralAprobacion && (
-              <div className="max-w-2xl mx-auto px-4 pb-12 -mt-2">
+              <div className="max-w-4xl mx-auto px-4 pb-12 -mt-2">
                 <div className="flex items-center gap-2 mb-4">
                   <h3 className="text-lg font-semibold text-slate-200">Micro-Actividades</h3>
                   <span className="text-xs text-slate-500 code-font">

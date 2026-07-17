@@ -20,6 +20,85 @@ interface MicroActivitiesProps {
   onComplete: () => void;
 }
 
+interface OrderStepsProps {
+  steps: Array<{ id: string; texto: string; ordenCorrecto: number }>;
+  correctOrder: string[];
+  onSubmit: (correct: boolean) => void;
+  disabled: boolean;
+}
+
+function OrderSteps({ steps, correctOrder, onSubmit, disabled }: OrderStepsProps) {
+  const [items, setItems] = useState(() => {
+    const shuffled = [...steps];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  });
+
+  const moveUp = (index: number) => {
+    if (index === 0 || disabled) return;
+    setItems((prev) => {
+      const next = [...prev];
+      [next[index - 1], next[index]] = [next[index], next[index - 1]];
+      return next;
+    });
+  };
+
+  const moveDown = (index: number) => {
+    if (index === items.length - 1 || disabled) return;
+    setItems((prev) => {
+      const next = [...prev];
+      [next[index], next[index + 1]] = [next[index + 1], next[index]];
+      return next;
+    });
+  };
+
+  const handleSubmit = () => {
+    const userOrder = items.map((item) => item.id);
+    const correct = JSON.stringify(userOrder) === JSON.stringify(correctOrder);
+    onSubmit(correct);
+  };
+
+  return (
+    <div className="space-y-3">
+      {items.map((item, idx) => (
+        <div
+          key={item.id}
+          className="flex items-center gap-3 bg-slate-800/50 rounded-lg p-3"
+        >
+          <span className="text-slate-400 font-mono text-sm w-6 text-center">
+            {idx + 1}
+          </span>
+          <span className="text-white flex-1">{item.texto}</span>
+          <div className="flex gap-1">
+            <button
+              onClick={() => moveUp(idx)}
+              disabled={idx === 0 || disabled}
+              className="text-slate-400 hover:text-white disabled:opacity-30 px-1"
+            >
+              ▲
+            </button>
+            <button
+              onClick={() => moveDown(idx)}
+              disabled={idx === items.length - 1 || disabled}
+              className="text-slate-400 hover:text-white disabled:opacity-30 px-1"
+            >
+              ▼
+            </button>
+          </div>
+        </div>
+      ))}
+      {!disabled && (
+        <Button onClick={handleSubmit} className="bg-cyan-600 hover:bg-cyan-700 w-full">
+          Verificar orden
+        </Button>
+      )}
+    </div>
+  );
+}
+
 export function MicroActivities({
   actividades,
   onScore,
@@ -184,6 +263,29 @@ export function MicroActivities({
                   </div>
                 )}
 
+              {/* Order Steps */}
+              {currentActivity.tipo === "ordenar-pasos" && currentActivity.pasos && (
+                <OrderSteps
+                  steps={currentActivity.pasos}
+                  correctOrder={currentActivity.respuestaCorrecta as string[]}
+                  onSubmit={(correct) => {
+                    setIsCorrect(correct);
+                    const points = correct ? currentActivity.puntos : 0;
+                    setEarnedPoints(points);
+                    setTotalPoints((prev) => prev + points);
+                    setTimeout(() => {
+                      setIsCorrect(null);
+                      if (currentIndex < actividades.length - 1) {
+                        setCurrentIndex(currentIndex + 1);
+                      } else {
+                        onComplete();
+                      }
+                    }, 3000);
+                  }}
+                  disabled={isCorrect !== null}
+                />
+              )}
+
               {/* Results */}
               {isCorrect !== null && (
                 <motion.div
@@ -209,7 +311,7 @@ export function MicroActivities({
                             : "❌ Incorrecto"}
                         </p>
                         <p className="text-slate-300 text-sm">
-                          {currentActivity.explicacao}
+                          {currentActivity.explicacion}
                         </p>
                       </div>
                     </AlertDescription>
