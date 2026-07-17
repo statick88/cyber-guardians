@@ -154,15 +154,7 @@ export default function Modulo0Game() {
 
   const handleContinue = useCallback(() => {
     setIsNavigating(true)
-    // Use window.location for reliable navigation with basePath
-    try {
-      const base = typeof window !== 'undefined'
-        ? (window as unknown as { __NEXT_DATA__?: { basePath?: string } }).__NEXT_DATA__?.basePath || ''
-        : ''
-      window.location.href = `${base}/modulo1`
-    } catch {
-      window.location.href = '/modulo1'
-    }
+    navigateTo('/modulo1')
   }, [])
 
   const handleMicroComplete = useCallback(() => {
