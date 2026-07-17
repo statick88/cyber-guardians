@@ -1,14 +1,14 @@
 # SDD Configuration for CyberGuardians
-# Generated: 2026-07-15
+# Updated: 2026-07-17
 
 project:
   name: cyber-guardians
   version: "1.0.0"
-  description: "CyberGuardians - Next.js 14 security education platform"
+  description: "CyberGuardians - Cybersecurity education platform for adolescents"
 
 stack:
   framework: next
-  framework_version: "14.2.0"
+  framework_version: "16.2.10"
   language: typescript
   ui:
     - tailwindcss
@@ -16,10 +16,13 @@ stack:
     - radix-ui
     - lucide-react
   package_manager: pnpm
-  node_version: "20.0.0"
+  package_manager_version: "11.13.0"
+  node_version: "24.18.0"
+  deployment: static-export-github-pages
+  base_path: "/cyber-guardians"
 
 persistence:
-  mode: openspec
+  mode: hybrid
   strict_tdd: false
   testing_framework: none
 
@@ -44,4 +47,27 @@ testing:
   coverage: none
   layers: []
   strict_tdd: false
-  note: "No test framework detected. Recommend installing vitest or jest for testing."
+  note: "No test framework detected. Recommend installing vitest + @testing-library/react for unit/integration testing."
+
+phases:
+  proposal:
+    requires: [exploration]
+    outputs: [proposal]
+  spec:
+    requires: [proposal]
+    outputs: [spec]
+  design:
+    requires: [proposal]
+    outputs: [design]
+  tasks:
+    requires: [spec, design]
+    outputs: [tasks]
+  apply:
+    requires: [tasks]
+    outputs: [apply-progress]
+  verify:
+    requires: [spec, tasks, apply-progress]
+    outputs: [verify-report]
+  archive:
+    requires: [all-artifacts]
+    outputs: [archive-report]

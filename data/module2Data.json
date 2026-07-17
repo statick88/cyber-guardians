@@ -154,7 +154,34 @@
       "metodosDisponibles": ["sms", "email", "app", "hardware", "passkey"],
       "metodoRecomendado": "hardware",
       "explicacion": "El email controla el acceso a todo. Una llave hardware (YubiKey) o Passkey es la única protección contra SIM swapping y phishing avanzado. Si pierdes la llave, tienes códigos de respaldo guardados en lugar seguro.",
-      "puntos": 25
+      "puntos": 25,
+      "capaEducativa": {
+        "scenarioId": "2fa-sc-01",
+        "moduleId": 2,
+        "activityType": "mfa_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué el SMS no es suficiente para proteger tu email principal?",
+          "expectedInsight": "Un atacante puede hacer SIM swapping para interceptar tus códigos SMS. El email es la llave maestra de todas tus cuentas.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Piensa en qué pasaría si alguien pudiera copiar tu número de teléfono. ¿Cómo afectaría tu seguridad?"
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-2fa-01-1",
+              "type": "slider",
+              "prompt": "¿Qué tan seguro es tu método de autenticación actual?",
+              "sliderLabels": { "min": "Muy vulnerable", "max": "Muy seguro" },
+              "storageKey": "2fa_confidence",
+              "competency": "threat_identification"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "2fa-sc-02",
@@ -164,7 +191,34 @@
       "metodosDisponibles": ["sms", "app", "hardware"],
       "metodoRecomendado": "hardware",
       "explicacion": "Los bancos son objetivo #1. El token físico del banco o YubiKey registrado es lo mejor. Evita SMS: el SIM swapping permite interceptar códigos bancarios.",
-      "puntos": 25
+      "puntos": 25,
+      "capaEducativa": {
+        "scenarioId": "2fa-sc-02",
+        "moduleId": 2,
+        "activityType": "mfa_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué el token físico es mejor que la app del banco para 2FA?",
+          "expectedInsight": "El token físico (o YubiKey) no depende del teléfono, no se puede interceptar vía SIM swap, y requiere presencia física. La app del banco está en el mismo dispositivo que puedes perder.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Si tu banco ofrece token físico (generalmente gratis), úsalo. Es la única protección real contra SIM swapping."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-2fa-02-1",
+              "type": "slider",
+              "prompt": "¿Qué tan seguro consideras tu método 2FA actual para banca?",
+              "sliderLabels": { "min": "Muy vulnerable", "max": "Muy seguro" },
+              "storageKey": "2fa_banking_confidence",
+              "competency": "threat_identification"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "2fa-sc-03",
@@ -174,7 +228,38 @@
       "metodosDisponibles": ["sms", "app", "push"],
       "metodoRecomendado": "app",
       "explicacion": "App autenticadora (Authy, Google Auth, 1Password) balancea seguridad y usabilidad. Authy permite backup encriptado en la nube para recuperar si pierdes el teléfono.",
-      "puntos": 20
+      "puntos": 20,
+      "capaEducativa": {
+        "scenarioId": "2fa-sc-03",
+        "moduleId": 2,
+        "activityType": "mfa_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué Authy con backup encriptado es mejor que Google Authenticator para redes sociales?",
+          "expectedInsight": "Si pierdes el teléfono, Google Authenticator pierde TODOS los códigos (sin backup). Authy permite recuperar con contraseña maestra + dispositivo de confianza.",
+          "attackerTechnique": "none"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Para cuentas importantes usa Authy o 1Password con backup encriptado. Google Authenticator es riesgoso sin backup."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-2fa-03-1",
+              "type": "micro-decision",
+              "prompt": "Pierdes tu teléfono. ¿Cómo recuperas el 2FA de Instagram?",
+              "options": [
+                { "id": "opt-authy", "label": "Tengo Authy con backup", "cognitiveInsight": "Planificación previa, recuperación segura" },
+                { "id": "opt-codes", "label": "Tengo códigos de respaldo guardados", "cognitiveInsight": "Buena práctica de respaldo" },
+                { "id": "opt-lost", "label": "No tengo nada, pierdo la cuenta", "cognitiveInsight": "Sin plan de contingencia" }
+              ],
+              "storageKey": "2fa_recovery_plan",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onProgress"
+      }
     },
     {
       "id": "2fa-sc-04",
@@ -184,7 +269,34 @@
       "metodosDisponibles": ["email", "app", "hardware", "passkey"],
       "metodoRecomendado": "hardware",
       "explicacion": "¡MÁXIMA PRIORIDAD! Si comprometen tu gestor, tienen TODO. Requiere llave hardware (YubiKey) O passkey. Sin excepciones. Guarda códigos de recuperación en caja fuerte física.",
-      "puntos": 30
+      "puntos": 30,
+      "capaEducativa": {
+        "scenarioId": "2fa-sc-04",
+        "moduleId": 2,
+        "activityType": "mfa_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué el gestor de contraseñas merece el 2FA MÁS FUERTE (hardware/passkey)?",
+          "expectedInsight": "El gestor es el 'single point of failure'. Si cae, TODAS tus cuentas caen. El hardware/passkey es resistente a phishing (WebAuthn vincula origen a credencial).",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Tu gestor de contraseñas es la llave maestra. Protégelo con YubiKey o Passkey. Guarda códigos de recuperación en papel en lugar seguro."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-2fa-04-1",
+              "type": "open-reflection",
+              "prompt": "¿Qué pasaría si alguien accede a tu gestor de contraseñas hoy?",
+              "reflectionGuide": "Piensa en todas las cuentas, accesos bancarios, emails, redes sociales que están ahí.",
+              "storageKey": "password_manager_impact",
+              "competency": "metacognitive_regulation"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     }
   ],
   "perfilesSociales": [
@@ -324,7 +436,38 @@
       "accionCorrecta": "cambiar-contrasenas",
       "puntos": 30,
       "dificultad": "basico",
-      "explicacion": "1) Cambia contraseña del email DESDE un dispositivo de confianza. 2) Activa 2FA hardware/passkey. 3) Revoca todas las sesiones activas. 4) Revisa reglas de reenvío. 5) Cambia contraseñas de CUALQUIER servicio que use este email para recovery."
+      "explicacion": "1) Cambia contraseña del email DESDE un dispositivo de confianza. 2) Activa 2FA hardware/passkey. 3) Revoca todas las sesiones activas. 4) Revisa reglas de reenvío. 5) Cambia contraseñas de CUALQUIER servicio que use este email para recovery.",
+      "capaEducativa": {
+        "scenarioId": "id-01",
+        "moduleId": 2,
+        "activityType": "identity_theft_response",
+        "conflictQuestion": {
+          "question": "¿Por qué cambiar la contraseña no es suficiente cuando tu email ha sido comprometido?",
+          "expectedInsight": "El atacante pudo haber creado reglas de reenvío o guardado sesiones activas. Debes revisar toda la configuración, no solo la contraseña.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Un atacante que accede a tu email puede crear reglas de reenvío silenciosas. Revisa la configuración completa antes de solo cambiar la contraseña."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-id-01-1",
+              "type": "micro-decision",
+              "prompt": "¿Cuál sería tu primera acción si recibieras esta alerta?",
+              "options": [
+                { "id": "opt-change", "label": "Cambiar contraseña inmediatamente", "cognitiveInsight": "Acción correcta pero incompleta" },
+                { "id": "opt-review", "label": "Revisar actividad y configuración primero", "cognitiveInsight": "Análisis completo antes de actuar" },
+                { "id": "opt-ignore", "label": "Ignorar, probablemente es falso", "cognitiveInsight": "Subestima la amenaza" }
+              ],
+              "storageKey": "id_theft_decision",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "id-02",
@@ -339,7 +482,38 @@
       "accionCorrecta": "congelar-credito",
       "puntos": 35,
       "dificultad": "avanzado",
-      "explicacion": "1) CONGELA TU CRÉDITO en los 3 burós principales (Equifax, Experian, TransUnion) - GRATIS y reversible. 2) Reporta a policía y obtén reporte. 3) Contacta FTC (EE. UU.) o autoridad local. 4) Disputa cuentas fraudulentas. 5) Alerta de fraude de 7 años en burós."
+      "explicacion": "1) CONGELA TU CRÉDITO en los 3 burós principales (Equifax, Experian, TransUnion) - GRATIS y reversible. 2) Reporta a policía y obtén reporte. 3) Contacta FTC (EE. UU.) o autoridad local. 4) Disputa cuentas fraudulentas. 5) Alerta de fraude de 7 años en burós.",
+      "capaEducativa": {
+        "scenarioId": "id-02",
+        "moduleId": 2,
+        "activityType": "identity_theft_response",
+        "conflictQuestion": {
+          "question": "¿Por qué congelar el crédito es la PRIMERA acción, no cambiar contraseñas?",
+          "expectedInsight": "Congelar crédito detiene NUEVAS cuentas fraudulentas inmediatamente. Cambiar contraseñas no evita que abran crédito nuevo a tu nombre. El congelamiento es la única barrera preventiva real.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Congela crédito AHORA (gratis, online, 10 min). Luego cambia contraseñas. El orden importa: prevención antes que remediación."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-id-02-1",
+              "type": "micro-decision",
+              "prompt": "Descubres una tarjeta abierta a tu nombre. ¿Primer paso?",
+              "options": [
+                { "id": "opt-freeze", "label": "Congelo crédito en 3 burós", "cognitiveInsight": "Prevención inmediata, acción correcta" },
+                { "id": "opt-password", "label": "Cambio contraseñas de email/banco", "cognitiveInsight": "Reacción instintiva pero no detiene crédito nuevo" },
+                { "id": "opt-wait", "label": "Espero a ver si hay más", "cognitiveInsight": "Pasividad peligrosa" }
+              ],
+              "storageKey": "credit_freeze_first",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "id-03",
@@ -354,7 +528,38 @@
       "accionCorrecta": "contactar-soporte",
       "puntos": 25,
       "dificultad": "intermedio",
-      "explicacion": "1) Llama al número ATRÁS de tu tarjeta (no el del SMS/email). 2) Reporta cargos fraudulentos. 3) Pide CANCELAR y REEMPLAZAR tarjeta. 4) Revisa TODOS los extractos 3 meses atrás. 5) Actualiza pagos automáticos con nueva tarjeta."
+      "explicacion": "1) Llama al número ATRÁS de tu tarjeta (no el del SMS/email). 2) Reporta cargos fraudulentos. 3) Pide CANCELAR y REEMPLAZAR tarjeta. 4) Revisa TODOS los extractos 3 meses atrás. 5) Actualiza pagos automáticos con nueva tarjeta.",
+      "capaEducativa": {
+        "scenarioId": "id-03",
+        "moduleId": 2,
+        "activityType": "identity_theft_response",
+        "conflictQuestion": {
+          "question": "¿Por qué debes llamar al número ATRÁS de la tarjeta y NO al del SMS que alerta del fraude?",
+          "expectedInsight": "El SMS puede ser del propio estafador (smishing). El número atrás de la tarjeta es el único verificado. Llamar al SMS te conecta con el atacante.",
+          "attackerTechnique": "authority_impersonation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Guarda el número de tu banco en contactos. Nunca uses números de SMS/emails para reportar fraude."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-id-03-1",
+              "type": "micro-decision",
+              "prompt": "Recibes SMS: 'Cargo sospechoso, llama al 800-XXX-XXXX'. ¿Qué haces?",
+              "options": [
+                { "id": "opt-back", "label": "Llamo al número de atrás de mi tarjeta", "cognitiveInsight": "Canal verificado, acción segura" },
+                { "id": "opt-sms", "label": "Llamo al número del SMS", "cognitiveInsight": "Riesgo de vishing/smishing" },
+                { "id": "opt-app", "label": "Abro la app del banco", "cognitiveInsight": "Canal oficial alternativo válido" }
+              ],
+              "storageKey": "fraud_call_channel",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "id-04",
@@ -369,7 +574,34 @@
       "accionCorrecta": "reportar-autoridades",
       "puntos": 30,
       "dificultad": "avanzado",
-      "explicacion": "El robo de identidad médica es peligroso: corrompe TU historial médico (alergias, tipo sangre, condiciones). 1) Reporta a policía. 2) Contacta aseguradora. 3) Solicita corrección de registros (HIPAA/ley local). 4) Monitorea Explanation of Benefits (EOBs)."
+      "explicacion": "El robo de identidad médica es peligroso: corrompe TU historial médico (alergias, tipo sangre, condiciones). 1) Reporta a policía. 2) Contacta aseguradora. 3) Solicita corrección de registros (HIPAA/ley local). 4) Monitorea Explanation of Benefits (EOBs).",
+      "capaEducativa": {
+        "scenarioId": "id-04",
+        "moduleId": 2,
+        "activityType": "identity_theft_response",
+        "conflictQuestion": {
+          "question": "¿Por qué el robo de identidad médica es MÁS peligroso que el financiero?",
+          "expectedInsight": "Corrompe tu historial médico: alergias, tipo de sangre, condiciones. En una emergencia, los médicos confían en datos FALSOS. Puede ser letal. El financiero se recupera; el médico te sigue toda la vida.",
+          "attackerTechnique": "fear_intimidation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Si ves facturas médicas a tu nombre: reporta YA. Pide corrección bajo HIPAA/ley local. Monitorea EOBs (Explanation of Benefits) mensualmente."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-id-04-1",
+              "type": "open-reflection",
+              "prompt": "¿Qué pasaría si en una emergencia los médicos confiaran en tu historial médico corrupto?",
+              "reflectionGuide": "Piensa en alergias, tipo de sangre, medicamentos, condiciones preexistentes.",
+              "storageKey": "medical_identity_impact",
+              "competency": "metacognitive_regulation"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "id-05",
@@ -384,7 +616,38 @@
       "accionCorrecta": "congelar-credito",
       "puntos": 35,
       "dificultad": "avanzado",
-      "explicacion": "El robo de identidad infantil es invisible por años. 1) Congela crédito del menor en 3 burós (gratis, padres/tutores). 2) Reporta a FTC/autoridad. 3) Guarda SSN/acta de nacimiento bajo llave. 4) No des SSN del menor salvo necesidad legal (escuela, médico, impuestos)."
+      "explicacion": "El robo de identidad infantil es invisible por años. 1) Congela crédito del menor en 3 burós (gratis, padres/tutores). 2) Reporta a FTC/autoridad. 3) Guarda SSN/acta de nacimiento bajo llave. 4) No des SSN del menor salvo necesidad legal (escuela, médico, impuestos).",
+      "capaEducativa": {
+        "scenarioId": "id-05",
+        "moduleId": 2,
+        "activityType": "identity_theft_response",
+        "conflictQuestion": {
+          "question": "¿Por qué el robo de identidad infantil pasa DESAPERCIBIDO por años?",
+          "expectedInsight": "Los menores no revisan crédito, no solicitan préstamos, no usan tarjetas. Los padres asumen que 'los niños no tienen crédito'. El atacante tiene años de margen antes de ser detectado.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Congela el crédito de tus hijos AHORA (gratis, online). No esperes a que reciban ofertas. Es la única prevención real."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-id-05-1",
+              "type": "micro-decision",
+              "prompt": "Tu hijo de 10 años recibe oferta de tarjeta 'pre-aprobada'. ¿Qué haces?",
+              "options": [
+                { "id": "opt-freeze", "label": "Congelo su crédito en 3 burós hoy", "cognitiveInsight": "Acción preventiva correcta" },
+                { "id": "opt-ignore", "label": "Ignoro, es error del banco", "cognitiveInsight": "Subestima el riesgo" },
+                { "id": "opt-check", "label": "Reviso su reporte de crédito primero", "cognitiveInsight": "Verifica pero retrasa la protección" }
+              ],
+              "storageKey": "child_credit_freeze",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     }
   ],
   "ejercicios": [

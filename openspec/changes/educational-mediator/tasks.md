@@ -24,7 +24,7 @@ Chain strategy: stacked-to-main
 
 **Goal**: Types, context, feature flag. Zero behavior change when flag=off.
 
-### T0 — Create `types/educationalMediator.ts`
+### T0 — Create `types/educationalMediator.ts` ✅
 Create `types/educationalMediator.ts` with: `MediatorState`, `CognitiveConflict`, `EducationalLayer`, `NotebookEntry`, `ScaffoldingTip`, `DebriefReflection`, `MediatorAction`. Export all interfaces. Use `readonly` on discriminated unions. ~60 lines.
 - **Prerequisites**: None
 - **Files**: `types/educationalMediator.ts` (create)
@@ -33,16 +33,16 @@ Create `types/educationalMediator.ts` with: `MediatorState`, `CognitiveConflict`
 - **Runtime harness**: N/A (types only)
 - **Rollback boundary**: Delete `types/educationalMediator.ts`
 
-### T1 — Create `lib/featureFlags.ts`
-Create `lib/featureFlags.ts` exporting `MEDATOR_ENABLED: boolean` derived from `process.env.NEXT_PUBLIC_EDUCATIONAL_MEDIATOR`. Default `false`. ~10 lines.
+### T1 — Create `lib/featureFlags.ts` ✅
+Create `lib/featureFlags.ts` exporting `MEDIATOR_ENABLED: boolean` derived from `process.env.NEXT_PUBLIC_EDUCATIONAL_MEDIATOR`. Default `false`. ~10 lines.
 - **Prerequisites**: None
 - **Files**: `lib/featureFlags.ts` (create)
-- **Acceptance**: `MEDATOR_ENABLED` is `false` when env var unset
+- **Acceptance**: `MEDIATOR_ENABLED` is `false` when env var unset
 - **Focused test**: `npm run build`
 - **Runtime harness**: N/A (pure logic)
 - **Rollback boundary**: Delete `lib/featureFlags.ts`
 
-### T2 — Enrich `data/module1Data.json`
+### T2 — Enrich `data/module1Data.json` ✅
 Add optional `"capaEducativa"` (EducationalLayer) to each scenario in `data/module1Data.json`. Preserve all existing fields. ~30 lines added.
 - **Prerequisites**: T0
 - **Files**: `data/module1Data.json` (modify)
@@ -51,7 +51,7 @@ Add optional `"capaEducativa"` (EducationalLayer) to each scenario in `data/modu
 - **Runtime harness**: N/A (data only)
 - **Rollback boundary**: `git checkout data/module1Data.json`
 
-### T3 — Enrich `data/module2Data.json`
+### T3 — Enrich `data/module2Data.json` ✅
 Same as T2 for `data/module2Data.json`. ~25 lines.
 - **Prerequisites**: T0
 - **Files**: `data/module2Data.json` (modify)
@@ -60,7 +60,7 @@ Same as T2 for `data/module2Data.json`. ~25 lines.
 - **Runtime harness**: N/A
 - **Rollback boundary**: `git checkout data/module2Data.json`
 
-### T4 — Enrich `data/module3Data.json`
+### T4 — Enrich `data/module3Data.json` ✅
 Same as T2 for `data/module3Data.json`. ~20 lines.
 - **Prerequisites**: T0
 - **Files**: `data/module3Data.json` (modify)

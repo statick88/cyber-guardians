@@ -16,7 +16,7 @@ import { MicroActivities } from '@/components/module1/MicroActivities'
 import { Module1Category, ALL_MODULE1_CATEGORIES, GameProgressModule1 } from '@/types/module1'
 import module1Data from '@/data/module1Data.json'
 import type { ModuloData as Module1ModuloData } from '@/types/module1'
-import { MEDATOR_ENABLED } from '@/lib/featureFlags'
+import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
 import { GamePauseProvider } from '@/hooks/useGamePause'
 import { useEducationalMediator } from '@/hooks/useEducationalMediator'
 import { EducationalPanel } from '@/components/mediator'
@@ -128,7 +128,7 @@ function Module1GameContent() {
   }, [])
 
   const handleActivityScore = useCallback((points: number, category: Module1Category) => {
-    if (MEDATOR_ENABLED && points === 0) {
+    if (MEDIATOR_ENABLED && points === 0) {
       mediator.triggerMediator('onError', typedModule1Data.modulo as unknown as EducationalLayer)
     }
     setScore(prev => {
@@ -153,7 +153,7 @@ function Module1GameContent() {
     if (currentActivityIndex + 1 < ACTIVITIES.length) {
       setCurrentActivityIndex(prev => prev + 1)
     } else {
-      if (MEDATOR_ENABLED) {
+      if (MEDIATOR_ENABLED) {
         mediator.triggerMediator('onModuleComplete', typedModule1Data.modulo as unknown as EducationalLayer)
       }
       setGamePhase('RESULTS')
@@ -269,7 +269,7 @@ function Module1GameContent() {
             <div className="flex-1 flex items-center w-full">
               {renderCurrentActivity()}
             </div>
-            {MEDATOR_ENABLED && (
+            {MEDIATOR_ENABLED && (
               <EducationalPanel
                 state={mediator.state}
                 educationalLayer={mediator.currentLayer ?? undefined}
@@ -292,7 +292,7 @@ function Module1GameContent() {
               isNavigating={isNavigating}
               continueLabel="Continuar al Módulo 2"
             />
-            {MEDATOR_ENABLED && mediator.state === 'onMetaReflection' && (
+            {MEDIATOR_ENABLED && mediator.state === 'onMetaReflection' && (
               <DebriefDialog
                 prompts={DEFAULT_DEBRIEF_PROMPTS}
                 moduleName="Módulo 1"

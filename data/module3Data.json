@@ -17,7 +17,42 @@
       "puntuacionMaxima": 3,
       "fuente": "Europol EMMA 2023",
       "edadObjetivo": "14-18",
-      "duracionEstimada": "3 min"
+      "duracionEstimada": "3 min",
+      "capaEducativa": {
+        "scenarioId": "reclut-1",
+        "moduleId": 3,
+        "activityType": "chat_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué una oferta de 'trabajo fácil' desde un desconocido es peligrosa?",
+          "expectedInsight": "El reclutador usa halago, urgencia y promesas de dinero fácil para que no pienses. El 'trabajo' es en realidad una mula financiera.",
+          "attackerTechnique": "social_proof"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Si un desconocido te ofrece dinero fácil, pregunta: ¿por qué me eligieron a mí? ¿Qué necesitan de verdad?"
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-reclut-1-1",
+              "type": "slider",
+              "prompt": "¿Qué tan fácil sería para ti detectar una oferta de mula financiera?",
+              "sliderLabels": { "min": "Muy difícil", "max": "Muy fácil" },
+              "storageKey": "mula_detection_confidence",
+              "competency": "threat_identification"
+            },
+            {
+              "id": "debrief-reclut-1-2",
+              "type": "open-reflection",
+              "prompt": "¿Qué señales te harían desconfiar de una oferta de trabajo online?",
+              "reflectionGuide": "Piensa en las tácticas que usaron en este chat.",
+              "storageKey": "mula_reflection",
+              "competency": "metacognitive_regulation"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "reclut-2",
@@ -36,7 +71,42 @@
       "puntuacionMaxima": 3,
       "fuente": "Cifas 2023",
       "edadObjetivo": "15-19",
-      "duracionEstimada": "3 min"
+      "duracionEstimada": "3 min",
+      "capaEducativa": {
+        "scenarioId": "reclut-2",
+        "moduleId": 3,
+        "activityType": "chat_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué es peligroso que un 'amigo' te invite a un grupo donde piden tu cédula y datos bancarios?",
+          "expectedInsight": "Tu amigo puede estar comprometido o ser un perfil falso. Pedir cédula y datos bancarios en un grupo de Telegram es robo de identidad o reclutamiento de mula financiera.",
+          "attackerTechnique": "social_proof"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Si un amigo te invita a algo raro, escríbele por OTRO medio (WhatsApp, llamada) para confirmar. NO respondas en el grupo sospechoso."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-reclut-2-1",
+              "type": "slider",
+              "prompt": "¿Qué tan fácil sería para ti detectar que un amigo comprometido te está reclutando?",
+              "sliderLabels": { "min": "Muy difícil", "max": "Muy fácil" },
+              "storageKey": "friend_recruitment_detection",
+              "competency": "threat_identification"
+            },
+            {
+              "id": "debrief-reclut-2-2",
+              "type": "open-reflection",
+              "prompt": "¿Qué harías si tu mejor amigo te invita a un 'negocio' que pide tu cédula?",
+              "reflectionGuide": "Piensa en cómo proteger a tu amigo y a ti mismo.",
+              "storageKey": "friend_business_invite",
+              "competency": "metacognitive_regulation"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "manip-1",
@@ -55,7 +125,42 @@
       "puntuacionMaxima": 3,
       "fuente": "FBI IC3 2022",
       "edadObjetivo": "12-16",
-      "duracionEstimada": "3 min"
+      "duracionEstimada": "3 min",
+      "capaEducativa": {
+        "scenarioId": "manip-1",
+        "moduleId": 3,
+        "activityType": "chat_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué alguien que dice quererte te presiona para enviar fotos íntimas?",
+          "expectedInsight": "El amor bomba y el chantaje emocional ('si me quisieras...') son tácticas de manipulación para sextorsión. La confianza mutua no se prueba con fotos íntimas.",
+          "attackerTechnique": "fear_intimidation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Nadie que te quiera de verdad te presionará para enviar fotos íntimas. Bloquea y avisa a un adulto de confianza."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-manip-1-1",
+              "type": "slider",
+              "prompt": "¿Qué tan fácil sería para ti decir 'no' a alguien que dice quererte?",
+              "sliderLabels": { "min": "Muy difícil", "max": "Muy fácil" },
+              "storageKey": "love_bombing_boundary",
+              "competency": "decision_under_pressure"
+            },
+            {
+              "id": "debrief-manip-1-2",
+              "type": "open-reflection",
+              "prompt": "¿Qué le dirías a un amigo que está en esta situación?",
+              "reflectionGuide": "Piensa en cómo ayudar sin juzgar.",
+              "storageKey": "help_friend_sextortion",
+              "competency": "metacognitive_regulation"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "manip-2",
@@ -74,7 +179,38 @@
       "puntuacionMaxima": 3,
       "fuente": "Cifas 2023",
       "edadObjetivo": "16-20",
-      "duracionEstimada": "3 min"
+      "duracionEstimada": "3 min",
+      "capaEducativa": {
+        "scenarioId": "manip-2",
+        "moduleId": 3,
+        "activityType": "chat_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué un trabajo que te pide PAGAR para empezar es una estafa?",
+          "expectedInsight": "En un trabajo legítimo NUNCA pagas para trabajar. El 'kit inicial' es la estafa. Es un esquema piramidal: necesitas reclutar más gente para recuperar tu dinero.",
+          "attackerTechnique": "scarcity"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Trabajo real = te pagan a ti. Si tú pagas = estafa. Verifica la empresa en registros oficiales, no en Instagram."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-manip-2-1",
+              "type": "micro-decision",
+              "prompt": "Te ofrecen 'embajador de marca' pero debes pagar $200 de kit. ¿Qué haces?",
+              "options": [
+                { "id": "opt-pay", "label": "Pago, quiero el trabajo", "cognitiveInsight": "Cae en esquema piramidal" },
+                { "id": "opt-research", "label": "Investigo la empresa en registros oficiales", "cognitiveInsight": "Verifica antes de actuar" },
+                { "id": "opt-decline", "label": "Rechazo, trabajo real no cobra por entrar", "cognitiveInsight": "Reconoce la estafa clásica" }
+              ],
+              "storageKey": "pyramid_scheme_decision",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "reclut-3",
@@ -93,7 +229,42 @@
       "puntuacionMaxima": 3,
       "fuente": "Europol EMMA 2023",
       "edadObjetivo": "12-16",
-      "duracionEstimada": "4 min"
+      "duracionEstimada": "4 min",
+      "capaEducativa": {
+        "scenarioId": "reclut-3",
+        "moduleId": 3,
+        "activityType": "chat_simulation",
+        "conflictQuestion": {
+          "question": "¿Por qué un 'trabajo' en Roblox/Discord que pide tu edad real y foto es grooming?",
+          "expectedInsight": "Los depredadores usan plataformas de gaming para ganarse confianza (halago al avatar), identificar menores (preguntan edad), aislarlos ('no se lo digas a tus padres') y obtener material para extorsión.",
+          "attackerTechnique": "social_proof"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Nadie legítimo te pide edad, nombre real y foto para un 'trabajo' en un juego. Si te piden secreto vs. tus padres = GROOMING. Bloquea y avisa YA."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-reclut-3-1",
+              "type": "slider",
+              "prompt": "¿Qué tan rápido detectarías que un 'amigo del juego' te está haciendo grooming?",
+              "sliderLabels": { "min": "No lo detectaría", "max": "Lo detecto al instante" },
+              "storageKey": "gaming_grooming_detection",
+              "competency": "threat_identification"
+            },
+            {
+              "id": "debrief-reclut-3-2",
+              "type": "open-reflection",
+              "prompt": "¿Qué señales en este chat te alertarían de que no es un trabajo real?",
+              "reflectionGuide": "Analiza: halago, pide edad, pide foto, exige secreto.",
+              "storageKey": "gaming_job_signals",
+              "competency": "evidence_analysis"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "manip-3",
@@ -112,7 +283,38 @@
       "puntuacionMaxima": 3,
       "fuente": "FBI IC3 2022 / Deepfake research 2023",
       "edadObjetivo": "13-17",
-      "duracionEstimada": "4 min"
+      "duracionEstimada": "4 min",
+      "capaEducativa": {
+        "scenarioId": "manip-3",
+        "moduleId": 3,
+        "activityType": "chat_simulation",
+        "conflictQuestion": {
+          "question": "¿Cómo detectas que un video de 'verificación' es un deepfake y no prueba de identidad real?",
+          "expectedInsight": "Los deepfakes pueden generar video en tiempo real. 'Verificación mutua' enviando video es una trampa: ellos usan deepfake, tú das material real para sextorsión. La confianza no se prueba con videos íntimos.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Video de 'verificación' = trampa de deepfake. Nunca envíes contenido íntimo. Bloquea y denuncia."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-manip-3-1",
+              "type": "micro-decision",
+              "prompt": "Te envían un video 'demostrando que son reales' y piden uno tuyo íntimo. ¿Qué haces?",
+              "options": [
+                { "id": "opt-send", "label": "Envío el mío, el suyo parecía real", "cognitiveInsight": "Cae en deepfake + sextorsión" },
+                { "id": "opt-block", "label": "Bloqueo y denuncio", "cognitiveInsight": "Reconoce táctica de sextorsión con deepfake" },
+                { "id": "opt-verify", "label": "Pido videollamada en vivo", "cognitiveInsight": "Intenta verificar pero arriesga exposición" }
+              ],
+              "storageKey": "deepfake_verification_trap",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     }
   ],
   "actividadesMula": [
@@ -144,7 +346,38 @@
           "respuestaCorrecta": 1,
           "explicacion": "Nunca aceptes ofertas sospechosas. Bloquea y reporta el número."
         }
-      ]
+      ],
+      "capaEducativa": {
+        "scenarioId": "mula-1",
+        "moduleId": 3,
+        "activityType": "money_mule_analysis",
+        "conflictQuestion": {
+          "question": "¿Por qué recibir y transferir dinero de terceros es ilegal aunque no lo parezca?",
+          "expectedInsight": "Estás participando en lavado de dinero sin saberlo. La ley te considera responsable aunque seas menor de edad.",
+          "attackerTechnique": "scarcity"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Si el 'trabajo' consiste en recibir dinero y transferirlo, estás siendo usado como intermediario de fondos ilícitos. Es un delito."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-mula-1-1",
+              "type": "micro-decision",
+              "prompt": "Si un amigo te contara que aceptó este trabajo, ¿qué le dirías?",
+              "options": [
+                { "id": "opt-warn", "label": "Le advertiría que es ilegal", "cognitiveInsight": "Reconoce el riesgo y actúa responsablemente" },
+                { "id": "opt-join", "label": "Le pediría que me recomiende", "cognitiveInsight": "No reconoce la gravedad" },
+                { "id": "opt-ask", "label": "Le preguntaría más detalles", "cognitiveInsight": "Busca información antes de juzgar" }
+              ],
+              "storageKey": "mula_peer_decision",
+              "competency": "knowledge_transfer"
+            }
+          ]
+        },
+        "mediatorHook": "onProgress"
+      }
     },
     {
       "id": "mula-2",
@@ -174,7 +407,38 @@
           "respuestaCorrecta": 2,
           "explicacion": "Necesitas reclutar más personas para ganar — eso es piramidal."
         }
-      ]
+      ],
+      "capaEducativa": {
+        "scenarioId": "mula-2",
+        "moduleId": 3,
+        "activityType": "money_mule_analysis",
+        "conflictQuestion": {
+          "question": "¿Por qué pagar por un 'kit inicial' en un trabajo de influencer es una estafa piramidal?",
+          "expectedInsight": "Trabajo real = te pagan. Estafa = tú pagas. El 'kit' es el cebo; para recuperar dinero debes reclutar otros = piramidal.",
+          "attackerTechnique": "scarcity"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Si te piden dinero para trabajar, es estafa. Punto. Verifica la empresa en registros oficiales, no en Instagram."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-mula-2-1",
+              "type": "micro-decision",
+              "prompt": "Te ofrecen 'influencer' pero debes pagar $150 primero. ¿Qué haces?",
+              "options": [
+                { "id": "opt-pay", "label": "Pago, quiero ser influencer", "cognitiveInsight": "Cae en esquema piramidal" },
+                { "id": "opt-research", "label": "Busco la empresa en registros oficiales", "cognitiveInsight": "Verifica antes de actuar" },
+                { "id": "opt-decline", "label": "Rechazo, trabajo real no cobra entrada", "cognitiveInsight": "Reconoce patrón de estafa" }
+              ],
+              "storageKey": "pyramid_kit_payment",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "mula-3",
@@ -194,7 +458,7 @@
       "preguntas": [
         {
           "pregunta": "¿Por qué repartir paquetes sin verificar es peligroso?",
-          "opciones": ["El pago es bajo", "Podrías transportar cosas ilegales", "El horario es irregular", "No hay vacaciones"],
+          "opciones": ["El pago es baja", "Podrías transportar cosas ilegales", "El horario es irregular", "No hay vacaciones"],
           "respuestaCorrecta": 1,
           "explicacion": "Sin saber qué hay en los paquetes, puedes convertirte en transportista de drogas o dinero ilícito."
         },
@@ -204,7 +468,38 @@
           "respuestaCorrecta": 1,
           "explicacion": "Siempre verifica la empresa, pide contrato y conoce qué estás transportando."
         }
-      ]
+      ],
+      "capaEducativa": {
+        "scenarioId": "mula-3",
+        "moduleId": 3,
+        "activityType": "money_mule_analysis",
+        "conflictQuestion": {
+          "question": "¿Por qué ser 'repartidor' sin contrato ni verificación es ser mula de paquetes?",
+          "expectedInsight": "Sin contrato ni verificación de empresa, no sabes qué transportas. Podrías mover drogas, dinero falso, armas. La ignorancia no exime responsabilidad legal.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Trabajo real = contrato, empresa verificable, sabes qué transportas. Sin estos = mula. Rechaza y denuncia."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-mula-3-1",
+              "type": "micro-decision",
+              "prompt": "Te ofrecen repartir paquetes 'fácil, buen pago, sin preguntas'. ¿Qué haces?",
+              "options": [
+                { "id": "opt-accept", "label": "Acepto, necesito el dinero", "cognitiveInsight": "Ignora riesgo legal, cae en trampa" },
+                { "id": "opt-verify", "label": "Pido contrato y verificación empresa", "cognitiveInsight": "Exige transparencia legal" },
+                { "id": "opt-decline", "label": "Rechazo y reporto el canal", "cognitiveInsight": "Detecta patrón de mula de paquetes" }
+              ],
+              "storageKey": "package_mule_decision",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     }
   ],
   "escenariosExtorsion": [
@@ -225,7 +520,38 @@
       "fuente": "FBI IC3 2022",
       "edadObjetivo": "12-15",
       "consecuenciasReales": "Ideación suicida, abandono escolar, aislamiento social, ansiedad severa. FBI IC3 2022 reportó ~7,000 víctimas menores con pérdidas de $3.2M USD. El 51% de los perpetradores operan desde Filipinas o África Occidental.",
-      "recursosApoyo": ["Childhelp", "Crisis Text Line", "NCMEC"]
+      "recursosApoyo": ["Childhelp", "Crisis Text Line", "NCMEC"],
+      "capaEducativa": {
+        "scenarioId": "ext-1",
+        "moduleId": 3,
+        "activityType": "extortion_response",
+        "conflictQuestion": {
+          "question": "¿Por qué pagar no detiene la extorsión?",
+          "expectedInsight": "Pagar confirma que la táctica funciona. El extorsionador pedirá más dinero y nunca parará. La evidencia es tu mejor defensa.",
+          "attackerTechnique": "fear_intimidation"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Piensa: si pagas, ¿qué incentivo tiene el extorsionador para dejar de amenazarte?"
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-ext-1-1",
+              "type": "micro-decision",
+              "prompt": "¿Cuál es la diferencia entre reportar y negociar con un extorsionador?",
+              "options": [
+                { "id": "opt-report", "label": "Reportar obtiene ayuda legal; negociar da poder al atacante", "cognitiveInsight": "Entiende el poder dinámico" },
+                { "id": "opt-negotiate", "label": "Negociar es más rápido", "cognitiveInsight": "Prioriza rapidez sobre seguridad" },
+                { "id": "opt-both", "label": "Ambas son válidas", "cognitiveInsight": "No distingue entre opciones seguras e inseguras" }
+              ],
+              "storageKey": "extortion_decision",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "ext-2",
@@ -244,7 +570,38 @@
       "fuente": "Europol EMMA 2023",
       "edadObjetivo": "14-20",
       "consecuenciasReales": "Pérdida permanente de archivos personales, académicos y familiares. Ransomware dirigido a dispositivos adolescentes ha aumentado con el uso compartido de computadoras domésticas. Europol EMMA 2023 reporta incremento en ransomware dirigido a usuarios jóvenes.",
-      "recursosApoyo": ["StopBullying.gov", "INHOPE", "Europol — Stop Extortion"]
+      "recursosApoyo": ["StopBullying.gov", "INHOPE", "Europol — Stop Extortion"],
+      "capaEducativa": {
+        "scenarioId": "ext-2",
+        "moduleId": 3,
+        "activityType": "extortion_response",
+        "conflictQuestion": {
+          "question": "¿Por qué NO debes pagar el rescate de ransomware?",
+          "expectedInsight": "Pagar financia más ataques, no garantiza recuperar archivos, y te marca como 'pagador' para futuros ataques. La única defensa real es backup offline y reportar.",
+          "attackerTechnique": "fear_intimidation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Apaga la PC (mantén el mensaje en pantalla para foto). NO reinicies. Llama a técnico + reporta a policía cibernética. Backup offline es tu seguro real."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-ext-2-1",
+              "type": "micro-decision",
+              "prompt": "Tu PC muestra ransomware pidiendo 0.5 BTC. ¿Primer paso?",
+              "options": [
+                { "id": "opt-pay", "label": "Pago para recuperar archivos", "cognitiveInsight": "Financia crimen, no garantiza recuperación" },
+                { "id": "opt-off", "label": "Apago PC y llamo a técnico", "cognitiveInsight": "Contención inmediata, busca ayuda experta" },
+                { "id": "opt-restart", "label": "Reinicio a ver si se quita", "cognitiveInsight": "Puede empeorar encriptación" }
+              ],
+              "storageKey": "ransomware_first_step",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "ext-3",
@@ -263,7 +620,38 @@
       "fuente": "Cifas 2023",
       "edadObjetivo": "13-18",
       "consecuenciasReales": "Doxing, suplantación de identidad, acoso escolar en línea, depresión y ansiedad. Cifas 2023 documenta aumento en amenazas con información personal de jóvenes en redes sociales como táctica de extorsión.",
-      "recursosApoyo": ["CyberBullying Research Center", "StopBullying.gov", "INHOPE"]
+      "recursosApoyo": ["CyberBullying Research Center", "StopBullying.gov", "INHOPE"],
+      "capaEducativa": {
+        "scenarioId": "ext-3",
+        "moduleId": 3,
+        "activityType": "extortion_response",
+        "conflictQuestion": {
+          "question": "¿Por qué responder con insultos a un perfil falso que te amenaza empeora la situación?",
+          "expectedInsight": "La agresión alimenta al atacante (quiere reacción). Además, tus respuestas pueden usarse contra ti. La única vía segura: evidencia + reporte + denuncia + bloqueo. Sin interacción.",
+          "attackerTechnique": "fear_intimidation"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Captura TODO. Reporta en la plataforma. Denuncia en policía. Bloquea. NO respondas. El atacante quiere tu reacción; no se la des."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-ext-3-1",
+              "type": "micro-decision",
+              "prompt": "Un perfil falso con tus fotos te amenaza. ¿Qué NO debes hacer?",
+              "options": [
+                { "id": "opt-insult", "label": "Insultar/amenazar de vuelta", "cognitiveInsight": "Alimenta al atacante, da material usable" },
+                { "id": "opt-evidence", "label": "Capturar, reportar, bloquear, denunciar", "cognitiveInsight": "Protocolo seguro completo" },
+                { "id": "opt-ignore", "label": "Ignorar y esperar que pase", "cognitiveInsight": "Pasividad ante doxing/amenaza real" }
+              ],
+              "storageKey": "fake_profile_threat_response",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     }
   ],
   "mensajesDragDrop": [

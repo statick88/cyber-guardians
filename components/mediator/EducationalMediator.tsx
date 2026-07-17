@@ -7,7 +7,7 @@ import TipBadge from './TipBadge'
 import DebriefDialog from './DebriefDialog'
 import type { EducationalLayer, ScaffoldingProgress, MediatorState } from '@/types/educational'
 import { getCurrentTip } from '@/hooks/useScaffolding'
-import { MEDATOR_ENABLED } from '@/lib/featureFlags'
+import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
 
 interface EducationalMediatorProps {
   /** Capa educativa del escenario actual */
@@ -69,7 +69,7 @@ export function EducationalMediator({
 
   // Auto-trigger intro on first mount
   useEffect(() => {
-    if (MEDATOR_ENABLED && educationalLayer && mediator.state === 'idle') {
+    if (MEDIATOR_ENABLED && educationalLayer && mediator.state === 'idle') {
       mediator.triggerMediator('onIntro', educationalLayer)
     }
   }, [educationalLayer, mediator])
@@ -88,7 +88,7 @@ export function EducationalMediator({
     type: 'onIntro' | 'onTipRequest' | 'onError' | 'onModuleComplete',
     layer?: EducationalLayer
   ) => {
-    if (!MEDATOR_ENABLED) return
+    if (!MEDIATOR_ENABLED) return
 
     if (type === 'onError') {
       const now = Date.now()
@@ -118,7 +118,7 @@ export function EducationalMediator({
   }, [])
 
   // Render nothing if mediator disabled
-  if (!MEDATOR_ENABLED) {
+  if (!MEDIATOR_ENABLED) {
     return children?.({
       state: 'idle' as MediatorState,
       triggerMediator: () => {},

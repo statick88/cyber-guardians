@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Check, X, Code, ListOrdered, Shield, AlertTriangle } from "lucide-react";
 import { Module2Category, MicroActividad } from "@/types/module2";
-import { MEDATOR_ENABLED } from "@/lib/featureFlags";
+import { MEDIATOR_ENABLED } from "@/lib/featureFlags";
 import { useEducationalMediator } from "@/hooks/useEducationalMediator";
 import { EducationalPanel } from "@/components/mediator";
 import type { EducationalLayer } from "@/types/educational";
@@ -39,13 +39,13 @@ export function MicroActivities({
   const currentActivity = actividades[currentIndex];
 
   const triggerErrorMediator = useCallback(() => {
-    if (MEDATOR_ENABLED) {
+    if (MEDIATOR_ENABLED) {
       mediator.triggerMediator('onError');
     }
   }, [mediator]);
 
   const triggerCompleteMediator = useCallback(() => {
-    if (MEDATOR_ENABLED) {
+    if (MEDIATOR_ENABLED) {
       mediator.triggerMediator('onModuleComplete');
     }
   }, [mediator]);
@@ -293,7 +293,7 @@ export function MicroActivities({
           </Card>
         </motion.div>
       </AnimatePresence>
-      {MEDATOR_ENABLED && (
+      {MEDIATOR_ENABLED && (
         <EducationalPanel
           state={mediator.state}
           educationalLayer={mediator.currentLayer ?? undefined}

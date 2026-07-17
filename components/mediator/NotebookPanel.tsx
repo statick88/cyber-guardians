@@ -21,7 +21,7 @@ import {
   Check,
 } from "lucide-react";
 import { useNotebook, type NotebookEntry } from "@/hooks/useNotebook";
-import { MEDATOR_ENABLED } from "@/lib/featureFlags";
+import { MEDIATOR_ENABLED } from "@/lib/featureFlags";
 
 interface NewEntryForm {
   scenarioId: string;
@@ -95,7 +95,7 @@ export function NotebookPanel({ isOpen, onClose }: NotebookPanelProps) {
     if (currentIndex < totalEntries - 1) setCurrentEntryIndex(currentIndex + 1);
   }, [currentIndex, totalEntries]);
 
-  if (!MEDATOR_ENABLED) return null;
+  if (!MEDIATOR_ENABLED) return null;
 
   return (
     <AnimatePresence>

@@ -62,7 +62,55 @@
         "Urgencia excesiva: '24 horas'",
         "Amenaza de suspensión permanente",
         "Asunto con emojis de advertencia"
-      ]
+      ],
+      "capaEducativa": {
+        "scenarioId": "email-01",
+        "moduleId": 1,
+        "activityType": "email_analysis",
+        "conflictQuestion": {
+          "question": "¿Por qué un dominio con HTTPS puede seguir siendo phishing?",
+          "followUp": "¿Qué otros elementos del correo deberías examinar antes de decidir?",
+          "expectedInsight": "HTTPS solo cifra la conexión, no garantiza que el sitio sea legítimo. El dominio es lo que debes verificar primero.",
+          "attackerTechnique": "urgency_pressure",
+          "contradictingEvidence": ["El dominio 'netfIix-security.com' usa 'I' mayúscula en lugar de 'l'", "El sello de seguridad no aparece en el enlace"]
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Mira con atención el dominio del enlace. Compara cada letra con el nombre oficial del servicio.",
+          "visualGuide": {
+            "type": "highlight",
+            "targetSelector": "[data-email-link]",
+            "message": "Compara el dominio del enlace con el dominio oficial del servicio",
+            "position": "bottom"
+          }
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-email-01-1",
+              "type": "slider",
+              "prompt": "¿Qué tan seguro te sientes detectando phishing por email?",
+              "sliderLabels": { "min": "Muy inseguro", "max": "Muy seguro" },
+              "storageKey": "email_confidence",
+              "competency": "threat_identification"
+            },
+            {
+              "id": "debrief-email-01-2",
+              "type": "micro-decision",
+              "prompt": "Si recibieras este correo ahora mismo, ¿qué harías?",
+              "options": [
+                { "id": "opt-a", "label": "Hacer clic para verificar", "cognitiveInsight": "Actúa por impulso sin analizar" },
+                { "id": "opt-b", "label": "Examinar el dominio primero", "cognitiveInsight": "Aplica pensamiento crítico" },
+                { "id": "opt-c", "label": "Ignorarlo completamente", "cognitiveInsight": "Evita el problema sin resolverlo" }
+              ],
+              "storageKey": "email_decision",
+              "competency": "decision_under_pressure"
+            }
+          ],
+          "synthesisQuestion": "¿Qué tres señales de phishing identificaste en este correo?"
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "email-02",
@@ -87,7 +135,48 @@
         "Monto alarmante para generar pánico",
         "Plazo corto para presionar acción rápida",
         "El dominio parece legítimo pero el enlace tiene tracking ID sospechoso"
-      ]
+      ],
+      "capaEducativa": {
+        "scenarioId": "email-02",
+        "moduleId": 1,
+        "activityType": "email_analysis",
+        "conflictQuestion": {
+          "question": "¿Por qué un banco legítimo nunca enviaría un enlace para 'cancelar' una transferencia?",
+          "followUp": "¿Qué pasaría si haces clic en ese enlace?",
+          "expectedInsight": "Los bancos legítimos nunca piden hacer clic en enlaces para cancelar transacciones. Te piden que llames al número oficial o uses la app bancaria. El enlace lleva a un sitio falso que roba tus credenciales.",
+          "attackerTechnique": "authority_impersonation"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Si recibes un email de tu banco pidiendo acción urgente, NO hagas clic. Abre la app o llama al número de tu tarjeta."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-email-02-1",
+              "type": "slider",
+              "prompt": "¿Qué tan probable es que hagas clic en un enlace 'urgente' de tu banco?",
+              "sliderLabels": { "min": "Muy probable", "max": "Muy improbable" },
+              "storageKey": "bank_link_click",
+              "competency": "decision_under_pressure"
+            },
+            {
+              "id": "debrief-email-02-2",
+              "type": "micro-decision",
+              "prompt": "Recibes este email. ¿Qué haces?",
+              "options": [
+                { "id": "opt-click", "label": "Hago clic para cancelar", "cognitiveInsight": "Cae bajo presión de urgencia" },
+                { "id": "opt-call", "label": "Llamo al banco por teléfono oficial", "cognitiveInsight": "Verifica por canal oficial" },
+                { "id": "opt-ignore", "label": "Lo ignoro", "cognitiveInsight": "Evita el problema pero no lo resuelve" }
+              ],
+              "storageKey": "bank_email_decision",
+              "competency": "decision_under_pressure"
+            }
+          ],
+          "synthesisQuestion": "¿Cómo puedes distinguir un email legítimo de tu banco de uno phishing?"
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "email-03",
@@ -113,7 +202,35 @@
         "El enlace apunta al dominio oficial",
         "El tono es profesional y no urgente",
         "Puede ser legítimo o phishing sofisticado"
-      ]
+      ],
+      "capaEducativa": {
+        "scenarioId": "email-03",
+        "moduleId": 1,
+        "activityType": "email_analysis",
+        "conflictQuestion": {
+          "question": "¿Cómo verificas si un email 'legítimo' de Google es realmente de Google?",
+          "followUp": "¿Qué pasa si el email es phishing sofisticado con dominio y enlace correctos?",
+          "expectedInsight": "Incluso con dominio y enlace correctos, un email puede ser phishing si el contenido te pide acción inusual. Siempre ve directamente a admin.google.com sin usar el enlace del email.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Nunca uses enlaces de emails para acceder a paneles de administración. Escribe la URL directamente en el navegador."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-email-03-1",
+              "type": "open-reflection",
+              "prompt": "¿Qué harías si recibes este email y no estás seguro si es legítimo?",
+              "reflectionGuide": "Piensa en los pasos que seguirías para verificarlo sin hacer clic.",
+              "storageKey": "google_email_verification",
+              "competency": "evidence_analysis"
+            }
+          ]
+        },
+        "mediatorHook": "onProgress"
+      }
     },
     {
       "id": "email-04",
@@ -155,7 +272,35 @@
       "elementoSuspeito": "El dominio usa '1' en lugar de 'l' en 'paypal'",
       "classificacao": "phishing",
       "explicacion": "El dominio 'paypa1.com' es una variante typosquatting de 'paypal.com'. El número '1' sustituye a la letra 'l'. Siempre verifica el dominio exacto antes de ingresar credenciales.",
-      "pontos": 15
+      "pontos": 15,
+      "capaEducativa": {
+        "scenarioId": "url-01",
+        "moduleId": 1,
+        "activityType": "url_inspection",
+        "conflictQuestion": {
+          "question": "¿Cómo distingues un dominio legítimo de uno que solo se parece?",
+          "followUp": "¿Qué herramientas o técnicas puedes usar para verificar un dominio sospechoso?",
+          "expectedInsight": "Los atacantes sustituyen letras por números o caracteres similares. Siempre compara el dominio carácter por carácter con el oficial.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Compara cada carácter del dominio con la marca real. ¿Ves algún número o símbolo inusual?"
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-url-01-1",
+              "type": "open-reflection",
+              "prompt": "Describe lo que viste al examinar esta URL por primera vez.",
+              "reflectionGuide": "Piensa en qué elementos analizaste y en qué orden.",
+              "storageKey": "url_reflection",
+              "competency": "evidence_analysis"
+            }
+          ]
+        },
+        "mediatorHook": "onProgress"
+      }
     },
     {
       "id": "url-02",
@@ -169,7 +314,35 @@
       "elementoSuspeito": "El camino mezcla español con inglés y el parámetro 'ref=secure' es inusual",
       "classificacao": "suspeita",
       "explicacion": "Aunque el dominio es legítimo, la ruta '/accounts/Renovar-sesion' no es un path estándar de Google. Los servicios de Google usan paths en inglés. El parámetro 'ref=secure' intenta dar falsa sensación de seguridad.",
-      "pontos": 10
+      "pontos": 10,
+      "capaEducativa": {
+        "scenarioId": "url-02",
+        "moduleId": 1,
+        "activityType": "url_inspection",
+        "conflictQuestion": {
+          "question": "¿Por qué un dominio legítimo (google.com) puede tener una URL sospechosa?",
+          "followUp": "¿Qué elementos de la ruta y parámetros te alertan?",
+          "expectedInsight": "El dominio es solo la primera capa. La ruta '/Renovar-sesion' en español y 'ref=secure' son señales de manipulación. Google usa paths en inglés como '/signin/recovery'.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Revisa no solo el dominio, sino también el path y parámetros. Los servicios grandes usan convenciones estándar en inglés."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-url-02-1",
+              "type": "open-reflection",
+              "prompt": "¿Qué revisas primero al examinar una URL: dominio, path, o parámetros?",
+              "reflectionGuide": "Piensa en tu proceso mental al analizar una URL.",
+              "storageKey": "url_analysis_order",
+              "competency": "evidence_analysis"
+            }
+          ]
+        },
+        "mediatorHook": "onProgress"
+      }
     },
     {
       "id": "url-03",
@@ -183,7 +356,39 @@
       "elementoSuspeito": "Puerto no estándar 8443 (HTTPS usa 443 por defecto)",
       "classificacao": "suspeita",
       "explicacion": "El uso de puertos no estándar como 8443 puede indicar un servidor mal configurado o intencionalmente hostil. Los sitios bancarios legítimos usan el puerto 443 (HTTPS estándar).",
-      "pontos": 10
+      "pontos": 10,
+      "capaEducativa": {
+        "scenarioId": "url-03",
+        "moduleId": 1,
+        "activityType": "url_inspection",
+        "conflictQuestion": {
+          "question": "¿Qué indica un puerto no estándar (como :8443) en una URL bancaria?",
+          "followUp": "¿Por qué los bancos legítimos usan siempre el puerto 443?",
+          "expectedInsight": "El puerto 443 es el estándar HTTPS. Puertos no estándar pueden indicar servidor mal configurado, entorno de pruebas, o intencionalmente hostil para evadir filtros.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Si ves :8443, :8080, :8443 u otro puerto después del dominio en un sitio bancario, es sospechoso. Los bancos usan :443 (implícito en HTTPS)."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-url-03-1",
+              "type": "micro-decision",
+              "prompt": "Ves https://banco.com.py:8443/portal. ¿Qué haces?",
+              "options": [
+                { "id": "opt-enter", "label": "Ingreso, el dominio es correcto", "cognitiveInsight": "Ignora el puerto, se enfoca solo en dominio" },
+                { "id": "opt-verify", "label": "Verifico en app bancaria oficial", "cognitiveInsight": "Canal oficial, no usa la URL" },
+                { "id": "opt-report", "label": "Reporto como sospechoso", "cognitiveInsight": "Reconoce indicador técnico de riesgo" }
+              ],
+              "storageKey": "port_8443_decision",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "url-04",
@@ -197,7 +402,35 @@
       "elementoSuspeito": "Ninguno - estructura estándar de Amazon",
       "classificacao": "segura",
       "explicacion": "El dominio es legítimo (amazon.com), usa HTTPS, y la ruta '/gp/your-account/order-history' es una estructura estándar de Amazon para acceder al historial de pedidos.",
-      "pontos": 5
+      "pontos": 5,
+      "capaEducativa": {
+        "scenarioId": "url-04",
+        "moduleId": 1,
+        "activityType": "url_inspection",
+        "conflictQuestion": {
+          "question": "¿Cómo confirmas que una URL de Amazon es realmente segura?",
+          "followUp": "¿Qué elementos específicos validan la legitimidad?",
+          "expectedInsight": "Dominio exacto (amazon.com), HTTPS, path estándar (/gp/your-account/...), sin parámetros extraños. La estructura completa debe coincidir con patrones conocidos.",
+          "attackerTechnique": "none"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Conoce las estructuras de URL de los servicios que usas. Amazon usa /gp/your-account/ para cuenta, /dp/ para productos."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-url-04-1",
+              "type": "slider",
+              "prompt": "¿Qué tan rápido identificas URLs legítimas de tus servicios habituales?",
+              "sliderLabels": { "min": "Muy lento", "max": "Muy rápido" },
+              "storageKey": "legit_url_speed",
+              "competency": "evidence_analysis"
+            }
+          ]
+        },
+        "mediatorHook": "onProgress"
+      }
     },
     {
       "id": "url-05",
@@ -211,7 +444,35 @@
       "elementoSuspeito": "Dominio compuesto: 'amaz0n.com.deals' - el TLD real es '.deals' no '.com'",
       "classificacao": "phishing",
       "explicacion": "El dominio real es 'amaz0n.com.deals' (TLD: .deals). El '.com' es subdominio. El '0' en lugar de 'o' es typosquatting. El parámetro 'code=FREE500' sugiere premio falso.",
-      "pontos": 15
+      "pontos": 15,
+      "capaEducativa": {
+        "scenarioId": "url-05",
+        "moduleId": 1,
+        "activityType": "url_inspection",
+        "conflictQuestion": {
+          "question": "¿Cómo detectas que 'amaz0n.com.deals' NO es Amazon?",
+          "followUp": "¿Cuál es el dominio real (TLD) aquí?",
+          "expectedInsight": "El TLD real es '.deals'. 'amaz0n.com' es un subdominio. El '0' en lugar de 'o' es typosquatting. Dos engaños en uno: subdominio falso + sustitución de caracteres.",
+          "attackerTechnique": "technical_obfuscation"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Lee el dominio de derecha a izquierda. El TLD (.deals, .com, .net) define el dueño real. Lo que está antes es subdominio controlable por cualquiera."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-url-05-1",
+              "type": "open-reflection",
+              "prompt": "Explica cómo leerías este dominio de derecha a izquierda para identificar al dueño real.",
+              "reflectionGuide": "Practica la técnica: TLD → dominio → subdominio.",
+              "storageKey": "tld_analysis",
+              "competency": "evidence_analysis"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     }
   ],
   "escenarios": [
@@ -247,7 +508,38 @@
       "acaoCorreta": "reportar",
       "pontos": 20,
       "dificuldad": "basico",
-      "explicacion": "Nunca hagas clic en enlaces de correos que soliciten credenciales. Contacta directamente a IT por un canal oficial para verificar."
+      "explicacion": "Nunca hagas clic en enlaces de correos que soliciten credenciales. Contacta directamente a IT por un canal oficial para verificar.",
+      "capaEducativa": {
+        "scenarioId": "sim-01",
+        "moduleId": 1,
+        "activityType": "phishing_scenario",
+        "conflictQuestion": {
+          "question": "¿Qué hace que este correo parezca legítimo pero no lo sea?",
+          "expectedInsight": "El dominio 'company-security.net' no coincide con el dominio corporativo. La urgencia es una táctica para que no pienses.",
+          "attackerTechnique": "authority_impersonation"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Verifica el dominio del remitente contra el dominio oficial de tu empresa."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-sim-01-1",
+              "type": "micro-decision",
+              "prompt": "¿Qué hiciste cuando viste este correo y por qué?",
+              "options": [
+                { "id": "opt-report", "label": "Lo reporté como phishing", "cognitiveInsight": "Reconoció las señales y actuó correctamente" },
+                { "id": "opt-verify", "label": "Intenté verificar por otro canal", "cognitiveInsight": "Aplica verificación cruzada" },
+                { "id": "opt-click", "label": "Hice clic en el enlace", "cognitiveInsight": "Cae bajo presión de urgencia" }
+              ],
+              "storageKey": "sim_decision",
+              "competency": "decision_under_pressure"
+            }
+          ]
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "sim-02",
@@ -281,7 +573,39 @@
       "acaoCorreta": "verificar",
       "pontos": 25,
       "dificuldad": "intermedio",
-      "explicacion": "Los bancos NUNCA envían enlaces por SMS. Llama al número oficial de tu banco (no el del SMS) para verificar movimientos."
+      "explicacion": "Los bancos NUNCA envían enlaces por SMS. Llama al número oficial de tu banco (no el del SMS) para verificar movimientos.",
+      "capaEducativa": {
+        "scenarioId": "sim-02",
+        "moduleId": 1,
+        "activityType": "phishing_scenario",
+        "conflictQuestion": {
+          "question": "¿Por qué los bancos nunca envían enlaces por SMS?",
+          "expectedInsight": "Los SMS son fáciles de suplantar (spoofing). Un enlace en SMS es la forma más directa de phishing móvil (smishing).",
+          "attackerTechnique": "urgency_pressure"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Si recibes SMS de 'tu banco' con enlace: NO hagas clic. Llama al número atrás de tu tarjeta o usa la app oficial."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-sim-02-1",
+              "type": "micro-decision",
+              "prompt": "Recibes este SMS. ¿Tu reacción inmediata?",
+              "options": [
+                { "id": "opt-click", "label": "Hago clic para cancelar", "cognitiveInsight": "Cae en urgencia fabricada" },
+                { "id": "opt-call", "label": "Llamo al banco por número oficial", "cognitiveInsight": "Verifica por canal seguro" },
+                { "id": "opt-delete", "label": "Borro el SMS", "cognitiveInsight": "Evita pero no verifica" }
+              ],
+              "storageKey": "sms_bank_decision",
+              "competency": "decision_under_pressure"
+            }
+          ],
+          "synthesisQuestion": "¿Por qué es más seguro llamar al banco que hacer clic en un SMS?"
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "sim-03",
@@ -315,7 +639,39 @@
       "acaoCorreta": "bloquear",
       "pontos": 30,
       "dificuldad": "basico",
-      "explicacion": "Nunca reclames premios que no solicitaste. Los pop-ups que piden datos de tarjeta son siempre fraudulentos."
+      "explicacion": "Nunca reclames premios que no solicitaste. Los pop-ups que piden datos de tarjeta son siempre fraudulentos.",
+      "capaEducativa": {
+        "scenarioId": "sim-03",
+        "moduleId": 1,
+        "activityType": "phishing_scenario",
+        "conflictQuestion": {
+          "question": "¿Por qué un pop-up te pide tarjeta de crédito 'para verificar identidad' al reclamar un premio?",
+          "expectedInsight": "Es la forma directa de robar tus datos financieros. 'Verificar identidad' es la excusa; el robo es el objetivo. Ningún premio legítimo pide tarjeta.",
+          "attackerTechnique": "scarcity"
+        },
+        "scaffoldingTip": {
+          "level": "explicit",
+          "hint": "Cierra el pop-up inmediatamente. Si no puedes cerrarlo, cierra la pestaña completa (Ctrl+W) o el navegador."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-sim-03-1",
+              "type": "micro-decision",
+              "prompt": "Aparece este pop-up y no se cierra. ¿Qué haces?",
+              "options": [
+                { "id": "opt-close-tab", "label": "Cierro la pestaña (Ctrl+W)", "cognitiveInsight": "Acción técnica correcta" },
+                { "id": "opt-fill", "label": "Relleno rápido para que desaparezca", "cognitiveInsight": "Cede a la presión" },
+                { "id": "opt-restart", "label": "Reinicio el navegador", "cognitiveInsight": "Solución extrema pero segura" }
+              ],
+              "storageKey": "popup_cant_close",
+              "competency": "decision_under_pressure"
+            }
+          ],
+          "synthesisQuestion": "¿Qué técnica usa el pop-up para que actúes sin pensar?"
+        },
+        "mediatorHook": "onError"
+      }
     },
     {
       "id": "sim-04",
@@ -349,7 +705,39 @@
       "acaoCorreta": "verificar",
       "pontos": 25,
       "dificuldad": "intermedio",
-      "explicacion": "Si un amigo comparte algo sospechoso, su cuenta puede haber sido comprometida. Verifica directamente con la persona antes de hacer clic."
+      "explicacion": "Si un amigo comparte algo sospechoso, su cuenta puede haber sido comprometida. Verifica directamente con la persona antes de hacer clic.",
+      "capaEducativa": {
+        "scenarioId": "sim-04",
+        "moduleId": 1,
+        "activityType": "phishing_scenario",
+        "conflictQuestion": {
+          "question": "¿Por qué un mensaje de un 'amigo' con un enlace extraño es peligroso?",
+          "expectedInsight": "La cuenta de tu amigo puede haber sido hackeada. Los atacantes usan contactos de confianza para distribuir phishing. El dominio 'photos-shared.com' NO es Instagram.",
+          "attackerTechnique": "social_proof"
+        },
+        "scaffoldingTip": {
+          "level": "guided",
+          "hint": "Si un amigo te envía algo raro, escríbele por OTRO medio (WhatsApp, llamada) para confirmar. NO respondas al mensaje sospechoso."
+        },
+        "metacognitiveDebrief": {
+          "prompts": [
+            {
+              "id": "debrief-sim-04-1",
+              "type": "micro-decision",
+              "prompt": "Tu mejor amigo te envía esto. ¿Qué haces?",
+              "options": [
+                { "id": "opt-click", "label": "Hago clic, es mi amigo", "cognitiveInsight": "Confía ciegamente sin verificar" },
+                { "id": "opt-verify", "label": "Le escribo por WhatsApp para confirmar", "cognitiveInsight": "Verifica por canal independiente" },
+                { "id": "opt-ignore", "label": "Lo ignoro", "cognitiveInsight": "Evita riesgo pero no ayuda al amigo" }
+              ],
+              "storageKey": "friend_link_decision",
+              "competency": "decision_under_pressure"
+            }
+          ],
+          "synthesisQuestion": "¿Cómo proteges a tus amigos si su cuenta fue comprometida?"
+        },
+        "mediatorHook": "onError"
+      }
     }
   ],
   "ejercicios": [
