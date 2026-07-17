@@ -11,6 +11,7 @@ const defaultState = {
   autonomyLevel: 'novice' as AutonomyLevel,
   xp: 0,
   currentModule: null as number | null,
+  notebookOpen: false,
 }
 
 const HUDContext = createContext<HUDContextValue>({
@@ -20,6 +21,7 @@ const HUDContext = createContext<HUDContextValue>({
   addXP: () => {},
   setCurrentModule: () => {},
   resetHUD: () => {},
+  toggleNotebook: () => {},
 })
 
 function loadHUDState(): typeof defaultState {
@@ -78,6 +80,10 @@ export default function HUDProvider({ children }: { children: React.ReactNode })
     setState(defaultState)
   }, [])
 
+  const toggleNotebook = useCallback(() => {
+    setState((prev) => ({ ...prev, notebookOpen: !prev.notebookOpen }))
+  }, [])
+
   return (
     <HUDContext.Provider
       value={{
@@ -87,6 +93,7 @@ export default function HUDProvider({ children }: { children: React.ReactNode })
         addXP,
         setCurrentModule,
         resetHUD,
+        toggleNotebook,
       }}
     >
       {children}

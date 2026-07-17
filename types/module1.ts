@@ -43,6 +43,8 @@ export interface URLItem {
   classificacao: "phishing" | "suspeita" | "segura";
   explicacion: string;
   pontos: number;
+  /** Optional educational mediator layer for this URL scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 export interface Indicador {
@@ -64,6 +66,8 @@ export interface Escenario {
   pontos: number;
   dificuldad: "basico" | "intermedio" | "avancado";
   explicacion: string;
+  /** Optional educational mediator layer for this scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 export interface DragItem {

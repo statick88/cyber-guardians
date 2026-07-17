@@ -39,6 +39,8 @@ export interface EscenarioChat {
   edadObjetivo: string;
   /** Estimated completion time (e.g. "3 min") */
   duracionEstimada: string;
+  /** Optional educational mediator layer for this chat scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 // ── Money mule detection ───────────────────────────────────────────
@@ -73,6 +75,8 @@ export interface ActividadMula {
   id: string;
   oferta: OfertaMula;
   preguntas: PreguntaOferta[];
+  /** Optional educational mediator layer for this money mule scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 // ── Cyberextortion response ────────────────────────────────────────

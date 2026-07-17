@@ -15,6 +15,7 @@ export interface HUDState {
   autonomyLevel: AutonomyLevel
   xp: number
   currentModule: number | null  // 0-4 or null (home)
+  notebookOpen: boolean
 }
 
 export interface HUDContextValue extends HUDState {
@@ -23,6 +24,7 @@ export interface HUDContextValue extends HUDState {
   addXP: (amount: number) => void
   setCurrentModule: (id: number | null) => void
   resetHUD: () => void
+  toggleNotebook: () => void
 }
 
 export interface AudioSynthConfig {

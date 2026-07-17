@@ -39,6 +39,8 @@ export interface TwoFactorScenario {
   metodoRecomendado: string;
   explicacion: string;
   puntos: number;
+  /** Optional educational mediator layer for this 2FA scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 export interface SocialMediaProfile {
@@ -69,6 +71,8 @@ export interface IdentityTheftScenario {
   puntos: number;
   dificultad: "basico" | "intermedio" | "avanzado";
   explicacion: string;
+  /** Optional educational mediator layer for this identity theft scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 export interface IndicadorRiesgo {
@@ -338,23 +342,25 @@ export interface VishingChoice {
 }
 
 export interface VishingCall {
-  id: string
+  id: string;
   /** Caller's claimed identity */
-  callerIdentity: string
+  callerIdentity: string;
   /** The organization they claim to represent */
-  organization: string
+  organization: string;
   /** Difficulty level */
-  difficulty: 'basico' | 'intermedio' | 'avanzado'
+  difficulty: 'basico' | 'intermedio' | 'avanzado';
   /** Ordered transcript lines */
-  transcript: VishingLine[]
+  transcript: VishingLine[];
   /** Red flags to find in the transcript */
-  redFlags: VishingRedFlag[]
+  redFlags: VishingRedFlag[];
   /** Decision points */
-  decisionPoints: VishingDecisionPoint[]
+  decisionPoints: VishingDecisionPoint[];
   /** Summary shown after completion */
-  summary: string
+  summary: string;
   /** Total XP available */
-  totalXp: number
+  totalXp: number;
+  /** Optional educational mediator layer for this vishing scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 export interface PhoneticDecoderState {

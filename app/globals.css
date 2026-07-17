@@ -109,6 +109,44 @@
 .neon-amber { text-shadow: 0 0 10px theme('colors.amber.500'), 0 0 20px theme('colors.amber.500'); }
 .neon-red { text-shadow: 0 0 10px theme('colors.red.500'), 0 0 20px theme('colors.red.500'); }
 
+/* --- Educational Mediator: CSS Keyframes --- */
+
+@keyframes mediator-slide-up {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mediator-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes mediator-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes mediator-scale-in {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-mediator-slide-up {
+  animation: mediator-slide-up 0.25s ease-out forwards;
+}
+
+.animate-mediator-fade-in {
+  animation: mediator-fade-in 0.2s ease-out forwards;
+}
+
+.animate-mediator-pulse {
+  animation: mediator-pulse 2s ease-in-out infinite;
+}
+
+.animate-mediator-scale-in {
+  animation: mediator-scale-in 0.25s ease-out forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

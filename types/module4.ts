@@ -20,6 +20,8 @@ export interface CryptoChallenge {
   opciones: ChallengeOption[];
   puntos: number;
   explicacion: string;
+  /** Optional educational mediator layer for this crypto scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 /** A single toggle check in a hardening scenario */
@@ -38,6 +40,8 @@ export interface HardeningScenario {
   checks: HardeningCheck[];
   puntos: number;
   explicacion: string;
+  /** Optional educational mediator layer for this hardening scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 /** File integrity check — verify checksums */
@@ -52,6 +56,8 @@ export interface IntegrityCheck {
   opciones: ChallengeOption[];
   puntos: number;
   explicacion: string;
+  /** Optional educational mediator layer for this integrity check scenario */
+  educationalLayer?: import('./educational').EducationalLayer;
 }
 
 /** Micro-activity (reuse existing pattern) */
