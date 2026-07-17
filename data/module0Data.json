@@ -13,28 +13,28 @@
       "id": "scenario-001",
       "categoria": "Ingeniería Social",
       "emoji": "🎮",
-      "situacion": "Te llega un mensaje en Discord de una cuenta que se llama 'FreeV-Bucks-Fortnite' ofreciendo 13,000 pavos gratis. Solo necesitas descargar un archivo.exe y ejecutarlo. El mensaje tiene 47 reacciones de personas agradeciendo.",
+      "situacion": "Te llega un mensaje de WhatsApp de un número desconocido: '¡Felicidades! Ganaste un cupón de $50 en el Eurobasket. Haz clic aquí para reclamar tu premio: bit.ly/eurobasket-ec'. El mensaje tiene el logo del centro comercial y parece legítimo.",
       "opciones": [
         {
           "id": "a",
-          "texto": "¡Suena genial! Descargo y ejecuto. ¡47 personas ya lo hicieron!",
+          "texto": "¡Suena genial! Hago clic para reclamar mi cupón.",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "Las reacciones pueden ser falsas o de bots. Los archivos .exe nunca son seguros de descargar de fuentes no oficiales. Podrías estar instalando un troyano que robe tus credenciales."
+          "retroalimentacion": "Los mensajes de premios no solicitados son una estafa clásica. Eurobasket nunca regala cupones por WhatsApp. El enlace te llevará a un sitio que robará tus datos personales o instalará malware en tu celular."
         },
         {
           "id": "b",
-          "texto": "Ignoro el mensaje. Si fuera real, estaría en la tienda oficial de Fortnite.",
+          "texto": "Ignoro el mensaje. Si fuera real, lo anunciarían en su página oficial.",
           "esCorrecta": true,
           "puntos": 20,
-          "retroalimentacion": "¡Correcto! Epic Games nunca regala V-Bucks por Discord. Siempre verifica en fuentes oficiales. Los atacantes usan la urgencia y las reacciones sociales para manipularte."
+          "retroalimentacion": "¡Correcto! Los centros comerciales y marcas legítimas anuncian promociones en sus redes oficiales, no por mensajes directos. Siempre verifica en la fuente oficial antes de hacer clic."
         },
         {
           "id": "c",
-          "texto": "Le pregunto al remitente si es legítimo antes de descargar.",
+          "texto": "Respondo preguntando si es real antes de hacer clic.",
           "esCorrecta": false,
           "puntos": 5,
-          "retroalimentacion": "Buena intuición al dudar, pero interactuar con el atacante puede ser peligroso. Podría enviarte más enlaces maliciosos o intentar manipularte con más urgencia. Lo mejor es ignorar y reportar."
+          "retroalimentacion": "Interactuar con el remitente confirma que tu número está activo. El atacante te enviará más phishing o venderá tu número como 'activo' a otros estafadores. Lo mejor es ignorar y reportar."
         }
       ]
     },
@@ -42,21 +42,21 @@
       "id": "scenario-002",
       "categoria": "Privacidad",
       "emoji": "📱",
-      "situacion": "Estás en tu nueva cuenta de Instagram. Una app de 'Análisis de Seguidores' te pide acceso a tu cuenta de Instagram para 'mostrarte quién te dejó de seguir'. Necesitas ingresar tu usuario y contraseña.",
+      "situacion": "Una app que se llama 'Seguidores Instagram EC' te pide tu usuario y contraseña de Instagram para 'mostrarte quién visitó tu perfil'. Te promete estadísticas detalladas de tus seguidores ecuatorianos.",
       "opciones": [
         {
           "id": "a",
-          "texto": "Le doy mis credenciales, quiero saber quién me dejó de seguir.",
+          "texto": "Le doy mis credenciales, quiero saber quién visita mi perfil.",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "¡Riesgoso! Estas apps suelen ser credential harvesters (recolectores de credenciales). Con tu contraseña, pueden tomar control total de tu cuenta, publicar en tu nombre o vender tu información."
+          "retroalimentacion": "¡Riesgoso! Estas apps suelen ser 'credential harvesters' (recolectores de credenciales). Con tu contraseña, pueden tomar control total de tu cuenta, publicar en tu nombre o vender tu información en la dark web."
         },
         {
           "id": "b",
-          "texto": "No le doy mi contraseña. Si quiero saber quién me dejó de seguir, lo reviso manualmente.",
+          "texto": "No le doy mi contraseña. Ninguna app legítima necesita tu contraseña.",
           "esCorrecta": true,
           "puntos": 20,
-          "retroalimentacion": "¡Excelente! Nunca compartas tus credenciales con apps de terceros. Instagram no autoriza estas aplicaciones. La información sobre tus seguidores es información privada que no deberías entregar."
+          "retroalimentacion": "¡Excelente! Instagram no autoriza estas aplicaciones. Si quieres ver estadísticas, usa las herramientas oficiales de Instagram o cambia a cuenta de negocio. Nunca compartas tus credenciales con apps de terceros."
         },
         {
           "id": "c",
@@ -71,28 +71,28 @@
       "id": "scenario-003",
       "categoria": "Seguridad en Dispositivos",
       "emoji": "💻",
-      "situacion": "Tu amigo te comparte un enlace de una página web que dice 'Gana una PS5 participando en nuestra encuesta'. La página te pide tu nombre, dirección, teléfono y datos de tu tarjeta de crédito para 'enviar el premio'.",
+      "situacion": "Tu amigo te comparte un enlace de una página web que dice 'Gana una PS5 participando en nuestra encuesta del INEC'. La página te pide tu nombre, cédula, dirección, teléfono y datos de tu tarjeta de crédito para 'enviar el premio'.",
       "opciones": [
         {
           "id": "a",
           "texto": "Lleno todos los campos. ¡Una PS5 gratis vale la pena!",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "Esto es un classic phishing de premios falsos. Nunca un sitio legítimo te pide datos de tarjeta de crédito para enviar un 'premio ganado'. Estás entregando tu identidad y dinero a estafadores."
+          "retroalimentacion": "Esto es un phishing de premios falsos usando el nombre del INEC para dar legitimidad. Ningún instituto del gobierno sorte电子产品 por encuestas online. Estás entregando tu identidad y dinero a estafadores."
         },
         {
           "id": "b",
-          "texto": "No lleno nada. Los premios reales no piden datos bancarios.",
+          "texto": "No lleno nada. El INEC no sorte电子产品 por encuestas online.",
           "esCorrecta": true,
           "puntos": 20,
-          "retroalimentacion": "¡Perfecto! Ningún premio legítimo necesita tu tarjeta de crédito. Si suena demasiado bueno para ser verdad, probablemente es una estafa. Reporta la página y avisa a tu amigo."
+          "retroalimentacion": "¡Perfecto! El INEC realiza encuestas oficiales, no sorte电子产品. Ningún premio legítimo necesita tu tarjeta de crédito. Si suena demasiado bueno para ser verdad, probablemente es una estafa. Reporta la página."
         },
         {
           "id": "c",
-          "texto": "Lleno solo nombre y teléfono, sin datos de tarjeta.",
+          "texto": "Lleno solo nombre y cédula, sin datos de tarjeta.",
           "esCorrecta": false,
           "puntos": 5,
-          "retroalimentacion": "Incluso con pocos datos, estás cayendo en la trampa. Con tu nombre y teléfono pueden hacerte llamadas de vishing (phishing por voz) o enviarte SMS con más enlaces maliciosos."
+          "retroalimentacion": "Tu cédula es un documento de identidad fundamental en Ecuador. Con tu nombre y cédula pueden hacer trámites fraudulentos, abrir cuentas bancarias a tu nombre o cometer otros delitos. Nunca compartas tu cédula en sitios no verificados."
         }
       ]
     },
@@ -100,7 +100,7 @@
       "id": "scenario-004",
       "categoria": "Redes Sociales",
       "emoji": "🔒",
-      "situacion": "Tienes una contraseña súper segura para tu cuenta de TikTok: 'MiPerroFido2024!'. Pero como tienes muchas cuentas, decides usar la misma contraseña para tu correo de Gmail, tu banco y tu cuenta de Netflix.",
+      "situacion": "Tienes una contraseña segura para tu cuenta de TikTok: 'MiPerroFido2024!'. Pero como tienes muchas cuentas, decides usar la misma contraseña para tu correo de Gmail, tu cuenta del Banco Pichincha y tu Netflix.",
       "opciones": [
         {
           "id": "a",
@@ -114,7 +114,7 @@
           "texto": "Uso un gestor de contraseñas y creo una contraseña única para cada servicio.",
           "esCorrecta": true,
           "puntos": 20,
-          "retroalimentacion": "¡Excelente! Un gestor de contraseñas como Bitwarden o 1Password genera y almacena contraseñas únicas. Si una cuenta es comprometida, las demás siguen seguras. Nunca reutilices credenciales."
+          "retroalimentacion": "¡Excelente! Un gestor de contraseñas como Bitwarden o 1Password genera y almacena contraseñas únicas. Si una cuenta es comprometida, las demás siguen seguras. Especialmente importante para cuentas bancarias."
         },
         {
           "id": "c",
@@ -129,14 +129,14 @@
       "id": "scenario-005",
       "categoria": "Contenido Malicioso",
       "emoji": "🔗",
-      "situacion": "En TikTok ves un video viral de un 'hacker ético' que muestra cómo obtener cualquier juego gratis. En la descripción hay un enlace a Telegram que promete un generador de códigos digitales. Tiene 200K likes.",
+      "situacion": "En TikTok ves un video viral de un 'hacker ecuatoriano' que muestra cómo obtener cualquier juego gratis. En la descripción hay un enlace a Telegram que promete un generador de códigos digitales. Tiene 200K likes y muchos comentarios de ecuatorianos agradeciendo.",
       "opciones": [
         {
           "id": "a",
           "texto": "Hago clic. ¡200K personas no pueden estar equivocadas!",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "Los likes pueden ser comprados o manipulados. Los 'generadores de códigos' son siempre estafas. Pueden instalar malware, robar datos o suscribirte a servicios premium sin tu consentimiento."
+          "retroalimentacion": "Los likes pueden ser comprados o manipulados. Los 'generadores de códigos' son siempre estafas. Pueden instalar malware, robar datos o suscribirte a servicios premium sin tu consentimiento. Los comentarios también pueden ser falsos."
         },
         {
           "id": "b",
@@ -158,21 +158,21 @@
       "id": "scenario-006",
       "categoria": "WiFi y Redes",
       "emoji": "📶",
-      "situacion": "Estás en un centro comercial y ves una red WiFi gratuita llamada 'Free_WiFi_CentroComercial'. No tiene contraseña. Para conectarte, la página te pide crear una cuenta con tu correo y contraseña.",
+      "situacion": "Estás en un centro comercial en Quito y ves una red WiFi gratuita llamada 'Movistar_WiFi_Gratis'. No tiene contraseña. Para conectarte, la página te pide crear una cuenta con tu correo y contraseña de Movistar.",
       "opciones": [
         {
           "id": "a",
-          "texto": "Me conecto y creo la cuenta. ¡Es WiFi gratis!",
+          "texto": "Me conecto y creo la cuenta. ¡Es WiFi gratis de Movistar!",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "Esta podría ser un Evil Twin Attack (ataque de gemelo malvado). El atacante crea un punto de acceso falso que captura tus credenciales. Con tu correo y contraseña, puede intentar acceder a tus otras cuentas."
+          "retroalimentacion": "Esta podría ser un Evil Twin Attack (ataque de gemelo malvado). El atacante crea un punto de acceso falso que captura tus credenciales. Con tu correo y contraseña de Movistar, puede intentar acceder a tu cuenta real y hacer cambios no autorizados."
         },
         {
           "id": "b",
-          "texto": "No me conecto. Las redes WiFi abiertas que piden registro son sospechosas.",
+          "texto": "No me conecto. Las redes WiFi abiertas que piden credenciales son sospechosas.",
           "esCorrecta": true,
           "puntos": 20,
-          "retroalimentacion": "¡Inteligente! Las redes WiFi públicas con registro sospechoso suelen ser trampas. Si necesitas WiFi en público, usa tu datos móviles o una VPN. Nunca registres credenciales reales en redes no verificadas."
+          "retroalimentacion": "¡Inteligente! Las redes WiFi públicas con registro sospechoso suelen ser trampas. Si necesitas WiFi en público, usa tus datos móviles o una VPN. Movistar no te pediría credenciales para WiFi gratis."
         },
         {
           "id": "c",
@@ -187,28 +187,28 @@
       "id": "scenario-007",
       "categoria": "Ingeniería Social",
       "emoji": "🎭",
-      "situacion": "Recibes un email de 'soporte@minecraft-official.com' (o el juego que prefieras) diciendo que tu cuenta fue hackeada y que debes 'verificar tu identidad' haciendo clic en un enlace. El email tiene el logo oficial y se ve muy profesional.",
+      "situacion": "Recibes un email de 'soporte@sri-gob.ec' (o el correo que prefieras) diciendo que tienes un reembolso de impuestos pendiente del SRI por $500. Solo necesitas 'verificar tu identidad' haciendo clic en un enlace y-ingresar tu datos bancarios. El email tiene el logo del SRI y se ve muy profesional.",
       "opciones": [
         {
           "id": "a",
-          "texto": "Hago clic inmediatamente. ¡Necesito proteger mi cuenta!",
+          "texto": "Hago clic inmediatamente. ¡Necesito reclamar mi reembolso!",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "Esto es spear phishing. Los atacantes clonan emails oficiales para robar credenciales. La urgencia es parte de la manipulación. Verifica siempre el remitente real y ve directamente al sitio oficial, no hagas clic en enlaces."
+          "retroalimentacion": "Esto es spear phishing usando el nombre del SRI. El SRI nunca envía emails solicitando datos bancarios para reembolsos. Los atacantes clonan emails oficiales para robar credenciales. La urgencia es parte de la manipulación."
         },
         {
           "id": "b",
-          "texto": "Verifico el remitente real del email y voy directamente al sitio oficial.",
+          "texto": "Verifico el remitente real del email y voy directamente al sitio oficial del SRI.",
           "esCorrecta": true,
           "puntos": 20,
-          "retroalimentacion": "¡Correcto! Siempre verifica que el remitente sea legítimo (no solo el nombre, sino la dirección completa). Los emails de verificación legítimos nunca incluyen enlaces directos para 'verificar datos'."
+          "retroalimentacion": "¡Correcto! Siempre verifica que el remitente sea legítimo (no solo el nombre, sino la dirección completa). Los emails legítimos del SRI nunca incluyen enlaces directos para 'verificar datos'. Ve directamente a sri.gob.ec."
         },
         {
           "id": "c",
           "texto": "Respondo al email preguntando si es real.",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "Responder al email confirma que tu dirección está activa. El atacante te enviará más phishing o venderá tu email como 'confirmado' en la dark web. Nunca respondas a emails sospechosos."
+          "retroalimentacion": "Responder al email confirma que tu dirección está activa. El atacante te enviará más phishing o venderá tu email como 'confirmado' en la dark web. Nunca respondas a emails sospechosos del SRI u otras instituciones."
         }
       ]
     },
@@ -216,7 +216,7 @@
       "id": "scenario-008",
       "categoria": "Privacidad",
       "emoji": "📸",
-      "situacion": "Una amiga te comparte un screenshot de su ubicación en tiempo real en Snapchat Maps. Te pregunta si también puedes compartir la tuya para 'verse en el mapa'. Tu ubicación estaría visible para todos tus amigos de Snapchat.",
+      "situacion": "Una amiga te comparte un screenshot de su ubicación en tiempo real en Snapchat Maps. Te pregunta si también puedes compartir la tuya para 'verse en el mapa'. Tu ubicación estaría visible para todos tus amigos de Snapchat, incluyendo personas que conociste en el colegio hace años.",
       "opciones": [
         {
           "id": "a",
@@ -237,7 +237,7 @@
           "texto": "Comparto pero solo con ella, no con todos mis amigos.",
           "esCorrecta": false,
           "puntos": 10,
-          "retroalimentacion": "Mejor que compartir con todos, pero Snapchat Maps puede mostrar tu ubicación approximate incluso con configuración 'solo amigos'. Verifica los permisos de ubicación de la app y usa el modo 'Fantasma' cuando no quieras ser vista."
+          "retroalimentacion": "Mejor que compartir con todos, pero Snapchat Maps puede mostrar tu ubicación aproximada incluso con configuración 'solo amigos'. Verifica los permisos de ubicación de la app y usa el modo 'Fantasma' cuando no quieras ser vista."
         }
       ]
     },
@@ -245,7 +245,7 @@
       "id": "scenario-009",
       "categoria": "Dispositivos y Acceso",
       "emoji": "🔑",
-      "situacion": "Dejas tu celular desbloqueado sobre la mesa mientras vas al baño en el recreo. Cuando regresas, ves que tu amigo está revisando tus notificaciones y mensajes. Se ríe y dice '¡Solo estaba curioseando!'",
+      "situacion": "Dejas tu celular desbloqueado sobre la mesa mientras vas al baño en el recreo. Cuando regresas, ves que tu amigo está revisando tus notificaciones y mensajes de WhatsApp. Se ríe y dice '¡Solo estaba curioseando! Vi que te llegó un mensaje y lo abrí'.",
       "opciones": [
         {
           "id": "a",
@@ -274,14 +274,14 @@
       "id": "scenario-010",
       "categoria": "Desinformación y IA",
       "emoji": "🤖",
-      "situacion": "En un grupo de WhatsApp de tu colegio comparten un video donde parece que tu profesor de matemáticas está diciendo cosas absurdas y ofensivas. El video parece real, con su cara y su voz. Todos se están riendo y compartiendo.",
+      "situacion": "En un grupo de WhatsApp de tu colegio comparten un video donde parece que el presidente de la República está diciendo cosas absurdas y ofensivas sobre los estudiantes ecuatorianos. El video parece real, con su cara y su voz. Todos se están riendo y compartiendo el video.",
       "opciones": [
         {
           "id": "a",
           "texto": "Lo comparto inmediatamente. ¡Esto es increíble! Tiene que verlo todo el mundo.",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "Podría ser un deepfake (video sintético generado por IA). Los deepfakes pueden ser muy convincentes en 2026. Compartir contenido falso puede dañar la reputación de una persona y tener consecuencias legales."
+          "retroalimentacion": "Podría ser un deepfake (video sintético generado por IA). Los deepfakes pueden ser muy convincentes en 2026. Compartir contenido falso puede dañar la reputación de una persona y tener consecuencias legales. Además, propaga desinformación."
         },
         {
           "id": "b",
@@ -292,7 +292,7 @@
         },
         {
           "id": "c",
-          "texto": "Pregunto al profesor si es real antes de compartir.",
+          "texto": "Pregunto en el grupo si es real antes de compartir.",
           "esCorrecta": false,
           "puntos": 10,
           "retroalimentacion": "Buena intención, pero mientras verificas, el video ya podría estar propagándose. En su lugar, no compartas y reporta el contenido. Si es un deepfake, afecta a la persona incluso si 'solo es un chiste'."
@@ -370,7 +370,7 @@
     },
     "nivelBasico": {
       "titulo": "Nivelación Necesaria",
-      "subtitulo": "Necesitas reforzar tus defenses",
+      "subtitulo": "Necesitas reforzar tus defensas",
       "emoji": "⚠️",
       "descripcion": "No te preocupes, ¡todos aprendemos! Algunos conceptos básicos necesitan refuerzo antes de avanzar. Completa estas micro-actividades para ponerte al día.",
       "color": "amber",
