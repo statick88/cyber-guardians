@@ -84,3 +84,34 @@
     text-wrap: balance;
   }
 }
+
+/* --- Phase 0: Global Foundation --- */
+
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@keyframes shield-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes screen-flash {
+  0% { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+
+.neon-cyan { text-shadow: 0 0 10px theme('colors.cyan.500'), 0 0 20px theme('colors.cyan.500'); }
+.neon-magenta { text-shadow: 0 0 10px theme('colors.pink.500'), 0 0 20px theme('colors.pink.500'); }
+.neon-amber { text-shadow: 0 0 10px theme('colors.amber.500'), 0 0 20px theme('colors.amber.500'); }
+.neon-red { text-shadow: 0 0 10px theme('colors.red.500'), 0 0 20px theme('colors.red.500'); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

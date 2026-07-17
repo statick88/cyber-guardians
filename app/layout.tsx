@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import VolumeControl from '@/components/VolumeControl'
+import HUDProvider from '@/components/HUDProvider'
+import HUD from '@/components/HUD'
 
 export const metadata: Metadata = {
   title: 'CyberGuardians - Módulo 0: Cyber-Diagnóstico',
@@ -21,8 +24,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-slate-950 text-slate-100 antialiased font-sans min-h-screen">
-        {children}
+      <body className="bg-slate-950 text-slate-100 antialiased font-sans min-h-screen pt-9 md:pt-12">
+        <HUDProvider>
+          <HUD />
+          {children}
+        </HUDProvider>
+        <VolumeControl />
       </body>
     </html>
   )
