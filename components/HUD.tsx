@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Shield, Cpu, Network } from 'lucide-react'
+import { Shield, Cpu, Network, BookOpen } from 'lucide-react'
 import { useHUD } from '@/components/HUDProvider'
+import { NotebookPanel } from '@/components/mediator/NotebookPanel'
+import { Button } from '@/components/ui/button'
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -46,7 +48,7 @@ function getAutonomyLabel(level: string): string {
 // ---------------------------------------------------------------------------
 
 export default function HUD() {
-  const { shieldHP, maxShieldHP, autonomyLevel, xp } = useHUD()
+  const { shieldHP, maxShieldHP, autonomyLevel, xp, notebookOpen, toggleNotebook } = useHUD()
   const prevHP = useRef(shieldHP)
   const [showFlash, setShowFlash] = useState(false)
 
@@ -171,8 +173,23 @@ export default function HUD() {
               />
             ))}
           </div>
+
+          {/* Notebook Toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleNotebook}
+            className={`text-slate-400 hover:text-cyan-400 ${
+              notebookOpen ? 'text-cyan-400' : ''
+            }`}
+            aria-label={notebookOpen ? "Cerrar cuaderno" : "Abrir cuaderno"}
+            title={notebookOpen ? "Cerrar cuaderno" : "Abrir cuaderno"}
+          >
+            <BookOpen className="w-4 h-4" />
+          </Button>
         </div>
       </div>
+      <NotebookPanel isOpen={notebookOpen} onClose={toggleNotebook} />
     </>
   )
 }

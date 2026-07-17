@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -14,6 +13,10 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Check, X, Code, ListOrdered, Shield, AlertTriangle } from "lucide-react";
 import { Module3Category, MicroActividad } from "@/types/module3";
+import { MEDATOR_ENABLED } from "@/lib/featureFlags";
+import { useEducationalMediator } from "@/hooks/useEducationalMediator";
+import { EducationalPanel } from "@/components/mediator";
+import type { EducationalLayer } from "@/types/educational";
 
 interface MicroActivitiesProps {
   actividades: MicroActividad[];
@@ -31,8 +34,21 @@ export function MicroActivities({
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
+  const mediator = useEducationalMediator();
 
   const currentActivity = actividades[currentIndex];
+
+  const triggerErrorMediator = useCallback(() => {
+    if (MEDATOR_ENABLED) {
+      mediator.triggerMediator('onError');
+    }
+  }, [mediator]);
+
+  const triggerCompleteMediator = useCallback(() => {
+    if (MEDATOR_ENABLED) {
+      mediator.triggerMediator('onModuleComplete');
+    }
+  }, [mediator]);
 
   const handleTrueFalse = (answer: string) => {
     if (selectedAnswer) return;
@@ -44,12 +60,17 @@ export function MicroActivities({
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);
 
+    if (!correct) {
+      triggerErrorMediator();
+    }
+
     setTimeout(() => {
       setSelectedAnswer(null);
       setIsCorrect(null);
       if (currentIndex < actividades.length - 1) {
         setCurrentIndex(currentIndex + 1);
       } else {
+        triggerCompleteMediator();
         onComplete();
       }
     }, 3000);
@@ -64,12 +85,17 @@ export function MicroActivities({
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);
 
+    if (!correct) {
+      triggerErrorMediator();
+    }
+
     setTimeout(() => {
       setSelectedAnswer(null);
       setIsCorrect(null);
       if (currentIndex < actividades.length - 1) {
         setCurrentIndex(currentIndex + 1);
       } else {
+        triggerCompleteMediator();
         onComplete();
       }
     }, 3000);
@@ -82,12 +108,17 @@ export function MicroActivities({
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);
 
+    if (!correct) {
+      triggerErrorMediator();
+    }
+
     setTimeout(() => {
       setSelectedAnswer(null);
       setIsCorrect(null);
       if (currentIndex < actividades.length - 1) {
         setCurrentIndex(currentIndex + 1);
       } else {
+        triggerCompleteMediator();
         onComplete();
       }
     }, 3000);
@@ -235,6 +266,13 @@ export function MicroActivities({
           </Card>
         </motion.div>
       </AnimatePresence>
+      {MEDATOR_ENABLED && (
+        <EducationalPanel
+          state={mediator.state}
+          educationalLayer={mediator.currentLayer ?? undefined}
+          onDismiss={mediator.dismissMediator}
+        />
+      )}
     </div>
   );
 }

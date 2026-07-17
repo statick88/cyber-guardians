@@ -16,6 +16,13 @@ import { MicroActivities } from '@/components/module1/MicroActivities'
 import { Module1Category, ALL_MODULE1_CATEGORIES, GameProgressModule1 } from '@/types/module1'
 import module1Data from '@/data/module1Data.json'
 import type { ModuloData as Module1ModuloData } from '@/types/module1'
+import { MEDATOR_ENABLED } from '@/lib/featureFlags'
+import { GamePauseProvider } from '@/hooks/useGamePause'
+import { useEducationalMediator } from '@/hooks/useEducationalMediator'
+import { EducationalPanel } from '@/components/mediator'
+import DebriefDialog from '@/components/mediator/DebriefDialog'
+import { DEFAULT_DEBRIEF_PROMPTS } from '@/data/debriefPrompts'
+import type { EducationalLayer } from '@/types/educational'
 
 const typedModule1Data = module1Data as Module1ModuloData
 
@@ -86,8 +93,9 @@ function clearProgress() {
   }
 }
 
-export default function Module1Game() {
+function Module1GameContent() {
   const [savedProgress] = useState(() => loadProgress())
+  const mediator = useEducationalMediator()
 
   const [gamePhase, setGamePhase] = useState<GamePhase>(
     savedProgress ? 'ACTIVITIES' : 'WELCOME'
@@ -120,6 +128,9 @@ export default function Module1Game() {
   }, [])
 
   const handleActivityScore = useCallback((points: number, category: Module1Category) => {
+    if (MEDATOR_ENABLED && points === 0) {
+      mediator.triggerMediator('onError', typedModule1Data.modulo as unknown as EducationalLayer)
+    }
     setScore(prev => {
       const next = prev + points
       setCategoryScores(prevCat => {
@@ -142,9 +153,12 @@ export default function Module1Game() {
     if (currentActivityIndex + 1 < ACTIVITIES.length) {
       setCurrentActivityIndex(prev => prev + 1)
     } else {
+      if (MEDATOR_ENABLED) {
+        mediator.triggerMediator('onModuleComplete', typedModule1Data.modulo as unknown as EducationalLayer)
+      }
       setGamePhase('RESULTS')
     }
-  }, [currentActivityIndex])
+  }, [currentActivityIndex, mediator])
 
   useEffect(() => {
     if (gamePhase === 'RESULTS') clearProgress()
@@ -230,7 +244,16 @@ export default function Module1Game() {
     <main className="min-h-screen gradient-bg">
       <AnimatePresence mode="wait">
         {gamePhase === 'WELCOME' && (
-          <WelcomeScreen key="welcome" onStart={handleStart} moduleNumber={1} />
+          <WelcomeScreen
+            key="welcome"
+            onStart={handleStart}
+            moduleTitle="Misión: Shadow Protocol"
+            moduleSubtitle="Privacidad y Huella Digital"
+            moduleDescription="Aprende a rastrear y neutralizar las huellas invisibles que dejas en la red. Domina el análisis de metadatos EXIF y limpia las cookies espías antes de que el enemigo compile tu perfil digital."
+            moduleIcon="🕵️"
+            stats="6 dinámicas · 15-20 min · Umbral: 70%"
+            moduleNumber={1}
+          />
         )}
 
         {gamePhase === 'ACTIVITIES' && (
@@ -246,6 +269,13 @@ export default function Module1Game() {
             <div className="flex-1 flex items-center w-full">
               {renderCurrentActivity()}
             </div>
+            {MEDATOR_ENABLED && (
+              <EducationalPanel
+                state={mediator.state}
+                educationalLayer={mediator.currentLayer ?? undefined}
+                onDismiss={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
 
@@ -262,9 +292,28 @@ export default function Module1Game() {
               isNavigating={isNavigating}
               continueLabel="Continuar al Módulo 2"
             />
+            {MEDATOR_ENABLED && mediator.state === 'onMetaReflection' && (
+              <DebriefDialog
+                prompts={DEFAULT_DEBRIEF_PROMPTS}
+                moduleName="Módulo 1"
+                onComplete={(responses: Record<string, unknown>) => {
+                  mediator.completeDebrief()
+                  void responses
+                }}
+                onSkip={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
       </AnimatePresence>
     </main>
+  )
+}
+
+export default function Module1Game() {
+  return (
+    <GamePauseProvider>
+      <Module1GameContent />
+    </GamePauseProvider>
   )
 }
