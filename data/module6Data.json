@@ -1,0 +1,181 @@
+{
+  "scamsQR": [
+    {
+      "id": "qr-1",
+      "titulo": "Código QR falso en el mercado del barrio",
+      "descripcion": "Estás en un mercado local y encuentras un puesto de ropa con un letrero que dice 'Paga con QR — 10% de descuento'. El vendedor te muestra un código QR impreso en una hoja suelta y te dice que lo escanees con tu app de banco para pagar. Al escanear, te redirige a una página que pide tu número de tarjeta y contraseña.",
+      "tipo": "estafado_QR_pix",
+      "senalesRiesgo": [
+        "El código QR está impreso en una hoja suelta, no en un letrero fijo del puesto",
+        "La página solicitó datos completos de tarjeta y contraseña",
+        "El vendedor presiona para que pagues rápido",
+        "No hay comprobante fiscal ni confirmación de la tienda",
+        "El descuento del 10% parece demasiado bueno para ser cierto"
+      ],
+      "nivelRiesgo": "alto",
+      "explicacion": "Los estafadores colocan códigos QR falsos sobre los legítimos en puntos de pago. Al escanear, te dirigen a una página phishing que roba tus datos bancarios. El FTC reportó que las estafas con QR aumentaron 3 veces desde 2022. NUNCA escanees QR de hojas sueltas o pegatinas sospechosas. Verifica siempre que la URL es del banco oficial.",
+      "fuente": "FTC 2024"
+    },
+    {
+      "id": "qr-2",
+      "titulo": "QR misterioso en el parqueadero del centro comercial",
+      "descripcion": "Llegas al centro comercial y en el parqueadero hay un cartel que dice 'Escanea para pagar tu estacionamiento — 50% de descuento'. El QR te lleva a una app que pide permisos de acceso a tus contactos, cámara y ubicación. Al aceptar, la app comienza a enviar mensajes SMS a tus contactos con un link sospechoso.",
+      "tipo": "QR_malicioso",
+      "senalesRiesgo": [
+        "La app solicita permisos excesivos (contactos, SMS, cámara)",
+        "El descuento del 50% es inusualmente alto para estacionamiento",
+        "No hay logos oficiales del centro comercial en el cartel",
+        "La app no está en la tienda oficial (se descargó por APK)",
+        "Después de instalar, se envían mensajes a tus contactos sin tu consentimiento"
+      ],
+      "nivelRiesgo": "alto",
+      "explicacion": "Los códigos QR maliciosos pueden instalar apps que roban información y propagan malware a tus contactos. ScamAdviser reporta que el 70% de phishing por QR afecta a usuarios móviles. Siempre verifica que el QR te lleva a una app oficial de la tienda. NUNCA descargues APKs de fuentes desconocidas.",
+      "fuente": "ScamAdviser 2024"
+    },
+    {
+      "id": "qr-3",
+      "titulo": "QR en la mesa del restaurante para 'propina digital'",
+      "descripcion": "En un restaurante informal, encuentras un QR en la mesa que dice 'Dale propina al mesero con QR — 100% llega a él'. Al escanear, te redirige a una billetera digital desconocida que pide crear cuenta con tu correo y número de teléfono. Al crear la cuenta, recibes un código de verificación por SMS que el mesero te pide que le muestres.",
+      "tipo": "QR_phishing",
+      "senalesRiesgo": [
+        "El QR redirige a una billetera digital desconocida, no a una plataforma de pagos reconocida",
+        "Te piden crear cuenta con datos personales para dar una propina",
+        "El mesero insiste en ver tu código de verificación por SMS",
+        "No hay relación lógica entre una propina y verificar tu identidad",
+        "La billetera digital no tiene reseñas ni reputación conocida"
+      ],
+      "nivelRiesgo": "medio",
+      "explicacion": "Esta estafa combina phishing con robo de cuentas. El código de verificación puede ser para注册 una cuenta en tu nombre o acceder a tus servicios. Los estafadores usan la confianza del contexto (restaurante) para manipular. NUNCA compartas códigos de verificación con nadie. Usa apps de propina reconocidas como Mercado Pago o Nequi.",
+      "fuente": "FTC 2024"
+    }
+  ],
+  "piramides": [
+    {
+      "id": "pir-1",
+      "titulo": "Sistema de trading con retornos garantizados",
+      "descripcion": "Un amigo te invita a un grupo de Telegram donde 'inversores expertos' prometen retornos del 15% mensual invirtiendo en crypto. Te muestran capturas de ganancias diarias. Para empezar, debes invertir $500 USD y reclutar a 3 amigos para 'desbloquear' el nivel premium con retornos del 25%. El grupo tiene 2,000 miembros pero solo 10 personas hablan.",
+      "tipo": "trading_piramide",
+      "senalesAdvertencia": [
+        "Retornos garantizados del 15-25% mensual (imposible en mercados legítimos)",
+        "Reclutamiento obligatorio para subir de nivel",
+        "Solo unas pocas personas activas en el grupo grande",
+        "Capturas de ganancias que no se pueden verificar",
+        "Presión para invertir rápido antes de que la oportunidad desaparezca"
+      ],
+      "nivelRiesgo": "alto",
+      "estructura": "Pirámide de 3 niveles: Nivel 1 (inversión $500, retorno 15%), Nivel 2 (reclutar 3 personas, retorno 20%), Nivel 3 (reclutar 10 personas, retorno 25%). Los retornos de los niveles superiores dependen de las inversiones de los nuevos reclutas.",
+      "fuente": "Europol IOCTA 2023"
+    },
+    {
+      "id": "pir-2",
+      "titulo": " MLM de productos de belleza 'naturales'",
+      "descripcion": "Una compañera de la universidad te contacta para ser 'distribuidora independiente' de una marca de productos de belleza. Te dice que ella ganó $3,000 el mes pasado. Para unirte, debes comprar un 'kit de inicio' por $200 USD con productos que probablemente no venderás. Te explican que el dinero real está en reclutar a otras distributoras y ganar comisiones de sus ventas.",
+      "tipo": "MLM_falso",
+      "senalesAdvertencia": [
+        "Enfoque principal en reclutar, no en vender productos",
+        "Kit de inicio obligatorio con costo elevado",
+        "Los ingresos provienen mainly del reclutamiento, no de ventas al consumidor",
+        "Productos sobrevalorados difíciles de vender en el mercado",
+        "Testimonios de ganancias que no se pueden comprobar"
+      ],
+      "nivelRiesgo": "medio",
+      "estructura": "MLM de 4 niveles: Distribuidora ($200 kit, 20% comisión), Líder ($1,000 en ventas, 25%), Directora ($5,000 en ventas + 5 reclutas, 30%), Ejecutiva ($20,000 + 15 reclutas, 35%). El 99% de participantes en MLMs pierden dinero según la FTC.",
+      "fuente": "Europol IOCTA 2023"
+    },
+    {
+      "id": "pir-3",
+      "titulo": "Inversión en 'fondo de inversiones estudiantil'",
+      "descripcion": "Un conocido te presenta un 'fondo de inversiones' donde estudiantes ponen dinero en común para invertir en crypto y acciones. Prometen rendimientos del 10% mensual. Te muestran un tablero en línea con ganancias crecientes. Para invertir, debes hacer transferencia a una cuenta personal (no empresarial). Cuando quieres retirar tus 'ganancias', te dicen que debes esperar 90 días.",
+      "tipo": "inversion_fraudulenta",
+      "senalesAdvertencia": [
+        "Cuenta personal para recibir inversiones (no cuenta empresarial)",
+        "Tablero de ganancias que no se puede verificar en exchanges reales",
+        "Rendimientos prometidos del 10% mensual",
+        "Restricciones para retirar dinero (período de espera de 90 días)",
+        "Sin regulación financiera ni documentación legal"
+      ],
+      "nivelRiesgo": "alto",
+      "estructura": "Esquema Ponzi encubierto: Los primeros inversionistas reciben pagos con el dinero de los nuevos inversionistas. El tablero de ganancias es una ilusión. Cuando suficientes personas intentan retirar, el esquema colapsa. Similar al fraude de Bernie Madoff pero a escala estudiantil.",
+      "fuente": "FBI IC3 2023"
+    }
+  ],
+  "empleosFalsos": [
+    {
+      "id": "emp-1",
+      "titulo": "Trabajo remoto de 'evaluador de productos'",
+      "descripcion": "Ves una publicación en redes sociales: 'Se busca evaluador de productos — trabaja desde casa — gana $50-100 diarios'. Te contactas y te explican que debes comprar productos de Amazon, evaluarlos y dejar reseñas positivas. Te prometen reembolsar el dinero + comisión. Para 'activar' tu cuenta, debes pagar $30 USD por una 'credencial de evaluador'.",
+      "tipo": "tareas_falsas",
+      "senalesRiesgo": [
+        "Te piden pagar por una 'credencial' o 'activación' antes de trabajar",
+        "Prometen reembolso del dinero + comisión (too good to be true)",
+        "El trabajo consiste en dejar reseñas falsas (violación de términos de Amazon)",
+        "No hay contrato formal ni datos legales de la empresa",
+        "El pago es por transferencia a billetera digital, no por nómina"
+      ],
+      "nivelRiesgo": "alto",
+      "montoEstimado": "$30-$200 USD",
+      "fuente": "FBI IC3 2023"
+    },
+    {
+      "id": "emp-2",
+      "titulo": "Asistente virtual para empresa internacional",
+      "descripcion": "Recibes un correo de una 'empresa de tecnología en Dubai' que ofrece trabajo como asistente virtual pagando $800 USD mensuales. El proceso de selección es solo una entrevista por Telegram de 10 minutos. Te contratan inmediatamente y te piden tu número de cuenta para el primer pago. Después, te dicen que debes comprar equipo de oficina ($500 USD) y te envían un cheque que resulta ser fraudulento.",
+      "tipo": "trabajo_remoto_fraudulento",
+      "senalesRiesgo": [
+        "Entrevista extremadamente rápida y sin rigor (10 min por Telegram)",
+        "Te contratan sin ver tu currículum o referencias",
+        "Empresa extranjera sin presencia verificable en línea",
+        "Te envían un cheque para comprar equipo (cheque fraudulento)",
+        "Comunicación solo por Telegram, sin correo corporativo formal"
+      ],
+      "nivelRiesgo": "alto",
+      "montoEstimado": "$500-$1,500 USD",
+      "fuente": "FBI IC3 2023"
+    },
+    {
+      "id": "emp-3",
+      "titulo": "Paquetería y reparto con 'inversión inicial'",
+      "descripcion": "Una publicación en Facebook busca repartidores para una empresa de delivery. Ofrecen $200 semanales. Para unirte, debes pagar $150 USD por un 'kit de reparto' (uniforme + mochila térmica). La empresa te asigna rutas y pedidos. Al llegar al primer domicilio, no hay nadie. Te devuelves y descubres que la empresa ya no contesta el teléfono.",
+      "tipo": "pago_adelantado",
+      "senalesRiesgo": [
+        "Pago por adelantado por 'kit' o 'equipo de trabajo'",
+        "La empresa no tiene página web ni reseñas verificables",
+        "Te asignan trabajo antes de conocer la empresa personalmente",
+        "No hay contrato formal ni número de RFC/RUT",
+        "Después de pagar, la empresa desaparece"
+      ],
+      "nivelRiesgo": "medio",
+      "montoEstimado": "$100-$300 USD",
+      "fuente": "FBI IC3 2023"
+    }
+  ],
+  "microActividades": [
+    {
+      "id": "micro-sc-1",
+      "tipo": "verdadero-falso",
+      "pregunta": "Las estafas con código QR aumentaron 3 veces desde 2022 según el FTC.",
+      "respuestaCorrecta": "verdadero",
+      "puntos": 3,
+      "explicacion": "Correcto. El FTC confirmó que las estafas con códigos QR se triplicaron desde 2022, convirtiéndose en una de las principales amenazas para consumidores.",
+      "categoria": "scam_detection"
+    },
+    {
+      "id": "micro-sc-2",
+      "tipo": "verdadero-falso",
+      "pregunta": "Si una inversión te ofrece retornos garantizados del 15% mensual, es una oportunidad segura.",
+      "respuestaCorrecta": "falso",
+      "puntos": 3,
+      "explicacion": "Ninguna inversión legítima puede garantizar retornos. Los esquemas piramidales usan retornos altos para atraer víctimas. El FBI reporta que las estafas de inversión costaron $4.57 mil millones en 2023.",
+      "categoria": "pyramid_detection"
+    },
+    {
+      "id": "micro-sc-3",
+      "tipo": "verdadero-falso",
+      "pregunta": "Un trabajo legítimo NUNCA te pedirá que pagues por tu equipo o capacitación antes de empezar.",
+      "respuestaCorrecta": "verdadero",
+      "puntos": 3,
+      "explicacion": "Correcto. Los empleos legítimos proporcionan equipo y capacitación sin costo. El FBI IC3 reportó que las estafas de empleo costaron $1.1 mil millones en 2023.",
+      "categoria": "employment_scam"
+    }
+  ]
+}

@@ -10,6 +10,7 @@ export const STORAGE_KEYS = {
   MODULE3: 'cg_2026_module3',
   MODULE4: 'cg_2026_module4',
   MODULE5: 'cg_2026_module5',
+  MODULE6: 'cg_2026_module6',
   BADGES: 'cg_2026_badges',
 } as const
 
@@ -21,4 +22,5 @@ export const ALL_MODULE_KEYS = [
   STORAGE_KEYS.MODULE3,
   STORAGE_KEYS.MODULE4,
   STORAGE_KEYS.MODULE5,
+  STORAGE_KEYS.MODULE6,
 ] as const
