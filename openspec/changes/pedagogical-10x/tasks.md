@@ -51,8 +51,8 @@ Chain strategy: pending
 - [x] 3.2 **M** Create `components/mediator/ConceptCard.tsx` — renders `educationalLayer.conflictQuestion.question` as title, `followUp` as context, `contradictingEvidence` as teaching material; "Ver ejemplo" + "Comenzar" buttons; framer-motion entry/exit; glass-card neon-border styling
 - [x] 3.3 **L** Create `components/mediator/WorkedExample.tsx` — `WorkedExampleTemplate` type with 3–5 steps per ActivityType; hardcoded templates for email_analysis, url_inspection, phishing_scenario, digital-defense; step navigation (Siguiente/Anterior); "Entendido" dismiss; progress indicator
 - [x] 3.4 **S** Create worked example template data map: `Record<ActivityType, WorkedExampleTemplate>` with real capaEducativa-derived content for at least 4 activity types
-- [ ] 3.5 **S** Unit test: `useExplicitInstruction` — verify localStorage round-trip, SSR returns true for all, resetAll clears state
-- [ ] 3.6 **S** Unit test: `ConceptCard` — renders question, shows buttons, calls onDismiss/onViewExample
+- [x] 3.5 **S** Unit test: `useExplicitInstruction` — verify localStorage round-trip, SSR returns true for all, resetAll clears state
+- [x] 3.6 **S** Unit test: `ConceptCard` — renders question, shows buttons, calls onDismiss/onViewExample
 
 ## Phase 4: Formative Assessment (PR 3)
 
@@ -61,7 +61,7 @@ Chain strategy: pending
 - [x] 4.3 **M** Create `components/mediator/FormativeFeedback.tsx` — renders `conflictQuestion.expectedInsight`; tone adapts per scaffoldingLevel (explicit: "Recuerda que...", guided: "Piensa en...", implicit: "Observa...", withdrawn: no render); mastery progress display; auto-dismiss 10s
 - [x] 4.4 **M** Enhance `components/mediator/DebriefDialog.tsx` — add `rubrics` prop; handle `open-ended-with-rubric` prompt type: render textarea, evaluate keyword matching on submit, show per-criterion feedback, show score/maxScore
 - [x] 4.5 **S** Unit test: `usePortfolio` — verify score computation (rubric average or selfAssessment fallback), entry cap at 200, exportJSON includes lastExported
-- [ ] 4.6 **S** Unit test: `useAdaptivePath` — verify weakest-first ordering, empty portfolio returns empty array, updateAfterScenario triggers recomputation
+- [x] 4.6 **S** Unit test: `useAdaptivePath` — verify weakest-first ordering, empty portfolio returns empty array, updateAfterScenario triggers recomputation
 - [x] 4.7 **S** Unit test: DebriefDialog rubric evaluation — mock rubric with 2 criteria, verify matched criteria award points, unmatched shows feedbackTemplate
 
 ## Phase 5: Adaptive Content + Integration (PR 4)
