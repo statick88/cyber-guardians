@@ -8,10 +8,24 @@ import DebriefDialog from './DebriefDialog'
 import ConceptCard from './ConceptCard'
 import FormativeFeedback from './FormativeFeedback'
 import { usePortfolio } from '@/hooks/usePortfolio'
-import { useAdaptivePath } from '@/hooks/useAdaptivePath'
-import type { EducationalLayer, ScaffoldingProgress, MediatorState, SkillCompetencyTag } from '@/types/educational'
+import type { EducationalLayer, ScaffoldingProgress, MediatorState } from '@/types/educational'
 import { getCurrentTip } from '@/hooks/useScaffolding'
 import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
+
+/**
+ * FormativeFeedbackLayer — Sub-component owning usePortfolio hook.
+ * Extracted so hooks are only called when enablePedagogical10x is true.
+ */
+function FormativeFeedbackLayer({ onDismiss }: { onDismiss: () => void }) {
+  const portfolio = usePortfolio()
+  return (
+    <FormativeFeedback
+      competencyScores={portfolio.competencyScores}
+      overallScore={portfolio.overallScore}
+      onDismiss={onDismiss}
+    />
+  )
+}
 
 interface EducationalMediatorProps {
   /** Capa educativa del escenario actual */
@@ -70,9 +84,6 @@ export function EducationalMediator({
   children,
 }: EducationalMediatorProps) {
   const mediator = useEducationalMediator()
-  const portfolio = usePortfolio()
-  const adaptivePath = useAdaptivePath()
-  const isMounted = useRef(true)
   const lastErrorTime = useRef(0)
   const ERROR_COOLDOWN_MS = 3000
 
@@ -112,46 +123,11 @@ export function EducationalMediator({
     mediator.triggerMediator(type, layer ?? educationalLayer)
   }, [mediator, educationalLayer, onTipRequest])
 
-  // Handle debrief completion
+  // Handle debrief completion (base — portfolio integration delegated to Pedagogical10xLayer)
   const handleDebriefComplete = useCallback((responses: Record<string, unknown>) => {
-    // Integrate with portfolio when pedagogical-10x is enabled
-    if (enablePedagogical10x && educationalLayer) {
-      // Map activityType → competencyTag (EducationalLayer doesn't carry competency directly)
-      const ACTIVITY_TO_COMPETENCY: Record<string, SkillCompetencyTag> = {
-        email_analysis: 'email-analysis',
-        url_inspection: 'url-inspection',
-        phishing_scenario: 'phishing-sim',
-        security_quiz: 'digital-defense',
-        drag_drop_classification: 'digital-defense',
-        micro_activity: 'digital-defense',
-        password_strength: 'digital-defense',
-        mfa_simulation: 'digital-defense',
-        social_media_audit: 'digital-defense',
-      }
-
-      portfolio.addEntry({
-        scenarioId: educationalLayer.scenarioId,
-        moduleName,
-        competencyTag: ACTIVITY_TO_COMPETENCY[educationalLayer.activityType] ?? 'digital-defense',
-        responses,
-        timestamp: Date.now(),
-      })
-
-      // Trigger recomputation of adaptive path recommendations
-      adaptivePath.getRecommendations()
-    }
-
     mediator.completeDebrief()
     onDebriefComplete?.(responses)
-  }, [mediator, onDebriefComplete, enablePedagogical10x, educationalLayer, moduleName, portfolio, adaptivePath])
-
-  // Cleanup on unmount
-  useEffect(() => {
-    isMounted.current = true
-    return () => {
-      isMounted.current = false
-    }
-  }, [])
+  }, [mediator, onDebriefComplete])
 
   // Render nothing if mediator disabled
   if (!MEDIATOR_ENABLED) {
@@ -201,11 +177,7 @@ export function EducationalMediator({
 
       {/* Formative Feedback (pedagogical-10x: on error constructive) */}
       {enablePedagogical10x && mediator.state === 'onErrorConstructive' && (
-        <FormativeFeedback
-          competencyScores={portfolio.competencyScores}
-          overallScore={portfolio.overallScore}
-          onDismiss={mediator.dismissMediator}
-        />
+        <FormativeFeedbackLayer onDismiss={mediator.dismissMediator} />
       )}
 
       {/* Debrief Dialog (metacognitive closure) */}

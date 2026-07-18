@@ -18,8 +18,10 @@ import type { EducationalLayer, ScaffoldingProgress, MediatorState } from '@/typ
 vi.mock('@/hooks/useEducationalMediator', () => ({
   useEducationalMediator: vi.fn(() => ({
     state: 'idle' as MediatorState,
+    currentLayer: null,
     triggerMediator: vi.fn(),
     dismissMediator: vi.fn(),
+    answerMediator: vi.fn(),
     completeDebrief: vi.fn(),
     isPaused: false,
   })),
@@ -109,8 +111,10 @@ describe('EducationalMediator — pedagogical-10x integration', () => {
     const { useEducationalMediator } = await import('@/hooks/useEducationalMediator')
     vi.mocked(useEducationalMediator).mockReturnValue({
       state: 'onIntro' as MediatorState,
+      currentLayer: null,
       triggerMediator: vi.fn(),
       dismissMediator: vi.fn(),
+      answerMediator: vi.fn(),
       completeDebrief: vi.fn(),
       isPaused: false,
     })
@@ -133,8 +137,10 @@ describe('EducationalMediator — pedagogical-10x integration', () => {
     const { useEducationalMediator } = await import('@/hooks/useEducationalMediator')
     vi.mocked(useEducationalMediator).mockReturnValue({
       state: 'onIntro' as MediatorState,
+      currentLayer: null,
       triggerMediator: vi.fn(),
       dismissMediator: vi.fn(),
+      answerMediator: vi.fn(),
       completeDebrief: vi.fn(),
       isPaused: false,
     })
@@ -157,8 +163,10 @@ describe('EducationalMediator — pedagogical-10x integration', () => {
     const { useEducationalMediator } = await import('@/hooks/useEducationalMediator')
     vi.mocked(useEducationalMediator).mockReturnValue({
       state: 'onErrorConstructive' as MediatorState,
+      currentLayer: null,
       triggerMediator: vi.fn(),
       dismissMediator: vi.fn(),
+      answerMediator: vi.fn(),
       completeDebrief: vi.fn(),
       isPaused: false,
     })
@@ -181,8 +189,10 @@ describe('EducationalMediator — pedagogical-10x integration', () => {
     const { useEducationalMediator } = await import('@/hooks/useEducationalMediator')
     vi.mocked(useEducationalMediator).mockReturnValue({
       state: 'onErrorConstructive' as MediatorState,
+      currentLayer: null,
       triggerMediator: vi.fn(),
       dismissMediator: vi.fn(),
+      answerMediator: vi.fn(),
       completeDebrief: vi.fn(),
       isPaused: false,
     })
@@ -205,8 +215,10 @@ describe('EducationalMediator — pedagogical-10x integration', () => {
     const { useEducationalMediator } = await import('@/hooks/useEducationalMediator')
     vi.mocked(useEducationalMediator).mockReturnValue({
       state: 'idle' as MediatorState,
+      currentLayer: null,
       triggerMediator: vi.fn(),
       dismissMediator: vi.fn(),
+      answerMediator: vi.fn(),
       completeDebrief: vi.fn(),
       isPaused: false,
     })
@@ -231,8 +243,10 @@ describe('EducationalMediator — pedagogical-10x integration', () => {
     const { useEducationalMediator } = await import('@/hooks/useEducationalMediator')
     vi.mocked(useEducationalMediator).mockReturnValue({
       state: 'idle' as MediatorState,
+      currentLayer: null,
       triggerMediator: vi.fn(),
       dismissMediator: vi.fn(),
+      answerMediator: vi.fn(),
       completeDebrief: vi.fn(),
       isPaused: false,
     })

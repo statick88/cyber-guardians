@@ -1,13 +1,11 @@
 'use client'
 
-import type { ScaffoldingLevel, ActivityType } from '@/types/educational'
+import type { ScaffoldingLevel } from '@/types/educational'
 import { getScaffoldingAdaptation } from '@/hooks/useScaffolding'
 
 interface AdaptiveDifficultyProps {
   /** Current scaffolding level */
   level: ScaffoldingLevel
-  /** Activity type for adaptation rules */
-  activityType: ActivityType
   /** Children to adapt */
   children: React.ReactNode
 }
@@ -28,7 +26,6 @@ const INDICATOR_LABELS: Record<ScaffoldingLevel, { label: string; icon: string }
  */
 export default function AdaptiveDifficulty({
   level,
-  activityType: _activityType,
   children,
 }: AdaptiveDifficultyProps) {
   const adaptation = getScaffoldingAdaptation(level)
