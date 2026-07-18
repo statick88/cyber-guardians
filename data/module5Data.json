@@ -1,0 +1,187 @@
+{
+  "escenarios": [
+    {
+      "id": "deepfake-1",
+      "titulo": "Video falso de celebridad en redes sociales",
+      "contexto": "Un video de una celebridad promocionando una inversión crypto aparece en tu feed. El video se ve muy real.",
+      "artifacts": [
+        {
+          "id": "df1-art1",
+          "tipo": "video",
+          "titulo": "Celebridad promocionando crypto",
+          "descripcion": "Video de 30 segundos donde una celebridad conocida promociona una inversión crypto con retornos garantizados.",
+          "senales": ["Bordillo borroso alrededor del pelo", "Parpadeos irregulares", "Sonido ligeramente sincronizado"],
+          "nivelDificultad": "medio",
+          "fuente": "UNICEF 2024"
+        }
+      ],
+      "pregunta": "¿Qué señales indican que este video es un deepfake?",
+      "opciones": [
+        "El video tiene marcas de agua oficiales",
+        "El bordillo del pelo se ve borroso y los parpadeos son irregulares",
+        "La celebridad tiene el mismo peinado que siempre",
+        "El video tiene buena calidad de audio"
+      ],
+      "respuestaCorrecta": 1,
+      "explicacion": "Los deepfakes de video a menudo muestran bordillos borroso alrededor del cabello y parpadeos irregulares. UNICEF reporta que 1.2M de niños fueron afectados por deepfakes en 2024.",
+      "puntuacionMaxima": 4,
+      "fuente": "UNICEF 2024",
+      "edadObjetivo": "14-18"
+    },
+    {
+      "id": "deepfake-2",
+      "titulo": "Llamada de voz de familiar preocupado",
+      "contexto": "Recibes una llamada de tu mamá diciendo que tuvo un accidente y necesita dinero urgente. La voz suena exactamente como ella.",
+      "artifacts": [
+        {
+          "id": "df2-art1",
+          "tipo": "audio",
+          "titulo": "Voz clonada de familiar",
+          "descripcion": "Audio de 45 segundos con voz idéntica a la de tu familiar pidiendo ayuda económica urgente.",
+          "senales": ["Urgencia excesiva", "No puede hacer videollamada", "Pide transferencia inmediata"],
+          "nivelDificultad": "dificil",
+          "fuente": "FBI IC3 2025"
+        }
+      ],
+      "pregunta": "¿Cómo verificarías si esta llamada es real?",
+      "opciones": [
+        "Transferir el dinero inmediatamente para ayudar",
+        "Colgar y llamar a tu familiar directamente por su número conocido",
+        "Pedir que te envíe una foto selfie con la fecha de hoy",
+        "Esperar a que llame de nuevo"
+      ],
+      "respuestaCorrecta": 1,
+      "explicacion": "NUNCA transfieras dinero por una llamada de emergencia. Cuelga y llama directamente al número conocido de tu familiar. El FBI reporta un aumento del 1,200% en fraudes por clonación de voz desde 2023.",
+      "puntuacionMaxima": 4,
+      "fuente": "FBI IC3 2025",
+      "edadObjetivo": "14-18"
+    },
+    {
+      "id": "deepfake-3",
+      "titulo": "Foto de perfil sospechosa en app de citas",
+      "contexto": "Alguien con una foto muy atractiva te contacta en una app de citas. La foto parece profesional pero hay algo raro.",
+      "artifacts": [
+        {
+          "id": "df3-art1",
+          "tipo": "imagen",
+          "titulo": "Foto de perfil perfecta",
+          "descripcion": "Foto de perfil con iluminación perfecta, fondo genérico y expresión facial ligeramente artificial.",
+          "senales": ["Fondo genérico o borroso", "Piel sin imperfecciones naturales", "Ojos ligeramente asimétricos"],
+          "nivelDificultad": "facil",
+          "fuente": "INDEPED 2025"
+        }
+      ],
+      "pregunta": "¿Qué indica que esta foto podría ser generada por IA?",
+      "opciones": [
+        "La persona es muy atractiva",
+        "La foto tiene buena resolución",
+        "La piel no tiene imperfecciones naturales y el fondo es genérico",
+        "La persona sonríe en la foto"
+      ],
+      "respuestaCorrecta": 2,
+      "explicacion": "Las imágenes generadas por IA suelen tener piel sin imperfecciones, fondos genéricos y expresiones ligeramente artificiales. INDEPED reporta 11M de cuentas en la Dark Web de menores.",
+      "puntuacionMaxima": 4,
+      "fuente": "INDEPED 2025",
+      "edadObjetivo": "14-18"
+    },
+    {
+      "id": "deepfake-4",
+      "titulo": "Noticia falsa con video de político",
+      "contexto": "Un video de un político diciendo cosas polémicas se viraliza. El video parece auténtico pero hay dudas.",
+      "artifacts": [
+        {
+          "id": "df4-art1",
+          "tipo": "video",
+          "titulo": "Político en conferencia falsa",
+          "descripcion": "Video de 1 minuto donde un político parece hacer declaraciones controversiales en una conferencia de prensa.",
+          "senales": ["Logo de canal no coincide", "Fecha incorrecta en el metadata", "Movimientos de boca sincronizados pero artificiales"],
+          "nivelDificultad": "dificil",
+          "fuente": "Mexico Reforms 2025"
+        }
+      ],
+      "pregunta": "¿Cuál es la mejor forma de verificar este video?",
+      "opciones": [
+        "Compartirlo en redes para que otros opinen",
+        "Buscar la fuente original en el canal oficial del político",
+        "Confiar en que el video es real porque se ve auténtico",
+        "Esperar a que aparezca en noticias confiables"
+      ],
+      "respuestaCorrecta": 1,
+      "explicacion": "Siempre busca la fuente original. México implementó reformas con penas de 10-15 años para crímenes con deepfakes. Verifica en canales oficiales antes de creer o compartir.",
+      "puntuacionMaxima": 4,
+      "fuente": "Mexico Reforms 2025",
+      "edadObjetivo": "14-18"
+    }
+  ],
+  "indicadoresMetadata": [
+    {
+      "id": "meta-1",
+      "campo": "EXIF DateTimeOriginal",
+      "valorEsperado": "2025-01-15 14:30:00",
+      "valorSospechoso": "2024-01-01 00:00:00 (fecha anterior a la publicación)",
+      "explicacion": "Si la fecha EXIF es anterior a la fecha de publicación, la imagen pudo haber sido manipulada o reutilizada.",
+      "severidad": "media"
+    },
+    {
+      "id": "meta-2",
+      "campo": "GPS Coordinates",
+      "valorEsperado": "Coordenadas consistentes con el contexto",
+      "valorSospechoso": "Coordenadas en país diferente al reportado",
+      "explicacion": "Las coordenadas GPS que no coinciden con el contexto indican que la imagen pudo haber sido tomada en otro lugar.",
+      "severidad": "alta"
+    },
+    {
+      "id": "meta-3",
+      "campo": "Camera Model",
+      "valorEsperado": "Modelo de cámara real conocido",
+      "valorSospechoso": "Modelo de cámara inexistente o 'AI Generated'",
+      "explicacion": "Algunas herramientas de IA dejan metadatos que indican que la imagen fue generada artificialmente.",
+      "severidad": "critica"
+    },
+    {
+      "id": "meta-4",
+      "campo": "Software",
+      "valorEsperado": "Software de edición conocido (Photoshop, etc.)",
+      "valorSospechoso": "Herramientas de generación de IA (DALL-E, Midjourney, etc.)",
+      "explicacion": "El campo Software en los metadatos puede revelar si la imagen fue creada con herramientas de IA generativa.",
+      "severidad": "critica"
+    },
+    {
+      "id": "meta-5",
+      "campo": "Compression Artifacts",
+      "valorEsperado": "Compresión JPEG normal",
+      "valorSospechoso": "Múltiples capas de compresión o artefactos inusuales",
+      "explicacion": "Múltiples capas de compresión indican que la imagen ha sido editada o recopilada de múltiples fuentes.",
+      "severidad": "media"
+    }
+  ],
+  "microActividades": [
+    {
+      "id": "micro-df-1",
+      "tipo": "verdadero-falso",
+      "pregunta": "Un deepfake de video siempre muestra parpadeos irregulares.",
+      "respuestaCorrecta": "verdadero",
+      "puntos": 3,
+      "explicacion": "Los deepfakes de video a menudo fallan en reproducir parpadeos naturales. Es una de las señales más confiables de detección.",
+      "categoria": "deepfake_detection"
+    },
+    {
+      "id": "micro-df-2",
+      "tipo": "verdadero-falso",
+      "pregunta": "Si una llamada de voz suena como tu familiar, es seguro transferir dinero.",
+      "respuestaCorrecta": "falso",
+      "puntos": 3,
+      "explicacion": "NUNCA transfieras dinero por una llamada. El FBI reporta un aumento del 1,200% en fraudes por clonación de voz.",
+      "categoria": "deepfake_detection"
+    },
+    {
+      "id": "micro-df-3",
+      "tipo": "verdadero-falso",
+      "pregunta": "Las imágenes generadas por IA suelen tener piel sin imperfecciones naturales.",
+      "respuestaCorrecta": "verdadero",
+      "puntos": 3,
+      "explicacion": "Las imágenes de IA tienden a tener piel perfecta, sin pecas, cicatrices o imperfecciones naturales.",
+      "categoria": "deepfake_detection"
+    }
+  ]
+}
