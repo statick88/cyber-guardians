@@ -36,7 +36,7 @@ const localStorageMock = (() => {
 
 beforeEach(() => {
   localStorageMock.clear()
-  vi.stubGlobal('window', { localStorage: localStorageMock })
+  vi.stubGlobal('localStorage', localStorageMock)
 })
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────

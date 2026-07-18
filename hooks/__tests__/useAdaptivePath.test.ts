@@ -9,9 +9,8 @@
  * Run: pnpm test hooks/__tests__/useAdaptivePath.test.ts
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { renderHook, act } from '@testing-library/react'
+import { renderHook } from '@testing-library/react'
 import { useAdaptivePath } from '../useAdaptivePath'
-import { usePortfolio } from '../usePortfolio'
 import type { PortfolioEntry } from '@/types/educational'
 
 // ─── Mock localStorage ────────────────────────────────────────────────────────
@@ -34,7 +33,7 @@ const localStorageMock = (() => {
 
 beforeEach(() => {
   localStorageMock.clear()
-  vi.stubGlobal('window', { localStorage: localStorageMock })
+  vi.stubGlobal('localStorage', localStorageMock)
 })
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────
@@ -53,6 +52,10 @@ function makeEntry(
   }
 }
 
+function seedPortfolio(entries: PortfolioEntry[]): void {
+  localStorageMock.setItem('cg_portfolio', JSON.stringify(entries))
+}
+
 // ─── Tests ────────────────────────────────────────────────────────────────────
 
 describe('useAdaptivePath', () => {
@@ -64,22 +67,15 @@ describe('useAdaptivePath', () => {
   })
 
   it('returns weakest competency first', () => {
-    const { result: portfolioHook } = renderHook(() => usePortfolio())
-    const { result: adaptiveHook } = renderHook(() => useAdaptivePath())
+    seedPortfolio([
+      makeEntry({ competencyTag: 'email-analysis', rubricScore: 90 }),
+      makeEntry({ competencyTag: 'url-inspection', rubricScore: 30 }),
+      makeEntry({ competencyTag: 'phishing-sim', rubricScore: 60 }),
+    ])
 
-    act(() => {
-      portfolioHook.current.addEntry(
-        makeEntry({ competencyTag: 'email-analysis', rubricScore: 90 })
-      )
-      portfolioHook.current.addEntry(
-        makeEntry({ competencyTag: 'url-inspection', rubricScore: 30 })
-      )
-      portfolioHook.current.addEntry(
-        makeEntry({ competencyTag: 'phishing-sim', rubricScore: 60 })
-      )
-    })
+    const { result } = renderHook(() => useAdaptivePath())
 
-    const recs = adaptiveHook.current.getRecommendations()
+    const recs = result.current.getRecommendations()
     expect(recs).toHaveLength(3)
     // Weakest first (url-inspection: 30)
     expect(recs[0].tag).toBe('url-inspection')
@@ -89,61 +85,48 @@ describe('useAdaptivePath', () => {
   })
 
   it('getWeakestCompetency returns the tag with lowest score', () => {
-    const { result: portfolioHook } = renderHook(() => usePortfolio())
-    const { result: adaptiveHook } = renderHook(() => useAdaptivePath())
+    seedPortfolio([
+      makeEntry({ competencyTag: 'email-analysis', rubricScore: 85 }),
+      makeEntry({ competencyTag: 'digital-defense', rubricScore: 40 }),
+    ])
 
-    act(() => {
-      portfolioHook.current.addEntry(
-        makeEntry({ competencyTag: 'email-analysis', rubricScore: 85 })
-      )
-      portfolioHook.current.addEntry(
-        makeEntry({ competencyTag: 'digital-defense', rubricScore: 40 })
-      )
-    })
+    const { result } = renderHook(() => useAdaptivePath())
 
-    expect(adaptiveHook.current.getWeakestCompetency()).toBe('digital-defense')
+    expect(result.current.getWeakestCompetency()).toBe('digital-defense')
   })
 
   it('respects count parameter in getRecommendations', () => {
-    const { result: portfolioHook } = renderHook(() => usePortfolio())
-    const { result: adaptiveHook } = renderHook(() => useAdaptivePath())
+    seedPortfolio([
+      makeEntry({ competencyTag: 'email-analysis', rubricScore: 90 }),
+      makeEntry({ competencyTag: 'url-inspection', rubricScore: 30 }),
+      makeEntry({ competencyTag: 'phishing-sim', rubricScore: 60 }),
+    ])
 
-    act(() => {
-      portfolioHook.current.addEntry(makeEntry({ competencyTag: 'email-analysis', rubricScore: 90 }))
-      portfolioHook.current.addEntry(makeEntry({ competencyTag: 'url-inspection', rubricScore: 30 }))
-      portfolioHook.current.addEntry(makeEntry({ competencyTag: 'phishing-sim', rubricScore: 60 }))
-    })
+    const { result } = renderHook(() => useAdaptivePath())
 
-    const recs = adaptiveHook.current.getRecommendations(2)
+    const recs = result.current.getRecommendations(2)
     expect(recs).toHaveLength(2)
     expect(recs[0].tag).toBe('url-inspection')
     expect(recs[1].tag).toBe('phishing-sim')
   })
 
   it('generates appropriate recommendation reasons', () => {
-    const { result: portfolioHook } = renderHook(() => usePortfolio())
-    const { result: adaptiveHook } = renderHook(() => useAdaptivePath())
+    seedPortfolio([
+      makeEntry({ competencyTag: 'email-analysis', rubricScore: 10 }),
+    ])
 
-    act(() => {
-      portfolioHook.current.addEntry(
-        makeEntry({ competencyTag: 'email-analysis', rubricScore: 10 })
-      )
-    })
+    const { result } = renderHook(() => useAdaptivePath())
 
-    const recs = adaptiveHook.current.getRecommendations()
+    const recs = result.current.getRecommendations()
     expect(recs[0].reason).toContain('bajo')
   })
 
-  it('returns empty array when no entries have rubric scores', () => {
-    const { result: portfolioHook } = renderHook(() => usePortfolio())
-    const { result: adaptiveHook } = renderHook(() => useAdaptivePath())
+  it('returns entry with score 0 when rubric score is undefined', () => {
+    seedPortfolio([makeEntry({ rubricScore: undefined })])
 
-    act(() => {
-      portfolioHook.current.addEntry(makeEntry({ rubricScore: undefined }))
-    })
+    const { result } = renderHook(() => useAdaptivePath())
 
-    // No rubric scores means all scores are 0 — recommendations should still work
-    const recs = adaptiveHook.current.getRecommendations()
+    const recs = result.current.getRecommendations()
     expect(recs).toHaveLength(1)
     expect(recs[0].score).toBe(0)
     expect(recs[0].gap).toBe(100)

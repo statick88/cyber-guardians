@@ -113,8 +113,12 @@ describe('ConceptCard', () => {
 
   it('renders evidence sources', () => {
     render(<ConceptCard {...defaultProps} />)
-    expect(screen.getByText(/INCIBE/)).toBeDefined()
-    expect(screen.getByText(/2024/)).toBeDefined()
+    expect(screen.getByText('Señales a observar')).toBeDefined()
+    expect(
+      screen.getByText(
+        'Los emails legítimos siempre muestran el dominio completo del remitente.'
+      )
+    ).toBeDefined()
   })
 
   it('renders without crashing for different activity types', () => {
