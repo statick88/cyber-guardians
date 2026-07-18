@@ -48,7 +48,7 @@ function getAutonomyLabel(level: string): string {
 // ---------------------------------------------------------------------------
 
 export default function HUD() {
-  const { shieldHP, maxShieldHP, autonomyLevel, xp, notebookOpen, toggleNotebook } = useHUD()
+  const { shieldHP, maxShieldHP, autonomyLevel, xp, notebookOpen, toggleNotebook, completedChallenges } = useHUD()
   const prevHP = useRef(shieldHP)
   const [showFlash, setShowFlash] = useState(false)
 
@@ -129,6 +129,18 @@ export default function HUD() {
               {xp.toLocaleString()}
             </motion.span>
           </div>
+
+          {/* Challenge Progress */}
+          {completedChallenges.length > 0 && (
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] md:text-xs text-slate-400 font-medium hidden sm:inline">
+                Retos
+              </span>
+              <span className="text-[10px] md:text-xs font-mono font-bold text-amber-400">
+                {completedChallenges.length}
+              </span>
+            </div>
+          )}
 
           {/* Spacer */}
           <div className="flex-1" />

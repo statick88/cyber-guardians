@@ -252,11 +252,33 @@ export interface MicroActividad {
 
 // ── Module data (loaded from JSON) ────────────────────────────────
 
+// ── Free Fire + ChatGPT grooming scenarios (2026) ──────────────────
+
+/**
+ * Grooming scenario targeting gamers (Free Fire, Roblox, etc.)
+ * Research: Europol 2024 — gaming platforms increasingly used for child grooming
+ */
+export interface FreeFireGroomingScenario {
+  id: string;
+  titulo: string;
+  contexto: string;
+  plataforma: string; // "Free Fire", "Roblox", "Discord"
+  mensajes: MensajeChat[];
+  senales: string[];
+  puntuacionMaxima: number;
+  fuente: string;
+  edadObjetivo: string;
+  duracionEstimada: string;
+  /** How the groomer used AI tools (e.g. "ChatGPT para generar mensajes personalizados") */
+  herramientaIA?: string;
+}
+
 export interface Modulo3Data {
   escenariosChat: EscenarioChat[];
   actividadesMula: ActividadMula[];
   escenariosExtorsion: EscenarioExtorsion[];
   mensajesDragDrop: MensajeDragDrop[];
+  escenariosGroomingGaming?: FreeFireGroomingScenario[];
 }
 
 // ── Scoring ────────────────────────────────────────────────────────

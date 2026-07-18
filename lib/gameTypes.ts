@@ -29,6 +29,7 @@ export interface HUDContextValue extends HUDState {
   setCurrentModule: (id: number | null) => void
   resetHUD: () => void
   toggleNotebook: () => void
+  completeChallenge: (challengeId: string) => void
 }
 
 export interface AudioSynthConfig {

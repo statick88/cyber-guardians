@@ -16,8 +16,10 @@ const MODULE_NAMES: Record<string, string> = {
   module0: 'Cyber-Diagnóstico',
   module1: 'Caza-Phishing',
   module2: 'Guardianes de Identidad',
-  module3: 'Deepfakes: No creas todo lo que ves',
+  module3: 'Escudo Anti-Reclutamiento',
   module4: 'Tu Código, Tu Escudo',
+  module5: 'Deepfake Defender',
+  module6: 'Crypto-Scam Shield',
 }
 
 const BADGE_DATA: Record<string, { title: string; icon: string }> = {
@@ -26,6 +28,8 @@ const BADGE_DATA: Record<string, { title: string; icon: string }> = {
   'badge-2': { title: 'Cripto-Defensor', icon: '🔐' },
   'badge-3': { title: 'Analista Forense IA', icon: '👁️' },
   'badge-4': { title: 'Guardián de Código', icon: '⚙️' },
+  'badge-5': { title: 'Defensor Deepfake', icon: '🎭' },
+  'badge-6': { title: 'Escudo Crypto', icon: '🛡️' },
 }
 
 const SANITIZE_REGEX = /[^\w\sáéíóúñüÁÉÍÓÚÑÜ.\-]/g

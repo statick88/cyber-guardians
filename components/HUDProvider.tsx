@@ -24,6 +24,7 @@ const HUDContext = createContext<HUDContextValue>({
   setCurrentModule: () => {},
   resetHUD: () => {},
   toggleNotebook: () => {},
+  completeChallenge: () => {},
 })
 
 function loadHUDState(): typeof defaultState {
@@ -86,6 +87,13 @@ export default function HUDProvider({ children }: { children: React.ReactNode })
     setState((prev) => ({ ...prev, notebookOpen: !prev.notebookOpen }))
   }, [])
 
+  const completeChallenge = useCallback((challengeId: string) => {
+    setState((prev) => ({
+      ...prev,
+      completedChallenges: [...prev.completedChallenges, challengeId],
+    }))
+  }, [])
+
   return (
     <HUDContext.Provider
       value={{
@@ -96,6 +104,7 @@ export default function HUDProvider({ children }: { children: React.ReactNode })
         setCurrentModule,
         resetHUD,
         toggleNotebook,
+        completeChallenge,
       }}
     >
       {children}
