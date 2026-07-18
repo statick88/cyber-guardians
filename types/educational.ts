@@ -57,7 +57,7 @@ export type AttackerTechnique =
 
 // ─── Debrief Metacognitivo (Cierre Reflexivo) ────────────────────────────────
 
-export type DebriefPromptType = 'slider' | 'micro-decision' | 'open-reflection';
+export type DebriefPromptType = 'slider' | 'micro-decision' | 'open-reflection' | 'open-ended-with-rubric';
 
 export interface DebriefPrompt {
   id: string;
@@ -83,13 +83,116 @@ export interface DebriefOption {
   cognitiveInsight: string;
 }
 
-export type CompetencyTag =
+// ─── Rubric for Open-Ended Assessment ───────────────────────────────────────
+
+export interface RubricCriterion {
+  /** Keyword or phrase to match in student response */
+  keyword: string;
+  /** Points awarded for matching this criterion */
+  points: number;
+  /** Feedback shown when criterion is met */
+  feedback: string;
+}
+
+export interface AssessmentRubric {
+  /** Rubric criteria (simple keyword matching) */
+  criteria: RubricCriterion[];
+  /** Maximum achievable score */
+  maxScore: number;
+  /** Feedback template: shown after all criteria evaluated */
+  feedbackTemplate: string;
+}
+
+// ─── Competency Tags ────────────────────────────────────────────────────────
+
+export type PedagogyCompetencyTag =
   | 'threat_identification'       // Identificación de amenazas
   | 'evidence_analysis'           // Análisis de evidencias
   | 'decision_under_pressure'     // Decisión bajo presión
   | 'metacognitive_regulation'    // Autorregulación metacognitiva
   | 'knowledge_transfer'          // Transferencia de conocimiento
   | 'emotional_regulation';       // Regulación emocional
+
+/** Backward-compatible alias — existing code references CompetencyTag for pedagogy competencies */
+export type CompetencyTag = PedagogyCompetencyTag;
+
+// ─── Skill Competency Tags (pedagogical-10x) ────────────────────────────────
+
+export type SkillCompetencyTag =
+  | 'email-analysis'
+  | 'url-inspection'
+  | 'phishing-sim'
+  | 'digital-defense'
+  | 'metadata-extraction'
+  | 'cookie-sweeping';
+
+// ─── Portfolio Types (pedagogical-10x) ──────────────────────────────────────
+
+export interface CompetencyScore {
+  tag: SkillCompetencyTag;
+  /** Score 0–100 */
+  score: number;
+  /** Number of scenarios attempted */
+  attempts: number;
+  /** Timestamp of last update */
+  lastUpdated: number;
+}
+
+export interface PortfolioEntry {
+  scenarioId: string;
+  moduleName: string;
+  competencyTag: SkillCompetencyTag;
+  /** Debrief responses */
+  responses: Record<string, unknown>;
+  /** Rubric score if applicable */
+  rubricScore?: number;
+  /** Timestamp */
+  timestamp: number;
+}
+
+export interface Portfolio {
+  /** Competency scores aggregated across all entries */
+  competencies: Record<SkillCompetencyTag, CompetencyScore>;
+  /** All portfolio entries */
+  entries: PortfolioEntry[];
+  /** Last export timestamp */
+  lastExported?: number;
+}
+
+// ─── Scaffolding Adaptation (pedagogical-10x) ───────────────────────────────
+
+export interface ScaffoldingAdaptation {
+  /** Scaffolding level */
+  level: ScaffoldingLevel;
+  /** Show additional hints before activity */
+  showExtraHints: boolean;
+  /** Simplify activity options (reduce choices) */
+  simplifyOptions: boolean;
+  /** Show difficulty indicator to student */
+  showDifficultyIndicator: boolean;
+  /** Enable challenge mode (no assistance) */
+  challengeMode: boolean;
+}
+
+// ─── Learning Path Recommendation (pedagogical-10x) ─────────────────────────
+
+export interface LearningPathRecommendation {
+  /** Recommended next scenario ID */
+  scenarioId: string;
+  /** Reason for recommendation */
+  reason: string;
+  /** Competency tag this addresses */
+  targetCompetency: SkillCompetencyTag;
+  /** Priority 1 (highest) – 5 */
+  priority: number;
+}
+
+// ─── Educational Mediator Props (extended for pedagogical-10x) ───────────────
+
+export interface EducationalMediatorProps {
+  /** Whether to enable pedagogical-10x features */
+  enablePedagogical10x?: boolean;
+}
 
 export interface MetacognitiveDebrief {
   prompts: DebriefPrompt[];
@@ -248,6 +351,8 @@ export interface DebriefDialogProps {
   onSkip: () => void;
   moduleName: string;
   scenarioId?: string;
+  /** Optional rubrics per prompt (keyed by storageKey) — pedagogical-10x */
+  rubrics?: Record<string, AssessmentRubric>;
 }
 
 export interface NotebookPanelProps {
