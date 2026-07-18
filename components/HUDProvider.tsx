@@ -12,6 +12,8 @@ const defaultState = {
   xp: 0,
   currentModule: null as number | null,
   notebookOpen: false,
+  challenges: [] as import('@/lib/gameTypes').Challenge[],
+  completedChallenges: [] as string[],
 }
 
 const HUDContext = createContext<HUDContextValue>({
