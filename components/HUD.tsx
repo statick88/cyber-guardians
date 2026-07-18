@@ -12,24 +12,24 @@ import { Button } from '@/components/ui/button'
 // ---------------------------------------------------------------------------
 
 function getShieldColor(hp: number): string {
-  if (hp > 60) return 'bg-emerald-500'
-  if (hp > 30) return 'bg-amber-500'
-  return 'bg-red-500'
+  if (hp > 60) return 'bg-neon-emerald'
+  if (hp > 30) return 'bg-neon-amber'
+  return 'bg-neon-rose'
 }
 
 function getShieldGlow(hp: number): string {
-  if (hp > 60) return 'shadow-[0_0_8px_rgba(16,185,129,0.5)]'
-  if (hp > 30) return 'shadow-[0_0_8px_rgba(245,158,11,0.5)]'
-  return 'shadow-[0_0_8px_rgba(239,68,68,0.5)]'
+  if (hp > 60) return 'shadow-[0_0_8px_rgba(0,230,118,0.5)]'
+  if (hp > 30) return 'shadow-[0_0_8px_rgba(255,179,0,0.5)]'
+  return 'shadow-[0_0_8px_rgba(255,64,129,0.5)]'
 }
 
 function getAutonomyColor(level: string): string {
   switch (level) {
-    case 'novice': return 'text-cyan-400 border-cyan-500/40'
-    case 'defender': return 'text-pink-400 border-pink-500/40'
-    case 'guardian': return 'text-amber-400 border-amber-500/40'
-    case 'elite': return 'text-red-400 border-red-500/40'
-    default: return 'text-cyan-400 border-cyan-500/40'
+    case 'novice': return 'text-neon-cyan border-neon-cyan/40'
+    case 'defender': return 'text-neon-magenta border-neon-magenta/40'
+    case 'guardian': return 'text-neon-amber border-neon-amber/40'
+    case 'elite': return 'text-neon-rose border-neon-rose/40'
+    default: return 'text-neon-cyan border-neon-cyan/40'
   }
 }
 
@@ -48,7 +48,7 @@ function getAutonomyLabel(level: string): string {
 // ---------------------------------------------------------------------------
 
 export default function HUD() {
-  const { shieldHP, maxShieldHP, autonomyLevel, xp, notebookOpen, toggleNotebook } = useHUD()
+  const { shieldHP, maxShieldHP, autonomyLevel, xp, notebookOpen, toggleNotebook, completedChallenges } = useHUD()
   const prevHP = useRef(shieldHP)
   const [showFlash, setShowFlash] = useState(false)
 
@@ -75,13 +75,13 @@ export default function HUD() {
             animate={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-red-500/20 pointer-events-none"
+            className="fixed inset-0 z-50 bg-neon-rose/20 pointer-events-none"
           />
         )}
       </AnimatePresence>
 
       {/* HUD Bar */}
-      <div className="fixed top-0 left-0 right-0 z-40 h-9 md:h-12 bg-[#0a0a1a]/90 backdrop-blur border-b border-slate-800/50">
+      <div className="fixed top-0 left-0 right-0 z-40 h-9 md:h-12 bg-void/85 backdrop-blur-md border-b border-white/5">
         <div className="h-full max-w-screen-2xl mx-auto px-3 md:px-6 flex items-center gap-3 md:gap-5">
           {/* Shield HP */}
           <div className="flex items-center gap-2 min-w-0">
@@ -89,7 +89,7 @@ export default function HUD() {
             <span className="text-[10px] md:text-xs text-slate-400 font-medium hidden sm:inline">
               Escudo
             </span>
-            <div className="relative w-16 md:w-24 h-2 md:h-2.5 bg-slate-800 rounded-full overflow-hidden">
+            <div className="relative w-16 md:w-24 h-2 md:h-2.5 bg-white/5 rounded-full overflow-hidden">
               <motion.div
                 className={`h-full rounded-full ${getShieldColor(shieldHP)} ${getShieldGlow(shieldHP)}`}
                 initial={false}
@@ -121,7 +121,7 @@ export default function HUD() {
             </span>
             <motion.span
               key={xp}
-              initial={{ scale: 1.3, color: '#06b6d4' }}
+              initial={{ scale: 1.3, color: '#00e5ff' }}
               animate={{ scale: 1, color: '#cbd5e1' }}
               transition={{ duration: 0.3 }}
               className="text-[10px] md:text-xs font-mono font-bold tabular-nums"
@@ -129,6 +129,18 @@ export default function HUD() {
               {xp.toLocaleString()}
             </motion.span>
           </div>
+
+          {/* Challenge Progress */}
+          {completedChallenges.length > 0 && (
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] md:text-xs text-slate-400 font-medium hidden sm:inline">
+                Retos
+              </span>
+              <span className="text-[10px] md:text-xs font-mono font-bold text-neon-amber">
+                {completedChallenges.length}
+              </span>
+            </div>
+          )}
 
           {/* Spacer */}
           <div className="flex-1" />
@@ -139,7 +151,7 @@ export default function HUD() {
             {Array.from({ length: 8 }).map((_, i) => (
               <motion.div
                 key={i}
-                className="w-1 bg-cyan-500/60 rounded-t"
+                className="w-1 bg-neon-cyan/60 rounded-t"
                 animate={{
                   height: [4, 8 + Math.random() * 8, 4],
                 }}
@@ -160,7 +172,7 @@ export default function HUD() {
             {Array.from({ length: 5 }).map((_, i) => (
               <motion.div
                 key={i}
-                className="w-1.5 h-1.5 rounded-full bg-emerald-500/70"
+                className="w-1.5 h-1.5 rounded-full bg-neon-emerald/70"
                 animate={{
                   opacity: [0.3, 1, 0.3],
                 }}
@@ -179,8 +191,8 @@ export default function HUD() {
             variant="ghost"
             size="icon"
             onClick={toggleNotebook}
-            className={`text-slate-400 hover:text-cyan-400 ${
-              notebookOpen ? 'text-cyan-400' : ''
+            className={`text-slate-400 hover:text-neon-cyan ${
+              notebookOpen ? 'text-neon-cyan' : ''
             }`}
             aria-label={notebookOpen ? "Cerrar cuaderno" : "Abrir cuaderno"}
             title={notebookOpen ? "Cerrar cuaderno" : "Abrir cuaderno"}

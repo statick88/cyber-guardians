@@ -241,7 +241,7 @@ function Module1GameContent() {
   }
 
   return (
-    <main className="min-h-screen gradient-bg">
+    <main className="min-h-screen bg-void aurora-bg">
       <AnimatePresence mode="wait">
         {gamePhase === 'WELCOME' && (
           <WelcomeScreen
@@ -250,7 +250,6 @@ function Module1GameContent() {
             moduleTitle="Misión: Shadow Protocol"
             moduleSubtitle="Privacidad y Huella Digital"
             moduleDescription="Aprende a rastrear y neutralizar las huellas invisibles que dejas en la red. Domina el análisis de metadatos EXIF y limpia las cookies espías antes de que el enemigo compile tu perfil digital."
-            moduleIcon="🕵️"
             stats="6 dinámicas · 15-20 min · Umbral: 70%"
             moduleNumber={1}
           />

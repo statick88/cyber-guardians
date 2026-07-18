@@ -1,6 +1,6 @@
 'use client'
 
-import type { ScaffoldingLevel, ScaffoldingTip } from '@/types/educational'
+import type { ScaffoldingLevel, ScaffoldingTip, ScaffoldingAdaptation } from '@/types/educational'
 
 // ─── Scaffolding Progression Rules ───────────────────────────────────────────
 
@@ -95,4 +95,51 @@ export function getCurrentTip(
     ...baseTip,
     hint,
   }
+}
+
+// ─── Scaffolding Adaptation (pedagogical-10x) ───────────────────────────────
+
+const SCAFFOLDING_ADAPTATIONS: Record<ScaffoldingLevel, ScaffoldingAdaptation> = {
+  explicit: {
+    level: 'explicit',
+    showExtraHints: true,
+    simplifyOptions: true,
+    showDifficultyIndicator: true,
+    challengeMode: false,
+  },
+  guided: {
+    level: 'guided',
+    showExtraHints: false,
+    simplifyOptions: false,
+    showDifficultyIndicator: true,
+    challengeMode: false,
+  },
+  implicit: {
+    level: 'implicit',
+    showExtraHints: false,
+    simplifyOptions: false,
+    showDifficultyIndicator: false,
+    challengeMode: false,
+  },
+  withdrawn: {
+    level: 'withdrawn',
+    showExtraHints: false,
+    simplifyOptions: false,
+    showDifficultyIndicator: false,
+    challengeMode: true,
+  },
+}
+
+/**
+ * getScaffoldingAdaptation returns UI adaptation flags for the given scaffolding level.
+ *
+ * Pure function — no side effects, deterministic output.
+ *
+ * @param level - Current scaffolding level
+ * @returns ScaffoldingAdaptation with boolean flags for UI adaptation
+ */
+export function getScaffoldingAdaptation(
+  level: ScaffoldingLevel
+): ScaffoldingAdaptation {
+  return SCAFFOLDING_ADAPTATIONS[level]
 }

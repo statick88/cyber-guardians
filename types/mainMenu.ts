@@ -25,7 +25,6 @@ export interface Mission {
   title: string                // human-readable title
   description: string         // short blurb
   tier: ModuleTier
-  emoji: string                // shield icon
   totalActivities: number      // max activity index
   status: MissionStatus
   progressPct: number          // 0-100

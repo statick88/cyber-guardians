@@ -166,7 +166,7 @@ export default function Modulo0Game() {
     : 0
 
   return (
-    <main className="min-h-screen gradient-bg">
+    <main className="min-h-screen bg-void aurora-bg">
       <AnimatePresence mode="wait">
         {gameState === 'WELCOME' && (
           <WelcomeScreen key="welcome" onStart={handleStart} />

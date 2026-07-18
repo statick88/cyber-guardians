@@ -298,7 +298,7 @@ export default function Modulo3Page() {
   }
 
   return (
-    <main className="min-h-screen gradient-bg">
+    <main className="min-h-screen bg-void aurora-bg">
       <AnimatePresence mode="wait">
         {gamePhase === 'WELCOME' && (
           <WelcomeScreen
@@ -307,7 +307,6 @@ export default function Modulo3Page() {
             moduleTitle="CyberSentry — Escudo contra Engaños y Mafias Digitales"
             moduleSubtitle="Protege a los jóvenes del reclutamiento criminal, muleo financiero, ciberextorsión y manipulación"
             moduleDescription="Identifica señales de peligro en reclutamiento, muleo financiero, ciberextorsión y manipulación. Toma decisiones correctas en escenarios reales."
-            moduleIcon="🛡️"
             stats="6 actividades · 15-20 min · Umbral: 70%"
             moduleNumber={3}
           />

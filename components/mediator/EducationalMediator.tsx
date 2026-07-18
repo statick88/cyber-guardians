@@ -5,7 +5,11 @@ import { useEducationalMediator } from '@/hooks/useEducationalMediator'
 import EducationalPanel from './EducationalPanel'
 import TipBadge from './TipBadge'
 import DebriefDialog from './DebriefDialog'
-import type { EducationalLayer, ScaffoldingProgress, MediatorState } from '@/types/educational'
+import ConceptCard from './ConceptCard'
+import FormativeFeedback from './FormativeFeedback'
+import { usePortfolio } from '@/hooks/usePortfolio'
+import { useAdaptivePath } from '@/hooks/useAdaptivePath'
+import type { EducationalLayer, ScaffoldingProgress, MediatorState, SkillCompetencyTag } from '@/types/educational'
 import { getCurrentTip } from '@/hooks/useScaffolding'
 import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
 
@@ -22,6 +26,8 @@ interface EducationalMediatorProps {
   onTipRequest?: () => void
   /** Callback cuando se completa el debrief */
   onDebriefComplete?: (responses: Record<string, unknown>) => void
+  /** Habilitar funcionalidades pedagógicas 10x (ConceptCard, FormativeFeedback, Portfolio) */
+  enablePedagogical10x?: boolean
   /** Hijos que reciben el estado del mediador para control avanzado */
   children?: (mediatorState: {
     state: MediatorState
@@ -60,9 +66,12 @@ export function EducationalMediator({
   scenarioId,
   onTipRequest,
   onDebriefComplete,
+  enablePedagogical10x = false,
   children,
 }: EducationalMediatorProps) {
   const mediator = useEducationalMediator()
+  const portfolio = usePortfolio()
+  const adaptivePath = useAdaptivePath()
   const isMounted = useRef(true)
   const lastErrorTime = useRef(0)
   const ERROR_COOLDOWN_MS = 3000
@@ -105,9 +114,36 @@ export function EducationalMediator({
 
   // Handle debrief completion
   const handleDebriefComplete = useCallback((responses: Record<string, unknown>) => {
+    // Integrate with portfolio when pedagogical-10x is enabled
+    if (enablePedagogical10x && educationalLayer) {
+      // Map activityType → competencyTag (EducationalLayer doesn't carry competency directly)
+      const ACTIVITY_TO_COMPETENCY: Record<string, SkillCompetencyTag> = {
+        email_analysis: 'email-analysis',
+        url_inspection: 'url-inspection',
+        phishing_scenario: 'phishing-sim',
+        security_quiz: 'digital-defense',
+        drag_drop_classification: 'digital-defense',
+        micro_activity: 'digital-defense',
+        password_strength: 'digital-defense',
+        mfa_simulation: 'digital-defense',
+        social_media_audit: 'digital-defense',
+      }
+
+      portfolio.addEntry({
+        scenarioId: educationalLayer.scenarioId,
+        moduleName,
+        competencyTag: ACTIVITY_TO_COMPETENCY[educationalLayer.activityType] ?? 'digital-defense',
+        responses,
+        timestamp: Date.now(),
+      })
+
+      // Trigger recomputation of adaptive path recommendations
+      adaptivePath.getRecommendations()
+    }
+
     mediator.completeDebrief()
     onDebriefComplete?.(responses)
-  }, [mediator, onDebriefComplete])
+  }, [mediator, onDebriefComplete, enablePedagogical10x, educationalLayer, moduleName, portfolio, adaptivePath])
 
   // Cleanup on unmount
   useEffect(() => {
@@ -136,6 +172,16 @@ export function EducationalMediator({
 
   return (
     <>
+      {/* Concept Card (pedagogical-10x: on intro) */}
+      {enablePedagogical10x && mediator.state === 'onIntro' && educationalLayer && (
+        <ConceptCard
+          activityType={educationalLayer.activityType}
+          educationalLayer={educationalLayer}
+          onDismiss={mediator.dismissMediator}
+          onViewExample={mediator.dismissMediator}
+        />
+      )}
+
       {/* Educational Panel (tips + conflict questions) */}
       <EducationalPanel
         state={mediator.state}
@@ -150,6 +196,15 @@ export function EducationalMediator({
           tip={currentTip}
           onDismiss={mediator.dismissMediator}
           autoDismissMs={8000}
+        />
+      )}
+
+      {/* Formative Feedback (pedagogical-10x: on error constructive) */}
+      {enablePedagogical10x && mediator.state === 'onErrorConstructive' && (
+        <FormativeFeedback
+          competencyScores={portfolio.competencyScores}
+          overallScore={portfolio.overallScore}
+          onDismiss={mediator.dismissMediator}
         />
       )}
 

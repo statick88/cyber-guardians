@@ -78,6 +78,20 @@ const FIELD_ICONS: Record<MetadataField, string> = {
   orientation: '🧭',
 }
 
+// ── Deepfake detection indicators (Module 5 crossover) ─────────────
+
+const DEEPFAKE_INDICATORS = [
+  { field: 'AI_Generated', label: 'IA Generado', severity: 'alta' as const },
+  { field: 'Synthetic_Media', label: 'Medio Sintético', severity: 'alta' as const },
+  { field: 'Face_Swap_Detected', label: 'Face Swap Detectado', severity: 'critica' as const },
+  { field: 'Voice_Clone_Detected', label: 'Voz Clonada Detectada', severity: 'critica' as const },
+]
+
+const SEVERITY_CONFIG = {
+  critica: { label: 'CRÍTICA', color: 'text-rose-400', bgColor: 'bg-rose-500/20', borderColor: 'border-rose-500/50' },
+  alta: { label: 'ALTA', color: 'text-orange-400', bgColor: 'bg-orange-500/20', borderColor: 'border-orange-500/50' },
+}
+
 // ---------------------------------------------------------------------------
 // Sample data
 // ---------------------------------------------------------------------------
@@ -927,6 +941,40 @@ export default function MetadataExtractor({
                   </div>
                 ))}
               </div>
+            )}
+
+            {/* Deepfake Detection Indicators (Module 5 crossover) */}
+            {!selectedImage && !isGameOver && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-3 rounded-lg border border-purple-500/30 bg-purple-950/20"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-sm">🎭</span>
+                  <span className="text-xs font-bold text-purple-300">
+                    Indicadores de Deepfake
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {DEEPFAKE_INDICATORS.map((ind) => {
+                    const sev = SEVERITY_CONFIG[ind.severity]
+                    return (
+                      <div
+                        key={ind.field}
+                        className={`p-2 rounded border ${sev.bgColor} ${sev.borderColor}`}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <span className={`text-[10px] font-bold ${sev.color}`}>
+                            {sev.label}
+                          </span>
+                          <span className="text-[10px] text-slate-300">{ind.label}</span>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </motion.div>
             )}
           </div>
         </div>

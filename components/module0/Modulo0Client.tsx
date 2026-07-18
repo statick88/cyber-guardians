@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic'
 const Modulo0Game = dynamic(() => import('@/components/module0/Modulo0Game'), {
   ssr: false,
   loading: () => (
-    <main className="min-h-screen gradient-bg flex items-center justify-center">
+    <main className="min-h-screen bg-void aurora-bg flex items-center justify-center">
       <div className="text-center">
         <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 mb-6 animate-pulse">
           <span className="text-4xl" role="img" aria-label="shield">🛡️</span>

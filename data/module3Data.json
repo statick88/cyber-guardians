@@ -1165,5 +1165,117 @@
       "dificultad": "dificil",
       "fuente": "FBI IC3 2022"
     }
+  ],
+  "escenariosGroomingGaming": [
+    {
+      "id": "ff-1",
+      "titulo": "Free Fire: El 'pro' que quiere ser tu amigo",
+      "contexto": "Un jugador de Free Fire con mucho equipo te contacta por WhatsApp después de una partida. Te dice que te vio jugar y que 'tiene potencial'.",
+      "plataforma": "Free Fire",
+      "mensajes": [
+        {
+          "id": "ff1-1",
+          "autor": "reclutador",
+          "texto": "¿Viste la última partida? Juegas re bien. Yo tengo un squad profesional, ¿te quieres unir?",
+          "esSenal": true,
+          "razon": "Contacto no solicitado + halago excesivo"
+        },
+        {
+          "id": "ff1-2",
+          "autor": "usuario",
+          "texto": "¿De verdad? ¡Sí! ¿Cómo funciona?",
+          "esSenal": false,
+          "razon": ""
+        },
+        {
+          "id": "ff1-3",
+          "autor": "reclutador",
+          "texto": "Necesito tu número para coordinar por WhatsApp. En Free Fire no se puede armar equipo bien",
+          "esSenal": true,
+          "razon": "Solicita datos personales para salir de la plataforma"
+        },
+        {
+          "id": "ff1-4",
+          "autor": "reclutador",
+          "texto": "¿Cuántos años tienes? Necesito saber si eres mayor de edad para el contrato del equipo",
+          "esSenal": true,
+          "razon": "Pregunta por edad — possible grooming"
+        },
+        {
+          "id": "ff1-5",
+          "autor": "reclutador",
+          "texto": "Mándame una foto tuya para la tarjeta del equipo. Tiene que ser reciente, sin filtro",
+          "esSenal": true,
+          "razon": "Solicitud de imagen personal — escalada de grooming"
+        }
+      ],
+      "senales": [
+        "Contacto no solicitado de desconocido",
+        "Halago excesivo ('tienes mucho potencial')",
+        "Solicita salir de la plataforma original",
+        "Pregunta por edad",
+        "Solicita imagen personal"
+      ],
+      "puntuacionMaxima": 25,
+      "fuente": "Europol 2024: Gaming platforms as grooming vectors",
+      "edadObjetivo": "12-17",
+      "duracionEstimada": "10 min",
+      "herramientaIA": "ChatGPT para generar mensajes personalizados según perfil del menor"
+    },
+    {
+      "id": "ff-2",
+      "titulo": "Free Fire: El 'premio' que ganaste",
+      "contexto": "Recibes un mensaje de un 'organizador de torneos' diciendo que ganaste un premio en diamantes de Free Fire. Solo necesitas verificar tu cuenta.",
+      "plataforma": "Free Fire",
+      "mensajes": [
+        {
+          "id": "ff2-1",
+          "autor": "organizador",
+          "texto": "¡Felicidades! Ganaste 5000 diamantes en el torneo semanal. Reclama tu premio aquí: [link]",
+          "esSenal": true,
+          "razon": "Premio no solicitado + link sospechoso"
+        },
+        {
+          "id": "ff2-2",
+          "autor": "usuario",
+          "texto": "¿En serio? No participé en ningún torneo...",
+          "esSenal": false,
+          "razon": ""
+        },
+        {
+          "id": "ff2-3",
+          "autor": "organizador",
+          "texto": "Fue automático por tu nivel de juego. Solo necesitamos tu usuario y contraseña para verificar que eres tú",
+          "esSenal": true,
+          "razon": "Solicita credenciales — phishing"
+        },
+        {
+          "id": "ff2-4",
+          "autor": "organizador",
+          "texto": "Si no lo haces ahora, el premio expira en 1 hora. ¡No pierdas 5000 diamantes!",
+          "esSenal": true,
+          "razon": "Presión por urgencia — táctica de phishing"
+        },
+        {
+          "id": "ff2-5",
+          "autor": "organizador",
+          "texto": "También necesito tu correo para enviar el código de verificación. Es obligatorio",
+          "esSenal": true,
+          "razon": "Solicita correo para escalada de ataque"
+        }
+      ],
+      "senales": [
+        "Premio no solicitado",
+        "Link de verificación sospechoso",
+        "Solicita credenciales de usuario",
+        "Urgencia artificial ('expira en 1 hora')",
+        "Solicita correo electrónico"
+      ],
+      "puntuacionMaxima": 25,
+      "fuente": "FBI IC3 2023: Gaming platform scams",
+      "edadObjetivo": "10-16",
+      "duracionEstimada": "8 min",
+      "herramientaIA": null
+    }
   ]
 }
