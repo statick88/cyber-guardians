@@ -56,28 +56,28 @@ Chain strategy: pending
 
 ## Phase 4: Formative Assessment (PR 3)
 
-- [ ] 4.1 **M** Create `hooks/usePortfolio.ts` — `portfolio` state, `addEntry(entry)`, `getCompetencyScore(tag)`, `getAllScores()`, `exportJSON()`, `clearPortfolio()`; localStorage persistence under `cg_portfolio`; SSR guard; cap entries at 200
-- [ ] 4.2 **M** Create `hooks/useAdaptivePath.ts` — `getRecommendations(count?)`, `updateAfterScenario(tag, score)`, `getWeakestCompetency()`; reads from `usePortfolio`; deterministic ordering by competency gap
-- [ ] 4.3 **M** Create `components/mediator/FormativeFeedback.tsx` — renders `conflictQuestion.expectedInsight`; tone adapts per scaffoldingLevel (explicit: "Recuerda que...", guided: "Piensa en...", implicit: "Observa...", withdrawn: no render); mastery progress display; auto-dismiss 10s
-- [ ] 4.4 **M** Enhance `components/mediator/DebriefDialog.tsx` — add `rubrics` prop; handle `open-ended-with-rubric` prompt type: render textarea, evaluate keyword matching on submit, show per-criterion feedback, show score/maxScore
-- [ ] 4.5 **S** Unit test: `usePortfolio` — verify score computation (rubric average or selfAssessment fallback), entry cap at 200, exportJSON includes lastExported
+- [x] 4.1 **M** Create `hooks/usePortfolio.ts` — `portfolio` state, `addEntry(entry)`, `getCompetencyScore(tag)`, `getAllScores()`, `exportJSON()`, `clearPortfolio()`; localStorage persistence under `cg_portfolio`; SSR guard; cap entries at 200
+- [x] 4.2 **M** Create `hooks/useAdaptivePath.ts` — `getRecommendations(count?)`, `updateAfterScenario(tag, score)`, `getWeakestCompetency()`; reads from `usePortfolio`; deterministic ordering by competency gap
+- [x] 4.3 **M** Create `components/mediator/FormativeFeedback.tsx` — renders `conflictQuestion.expectedInsight`; tone adapts per scaffoldingLevel (explicit: "Recuerda que...", guided: "Piensa en...", implicit: "Observa...", withdrawn: no render); mastery progress display; auto-dismiss 10s
+- [x] 4.4 **M** Enhance `components/mediator/DebriefDialog.tsx` — add `rubrics` prop; handle `open-ended-with-rubric` prompt type: render textarea, evaluate keyword matching on submit, show per-criterion feedback, show score/maxScore
+- [x] 4.5 **S** Unit test: `usePortfolio` — verify score computation (rubric average or selfAssessment fallback), entry cap at 200, exportJSON includes lastExported
 - [ ] 4.6 **S** Unit test: `useAdaptivePath` — verify weakest-first ordering, empty portfolio returns empty array, updateAfterScenario triggers recomputation
-- [ ] 4.7 **S** Unit test: DebriefDialog rubric evaluation — mock rubric with 2 criteria, verify matched criteria award points, unmatched shows feedbackTemplate
+- [x] 4.7 **S** Unit test: DebriefDialog rubric evaluation — mock rubric with 2 criteria, verify matched criteria award points, unmatched shows feedbackTemplate
 
 ## Phase 5: Adaptive Content + Integration (PR 4)
 
 - [x] 5.1 **M** Create `components/mediator/AdaptiveDifficulty.tsx` — reads `getScaffoldingAdaptation(level)`, applies CSS class modifiers (opacity-90 for explicit), renders difficulty indicator badges ("💡 Modo guiado", "📊 Dificultad adaptativa", "🏆 Modo desafío"), wraps children
 - [x] 5.2 **M** Modify `components/mediator/EducationalMediator.tsx` — add `enablePedagogical10x` prop (default false); conditionally render ConceptCard on `onIntro` state; conditionally render FormativeFeedback on `onErrorConstructive` state; integrate usePortfolio.addEntry and useAdaptivePath.updateAfterScenario on debrief complete
 - [x] 5.3 **S** Verify `enablePedagogical10x={false}` produces identical behavior to current mediator (no regressions)
-- [ ] 5.4 **S** Unit test: EducationalMediator with 10x enabled renders ConceptCard on onIntro
-- [ ] 5.5 **S** Unit test: EducationalMediator with 10x disabled does NOT render ConceptCard
+- [x] 5.4 **S** Unit test: EducationalMediator with 10x enabled renders ConceptCard on onIntro
+- [x] 5.5 **S** Unit test: EducationalMediator with 10x disabled does NOT render ConceptCard
 
 ## Phase 6: Portfolio UI + Cleanup (PR 5)
 
-- [ ] 6.1 **M** Create `components/mediator/PortfolioSummary.tsx` — competency score grid (tag, score, attempts), export button calling `usePortfolio.exportJSON()`, glass-card styling
-- [ ] 6.2 **S** Update `components/mediator/index.ts` to export ConceptCard, WorkedExample, FormativeFeedback, AdaptiveDifficulty, PortfolioSummary
-- [ ] 6.3 **S** Update `hooks/index.ts` to export useExplicitInstruction, usePortfolio, useAdaptivePath
-- [ ] 6.4 **S** Verify TypeScript compiles with zero `any` types in all new code
+- [x] 6.1 **M** Create `components/mediator/PortfolioSummary.tsx` — competency score grid (tag, score, attempts), export button calling `usePortfolio.exportJSON()`, glass-card styling
+- [x] 6.2 **S** Update `components/mediator/index.ts` to export ConceptCard, WorkedExample, FormativeFeedback, AdaptiveDifficulty, PortfolioSummary
+- [x] 6.3 **S** Update `hooks/index.ts` to export useExplicitInstruction, usePortfolio, useAdaptivePath
+- [x] 6.4 **S** Verify TypeScript compiles with zero `any` types in all new code
 
 ## Dependency Map
 

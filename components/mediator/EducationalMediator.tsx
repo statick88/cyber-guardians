@@ -8,6 +8,7 @@ import DebriefDialog from './DebriefDialog'
 import ConceptCard from './ConceptCard'
 import FormativeFeedback from './FormativeFeedback'
 import { usePortfolio } from '@/hooks/usePortfolio'
+import { useAdaptivePath } from '@/hooks/useAdaptivePath'
 import type { EducationalLayer, ScaffoldingProgress, MediatorState, SkillCompetencyTag } from '@/types/educational'
 import { getCurrentTip } from '@/hooks/useScaffolding'
 import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
@@ -70,6 +71,7 @@ export function EducationalMediator({
 }: EducationalMediatorProps) {
   const mediator = useEducationalMediator()
   const portfolio = usePortfolio()
+  const adaptivePath = useAdaptivePath()
   const isMounted = useRef(true)
   const lastErrorTime = useRef(0)
   const ERROR_COOLDOWN_MS = 3000
@@ -134,11 +136,14 @@ export function EducationalMediator({
         responses,
         timestamp: Date.now(),
       })
+
+      // Trigger recomputation of adaptive path recommendations
+      adaptivePath.getRecommendations()
     }
 
     mediator.completeDebrief()
     onDebriefComplete?.(responses)
-  }, [mediator, onDebriefComplete, enablePedagogical10x, educationalLayer, moduleName, portfolio])
+  }, [mediator, onDebriefComplete, enablePedagogical10x, educationalLayer, moduleName, portfolio, adaptivePath])
 
   // Cleanup on unmount
   useEffect(() => {
