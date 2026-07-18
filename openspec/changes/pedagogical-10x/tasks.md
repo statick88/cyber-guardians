@@ -66,9 +66,9 @@ Chain strategy: pending
 
 ## Phase 5: Adaptive Content + Integration (PR 4)
 
-- [ ] 5.1 **M** Create `components/mediator/AdaptiveDifficulty.tsx` — reads `getScaffoldingAdaptation(level)`, applies CSS class modifiers (opacity-90 for explicit), renders difficulty indicator badges ("💡 Modo guiado", "📊 Dificultad adaptativa", "🏆 Modo desafío"), wraps children
-- [ ] 5.2 **M** Modify `components/mediator/EducationalMediator.tsx` — add `enablePedagogical10x` prop (default false); conditionally render ConceptCard on `onIntro` state; conditionally render FormativeFeedback on `onErrorConstructive` state; integrate usePortfolio.addEntry and useAdaptivePath.updateAfterScenario on debrief complete
-- [ ] 5.3 **S** Verify `enablePedagogical10x={false}` produces identical behavior to current mediator (no regressions)
+- [x] 5.1 **M** Create `components/mediator/AdaptiveDifficulty.tsx` — reads `getScaffoldingAdaptation(level)`, applies CSS class modifiers (opacity-90 for explicit), renders difficulty indicator badges ("💡 Modo guiado", "📊 Dificultad adaptativa", "🏆 Modo desafío"), wraps children
+- [x] 5.2 **M** Modify `components/mediator/EducationalMediator.tsx` — add `enablePedagogical10x` prop (default false); conditionally render ConceptCard on `onIntro` state; conditionally render FormativeFeedback on `onErrorConstructive` state; integrate usePortfolio.addEntry and useAdaptivePath.updateAfterScenario on debrief complete
+- [x] 5.3 **S** Verify `enablePedagogical10x={false}` produces identical behavior to current mediator (no regressions)
 - [ ] 5.4 **S** Unit test: EducationalMediator with 10x enabled renders ConceptCard on onIntro
 - [ ] 5.5 **S** Unit test: EducationalMediator with 10x disabled does NOT render ConceptCard
 
