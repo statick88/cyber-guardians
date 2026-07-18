@@ -47,10 +47,10 @@ Chain strategy: pending
 
 ## Phase 3: Explicit Instruction (PR 2)
 
-- [ ] 3.1 **M** Create `hooks/useExplicitInstruction.ts` — `shouldShow(activityType)`, `markIntroduced(activityType)`, `hasViewedExample(activityType)`, `markExampleViewed(activityType)`, `resetAll()` with localStorage persistence under `cg_introduced_types` and `cg_viewed_examples`; SSR guard
-- [ ] 3.2 **M** Create `components/mediator/ConceptCard.tsx` — renders `educationalLayer.conflictQuestion.question` as title, `followUp` as context, `contradictingEvidence` as teaching material; "Ver ejemplo" + "Comenzar" buttons; framer-motion entry/exit; glass-card neon-border styling
-- [ ] 3.3 **L** Create `components/mediator/WorkedExample.tsx` — `WorkedExampleTemplate` type with 3–5 steps per ActivityType; hardcoded templates for email_analysis, url_inspection, phishing_scenario, digital-defense; step navigation (Siguiente/Anterior); "Entendido" dismiss; progress indicator
-- [ ] 3.4 **S** Create worked example template data map: `Record<ActivityType, WorkedExampleTemplate>` with real capaEducativa-derived content for at least 4 activity types
+- [x] 3.1 **M** Create `hooks/useExplicitInstruction.ts` — `shouldShow(activityType)`, `markIntroduced(activityType)`, `hasViewedExample(activityType)`, `markExampleViewed(activityType)`, `resetAll()` with localStorage persistence under `cg_introduced_types` and `cg_viewed_examples`; SSR guard
+- [x] 3.2 **M** Create `components/mediator/ConceptCard.tsx` — renders `educationalLayer.conflictQuestion.question` as title, `followUp` as context, `contradictingEvidence` as teaching material; "Ver ejemplo" + "Comenzar" buttons; framer-motion entry/exit; glass-card neon-border styling
+- [x] 3.3 **L** Create `components/mediator/WorkedExample.tsx` — `WorkedExampleTemplate` type with 3–5 steps per ActivityType; hardcoded templates for email_analysis, url_inspection, phishing_scenario, digital-defense; step navigation (Siguiente/Anterior); "Entendido" dismiss; progress indicator
+- [x] 3.4 **S** Create worked example template data map: `Record<ActivityType, WorkedExampleTemplate>` with real capaEducativa-derived content for at least 4 activity types
 - [ ] 3.5 **S** Unit test: `useExplicitInstruction` — verify localStorage round-trip, SSR returns true for all, resetAll clears state
 - [ ] 3.6 **S** Unit test: `ConceptCard` — renders question, shows buttons, calls onDismiss/onViewExample
 
