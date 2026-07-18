@@ -255,7 +255,7 @@ export default function Modulo2Page() {
   }
 
   return (
-    <main className="min-h-screen gradient-bg">
+    <main className="min-h-screen bg-void aurora-bg">
       <AnimatePresence mode="wait">
         {gamePhase === 'WELCOME' && (
           <WelcomeScreen
@@ -264,7 +264,6 @@ export default function Modulo2Page() {
             moduleTitle="Guardianes de Identidad"
             moduleSubtitle="Protege tu identidad digital"
             moduleDescription="Domina contraseñas, 2FA, privacidad en redes y defensa contra robo de identidad"
-            moduleIcon="🛡️"
             stats="6 actividades · 15-20 min · Umbral: 70%"
             moduleNumber={2}
           />

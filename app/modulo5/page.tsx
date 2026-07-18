@@ -162,7 +162,7 @@ export default function Modulo5Page() {
   }
 
   return (
-    <main className="min-h-screen gradient-bg">
+    <main className="min-h-screen bg-void aurora-bg">
       <AnimatePresence mode="wait">
         {gamePhase === 'WELCOME' && (
           <WelcomeScreen
@@ -171,7 +171,6 @@ export default function Modulo5Page() {
             moduleTitle="Deepfake Defender — Detector de Amenazas IA"
             moduleSubtitle="Identifica y defiéndete de deepfakes, clonación de voz y contenido sintético"
             moduleDescription="Aprende a detectar deepfakes de audio, video e imagen. Analiza metadatos, verifica fuentes y protégete del contenido generado por IA."
-            moduleIcon="🎭"
             stats="6 actividades · 15-20 min · Umbral: 70%"
             moduleNumber={5}
           />

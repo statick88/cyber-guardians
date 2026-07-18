@@ -296,7 +296,7 @@ export default function Modulo4Page() {
   }
 
   return (
-    <main className="min-h-screen gradient-bg">
+    <main className="min-h-screen bg-void aurora-bg">
       <AnimatePresence mode="wait">
         {gamePhase === 'WELCOME' && (
           <WelcomeScreen
@@ -305,7 +305,6 @@ export default function Modulo4Page() {
             moduleTitle="Tu Código, Tu Escudo"
             moduleSubtitle="Aprende a escribir código seguro"
             moduleDescription="Detecta vulnerabilidades, sanitiza entradas, implementa autenticación segura y aplica patrones defensivos"
-            moduleIcon="💻"
             stats="5 actividades · 15-20 min · Umbral: 70%"
             moduleNumber={4}
           />
@@ -342,7 +341,7 @@ export default function Modulo4Page() {
         )}
 
         {gamePhase === 'GRADUATION' && (
-          <div key="graduation" className="min-h-screen gradient-bg">
+          <div key="graduation" className="min-h-screen bg-void aurora-bg">
             <div className="max-w-4xl mx-auto px-4 py-12 space-y-12">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
                 <h2 className="text-3xl font-bold text-center text-white mb-2">🎓 ¡Graduación!</h2>

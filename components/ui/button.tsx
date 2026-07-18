@@ -4,18 +4,19 @@ import { cn } from "@/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-slate-950 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-void transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-cyan-600 text-slate-950 hover:bg-cyan-500 shadow-neon",
-        destructive: "bg-rose-600 text-white hover:bg-rose-700 shadow-neon-rose",
-        outline: "border border-slate-600 bg-transparent hover:bg-slate-800 text-slate-300",
-        secondary: "bg-slate-800 text-slate-100 hover:bg-slate-700",
-        ghost: "hover:bg-slate-800 hover:text-slate-100",
-        link: "text-cyan-400 underline-offset-4 hover:underline",
-        success: "bg-emerald-600 text-white hover:bg-emerald-700 shadow-neon-emerald",
-        warning: "bg-amber-600 text-white hover:bg-amber-700 shadow-neon-amber",
+        default: "bg-neon-cyan/90 text-void hover:bg-neon-cyan shadow-neon-cyan font-semibold",
+        destructive: "bg-neon-rose/90 text-white hover:bg-neon-rose shadow-neon-rose",
+        outline: "border border-white/10 bg-transparent hover:bg-white/5 text-slate-300",
+        secondary: "bg-surface-light text-slate-100 hover:bg-surface-light/80",
+        ghost: "hover:bg-white/5 hover:text-slate-100",
+        link: "text-neon-cyan underline-offset-4 hover:underline",
+        success: "bg-neon-emerald/90 text-void hover:bg-neon-emerald shadow-neon-emerald font-semibold",
+        warning: "bg-neon-amber/90 text-void hover:bg-neon-amber shadow-neon-amber font-semibold",
+        magenta: "bg-neon-magenta/90 text-white hover:bg-neon-magenta shadow-neon-magenta font-semibold",
       },
       size: {
         default: "h-10 px-4 py-2",

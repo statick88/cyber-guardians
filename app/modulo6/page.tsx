@@ -180,7 +180,7 @@ export default function Modulo6Page() {
   }
 
   return (
-    <main className="min-h-screen gradient-bg">
+    <main className="min-h-screen bg-void aurora-bg">
       <AnimatePresence mode="wait">
         {gamePhase === 'WELCOME' && (
           <WelcomeScreen
@@ -189,7 +189,6 @@ export default function Modulo6Page() {
             moduleTitle="Crypto-Scam Shield — Escudo contra Estafas Financieras"
             moduleSubtitle="Identifica y defiéndete de estafas crypto, pirámides y fraudes laborales"
             moduleDescription="Aprende a detectar estafas QR, esquemas piramidales y fraudes de empleo. Protege tu dinero y el de tu familia."
-            moduleIcon="🛡️"
             stats="10 actividades · 15-20 min · Umbral: 70%"
             moduleNumber={6}
           />
