@@ -70,10 +70,10 @@ export function DragDropActivity({
     if (!currentExercise) return;
 
     let correct = 0;
-    currentExercise.itens.forEach((item) => {
+    currentExercise.items.forEach((item) => {
       const assignedTarget = assignments[item.id];
       if (assignedTarget) {
-        const target = currentExercise.alvos.find(
+        const target = currentExercise.objetivos.find(
           (t) => t.id === assignedTarget
         );
         if (target && target.tipo === item.tipo) {
@@ -82,8 +82,8 @@ export function DragDropActivity({
       }
     });
 
-    const totalItems = currentExercise.itens.length;
-    const points = Math.round((correct / totalItems) * currentExercise.pontos);
+    const totalItems = currentExercise.items.length;
+    const points = Math.round((correct / totalItems) * currentExercise.puntos);
     setScore(points);
     setTotalPoints((prev) => prev + points);
     setShowResult(true);
@@ -113,7 +113,7 @@ export function DragDropActivity({
     );
   }
 
-  const unassignedItems = currentExercise.itens.filter(
+  const unassignedItems = currentExercise.items.filter(
     (item) => !assignments[item.id]
   );
 
@@ -132,7 +132,7 @@ export function DragDropActivity({
         <CardHeader>
           <CardTitle className="text-white">{currentExercise.titulo}</CardTitle>
           <CardDescription className="text-slate-400">
-            {currentExercise.descricao}
+            {currentExercise.descripcion}
           </CardDescription>
         </CardHeader>
 
@@ -158,8 +158,8 @@ export function DragDropActivity({
                         : ""
                     }`}
                   >
-                    <span className="mr-2">{item.icone}</span>
-                    {item.conteudo}
+                    <span className="mr-2">{item.icono}</span>
+                    {item.contenido}
                   </Button>
                 </motion.div>
               ))}
@@ -168,8 +168,8 @@ export function DragDropActivity({
 
           {/* Targets */}
           <div className="grid grid-cols-2 gap-4">
-            {currentExercise.alvos.map((target) => {
-              const assignedItems = currentExercise.itens.filter(
+            {currentExercise.objetivos.map((target) => {
+              const assignedItems = currentExercise.items.filter(
                 (item) => assignments[item.id] === target.id
               );
 
@@ -180,17 +180,17 @@ export function DragDropActivity({
                   onDrop={() => handleDrop(target.id)}
                   onClick={() => handleTargetClick(target.id)}
                   className={`rounded-lg border-2 border-dashed p-4 min-h-[120px] cursor-pointer transition-colors ${
-                    target.cor === "rose"
+                    target.color === "rose"
                       ? "border-rose-500/30 bg-rose-500/5 hover:bg-rose-500/10"
                       : "border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500/10"
                   } ${draggedItem ? "ring-2 ring-cyan-500/30" : ""}`}
                 >
                   <p
                     className={`font-medium mb-2 ${
-                      target.cor === "rose" ? "text-rose-300" : "text-emerald-300"
+                      target.color === "rose" ? "text-rose-300" : "text-emerald-300"
                     }`}
                   >
-                    {target.label}
+                    {target.etiqueta}
                   </p>
                   <div className="space-y-1">
                     {assignedItems.map((item) => (
@@ -198,7 +198,7 @@ export function DragDropActivity({
                         key={item.id}
                         className="bg-slate-800/50 rounded px-2 py-1 text-sm text-white"
                       >
-                        {item.icone} {item.conteudo}
+                        {item.icono} {item.contenido}
                       </div>
                     ))}
                   </div>
@@ -211,7 +211,7 @@ export function DragDropActivity({
           {!showResult ? (
             <Button
               onClick={handleSubmit}
-              disabled={Object.keys(assignments).length < currentExercise.itens.length}
+              disabled={Object.keys(assignments).length < currentExercise.items.length}
               className="w-full bg-cyan-600 hover:bg-cyan-700"
             >
               Verificar respuestas
@@ -222,9 +222,9 @@ export function DragDropActivity({
               animate={{ opacity: 1, y: 0 }}
               className="space-y-4"
             >
-              <Alert
+<Alert
                 className={
-                  score === currentExercise.pontos
+                  score === currentExercise.puntos
                     ? "bg-emerald-500/10 border-emerald-500"
                     : "bg-amber-500/10 border-amber-500"
                 }
@@ -232,14 +232,14 @@ export function DragDropActivity({
                 <AlertDescription>
                   <p
                     className={
-                      score === currentExercise.pontos
+                      score === currentExercise.puntos
                         ? "text-emerald-300"
                         : "text-amber-300"
                     }
                   >
-                    {score === currentExercise.pontos
+                    {score === currentExercise.puntos
                       ? `✅ ¡Perfecto! +${score} puntos`
-                      : `⚠️ ${score}/${currentExercise.pontos} puntos`}
+                      : `⚠️ ${score}/${currentExercise.puntos} puntos`}
                   </p>
                 </AlertDescription>
               </Alert>

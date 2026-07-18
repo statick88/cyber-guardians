@@ -556,7 +556,7 @@ export default function PhoneticDecoder({
                     }`}
                     variant="outline"
                   >
-                    {choice.label}
+                    {choice.etiqueta}
                   </Button>
                 ))}
               </div>

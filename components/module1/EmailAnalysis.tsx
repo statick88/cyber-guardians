@@ -43,11 +43,11 @@ export function EmailAnalysis({
     if (isCorrect !== null) return;
 
     const isPhishing =
-      currentEmail.remetente.email.includes("netfIix") ||
-      currentEmail.remetente.email.includes("mercadoliire") ||
-      currentEmail.remetente.email.includes("banco-nacional") ||
-      currentEmail.assunto.includes("comprometida") ||
-      currentEmail.assunto.includes("cupón");
+      currentEmail.remitente.email.includes("netfIix") ||
+      currentEmail.remitente.email.includes("mercadoliire") ||
+      currentEmail.remitente.email.includes("banco-nacional") ||
+      currentEmail.asunto.includes("comprometida") ||
+      currentEmail.asunto.includes("cupón");
 
     const correct = (verdicto === "phishing" && isPhishing) ||
       (verdicto === "legitimo" && !isPhishing);
@@ -108,18 +108,18 @@ export function EmailAnalysis({
                 <CardHeader>
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg">
-                      {currentEmail.remetente.nome.charAt(0)}
+                      {currentEmail.remitente.nombre.charAt(0)}
                     </div>
                     <div className="flex-1">
                       <CardTitle className="text-white text-lg">
-                        {currentEmail.remetente.nome}
+                        {currentEmail.remitente.nombre}
                       </CardTitle>
                       <CardDescription className="text-slate-400">
-                        {currentEmail.remetente.email}
+                        {currentEmail.remitente.email}
                       </CardDescription>
                     </div>
                     <Badge variant="outline" className="text-slate-400">
-                      {currentEmail.dataEnvio}
+                      {currentEmail.fechaEnvio}
                     </Badge>
                   </div>
                 </CardHeader>
@@ -127,38 +127,38 @@ export function EmailAnalysis({
                 <CardContent className="space-y-4">
                   <div>
                     <h3 className="text-white font-semibold mb-2">
-                      {currentEmail.assunto}
+                      {currentEmail.asunto}
                     </h3>
                     <div className="bg-slate-800/50 rounded-lg p-4 text-slate-300 text-sm whitespace-pre-line">
-                      {currentEmail.corpo}
+                      {currentEmail.cuerpo}
                     </div>
                   </div>
 
-                  {currentEmail.links.length > 0 && (
+                  {currentEmail.enlaces.length > 0 && (
                     <div className="space-y-2">
                       <p className="text-slate-400 text-sm font-medium">
                         Enlaces encontrados:
                       </p>
-                      {currentEmail.links.map((link, i) => (
+                      {currentEmail.enlaces.map((enlace, i) => (
                         <div
                           key={i}
                           className="bg-slate-800/30 rounded-lg p-3 border border-slate-700"
                         >
                           <div className="flex items-center gap-2 mb-1">
                             <span className="text-cyan-400 text-sm">
-                              {link.texto}
+                              {enlace.texto}
                             </span>
-                            {link.https && (
+                            {enlace.https && (
                               <Badge className="bg-emerald-500/20 text-emerald-300 text-xs">
                                 HTTPS
                               </Badge>
                             )}
                           </div>
                           <p className="text-slate-500 text-xs">
-                            Mostrado: {link.urlExibida}
+                            Mostrado: {enlace.urlMostrada}
                           </p>
                           <p className="text-amber-400 text-xs">
-                            Real: {link.urlReal}
+                            Real: {enlace.urlReal}
                           </p>
                         </div>
                       ))}
@@ -239,13 +239,13 @@ export function EmailAnalysis({
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {currentEmail.dicasVisuais.length > 0 ? (
-                currentEmail.dicasVisuais.map((dica, i) => (
+              {currentEmail.pistasVisuales.length > 0 ? (
+                currentEmail.pistasVisuales.map((pista, i) => (
                   <div
                     key={i}
                     className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3"
                   >
-                    <span className="text-amber-300 text-sm">{dica}</span>
+                    <span className="text-amber-300 text-sm">{pista}</span>
                   </div>
                 ))
               ) : (

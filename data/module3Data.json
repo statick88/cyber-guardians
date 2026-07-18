@@ -6,14 +6,53 @@
       "titulo": "La oferta de trabajo en Instagram",
       "contexto": "Un desconocido te envía un DM por Instagram ofreciéndote trabajo.",
       "mensajes": [
-        { "id": "r1-1", "autor": "reclutador", "texto": "¡Hola! Vi tu perfil y me parece que tienes mucho potencial 💪", "esSeñal": true, "razon": "Halago excesivo de un desconocido — táctica clásica de reclutamiento" },
-        { "id": "r1-2", "autor": "reclutador", "texto": "Busco personas jóvenes y dinámicas para un proyecto internacional. ¿Te interesa?", "esSeñal": true, "razon": "Oferta vaga sin empresa clara — buscan atraer sin compromiso" },
-        { "id": "r1-3", "autor": "victima", "texto": "¿De qué se trata el trabajo?", "esSeñal": false },
-        { "id": "r1-4", "autor": "reclutador", "texto": "Es simple: solo necesitas recibir dinero en tu cuenta bancaria y transferirlo. Te damos 10% de comisión 💰", "esSeñal": true, "razon": "Es una mula financiera — es ILEGAL aunque te digan que no" },
-        { "id": "r1-5", "autor": "victima", "texto": "Suena sospechoso...", "esSeñal": false },
-        { "id": "r1-6", "autor": "reclutador", "texto": "No te preocupes, es completamente legal. Muchos lo hacen. Es solo una transferencia temporaria", "esSeñal": true, "razon": "Mentira: ES ilegal. Te están usando como intermediario de lavado de dinero" }
+        {
+          "id": "r1-1",
+          "autor": "reclutador",
+          "texto": "¡Hola! Vi tu perfil y me parece que tienes mucho potencial 💪",
+          "esSenal": true,
+          "razon": "Halago excesivo de un desconocido — táctica clásica de reclutamiento"
+        },
+        {
+          "id": "r1-2",
+          "autor": "reclutador",
+          "texto": "Busco personas jóvenes y dinámicas para un proyecto internacional. ¿Te interesa?",
+          "esSenal": true,
+          "razon": "Oferta vaga sin empresa clara — buscan atraer sin compromiso"
+        },
+        {
+          "id": "r1-3",
+          "autor": "victima",
+          "texto": "¿De qué se trata el trabajo?",
+          "esSenal": false
+        },
+        {
+          "id": "r1-4",
+          "autor": "reclutador",
+          "texto": "Es simple: solo necesitas recibir dinero en tu cuenta bancaria y transferirlo. Te damos 10% de comisión 💰",
+          "esSenal": true,
+          "razon": "Es una mula financiera — es ILEGAL aunque te digan que no"
+        },
+        {
+          "id": "r1-5",
+          "autor": "victima",
+          "texto": "Suena sospechoso...",
+          "esSenal": false
+        },
+        {
+          "id": "r1-6",
+          "autor": "reclutador",
+          "texto": "No te preocupes, es completamente legal. Muchos lo hacen. Es solo una transferencia temporaria",
+          "esSenal": true,
+          "razon": "Mentira: ES ilegal. Te están usando como intermediario de lavado de dinero"
+        }
       ],
-      "señales": ["Halago excesivo", "Oferta vaga", "Dinero fácil", "Presión para aceptar"],
+      "senales": [
+        "Halago excesivo",
+        "Oferta vaga",
+        "Dinero fácil",
+        "Presión para aceptar"
+      ],
       "puntuacionMaxima": 3,
       "fuente": "Europol EMMA 2023",
       "edadObjetivo": "14-18",
@@ -37,7 +76,10 @@
               "id": "debrief-reclut-1-1",
               "type": "slider",
               "prompt": "¿Qué tan fácil sería para ti detectar una oferta de mula financiera?",
-              "sliderLabels": { "min": "Muy difícil", "max": "Muy fácil" },
+              "sliderLabels": {
+                "min": "Muy difícil",
+                "max": "Muy fácil"
+              },
               "storageKey": "mula_detection_confidence",
               "competency": "threat_identification"
             },
@@ -60,14 +102,53 @@
       "titulo": "El grupo de Telegram",
       "contexto": "Un amigo te invita a un grupo de Telegram donde hablan de 'oportunidades de negocio'.",
       "mensajes": [
-        { "id": "r2-1", "autor": "amigo", "texto": "¡Únete! Yo ya gané $500 la semana pasada", "esSeñal": true, "razon": "Amigo puede estar comprometido o ser perfil falso" },
-        { "id": "r2-2", "autor": "reclutador", "texto": "Bienvenido. Aquí te explicamos cómo funciona el sistema", "esSeñal": false },
-        { "id": "r2-3", "autor": "reclutador", "texto": "Solo necesitas tu cédula y datos bancarios para registrarte", "esSeñal": true, "razon": "Piden datos sensibles — posible robo de identidad o uso como mula" },
-        { "id": "r2-4", "autor": "victima", "texto": "¿Qué empresa es?", "esSeñal": false },
-        { "id": "r2-5", "autor": "reclutador", "texto": "Es una plataforma de inversiones internacional. Estamos en fase beta 🚀", "esSeñal": true, "razon": "Sin empresa verificable — esquema piramidal o estafa" },
-        { "id": "r2-6", "autor": "reclutador", "texto": "Si no entras ahora, pierdes el lugar. Hay pocos cupos", "esSeñal": true, "razon": "Urgencia falsa para que no pienses — táctica de presión" }
+        {
+          "id": "r2-1",
+          "autor": "amigo",
+          "texto": "¡Únete! Yo ya gané $500 la semana pasada",
+          "esSenal": true,
+          "razon": "Amigo puede estar comprometido o ser perfil falso"
+        },
+        {
+          "id": "r2-2",
+          "autor": "reclutador",
+          "texto": "Bienvenido. Aquí te explicamos cómo funciona el sistema",
+          "esSenal": false
+        },
+        {
+          "id": "r2-3",
+          "autor": "reclutador",
+          "texto": "Solo necesitas tu cédula y datos bancarios para registrarte",
+          "esSenal": true,
+          "razon": "Piden datos sensibles — posible robo de identidad o uso como mula"
+        },
+        {
+          "id": "r2-4",
+          "autor": "victima",
+          "texto": "¿Qué empresa es?",
+          "esSenal": false
+        },
+        {
+          "id": "r2-5",
+          "autor": "reclutador",
+          "texto": "Es una plataforma de inversiones internacional. Estamos en fase beta 🚀",
+          "esSenal": true,
+          "razon": "Sin empresa verificable — esquema piramidal o estafa"
+        },
+        {
+          "id": "r2-6",
+          "autor": "reclutador",
+          "texto": "Si no entras ahora, pierdes el lugar. Hay pocos cupos",
+          "esSenal": true,
+          "razon": "Urgencia falsa para que no pienses — táctica de presión"
+        }
       ],
-      "señales": ["Amigo comprometido", "Piden datos bancarios", "Empresa fantasma", "Urgencia falsa"],
+      "senales": [
+        "Amigo comprometido",
+        "Piden datos bancarios",
+        "Empresa fantasma",
+        "Urgencia falsa"
+      ],
       "puntuacionMaxima": 3,
       "fuente": "Cifas 2023",
       "edadObjetivo": "15-19",
@@ -91,7 +172,10 @@
               "id": "debrief-reclut-2-1",
               "type": "slider",
               "prompt": "¿Qué tan fácil sería para ti detectar que un amigo comprometido te está reclutando?",
-              "sliderLabels": { "min": "Muy difícil", "max": "Muy fácil" },
+              "sliderLabels": {
+                "min": "Muy difícil",
+                "max": "Muy fácil"
+              },
               "storageKey": "friend_recruitment_detection",
               "competency": "threat_identification"
             },
@@ -114,14 +198,53 @@
       "titulo": "El novio de TikTok",
       "contexto": "Alguien que conociste en TikTok te escribe por WhatsApp y la conversación se pone intensa rápido.",
       "mensajes": [
-        { "id": "m1-1", "autor": "sospechoso", "texto": "Eres la persona más especial que he conocido. Siento que te conozco de toda la vida ❤️", "esSeñal": true, "razon": "Amor bomba (love bombing) — afecto excesivo muy rápido" },
-        { "id": "m1-2", "autor": "victima", "texto": "Gracias, tú también pareces increíble", "esSeñal": false },
-        { "id": "m1-3", "autor": "sospechoso", "texto": "¿Puedes enviarme una foto tuya? Quiero tenerte en mi fondo de pantalla 📸", "esSeñal": true, "razon": "Pide fotos íntimas — posible sextorsión futura" },
-        { "id": "m1-4", "autor": "victima", "texto": "No sé si estoy lista para eso...", "esSeñal": false },
-        { "id": "m1-5", "autor": "sospechoso", "texto": "Si me quisieras de verdad, me la enviarías. No confías en mí?", "esSeñal": true, "razon": "Chantaje emocional — usa culpa para manipular" },
-        { "id": "m1-6", "autor": "sospechoso", "texto": "Mira, yo te mandé la mía. Es de confianza mutua 🤝", "esSeñal": true, "razon": "Presión social falsa — puede ser foto robada de otra persona" }
+        {
+          "id": "m1-1",
+          "autor": "sospechoso",
+          "texto": "Eres la persona más especial que he conocido. Siento que te conozco de toda la vida ❤️",
+          "esSenal": true,
+          "razon": "Amor bomba (love bombing) — afecto excesivo muy rápido"
+        },
+        {
+          "id": "m1-2",
+          "autor": "victima",
+          "texto": "Gracias, tú también pareces increíble",
+          "esSenal": false
+        },
+        {
+          "id": "m1-3",
+          "autor": "sospechoso",
+          "texto": "¿Puedes enviarme una foto tuya? Quiero tenerte en mi fondo de pantalla 📸",
+          "esSenal": true,
+          "razon": "Pide fotos íntimas — posible sextorsión futura"
+        },
+        {
+          "id": "m1-4",
+          "autor": "victima",
+          "texto": "No sé si estoy lista para eso...",
+          "esSenal": false
+        },
+        {
+          "id": "m1-5",
+          "autor": "sospechoso",
+          "texto": "Si me quisieras de verdad, me la enviarías. No confías en mí?",
+          "esSenal": true,
+          "razon": "Chantaje emocional — usa culpa para manipular"
+        },
+        {
+          "id": "m1-6",
+          "autor": "sospechoso",
+          "texto": "Mira, yo te mandé la mía. Es de confianza mutua 🤝",
+          "esSenal": true,
+          "razon": "Presión social falsa — puede ser foto robada de otra persona"
+        }
       ],
-      "señales": ["Amor bomba", "Pide fotos íntimas", "Chantaje emocional", "Presión para reciprocidad"],
+      "senales": [
+        "Amor bomba",
+        "Pide fotos íntimas",
+        "Chantaje emocional",
+        "Presión para reciprocidad"
+      ],
       "puntuacionMaxima": 3,
       "fuente": "FBI IC3 2022",
       "edadObjetivo": "12-16",
@@ -145,7 +268,10 @@
               "id": "debrief-manip-1-1",
               "type": "slider",
               "prompt": "¿Qué tan fácil sería para ti decir 'no' a alguien que dice quererte?",
-              "sliderLabels": { "min": "Muy difícil", "max": "Muy fácil" },
+              "sliderLabels": {
+                "min": "Muy difícil",
+                "max": "Muy fácil"
+              },
               "storageKey": "love_bombing_boundary",
               "competency": "decision_under_pressure"
             },
@@ -168,14 +294,53 @@
       "titulo": "La 'empresa' que te contacta",
       "contexto": "Recibes un mensaje de una 'empresa de marketing' que vio tu perfil público.",
       "mensajes": [
-        { "id": "m2-1", "autor": "reclutador", "texto": "¡Hola! Somos de MarketingPro Global. Tu perfil es exactamente lo que buscamos", "esSeñal": true, "razon": "Empresa desconocida con halago — posible phishing o estafa" },
-        { "id": "m2-2", "autor": "victima", "texto": "¿Qué tipo de trabajo ofrecen?", "esSeñal": false },
-        { "id": "m2-3", "autor": "reclutador", "texto": "Embajador de marca. Solo necesitas publicar 3 fotos al día con nuestros productos", "esSeñal": true, "razon": "Trabajo demasiado fácil para ganar dinero — señal de estafa" },
-        { "id": "m2-4", "autor": "reclutador", "texto": "Primero debes comprar el kit de productos por $200. Después te reembolsamos + ganancia", "esSeñal": true, "razon": "Te piden que PAGUES primero — esquema piramidal clásico" },
-        { "id": "m2-5", "autor": "victima", "texto": "¿Puedo ver la empresa en redes?", "esSeñal": false },
-        { "id": "m2-6", "autor": "reclutador", "texto": "Claro, te paso nuestro Instagram @marketingproglobal_oficial", "esSeñal": true, "razon": "Cuenta nueva con pocos seguidores — perfil falso" }
+        {
+          "id": "m2-1",
+          "autor": "reclutador",
+          "texto": "¡Hola! Somos de MarketingPro Global. Tu perfil es exactamente lo que buscamos",
+          "esSenal": true,
+          "razon": "Empresa desconocida con halago — posible phishing o estafa"
+        },
+        {
+          "id": "m2-2",
+          "autor": "victima",
+          "texto": "¿Qué tipo de trabajo ofrecen?",
+          "esSenal": false
+        },
+        {
+          "id": "m2-3",
+          "autor": "reclutador",
+          "texto": "Embajador de marca. Solo necesitas publicar 3 fotos al día con nuestros productos",
+          "esSenal": true,
+          "razon": "Trabajo demasiado fácil para ganar dinero — señal de estafa"
+        },
+        {
+          "id": "m2-4",
+          "autor": "reclutador",
+          "texto": "Primero debes comprar el kit de productos por $200. Después te reembolsamos + ganancia",
+          "esSenal": true,
+          "razon": "Te piden que PAGUES primero — esquema piramidal clásico"
+        },
+        {
+          "id": "m2-5",
+          "autor": "victima",
+          "texto": "¿Puedo ver la empresa en redes?",
+          "esSenal": false
+        },
+        {
+          "id": "m2-6",
+          "autor": "reclutador",
+          "texto": "Claro, te paso nuestro Instagram @marketingproglobal_oficial",
+          "esSenal": true,
+          "razon": "Cuenta nueva con pocos seguidores — perfil falso"
+        }
       ],
-      "señales": ["Halago de empresa desconocida", "Trabajo fácil", "Pago por adelantado", "Redes falsas"],
+      "senales": [
+        "Halago de empresa desconocida",
+        "Trabajo fácil",
+        "Pago por adelantado",
+        "Redes falsas"
+      ],
       "puntuacionMaxima": 3,
       "fuente": "Cifas 2023",
       "edadObjetivo": "16-20",
@@ -199,10 +364,22 @@
               "id": "debrief-manip-2-1",
               "type": "micro-decision",
               "prompt": "Te ofrecen 'embajador de marca' pero debes pagar $200 de kit. ¿Qué haces?",
-              "options": [
-                { "id": "opt-pay", "label": "Pago, quiero el trabajo", "cognitiveInsight": "Cae en esquema piramidal" },
-                { "id": "opt-research", "label": "Investigo la empresa en registros oficiales", "cognitiveInsight": "Verifica antes de actuar" },
-                { "id": "opt-decline", "label": "Rechazo, trabajo real no cobra por entrar", "cognitiveInsight": "Reconoce la estafa clásica" }
+              "opciones": [
+                {
+                  "id": "opt-pay",
+                  "etiqueta": "Pago, quiero el trabajo",
+                  "cognitiveInsight": "Cae en esquema piramidal"
+                },
+                {
+                  "id": "opt-research",
+                  "etiqueta": "Investigo la empresa en registros oficiales",
+                  "cognitiveInsight": "Verifica antes de actuar"
+                },
+                {
+                  "id": "opt-decline",
+                  "etiqueta": "Rechazo, trabajo real no cobra por entrar",
+                  "cognitiveInsight": "Reconoce la estafa clásica"
+                }
               ],
               "storageKey": "pyramid_scheme_decision",
               "competency": "decision_under_pressure"
@@ -218,14 +395,54 @@
       "titulo": "El 'amigo' del juego",
       "contexto": "Juegas en Roblox/Discord y un jugador mayor te ofrece 'trabajar' en su equipo de diseño de niveles. Te dice que puedes ganar robux/dinero real.",
       "mensajes": [
-        { "id": "r3-1", "autor": "reclutador", "texto": "¡Hola! Vi tu avatar, tienes buen gusto. ¿Quieres unirte a mi equipo de diseñadores?", "esSeñal": true, "razon": "Halago sobre avatar/perfil en plataforma de gaming — grooming clásico" },
-        { "id": "r3-2", "autor": "victima", "texto": "¿En serio? ¡Sí! ¿Cuánto se gana?", "esSeñal": false },
-        { "id": "r3-3", "autor": "reclutador", "texto": "Depende de tu nivel. Primero necesito saber tu edad para asignarte tareas", "esSeñal": true, "razon": "Pregunta edad — buscan identificar menores como targets prioritarios" },
-        { "id": "r3-4", "autor": "victima", "texto": "Tengo 15 años", "esSeñal": false },
-        { "id": "r3-5", "autor": "reclutador", "texto": "Perfecto, eres la edad ideal. Pásame tu nombre real y una foto para el contrato", "esSeñal": true, "razon": "Pide datos personales reales — primer paso de grooming para extorsión o sextorsión" },
-        { "id": "r3-6", "autor": "reclutador", "texto": "No se lo cuides a tus padres, es trabajo confidencial. Si hablas pierdes el puesto", "esSeñal": true, "razon": "Aísla de figuras de confianza y crea secreto — táctica de grooming documentada" }
+        {
+          "id": "r3-1",
+          "autor": "reclutador",
+          "texto": "¡Hola! Vi tu avatar, tienes buen gusto. ¿Quieres unirte a mi equipo de diseñadores?",
+          "esSenal": true,
+          "razon": "Halago sobre avatar/perfil en plataforma de gaming — grooming clásico"
+        },
+        {
+          "id": "r3-2",
+          "autor": "victima",
+          "texto": "¿En serio? ¡Sí! ¿Cuánto se gana?",
+          "esSenal": false
+        },
+        {
+          "id": "r3-3",
+          "autor": "reclutador",
+          "texto": "Depende de tu nivel. Primero necesito saber tu edad para asignarte tareas",
+          "esSenal": true,
+          "razon": "Pregunta edad — buscan identificar menores como targets prioritarios"
+        },
+        {
+          "id": "r3-4",
+          "autor": "victima",
+          "texto": "Tengo 15 años",
+          "esSenal": false
+        },
+        {
+          "id": "r3-5",
+          "autor": "reclutador",
+          "texto": "Perfecto, eres la edad ideal. Pásame tu nombre real y una foto para el contrato",
+          "esSenal": true,
+          "razon": "Pide datos personales reales — primer paso de grooming para extorsión o sextorsión"
+        },
+        {
+          "id": "r3-6",
+          "autor": "reclutador",
+          "texto": "No se lo cuides a tus padres, es trabajo confidencial. Si hablas pierdes el puesto",
+          "esSenal": true,
+          "razon": "Aísla de figuras de confianza y crea secreto — táctica de grooming documentada"
+        }
       ],
-      "señales": ["Halago en plataforma de gaming", "Pide edad y datos reales", "Pide foto", "Secreto vs. padres", "Aislamiento"],
+      "senales": [
+        "Halago en plataforma de gaming",
+        "Pide edad y datos reales",
+        "Pide foto",
+        "Secreto vs. padres",
+        "Aislamiento"
+      ],
       "puntuacionMaxima": 3,
       "fuente": "Europol EMMA 2023",
       "edadObjetivo": "12-16",
@@ -249,7 +466,10 @@
               "id": "debrief-reclut-3-1",
               "type": "slider",
               "prompt": "¿Qué tan rápido detectarías que un 'amigo del juego' te está haciendo grooming?",
-              "sliderLabels": { "min": "No lo detectaría", "max": "Lo detecto al instante" },
+              "sliderLabels": {
+                "min": "No lo detectaría",
+                "max": "Lo detecto al instante"
+              },
               "storageKey": "gaming_grooming_detection",
               "competency": "threat_identification"
             },
@@ -272,14 +492,54 @@
       "titulo": "El perfil falso del deepfake",
       "contexto": "Un perfil atractivo te contacta por Instagram. La persona parece real pero usa fotos generadas con IA. Te pide videos íntimos y luego te amenaza.",
       "mensajes": [
-        { "id": "m3-1", "autor": "sospechoso", "texto": "¡Hola! Vi tus fotos y eres increíble. ¿Quieres salir a un chat de video?", "esSeñal": true, "razon": "Perfiles falsos con fotos generadas por IA (deepfakes) buscan víctimas rápido" },
-        { "id": "m3-2", "autor": "victima", "texto": "¿Quién eres? Tus fotos parecen de modelo", "esSeñal": false },
-        { "id": "m3-3", "autor": "sospechoso", "texto": "Soy modelo freelance. Mira, te mando un video mío para que veas que soy real 📹", "esSeñal": true, "razon": "Envía video generado con deepfake — aparenta autenticidad pero es falso" },
-        { "id": "m3-4", "autor": "victima", "texto": "Guau, se ve muy profesional", "esSeñal": false },
-        { "id": "m3-5", "autor": "sospechoso", "texto": "Ahora tú. Mándame un video tuyo en la ducha, es solo para mí 🙏", "esSeñal": true, "razon": "Pide contenido íntimo para usarlo como material de sextorsión" },
-        { "id": "m3-6", "autor": "sospechoso", "texto": "Si no lo haces, publico el video que ya tengo de ti en TikTok y se lo envío a tu colegio", "esSeñal": true, "razon": "Amenaza con difundir contenido — puede ser un deepfake fabricado o material previamente obtenido" }
+        {
+          "id": "m3-1",
+          "autor": "sospechoso",
+          "texto": "¡Hola! Vi tus fotos y eres increíble. ¿Quieres salir a un chat de video?",
+          "esSenal": true,
+          "razon": "Perfiles falsos con fotos generadas por IA (deepfakes) buscan víctimas rápido"
+        },
+        {
+          "id": "m3-2",
+          "autor": "victima",
+          "texto": "¿Quién eres? Tus fotos parecen de modelo",
+          "esSenal": false
+        },
+        {
+          "id": "m3-3",
+          "autor": "sospechoso",
+          "texto": "Soy modelo freelance. Mira, te mando un video mío para que veas que soy real 📹",
+          "esSenal": true,
+          "razon": "Envía video generado con deepfake — aparenta autenticidad pero es falso"
+        },
+        {
+          "id": "m3-4",
+          "autor": "victima",
+          "texto": "Guau, se ve muy profesional",
+          "esSenal": false
+        },
+        {
+          "id": "m3-5",
+          "autor": "sospechoso",
+          "texto": "Ahora tú. Mándame un video tuyo en la ducha, es solo para mí 🙏",
+          "esSenal": true,
+          "razon": "Pide contenido íntimo para usarlo como material de sextorsión"
+        },
+        {
+          "id": "m3-6",
+          "autor": "sospechoso",
+          "texto": "Si no lo haces, publico el video que ya tengo de ti en TikTok y se lo envío a tu colegio",
+          "esSenal": true,
+          "razon": "Amenaza con difundir contenido — puede ser un deepfake fabricado o material previamente obtenido"
+        }
       ],
-      "señales": ["Perfil con fotos de modelo", "Video autogenerado (deepfake)", "Pide contenido íntimo", "Amenaza con difundir", "Amenaza con enviar al colegio"],
+      "senales": [
+        "Perfil con fotos de modelo",
+        "Video autogenerado (deepfake)",
+        "Pide contenido íntimo",
+        "Amenaza con difundir",
+        "Amenaza con enviar al colegio"
+      ],
       "puntuacionMaxima": 3,
       "fuente": "FBI IC3 2022 / Deepfake research 2023",
       "edadObjetivo": "13-17",
@@ -303,10 +563,22 @@
               "id": "debrief-manip-3-1",
               "type": "micro-decision",
               "prompt": "Te envían un video 'demostrando que son reales' y piden uno tuyo íntimo. ¿Qué haces?",
-              "options": [
-                { "id": "opt-send", "label": "Envío el mío, el suyo parecía real", "cognitiveInsight": "Cae en deepfake + sextorsión" },
-                { "id": "opt-block", "label": "Bloqueo y denuncio", "cognitiveInsight": "Reconoce táctica de sextorsión con deepfake" },
-                { "id": "opt-verify", "label": "Pido videollamada en vivo", "cognitiveInsight": "Intenta verificar pero arriesga exposición" }
+              "opciones": [
+                {
+                  "id": "opt-send",
+                  "etiqueta": "Envío el mío, el suyo parecía real",
+                  "cognitiveInsight": "Cae en deepfake + sextorsión"
+                },
+                {
+                  "id": "opt-block",
+                  "etiqueta": "Bloqueo y denuncio",
+                  "cognitiveInsight": "Reconoce táctica de sextorsión con deepfake"
+                },
+                {
+                  "id": "opt-verify",
+                  "etiqueta": "Pido videollamada en vivo",
+                  "cognitiveInsight": "Intenta verificar pero arriesga exposición"
+                }
               ],
               "storageKey": "deepfake_verification_trap",
               "competency": "decision_under_pressure"
@@ -325,7 +597,11 @@
         "titulo": "Asistente Virtual Remoto",
         "descripcion": "Gana $300/semana recibiendo transferencias y enviándolas a otra cuenta. Solo 1 hora al día.",
         "fuente": "WhatsApp grupo 'Trabajo Joven'",
-        "señalesRiesgo": ["Recepción y transferencia de dinero", "Sin contrato visible", "Empresa no verificable"],
+        "senalesRiesgo": [
+          "Recepción y transferencia de dinero",
+          "Sin contrato visible",
+          "Empresa no verificable"
+        ],
         "nivelRiesgo": "alto",
         "esTrampa": true,
         "explicacion": "Esta oferta describe exactamente una mula financiera. El 'trabajo' es recibir dinero de víctimas y transferirlo a los estafadores. Es ILEGAL y puedes enfrentar penas de prisión.",
@@ -336,13 +612,23 @@
       "preguntas": [
         {
           "pregunta": "¿Por qué esta oferta es peligrosa?",
-          "opciones": ["Es poco dinero", "Es una mula financiera — es ilegal", "El horario es muy corto", "No ofrece beneficios"],
+          "opciones": [
+            "Es poco dinero",
+            "Es una mula financiera — es ilegal",
+            "El horario es muy corto",
+            "No ofrece beneficios"
+          ],
           "respuestaCorrecta": 1,
           "explicacion": "Recibir y transferir dinero de terceros es lavado de dinero. Los estafadores usan tus datos bancarios para operar."
         },
         {
           "pregunta": "¿Qué deberías hacer si recibes esta oferta?",
-          "opciones": ["Aceptar para probar", "Ignorar y bloquear", "Preguntar por más detalles", "Compartir con amigos"],
+          "opciones": [
+            "Aceptar para probar",
+            "Ignorar y bloquear",
+            "Preguntar por más detalles",
+            "Compartir con amigos"
+          ],
           "respuestaCorrecta": 1,
           "explicacion": "Nunca aceptes ofertas sospechosas. Bloquea y reporta el número."
         }
@@ -366,10 +652,22 @@
               "id": "debrief-mula-1-1",
               "type": "micro-decision",
               "prompt": "Si un amigo te contara que aceptó este trabajo, ¿qué le dirías?",
-              "options": [
-                { "id": "opt-warn", "label": "Le advertiría que es ilegal", "cognitiveInsight": "Reconoce el riesgo y actúa responsablemente" },
-                { "id": "opt-join", "label": "Le pediría que me recomiende", "cognitiveInsight": "No reconoce la gravedad" },
-                { "id": "opt-ask", "label": "Le preguntaría más detalles", "cognitiveInsight": "Busca información antes de juzgar" }
+              "opciones": [
+                {
+                  "id": "opt-warn",
+                  "etiqueta": "Le advertiría que es ilegal",
+                  "cognitiveInsight": "Reconoce el riesgo y actúa responsablemente"
+                },
+                {
+                  "id": "opt-join",
+                  "etiqueta": "Le pediría que me recomiende",
+                  "cognitiveInsight": "No reconoce la gravedad"
+                },
+                {
+                  "id": "opt-ask",
+                  "etiqueta": "Le preguntaría más detalles",
+                  "cognitiveInsight": "Busca información antes de juzgar"
+                }
               ],
               "storageKey": "mula_peer_decision",
               "competency": "knowledge_transfer"
@@ -386,7 +684,11 @@
         "titulo": "Influencer de Productos",
         "descripcion": "Publica fotos con ropa de marca y gana $500/mes. Debes comprar el catálogo inicial por $150.",
         "fuente": "Instagram DM @moda_joven_oficial",
-        "señalesRiesgo": ["Pago por adelantado", "Perfil nuevo sin historial", "Promesas de ganancias altas"],
+        "senalesRiesgo": [
+          "Pago por adelantado",
+          "Perfil nuevo sin historial",
+          "Promesas de ganancias altas"
+        ],
         "nivelRiesgo": "medio",
         "esTrampa": true,
         "explicacion": "Es un esquema piramidal disfrazado. Necesitas reclutar más personas para recuperar tu inversión. La mayoría pierde dinero.",
@@ -397,13 +699,23 @@
       "preguntas": [
         {
           "pregunta": "¿Cuál es la señal de alerta principal?",
-          "opciones": ["El pago es bajo", "Debes pagar para trabajar", "Es en Instagram", "La ropa es de marca"],
+          "opciones": [
+            "El pago es bajo",
+            "Debes pagar para trabajar",
+            "Es en Instagram",
+            "La ropa es de marca"
+          ],
           "respuestaCorrecta": 1,
           "explicacion": "En un trabajo legítimo NUNCA debes pagar para empezar. El 'kit inicial' es la estafa."
         },
         {
           "pregunta": "¿Qué tipo de esquema es este?",
-          "opciones": ["Empleo formal", "Freelance legítimo", "Esquema piramidal", "Práctica profesional"],
+          "opciones": [
+            "Empleo formal",
+            "Freelance legítimo",
+            "Esquema piramidal",
+            "Práctica profesional"
+          ],
           "respuestaCorrecta": 2,
           "explicacion": "Necesitas reclutar más personas para ganar — eso es piramidal."
         }
@@ -427,10 +739,22 @@
               "id": "debrief-mula-2-1",
               "type": "micro-decision",
               "prompt": "Te ofrecen 'influencer' pero debes pagar $150 primero. ¿Qué haces?",
-              "options": [
-                { "id": "opt-pay", "label": "Pago, quiero ser influencer", "cognitiveInsight": "Cae en esquema piramidal" },
-                { "id": "opt-research", "label": "Busco la empresa en registros oficiales", "cognitiveInsight": "Verifica antes de actuar" },
-                { "id": "opt-decline", "label": "Rechazo, trabajo real no cobra entrada", "cognitiveInsight": "Reconoce patrón de estafa" }
+              "opciones": [
+                {
+                  "id": "opt-pay",
+                  "etiqueta": "Pago, quiero ser influencer",
+                  "cognitiveInsight": "Cae en esquema piramidal"
+                },
+                {
+                  "id": "opt-research",
+                  "etiqueta": "Busco la empresa en registros oficiales",
+                  "cognitiveInsight": "Verifica antes de actuar"
+                },
+                {
+                  "id": "opt-decline",
+                  "etiqueta": "Rechazo, trabajo real no cobra entrada",
+                  "cognitiveInsight": "Reconoce patrón de estafa"
+                }
               ],
               "storageKey": "pyramid_kit_payment",
               "competency": "decision_under_pressure"
@@ -447,7 +771,11 @@
         "titulo": "Repartidor de Paquetes",
         "descripcion": "Recibe paquetes en tu casa y repártelos en la ciudad. Gana $25 por paquete entregado.",
         "fuente": "Telegram canal 'Empleos Express'",
-        "señalesRiesgo": ["Sin verificación de empresa", "Pagos por entregas sin registro", "Posible contenido ilegal"],
+        "senalesRiesgo": [
+          "Sin verificación de empresa",
+          "Pagos por entregas sin registro",
+          "Posible contenido ilegal"
+        ],
         "nivelRiesgo": "alto",
         "esTrampa": true,
         "explicacion": "Puedes estar distribuyendo drogas, dinero falsificado u otros objetos ilegales. Los estafadores usan repartidores como unwitting mules.",
@@ -458,13 +786,23 @@
       "preguntas": [
         {
           "pregunta": "¿Por qué repartir paquetes sin verificar es peligroso?",
-          "opciones": ["El pago es baja", "Podrías transportar cosas ilegales", "El horario es irregular", "No hay vacaciones"],
+          "opciones": [
+            "El pago es baja",
+            "Podrías transportar cosas ilegales",
+            "El horario es irregular",
+            "No hay vacaciones"
+          ],
           "respuestaCorrecta": 1,
           "explicacion": "Sin saber qué hay en los paquetes, puedes convertirte en transportista de drogas o dinero ilícito."
         },
         {
           "pregunta": "¿Qué deberías pedir antes de aceptar?",
-          "opciones": ["Nada, suena bien", "Contrato formal y verificación de la empresa", "Un adelanto", "Más paquetes"],
+          "opciones": [
+            "Nada, suena bien",
+            "Contrato formal y verificación de la empresa",
+            "Un adelanto",
+            "Más paquetes"
+          ],
           "respuestaCorrecta": 1,
           "explicacion": "Siempre verifica la empresa, pide contrato y conoce qué estás transportando."
         }
@@ -488,10 +826,22 @@
               "id": "debrief-mula-3-1",
               "type": "micro-decision",
               "prompt": "Te ofrecen repartir paquetes 'fácil, buen pago, sin preguntas'. ¿Qué haces?",
-              "options": [
-                { "id": "opt-accept", "label": "Acepto, necesito el dinero", "cognitiveInsight": "Ignora riesgo legal, cae en trampa" },
-                { "id": "opt-verify", "label": "Pido contrato y verificación empresa", "cognitiveInsight": "Exige transparencia legal" },
-                { "id": "opt-decline", "label": "Rechazo y reporto el canal", "cognitiveInsight": "Detecta patrón de mula de paquetes" }
+              "opciones": [
+                {
+                  "id": "opt-accept",
+                  "etiqueta": "Acepto, necesito el dinero",
+                  "cognitiveInsight": "Ignora riesgo legal, cae en trampa"
+                },
+                {
+                  "id": "opt-verify",
+                  "etiqueta": "Pido contrato y verificación empresa",
+                  "cognitiveInsight": "Exige transparencia legal"
+                },
+                {
+                  "id": "opt-decline",
+                  "etiqueta": "Rechazo y reporto el canal",
+                  "cognitiveInsight": "Detecta patrón de mula de paquetes"
+                }
               ],
               "storageKey": "package_mule_decision",
               "competency": "decision_under_pressure"
@@ -520,7 +870,11 @@
       "fuente": "FBI IC3 2022",
       "edadObjetivo": "12-15",
       "consecuenciasReales": "Ideación suicida, abandono escolar, aislamiento social, ansiedad severa. FBI IC3 2022 reportó ~7,000 víctimas menores con pérdidas de $3.2M USD. El 51% de los perpetradores operan desde Filipinas o África Occidental.",
-      "recursosApoyo": ["Childhelp", "Crisis Text Line", "NCMEC"],
+      "recursosApoyo": [
+        "Childhelp",
+        "Crisis Text Line",
+        "NCMEC"
+      ],
       "capaEducativa": {
         "scenarioId": "ext-1",
         "moduleId": 3,
@@ -540,10 +894,22 @@
               "id": "debrief-ext-1-1",
               "type": "micro-decision",
               "prompt": "¿Cuál es la diferencia entre reportar y negociar con un extorsionador?",
-              "options": [
-                { "id": "opt-report", "label": "Reportar obtiene ayuda legal; negociar da poder al atacante", "cognitiveInsight": "Entiende el poder dinámico" },
-                { "id": "opt-negotiate", "label": "Negociar es más rápido", "cognitiveInsight": "Prioriza rapidez sobre seguridad" },
-                { "id": "opt-both", "label": "Ambas son válidas", "cognitiveInsight": "No distingue entre opciones seguras e inseguras" }
+              "opciones": [
+                {
+                  "id": "opt-report",
+                  "etiqueta": "Reportar obtiene ayuda legal; negociar da poder al atacante",
+                  "cognitiveInsight": "Entiende el poder dinámico"
+                },
+                {
+                  "id": "opt-negotiate",
+                  "etiqueta": "Negociar es más rápido",
+                  "cognitiveInsight": "Prioriza rapidez sobre seguridad"
+                },
+                {
+                  "id": "opt-both",
+                  "etiqueta": "Ambas son válidas",
+                  "cognitiveInsight": "No distingue entre opciones seguras e inseguras"
+                }
               ],
               "storageKey": "extortion_decision",
               "competency": "decision_under_pressure"
@@ -570,7 +936,11 @@
       "fuente": "Europol EMMA 2023",
       "edadObjetivo": "14-20",
       "consecuenciasReales": "Pérdida permanente de archivos personales, académicos y familiares. Ransomware dirigido a dispositivos adolescentes ha aumentado con el uso compartido de computadoras domésticas. Europol EMMA 2023 reporta incremento en ransomware dirigido a usuarios jóvenes.",
-      "recursosApoyo": ["StopBullying.gov", "INHOPE", "Europol — Stop Extortion"],
+      "recursosApoyo": [
+        "StopBullying.gov",
+        "INHOPE",
+        "Europol — Stop Extortion"
+      ],
       "capaEducativa": {
         "scenarioId": "ext-2",
         "moduleId": 3,
@@ -590,10 +960,22 @@
               "id": "debrief-ext-2-1",
               "type": "micro-decision",
               "prompt": "Tu PC muestra ransomware pidiendo 0.5 BTC. ¿Primer paso?",
-              "options": [
-                { "id": "opt-pay", "label": "Pago para recuperar archivos", "cognitiveInsight": "Financia crimen, no garantiza recuperación" },
-                { "id": "opt-off", "label": "Apago PC y llamo a técnico", "cognitiveInsight": "Contención inmediata, busca ayuda experta" },
-                { "id": "opt-restart", "label": "Reinicio a ver si se quita", "cognitiveInsight": "Puede empeorar encriptación" }
+              "opciones": [
+                {
+                  "id": "opt-pay",
+                  "etiqueta": "Pago para recuperar archivos",
+                  "cognitiveInsight": "Financia crimen, no garantiza recuperación"
+                },
+                {
+                  "id": "opt-off",
+                  "etiqueta": "Apago PC y llamo a técnico",
+                  "cognitiveInsight": "Contención inmediata, busca ayuda experta"
+                },
+                {
+                  "id": "opt-restart",
+                  "etiqueta": "Reinicio a ver si se quita",
+                  "cognitiveInsight": "Puede empeorar encriptación"
+                }
               ],
               "storageKey": "ransomware_first_step",
               "competency": "decision_under_pressure"
@@ -620,7 +1002,11 @@
       "fuente": "Cifas 2023",
       "edadObjetivo": "13-18",
       "consecuenciasReales": "Doxing, suplantación de identidad, acoso escolar en línea, depresión y ansiedad. Cifas 2023 documenta aumento en amenazas con información personal de jóvenes en redes sociales como táctica de extorsión.",
-      "recursosApoyo": ["CyberBullying Research Center", "StopBullying.gov", "INHOPE"],
+      "recursosApoyo": [
+        "CyberBullying Research Center",
+        "StopBullying.gov",
+        "INHOPE"
+      ],
       "capaEducativa": {
         "scenarioId": "ext-3",
         "moduleId": 3,
@@ -640,10 +1026,22 @@
               "id": "debrief-ext-3-1",
               "type": "micro-decision",
               "prompt": "Un perfil falso con tus fotos te amenaza. ¿Qué NO debes hacer?",
-              "options": [
-                { "id": "opt-insult", "label": "Insultar/amenazar de vuelta", "cognitiveInsight": "Alimenta al atacante, da material usable" },
-                { "id": "opt-evidence", "label": "Capturar, reportar, bloquear, denunciar", "cognitiveInsight": "Protocolo seguro completo" },
-                { "id": "opt-ignore", "label": "Ignorar y esperar que pase", "cognitiveInsight": "Pasividad ante doxing/amenaza real" }
+              "opciones": [
+                {
+                  "id": "opt-insult",
+                  "etiqueta": "Insultar/amenazar de vuelta",
+                  "cognitiveInsight": "Alimenta al atacante, da material usable"
+                },
+                {
+                  "id": "opt-evidence",
+                  "etiqueta": "Capturar, reportar, bloquear, denunciar",
+                  "cognitiveInsight": "Protocolo seguro completo"
+                },
+                {
+                  "id": "opt-ignore",
+                  "etiqueta": "Ignorar y esperar que pase",
+                  "cognitiveInsight": "Pasividad ante doxing/amenaza real"
+                }
               ],
               "storageKey": "fake_profile_threat_response",
               "competency": "decision_under_pressure"
@@ -655,21 +1053,117 @@
     }
   ],
   "mensajesDragDrop": [
-    { "id": "dd-1", "texto": "Gana $1000 por solo recibir transferencias en tu cuenta bancaria", "tipo": "mula", "dificultad": "facil", "fuente": "Cifas 2023" },
-    { "id": "dd-2", "texto": "Eres la persona más importante de mi vida, no podría vivir sin ti", "tipo": "manipulacion", "dificultad": "facil", "fuente": "FBI IC3 2022" },
-    { "id": "dd-3", "texto": "Si no me envías $200, publico tus fotos en internet", "tipo": "extorsion", "dificultad": "facil", "fuente": "FBI IC3 2022" },
-    { "id": "dd-4", "texto": "Necesito que trabajes 8 horas de lunes a viernes en nuestra oficina", "tipo": "seguro", "dificultad": "facil", "fuente": null },
-    { "id": "dd-5", "texto": "Únete a nuestro grupo de inversiones, solo necesitas tu cédula", "tipo": "reclutamiento", "dificultad": "medio", "fuente": "Europol EMMA 2023" },
-    { "id": "dd-6", "texto": "No puedes confiar en nadie, solo en mí. Aléjate de tus amigos", "tipo": "manipulacion", "dificultad": "medio", "fuente": "FBI IC3 2022" },
-    { "id": "dd-7", "texto": "Recibe paquetes en tu casa y repártelos, no preguntes qué hay dentro", "tipo": "mula", "dificultad": "medio", "fuente": "Europol EMMA 2023" },
-    { "id": "dd-8", "texto": "Tu tarea es vender este producto y reclutar a 3 amigos más", "tipo": "reclutamiento", "dificultad": "medio", "fuente": "Cifas 2023" },
-    { "id": "dd-9", "texto": "Si no me das tu contraseña, te hackeo todas tus cuentas", "tipo": "extorsion", "dificultad": "medio", "fuente": "Cifas 2023" },
-    { "id": "dd-10", "texto": "El puesto tiene contrato, horario definido y empresa verificable", "tipo": "seguro", "dificultad": "medio", "fuente": null },
-    { "id": "dd-11", "texto": "Te enviaré dinero a tu cuenta, solo transfírelo a otro banco", "tipo": "mula", "dificultad": "medio", "fuente": "Cifas 2023" },
-    { "id": "dd-12", "texto": "Estoy preocupado por ti, ¿necesitas hablar con alguien de confianza?", "tipo": "seguro", "dificultad": "medio", "fuente": null },
-    { "id": "dd-13", "texto": "Tu cuenta de Roblox tiene potencial monetario, solo dame tu correo para la 'colaboración'", "tipo": "reclutamiento", "dificultad": "dificil", "fuente": "Europol EMMA 2023" },
-    { "id": "dd-14", "texto": "Mira este video tuyo, se ve genial. ¿Quieres que lo suba a mi canal o prefieres que me pares?", "tipo": "extorsion", "dificultad": "dificil", "fuente": "Deepfake research 2023" },
-    { "id": "dd-15", "texto": "Eres la única persona que me entiende. No le cuentes a nadie lo nuestro", "tipo": "manipulacion", "dificultad": "dificil", "fuente": "Europol EMMA 2023" },
-    { "id": "dd-16", "texto": "Publicaremos tu perfil en redes con tus fotos reales si no cooperas", "tipo": "extorsion", "dificultad": "dificil", "fuente": "FBI IC3 2022" }
+    {
+      "id": "dd-1",
+      "texto": "Gana $1000 por solo recibir transferencias en tu cuenta bancaria",
+      "tipo": "mula",
+      "dificultad": "facil",
+      "fuente": "Cifas 2023"
+    },
+    {
+      "id": "dd-2",
+      "texto": "Eres la persona más importante de mi vida, no podría vivir sin ti",
+      "tipo": "manipulacion",
+      "dificultad": "facil",
+      "fuente": "FBI IC3 2022"
+    },
+    {
+      "id": "dd-3",
+      "texto": "Si no me envías $200, publico tus fotos en internet",
+      "tipo": "extorsion",
+      "dificultad": "facil",
+      "fuente": "FBI IC3 2022"
+    },
+    {
+      "id": "dd-4",
+      "texto": "Necesito que trabajes 8 horas de lunes a viernes en nuestra oficina",
+      "tipo": "seguro",
+      "dificultad": "facil",
+      "fuente": null
+    },
+    {
+      "id": "dd-5",
+      "texto": "Únete a nuestro grupo de inversiones, solo necesitas tu cédula",
+      "tipo": "reclutamiento",
+      "dificultad": "medio",
+      "fuente": "Europol EMMA 2023"
+    },
+    {
+      "id": "dd-6",
+      "texto": "No puedes confiar en nadie, solo en mí. Aléjate de tus amigos",
+      "tipo": "manipulacion",
+      "dificultad": "medio",
+      "fuente": "FBI IC3 2022"
+    },
+    {
+      "id": "dd-7",
+      "texto": "Recibe paquetes en tu casa y repártelos, no preguntes qué hay dentro",
+      "tipo": "mula",
+      "dificultad": "medio",
+      "fuente": "Europol EMMA 2023"
+    },
+    {
+      "id": "dd-8",
+      "texto": "Tu tarea es vender este producto y reclutar a 3 amigos más",
+      "tipo": "reclutamiento",
+      "dificultad": "medio",
+      "fuente": "Cifas 2023"
+    },
+    {
+      "id": "dd-9",
+      "texto": "Si no me das tu contraseña, te hackeo todas tus cuentas",
+      "tipo": "extorsion",
+      "dificultad": "medio",
+      "fuente": "Cifas 2023"
+    },
+    {
+      "id": "dd-10",
+      "texto": "El puesto tiene contrato, horario definido y empresa verificable",
+      "tipo": "seguro",
+      "dificultad": "medio",
+      "fuente": null
+    },
+    {
+      "id": "dd-11",
+      "texto": "Te enviaré dinero a tu cuenta, solo transfírelo a otro banco",
+      "tipo": "mula",
+      "dificultad": "medio",
+      "fuente": "Cifas 2023"
+    },
+    {
+      "id": "dd-12",
+      "texto": "Estoy preocupado por ti, ¿necesitas hablar con alguien de confianza?",
+      "tipo": "seguro",
+      "dificultad": "medio",
+      "fuente": null
+    },
+    {
+      "id": "dd-13",
+      "texto": "Tu cuenta de Roblox tiene potencial monetario, solo dame tu correo para la 'colaboración'",
+      "tipo": "reclutamiento",
+      "dificultad": "dificil",
+      "fuente": "Europol EMMA 2023"
+    },
+    {
+      "id": "dd-14",
+      "texto": "Mira este video tuyo, se ve genial. ¿Quieres que lo suba a mi canal o prefieres que me pares?",
+      "tipo": "extorsion",
+      "dificultad": "dificil",
+      "fuente": "Deepfake research 2023"
+    },
+    {
+      "id": "dd-15",
+      "texto": "Eres la única persona que me entiende. No le cuentes a nadie lo nuestro",
+      "tipo": "manipulacion",
+      "dificultad": "dificil",
+      "fuente": "Europol EMMA 2023"
+    },
+    {
+      "id": "dd-16",
+      "texto": "Publicaremos tu perfil en redes con tus fotos reales si no cooperas",
+      "tipo": "extorsion",
+      "dificultad": "dificil",
+      "fuente": "FBI IC3 2022"
+    }
   ]
 }

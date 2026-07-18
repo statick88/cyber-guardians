@@ -3,7 +3,7 @@
 /** A single option in a challenge (hardening or crypto) */
 export interface ChallengeOption {
   id: string;
-  label: string;
+  etiqueta: string;
   esCorrecta: boolean;
   explicacion: string;
 }

@@ -15,7 +15,7 @@ export interface MensajeChat {
   id: string;
   autor: "reclutador" | "amigo" | "victima" | "sospechoso";
   texto: string;
-  esSeñal: boolean;          // true if this message is a red flag
+  esSenal: boolean;          // true if this message is a red flag
   razon?: string;            // explanation shown after detection
   /** Age hint for the victim persona (research: minors are primary targets) */
   edad?: number;
@@ -31,7 +31,7 @@ export interface EscenarioChat {
   titulo: string;
   contexto: string;          // short intro shown before the chat
   mensajes: MensajeChat[];
-  señales: string[];         // red-flag labels for this scenario
+  senales: string[];         // red-flag labels for this scenario
   puntuacionMaxima: number;  // max points for this activity
   /** Research source validating this scenario (e.g. "Europol EMMA 2023") */
   fuente: string;
@@ -52,7 +52,7 @@ export interface OfertaMula {
   titulo: string;
   descripcion: string;
   fuente: string;            // e.g. "Instagram DM", "Telegram grupo"
-  señalesRiesgo: string[];
+  senalesRiesgo: string[];
   nivelRiesgo: RiesgoMula;
   esTrampa: boolean;
   explicacion: string;

@@ -96,7 +96,12 @@
       "icono": "📱",
       "descripcion": "Recibes un código de 6 dígitos por mensaje de texto",
       "nivelSeguridad": "bajo",
-      "vulnerableA": ["SIM Swapping", "Interceptación SS7", "Malware en dispositivo", "Ingeniería social al operador"],
+      "vulnerableA": [
+        "SIM Swapping",
+        "Interceptación SS7",
+        "Malware en dispositivo",
+        "Ingeniería social al operador"
+      ],
       "ejemplo": "Tu código de verificación es: 847291"
     },
     {
@@ -105,7 +110,11 @@
       "icono": "📧",
       "descripcion": "Recibes un código o enlace mágico en tu correo",
       "nivelSeguridad": "bajo",
-      "vulnerableA": ["Compromiso de cuenta de email", "Phishing de credenciales", "Acceso a correo sin 2FA"],
+      "vulnerableA": [
+        "Compromiso de cuenta de email",
+        "Phishing de credenciales",
+        "Acceso a correo sin 2FA"
+      ],
       "ejemplo": "Tu código de seguridad: 392847"
     },
     {
@@ -114,7 +123,11 @@
       "icono": "🔐",
       "descripcion": "Google Authenticator, Authy, Microsoft Authenticator, 1Password generan códigos cada 30s",
       "nivelSeguridad": "alto",
-      "vulnerableA": ["Malware en dispositivo (raro)", "Pérdida de dispositivo sin backup", "Phishing de código en tiempo real"],
+      "vulnerableA": [
+        "Malware en dispositivo (raro)",
+        "Pérdida de dispositivo sin backup",
+        "Phishing de código en tiempo real"
+      ],
       "ejemplo": "GitHub: 728 491 (expira en 15s)"
     },
     {
@@ -123,7 +136,10 @@
       "icono": "🔑",
       "descripcion": "YubiKey, Google Titan, SoloKey - dispositivo físico que conectas o tocas",
       "nivelSeguridad": "maximo",
-      "vulnerableA": ["Robo físico del dispositivo (requiere PIN)", "Ataques de cadena de suministro (extremadamente raros)"],
+      "vulnerableA": [
+        "Robo físico del dispositivo (requiere PIN)",
+        "Ataques de cadena de suministro (extremadamente raros)"
+      ],
       "ejemplo": "Toca tu YubiKey para autenticar"
     },
     {
@@ -132,7 +148,11 @@
       "icono": "🔔",
       "descripcion": "Recibes notificación en app para aprobar/denegar login",
       "nivelSeguridad": "medio",
-      "vulnerableA": ["Fatiga de notificaciones (MFA bombing)", "Aprobación accidental", "Malware en dispositivo"],
+      "vulnerableA": [
+        "Fatiga de notificaciones (MFA bombing)",
+        "Aprobación accidental",
+        "Malware en dispositivo"
+      ],
       "ejemplo": "¿Intentas iniciar sesión en Office 365? [Aprobar] [Denegar]"
     },
     {
@@ -141,7 +161,10 @@
       "icono": "🔏",
       "descripcion": "Autenticación sin contraseña usando biometría o PIN del dispositivo (WebAuthn)",
       "nivelSeguridad": "maximo",
-      "vulnerableA": ["Robo de dispositivo desbloqueado", "Vulnerabilidades en implementación del sincronizador (iCloud Keychain, Google Password Manager)"],
+      "vulnerableA": [
+        "Robo de dispositivo desbloqueado",
+        "Vulnerabilidades en implementación del sincronizador (iCloud Keychain, Google Password Manager)"
+      ],
       "ejemplo": "FaceID / Huella digital / PIN del dispositivo"
     }
   ],
@@ -151,7 +174,13 @@
       "servicio": "Email Principal (Gmail/Outlook)",
       "icono": "📧",
       "descripcion": "Tu cuenta de email es la llave maestra a todas tus otras cuentas (reset de contraseñas).",
-      "metodosDisponibles": ["sms", "email", "app", "hardware", "passkey"],
+      "metodosDisponibles": [
+        "sms",
+        "email",
+        "app",
+        "hardware",
+        "passkey"
+      ],
       "metodoRecomendado": "hardware",
       "explicacion": "El email controla el acceso a todo. Una llave hardware (YubiKey) o Passkey es la única protección contra SIM swapping y phishing avanzado. Si pierdes la llave, tienes códigos de respaldo guardados en lugar seguro.",
       "puntos": 25,
@@ -174,7 +203,10 @@
               "id": "debrief-2fa-01-1",
               "type": "slider",
               "prompt": "¿Qué tan seguro es tu método de autenticación actual?",
-              "sliderLabels": { "min": "Muy vulnerable", "max": "Muy seguro" },
+              "sliderLabels": {
+                "min": "Muy vulnerable",
+                "max": "Muy seguro"
+              },
               "storageKey": "2fa_confidence",
               "competency": "threat_identification"
             }
@@ -188,7 +220,11 @@
       "servicio": "Banca Online",
       "icono": "🏦",
       "descripcion": "Tu banco ofrece SMS, app del banco y token físico.",
-      "metodosDisponibles": ["sms", "app", "hardware"],
+      "metodosDisponibles": [
+        "sms",
+        "app",
+        "hardware"
+      ],
       "metodoRecomendado": "hardware",
       "explicacion": "Los bancos son objetivo #1. El token físico del banco o YubiKey registrado es lo mejor. Evita SMS: el SIM swapping permite interceptar códigos bancarios.",
       "puntos": 25,
@@ -211,7 +247,10 @@
               "id": "debrief-2fa-02-1",
               "type": "slider",
               "prompt": "¿Qué tan seguro consideras tu método 2FA actual para banca?",
-              "sliderLabels": { "min": "Muy vulnerable", "max": "Muy seguro" },
+              "sliderLabels": {
+                "min": "Muy vulnerable",
+                "max": "Muy seguro"
+              },
               "storageKey": "2fa_banking_confidence",
               "competency": "threat_identification"
             }
@@ -225,7 +264,11 @@
       "servicio": "Red Social (Instagram/TikTok)",
       "icono": "📱",
       "descripcion": "Quieres proteger tu cuenta de creador de contenido con muchos seguidores.",
-      "metodosDisponibles": ["sms", "app", "push"],
+      "metodosDisponibles": [
+        "sms",
+        "app",
+        "push"
+      ],
       "metodoRecomendado": "app",
       "explicacion": "App autenticadora (Authy, Google Auth, 1Password) balancea seguridad y usabilidad. Authy permite backup encriptado en la nube para recuperar si pierdes el teléfono.",
       "puntos": 20,
@@ -248,10 +291,22 @@
               "id": "debrief-2fa-03-1",
               "type": "micro-decision",
               "prompt": "Pierdes tu teléfono. ¿Cómo recuperas el 2FA de Instagram?",
-              "options": [
-                { "id": "opt-authy", "label": "Tengo Authy con backup", "cognitiveInsight": "Planificación previa, recuperación segura" },
-                { "id": "opt-codes", "label": "Tengo códigos de respaldo guardados", "cognitiveInsight": "Buena práctica de respaldo" },
-                { "id": "opt-lost", "label": "No tengo nada, pierdo la cuenta", "cognitiveInsight": "Sin plan de contingencia" }
+              "opciones": [
+                {
+                  "id": "opt-authy",
+                  "etiqueta": "Tengo Authy con backup",
+                  "cognitiveInsight": "Planificación previa, recuperación segura"
+                },
+                {
+                  "id": "opt-codes",
+                  "etiqueta": "Tengo códigos de respaldo guardados",
+                  "cognitiveInsight": "Buena práctica de respaldo"
+                },
+                {
+                  "id": "opt-lost",
+                  "etiqueta": "No tengo nada, pierdo la cuenta",
+                  "cognitiveInsight": "Sin plan de contingencia"
+                }
               ],
               "storageKey": "2fa_recovery_plan",
               "competency": "decision_under_pressure"
@@ -266,7 +321,12 @@
       "servicio": "Gestor de Contraseñas (Bitwarden/1Password)",
       "icono": "🔐",
       "descripcion": "Tu bóveda maestra que contiene TODAS tus credenciales.",
-      "metodosDisponibles": ["email", "app", "hardware", "passkey"],
+      "metodosDisponibles": [
+        "email",
+        "app",
+        "hardware",
+        "passkey"
+      ],
       "metodoRecomendado": "hardware",
       "explicacion": "¡MÁXIMA PRIORIDAD! Si comprometen tu gestor, tienen TODO. Requiere llave hardware (YubiKey) O passkey. Sin excepciones. Guarda códigos de recuperación en caja fuerte física.",
       "puntos": 30,
@@ -429,9 +489,27 @@
       "titulo": "Acceso No Autorizado a Email",
       "descripcion": "Recibes alerta: 'Nuevo inicio de sesión desde Chrome en Brasil'. No has viajado.",
       "indicadores": [
-        { "id": "ind-01", "tipo": "login-sospechoso", "descripcion": "Inicio de sesión desde ubicación/device desconocido", "severidad": "critica", "accion": "Revisar actividad reciente inmediatamente" },
-        { "id": "ind-02", "tipo": "cambio-configuracion", "descripcion": "Reglas de reenvío de email creadas sin tu consentimiento", "severidad": "alta", "accion": "Verificar configuración de reenvío/POP/IMAP" },
-        { "id": "ind-03", "tipo": "emails-eliminados", "descripcion": "Emails de seguridad/verificación en papelera", "severidad": "alta", "accion": "Revisar papelera y spam por emails de reset" }
+        {
+          "id": "ind-01",
+          "tipo": "login-sospechoso",
+          "descripcion": "Inicio de sesión desde ubicación/device desconocido",
+          "severidad": "critica",
+          "accion": "Revisar actividad reciente inmediatamente"
+        },
+        {
+          "id": "ind-02",
+          "tipo": "cambio-configuracion",
+          "descripcion": "Reglas de reenvío de email creadas sin tu consentimiento",
+          "severidad": "alta",
+          "accion": "Verificar configuración de reenvío/POP/IMAP"
+        },
+        {
+          "id": "ind-03",
+          "tipo": "emails-eliminados",
+          "descripcion": "Emails de seguridad/verificación en papelera",
+          "severidad": "alta",
+          "accion": "Revisar papelera y spam por emails de reset"
+        }
       ],
       "accionCorrecta": "cambiar-contrasenas",
       "puntos": 30,
@@ -456,10 +534,22 @@
               "id": "debrief-id-01-1",
               "type": "micro-decision",
               "prompt": "¿Cuál sería tu primera acción si recibieras esta alerta?",
-              "options": [
-                { "id": "opt-change", "label": "Cambiar contraseña inmediatamente", "cognitiveInsight": "Acción correcta pero incompleta" },
-                { "id": "opt-review", "label": "Revisar actividad y configuración primero", "cognitiveInsight": "Análisis completo antes de actuar" },
-                { "id": "opt-ignore", "label": "Ignorar, probablemente es falso", "cognitiveInsight": "Subestima la amenaza" }
+              "opciones": [
+                {
+                  "id": "opt-change",
+                  "etiqueta": "Cambiar contraseña inmediatamente",
+                  "cognitiveInsight": "Acción correcta pero incompleta"
+                },
+                {
+                  "id": "opt-review",
+                  "etiqueta": "Revisar actividad y configuración primero",
+                  "cognitiveInsight": "Análisis completo antes de actuar"
+                },
+                {
+                  "id": "opt-ignore",
+                  "etiqueta": "Ignorar, probablemente es falso",
+                  "cognitiveInsight": "Subestima la amenaza"
+                }
               ],
               "storageKey": "id_theft_decision",
               "competency": "decision_under_pressure"
@@ -475,9 +565,27 @@
       "titulo": "Solicitud de Crédito a Tu Nombre",
       "descripcion": "Recibes carta de banco: 'Su tarjeta de crédito ha sido aprobada'. Nunca solicitaste nada.",
       "indicadores": [
-        { "id": "ind-04", "tipo": "consulta-credito", "descripcion": "Consultas duras (hard pulls) en tu historial crediticio no autorizadas", "severidad": "critica", "accion": "Solicitar reporte de crédito gratuito" },
-        { "id": "ind-05", "tipo": "cuentas-desconocidas", "descripcion": "Cuentas/tarjetas que no abriste aparecen en tu reporte", "severidad": "critica", "accion": "Contactar buró de crédito y disputar" },
-        { "id": "ind-06", "tipo": "direccion-falsa", "descripcion": "Direcciones donde nunca viviste en tu historial", "severidad": "alta", "accion": "Reportar robo de identidad a autoridades" }
+        {
+          "id": "ind-04",
+          "tipo": "consulta-credito",
+          "descripcion": "Consultas duras (hard pulls) en tu historial crediticio no autorizadas",
+          "severidad": "critica",
+          "accion": "Solicitar reporte de crédito gratuito"
+        },
+        {
+          "id": "ind-05",
+          "tipo": "cuentas-desconocidas",
+          "descripcion": "Cuentas/tarjetas que no abriste aparecen en tu reporte",
+          "severidad": "critica",
+          "accion": "Contactar buró de crédito y disputar"
+        },
+        {
+          "id": "ind-06",
+          "tipo": "direccion-falsa",
+          "descripcion": "Direcciones donde nunca viviste en tu historial",
+          "severidad": "alta",
+          "accion": "Reportar robo de identidad a autoridades"
+        }
       ],
       "accionCorrecta": "congelar-credito",
       "puntos": 35,
@@ -502,10 +610,22 @@
               "id": "debrief-id-02-1",
               "type": "micro-decision",
               "prompt": "Descubres una tarjeta abierta a tu nombre. ¿Primer paso?",
-              "options": [
-                { "id": "opt-freeze", "label": "Congelo crédito en 3 burós", "cognitiveInsight": "Prevención inmediata, acción correcta" },
-                { "id": "opt-password", "label": "Cambio contraseñas de email/banco", "cognitiveInsight": "Reacción instintiva pero no detiene crédito nuevo" },
-                { "id": "opt-wait", "label": "Espero a ver si hay más", "cognitiveInsight": "Pasividad peligrosa" }
+              "opciones": [
+                {
+                  "id": "opt-freeze",
+                  "etiqueta": "Congelo crédito en 3 burós",
+                  "cognitiveInsight": "Prevención inmediata, acción correcta"
+                },
+                {
+                  "id": "opt-password",
+                  "etiqueta": "Cambio contraseñas de email/banco",
+                  "cognitiveInsight": "Reacción instintiva pero no detiene crédito nuevo"
+                },
+                {
+                  "id": "opt-wait",
+                  "etiqueta": "Espero a ver si hay más",
+                  "cognitiveInsight": "Pasividad peligrosa"
+                }
               ],
               "storageKey": "credit_freeze_first",
               "competency": "decision_under_pressure"
@@ -521,9 +641,27 @@
       "titulo": "Cargos Desconocidos en Tarjeta",
       "descripcion": "Ves cargos de $500 en 'Amazon Digital Svcs' y $200 en 'Uber *Trip' que no hiciste.",
       "indicadores": [
-        { "id": "ind-07", "tipo": "cargos-pequenos", "descripcion": "Cargos pequeños de prueba ($1-5) previos a grandes", "severidad": "media", "accion": "Revisar extractos semanalmente" },
-        { "id": "ind-08", "tipo": "comercios-desconocidos", "descripcion": "Comercios donde nunca compraste", "severidad": "alta", "accion": "Llamar a banco INMEDIATAMENTE" },
-        { "id": "ind-09", "tipo": "ubicacion-imposible", "descripcion": "Cargos en ciudades/países donde no estás", "severidad": "alta", "accion": "Reportar tarjeta comprometida" }
+        {
+          "id": "ind-07",
+          "tipo": "cargos-pequenos",
+          "descripcion": "Cargos pequeños de prueba ($1-5) previos a grandes",
+          "severidad": "media",
+          "accion": "Revisar extractos semanalmente"
+        },
+        {
+          "id": "ind-08",
+          "tipo": "comercios-desconocidos",
+          "descripcion": "Comercios donde nunca compraste",
+          "severidad": "alta",
+          "accion": "Llamar a banco INMEDIATAMENTE"
+        },
+        {
+          "id": "ind-09",
+          "tipo": "ubicacion-imposible",
+          "descripcion": "Cargos en ciudades/países donde no estás",
+          "severidad": "alta",
+          "accion": "Reportar tarjeta comprometida"
+        }
       ],
       "accionCorrecta": "contactar-soporte",
       "puntos": 25,
@@ -548,10 +686,22 @@
               "id": "debrief-id-03-1",
               "type": "micro-decision",
               "prompt": "Recibes SMS: 'Cargo sospechoso, llama al 800-XXX-XXXX'. ¿Qué haces?",
-              "options": [
-                { "id": "opt-back", "label": "Llamo al número de atrás de mi tarjeta", "cognitiveInsight": "Canal verificado, acción segura" },
-                { "id": "opt-sms", "label": "Llamo al número del SMS", "cognitiveInsight": "Riesgo de vishing/smishing" },
-                { "id": "opt-app", "label": "Abro la app del banco", "cognitiveInsight": "Canal oficial alternativo válido" }
+              "opciones": [
+                {
+                  "id": "opt-back",
+                  "etiqueta": "Llamo al número de atrás de mi tarjeta",
+                  "cognitiveInsight": "Canal verificado, acción segura"
+                },
+                {
+                  "id": "opt-sms",
+                  "etiqueta": "Llamo al número del SMS",
+                  "cognitiveInsight": "Riesgo de vishing/smishing"
+                },
+                {
+                  "id": "opt-app",
+                  "etiqueta": "Abro la app del banco",
+                  "cognitiveInsight": "Canal oficial alternativo válido"
+                }
               ],
               "storageKey": "fraud_call_channel",
               "competency": "decision_under_pressure"
@@ -567,9 +717,27 @@
       "titulo": "Facturas Médicas a Tu Nombre",
       "descripcion": "Recibes factura de hospital por cirugía de $50,000. Nunca estuviste ahí.",
       "indicadores": [
-        { "id": "ind-10", "tipo": "registros-medicos", "descripcion": "Historial médico con condiciones que no tienes", "severidad": "critica", "accion": "Solicitar registros médicos completos" },
-        { "id": "ind-11", "tipo": "seguro-usado", "descripcion": "Tu seguro muestra reclamos que no hiciste", "severidad": "critica", "accion": "Contactar aseguradora - unidad de fraude" },
-        { "id": "ind-12", "tipo": "recetas-falsas", "descripcion": "Recetas de opioides/controlados a tu nombre", "severidad": "critica", "accion": "Reportar a policía y DEA/autoridad sanitaria" }
+        {
+          "id": "ind-10",
+          "tipo": "registros-medicos",
+          "descripcion": "Historial médico con condiciones que no tienes",
+          "severidad": "critica",
+          "accion": "Solicitar registros médicos completos"
+        },
+        {
+          "id": "ind-11",
+          "tipo": "seguro-usado",
+          "descripcion": "Tu seguro muestra reclamos que no hiciste",
+          "severidad": "critica",
+          "accion": "Contactar aseguradora - unidad de fraude"
+        },
+        {
+          "id": "ind-12",
+          "tipo": "recetas-falsas",
+          "descripcion": "Recetas de opioides/controlados a tu nombre",
+          "severidad": "critica",
+          "accion": "Reportar a policía y DEA/autoridad sanitaria"
+        }
       ],
       "accionCorrecta": "reportar-autoridades",
       "puntos": 30,
@@ -609,9 +777,27 @@
       "titulo": "Identidad de Menor Comprometida",
       "descripcion": "Tu hijo de 10 años recibe oferta de tarjeta de crédito 'pre-aprobada'.",
       "indicadores": [
-        { "id": "ind-13", "tipo": "ofertas-credito", "descripcion": "Ofertas de crédito/préstamos dirigidas a menor", "severidad": "critica", "accion": "Verificar reporte de crédito del menor" },
-        { "id": "ind-14", "tipo": "declaracion-impuestos", "descripcion": "IRS/Autoridad fiscal rechaza declaración: 'SSN ya usado'", "severidad": "critica", "accion": "Reportar robo de identidad infantil" },
-        { "id": "ind-15", "tipo": "cuentas-bancarias", "descripcion": "Cuentas abiertas con SSN del menor", "severidad": "critica", "accion": "Congelar crédito del menor inmediatamente" }
+        {
+          "id": "ind-13",
+          "tipo": "ofertas-credito",
+          "descripcion": "Ofertas de crédito/préstamos dirigidas a menor",
+          "severidad": "critica",
+          "accion": "Verificar reporte de crédito del menor"
+        },
+        {
+          "id": "ind-14",
+          "tipo": "declaracion-impuestos",
+          "descripcion": "IRS/Autoridad fiscal rechaza declaración: 'SSN ya usado'",
+          "severidad": "critica",
+          "accion": "Reportar robo de identidad infantil"
+        },
+        {
+          "id": "ind-15",
+          "tipo": "cuentas-bancarias",
+          "descripcion": "Cuentas abiertas con SSN del menor",
+          "severidad": "critica",
+          "accion": "Congelar crédito del menor inmediatamente"
+        }
       ],
       "accionCorrecta": "congelar-credito",
       "puntos": 35,
@@ -636,10 +822,22 @@
               "id": "debrief-id-05-1",
               "type": "micro-decision",
               "prompt": "Tu hijo de 10 años recibe oferta de tarjeta 'pre-aprobada'. ¿Qué haces?",
-              "options": [
-                { "id": "opt-freeze", "label": "Congelo su crédito en 3 burós hoy", "cognitiveInsight": "Acción preventiva correcta" },
-                { "id": "opt-ignore", "label": "Ignoro, es error del banco", "cognitiveInsight": "Subestima el riesgo" },
-                { "id": "opt-check", "label": "Reviso su reporte de crédito primero", "cognitiveInsight": "Verifica pero retrasa la protección" }
+              "opciones": [
+                {
+                  "id": "opt-freeze",
+                  "etiqueta": "Congelo su crédito en 3 burós hoy",
+                  "cognitiveInsight": "Acción preventiva correcta"
+                },
+                {
+                  "id": "opt-ignore",
+                  "etiqueta": "Ignoro, es error del banco",
+                  "cognitiveInsight": "Subestima el riesgo"
+                },
+                {
+                  "id": "opt-check",
+                  "etiqueta": "Reviso su reporte de crédito primero",
+                  "cognitiveInsight": "Verifica pero retrasa la protección"
+                }
               ],
               "storageKey": "child_credit_freeze",
               "competency": "decision_under_pressure"
@@ -656,19 +854,77 @@
       "titulo": "Arma tu Kit de Defensa Digital",
       "descripcion": "Arrastra cada herramienta a su capa de protección correcta",
       "items": [
-        { "id": "d1-1", "conteudo": "Gestor de Contraseñas (Bitwarden, 1Password)", "tipo": "credenciales", "icono": "🔐" },
-        { "id": "d1-2", "conteudo": "Llave Hardware YubiKey / Passkey", "tipo": "credenciales", "icono": "🔑" },
-        { "id": "d1-3", "conteudo": "VPN de Confianza (Mullvad, Proton, IVPN)", "tipo": "red", "icono": "🛡️" },
-        { "id": "d1-4", "conteudo": "Congelación de Crédito (3 Burós)", "tipo": "identidad", "icono": "🧊" },
-        { "id": "d1-5", "conteudo": "App Autenticadora (Authy, 1Password, Google)", "tipo": "credenciales", "icono": "📱" },
-        { "id": "d1-6", "conteudo": "Monitor de Brechas (Have I Been Pwned, Firefox Monitor)", "tipo": "identidad", "icono": "🔍" },
-        { "id": "d1-7", "conteudo": "Navegador Hardened (Firefox + uBlock, Brave)", "tipo": "red", "icono": "🌐" },
-        { "id": "d1-8", "conteudo": "Alias de Email (SimpleLogin, AnonAddy, Firefox Relay)", "tipo": "credenciales", "icono": "📧" }
+        {
+          "id": "d1-1",
+          "contenido": "Gestor de Contraseñas (Bitwarden, 1Password)",
+          "tipo": "credenciales",
+          "icono": "🔐"
+        },
+        {
+          "id": "d1-2",
+          "contenido": "Llave Hardware YubiKey / Passkey",
+          "tipo": "credenciales",
+          "icono": "🔑"
+        },
+        {
+          "id": "d1-3",
+          "contenido": "VPN de Confianza (Mullvad, Proton, IVPN)",
+          "tipo": "red",
+          "icono": "🛡️"
+        },
+        {
+          "id": "d1-4",
+          "contenido": "Congelación de Crédito (3 Burós)",
+          "tipo": "identidad",
+          "icono": "🧊"
+        },
+        {
+          "id": "d1-5",
+          "contenido": "App Autenticadora (Authy, 1Password, Google)",
+          "tipo": "credenciales",
+          "icono": "📱"
+        },
+        {
+          "id": "d1-6",
+          "contenido": "Monitor de Brechas (Have I Been Pwned, Firefox Monitor)",
+          "tipo": "identidad",
+          "icono": "🔍"
+        },
+        {
+          "id": "d1-7",
+          "contenido": "Navegador Hardened (Firefox + uBlock, Brave)",
+          "tipo": "red",
+          "icono": "🌐"
+        },
+        {
+          "id": "d1-8",
+          "contenido": "Alias de Email (SimpleLogin, AnonAddy, Firefox Relay)",
+          "tipo": "credenciales",
+          "icono": "📧"
+        }
       ],
-      "targets": [
-        { "id": "t1-cred", "label": "🔐 Capa Credenciales (Acceso a Cuentas)", "tipo": "credenciales", "color": "cyan", "descripcion": "Protege el acceso directo a tus cuentas" },
-        { "id": "t1-red", "label": "🌐 Capa Red (Tráfico y Conexión)", "tipo": "red", "color": "emerald", "descripcion": "Protege tu tráfico de red y ubicación" },
-        { "id": "t1-id", "label": "🆔 Capa Identidad (Identidad Legal/Financiera)", "tipo": "identidad", "color": "purple", "descripcion": "Protege tu identidad legal y financiera" }
+      "objetivos": [
+        {
+          "id": "t1-cred",
+          "etiqueta": "🔐 Capa Credenciales (Acceso a Cuentas)",
+          "tipo": "credenciales",
+          "color": "cyan",
+          "descripcion": "Protege el acceso directo a tus cuentas"
+        },
+        {
+          "id": "t1-red",
+          "etiqueta": "🌐 Capa Red (Tráfico y Conexión)",
+          "tipo": "red",
+          "color": "emerald",
+          "descripcion": "Protege tu tráfico de red y ubicación"
+        },
+        {
+          "id": "t1-id",
+          "etiqueta": "🆔 Capa Identidad (Identidad Legal/Financiera)",
+          "tipo": "identidad",
+          "color": "purple",
+          "descripcion": "Protege tu identidad legal y financiera"
+        }
       ],
       "puntos": 30
     },
@@ -677,18 +933,72 @@
       "titulo": "Jerarquía de Seguridad 2FA",
       "descripcion": "Ordena los métodos 2FA de MENOR a MAYOR seguridad",
       "items": [
-        { "id": "d2-1", "conteudo": "Código por SMS", "tipo": "nivel1", "icono": "📱" },
-        { "id": "d2-2", "conteudo": "Código por Email", "tipo": "nivel1", "icono": "📧" },
-        { "id": "d2-3", "conteudo": "Notificación Push (Duo, Microsoft)", "tipo": "nivel2", "icono": "🔔" },
-        { "id": "d2-4", "conteudo": "App Autenticadora TOTP (Authy, Google Auth)", "tipo": "nivel3", "icono": "🔐" },
-        { "id": "d2-5", "conteudo": "Passkeys (FaceID, Windows Hello, Llave Sincronizada)", "tipo": "nivel4", "icono": "🔏" },
-        { "id": "d2-6", "conteudo": "Llave Hardware FIDO2 (YubiKey, Titan, SoloKey)", "tipo": "nivel4", "icono": "🔑" }
+        {
+          "id": "d2-1",
+          "contenido": "Código por SMS",
+          "tipo": "nivel1",
+          "icono": "📱"
+        },
+        {
+          "id": "d2-2",
+          "contenido": "Código por Email",
+          "tipo": "nivel1",
+          "icono": "📧"
+        },
+        {
+          "id": "d2-3",
+          "contenido": "Notificación Push (Duo, Microsoft)",
+          "tipo": "nivel2",
+          "icono": "🔔"
+        },
+        {
+          "id": "d2-4",
+          "contenido": "App Autenticadora TOTP (Authy, Google Auth)",
+          "tipo": "nivel3",
+          "icono": "🔐"
+        },
+        {
+          "id": "d2-5",
+          "contenido": "Passkeys (FaceID, Windows Hello, Llave Sincronizada)",
+          "tipo": "nivel4",
+          "icono": "🔏"
+        },
+        {
+          "id": "d2-6",
+          "contenido": "Llave Hardware FIDO2 (YubiKey, Titan, SoloKey)",
+          "tipo": "nivel4",
+          "icono": "🔑"
+        }
       ],
-      "targets": [
-        { "id": "t2-1", "label": "🔴 Nivel 1 - Vulnerable (Evitar para cuentas críticas)", "tipo": "nivel1", "color": "rose", "descripcion": "Interceptables vía SIM swap, phishing, compromiso de email" },
-        { "id": "t2-2", "label": "🟡 Nivel 2 - Moderado (Riesgo fatiga/bombing)", "tipo": "nivel2", "color": "amber", "descripcion": "MFA bombing, aprobación accidental, malware en dispositivo" },
-        { "id": "t2-3", "label": "🟢 Nivel 3 - Fuerte (Estándar oro actual)", "tipo": "nivel3", "color": "emerald", "descripcion": "Códigos locales, sin red, backup encriptado (Authy)" },
-        { "id": "t2-4", "label": "🟣 Nivel 4 - Máximo (Resistente a phishing)", "tipo": "nivel4", "color": "purple", "descripcion": "WebAuthn/FIDO2: origen vinculado a origen, inmune a phishing" }
+      "objetivos": [
+        {
+          "id": "t2-1",
+          "etiqueta": "🔴 Nivel 1 - Vulnerable (Evitar para cuentas críticas)",
+          "tipo": "nivel1",
+          "color": "rose",
+          "descripcion": "Interceptables vía SIM swap, phishing, compromiso de email"
+        },
+        {
+          "id": "t2-2",
+          "etiqueta": "🟡 Nivel 2 - Moderado (Riesgo fatiga/bombing)",
+          "tipo": "nivel2",
+          "color": "amber",
+          "descripcion": "MFA bombing, aprobación accidental, malware en dispositivo"
+        },
+        {
+          "id": "t2-3",
+          "etiqueta": "🟢 Nivel 3 - Fuerte (Estándar oro actual)",
+          "tipo": "nivel3",
+          "color": "emerald",
+          "descripcion": "Códigos locales, sin red, backup encriptado (Authy)"
+        },
+        {
+          "id": "t2-4",
+          "etiqueta": "🟣 Nivel 4 - Máximo (Resistente a phishing)",
+          "tipo": "nivel4",
+          "color": "purple",
+          "descripcion": "WebAuthn/FIDO2: origen vinculado a origen, inmune a phishing"
+        }
       ],
       "puntos": 25
     }
@@ -724,14 +1034,45 @@
       "tipo": "ordenar-pasos",
       "pregunta": "Ordena los pasos tras detectar robo de identidad financiero:",
       "pasos": [
-        { "id": "s1", "texto": "Llamar al banco (número atrás de tarjeta) y reportar fraude", "ordenCorrecto": 1 },
-        { "id": "s2", "texto": "Solicitar cancelación y reemplazo de tarjeta(s) comprometida(s)", "ordenCorrecto": 2 },
-        { "id": "s3", "texto": "Revisar extractos 3 meses atrás por más cargos", "ordenCorrecto": 3 },
-        { "id": "s4", "texto": "Congelar crédito en 3 burós (gratis, online)", "ordenCorrecto": 4 },
-        { "id": "s5", "texto": "Actualizar pagos automáticos con nueva tarjeta", "ordenCorrecto": 5 },
-        { "id": "s6", "texto": "Activar alertas de transacción en tiempo real", "ordenCorrecto": 6 }
+        {
+          "id": "s1",
+          "texto": "Llamar al banco (número atrás de tarjeta) y reportar fraude",
+          "ordenCorrecto": 1
+        },
+        {
+          "id": "s2",
+          "texto": "Solicitar cancelación y reemplazo de tarjeta(s) comprometida(s)",
+          "ordenCorrecto": 2
+        },
+        {
+          "id": "s3",
+          "texto": "Revisar extractos 3 meses atrás por más cargos",
+          "ordenCorrecto": 3
+        },
+        {
+          "id": "s4",
+          "texto": "Congelar crédito en 3 burós (gratis, online)",
+          "ordenCorrecto": 4
+        },
+        {
+          "id": "s5",
+          "texto": "Actualizar pagos automáticos con nueva tarjeta",
+          "ordenCorrecto": 5
+        },
+        {
+          "id": "s6",
+          "texto": "Activar alertas de transacción en tiempo real",
+          "ordenCorrecto": 6
+        }
       ],
-      "respuestaCorrecta": ["s1", "s2", "s3", "s4", "s5", "s6"],
+      "respuestaCorrecta": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
       "explicacion": "Orden crítico: 1) Reportar YA (limita responsabilidad legal), 2) Cancelar tarjeta, 3) Auditar historial, 4) Congelar crédito (previene nuevas cuentas), 5-6) Recuperación y prevención futura.",
       "puntos": 25
     }
@@ -743,42 +1084,161 @@
       "organization": "Banco Nacional",
       "difficulty": "basico",
       "transcript": [
-        { "id": "l1", "speaker": "caller", "text": "Buenos días, hablo con el titular de la cuenta número ****4521. Soy el agente Carlos Mendoza del Banco Nacional.", "redFlags": ["rf1"] },
-        { "id": "l2", "speaker": "caller", "text": "Estamos detectando actividad sospechosa en tu cuenta. Se realizó una transferencia de $3,200 a una cuenta en el exterior hace 20 minutos.", "redFlags": ["rf2"] },
-        { "id": "l3", "speaker": "caller", "text": "¿Puedes confirmarme si realizaste esa transacción? Necesito verificar por seguridad.", "decisionPointId": "dp1" },
-        { "id": "l4", "speaker": "caller", "text": "Entiendo que no fuiste tú. Para bloquear la transacción ahora mismo, necesito que me confirmes tu número de cédula y los últimos 4 dígitos de tu tarjeta.", "redFlags": ["rf3"], "decisionPointId": "dp2" },
-        { "id": "l5", "speaker": "caller", "text": "Perfecto, ya estoy procesando el bloqueo. También necesito tu código de verificación que te acabamos de enviar por SMS para autorizar la reversión.", "redFlags": ["rf4", "rf5"], "decisionPointId": "dp3" }
+        {
+          "id": "l1",
+          "speaker": "caller",
+          "text": "Buenos días, hablo con el titular de la cuenta número ****4521. Soy el agente Carlos Mendoza del Banco Nacional.",
+          "redFlags": [
+            "rf1"
+          ]
+        },
+        {
+          "id": "l2",
+          "speaker": "caller",
+          "text": "Estamos detectando actividad sospechosa en tu cuenta. Se realizó una transferencia de $3,200 a una cuenta en el exterior hace 20 minutos.",
+          "redFlags": [
+            "rf2"
+          ]
+        },
+        {
+          "id": "l3",
+          "speaker": "caller",
+          "text": "¿Puedes confirmarme si realizaste esa transacción? Necesito verificar por seguridad.",
+          "decisionPointId": "dp1"
+        },
+        {
+          "id": "l4",
+          "speaker": "caller",
+          "text": "Entiendo que no fuiste tú. Para bloquear la transacción ahora mismo, necesito que me confirmes tu número de cédula y los últimos 4 dígitos de tu tarjeta.",
+          "redFlags": [
+            "rf3"
+          ],
+          "decisionPointId": "dp2"
+        },
+        {
+          "id": "l5",
+          "speaker": "caller",
+          "text": "Perfecto, ya estoy procesando el bloqueo. También necesito tu código de verificación que te acabamos de enviar por SMS para autorizar la reversión.",
+          "redFlags": [
+            "rf4",
+            "rf5"
+          ],
+          "decisionPointId": "dp3"
+        }
       ],
       "redFlags": [
-        { "id": "rf1", "phrase": "titular de la cuenta número ****4521", "technique": "Vaguedad inicial", "explanation": "El 'agente' menciona datos parciales para generar confianza. Un banco real no llama para pedir datos que ya tiene.", "xpValue": 10, "discovered": false },
-        { "id": "rf2", "phrase": "actividad sospechosa en tu cuenta", "technique": "Urgencia fabricada", "explanation": "Crear pánico es la técnica #1 del vishing. El miedo Reduce la capacidad de análisis crítico.", "xpValue": 15, "discovered": false },
-        { "id": "rf3", "phrase": "número de cédula y los últimos 4 dígitos de tu tarjeta", "technique": "Solicita datos sensibles", "explanation": "Un banco NUNCA pide datos completos por teléfono. Solo los últimos 4 son suficiente para verificación interna.", "xpValue": 20, "discovered": false },
-        { "id": "rf4", "phrase": "código de verificación que te acabamos de enviar por SMS", "technique": "Robo de 2FA por voz", "explanation": "El código SMS es tu segunda línea de defensa. Compartirlo equivale a entregar la llave de tu casa.", "xpValue": 25, "discovered": false },
-        { "id": "rf5", "phrase": "ya estoy procesando el bloqueo", "technique": "Presión de tiempo", "explanation": "El 'agente' finge que ya está actuando para que no tengas tiempo de pensar o verificar.", "xpValue": 15, "discovered": false }
+        {
+          "id": "rf1",
+          "phrase": "titular de la cuenta número ****4521",
+          "technique": "Vaguedad inicial",
+          "explanation": "El 'agente' menciona datos parciales para generar confianza. Un banco real no llama para pedir datos que ya tiene.",
+          "xpValue": 10,
+          "discovered": false
+        },
+        {
+          "id": "rf2",
+          "phrase": "actividad sospechosa en tu cuenta",
+          "technique": "Urgencia fabricada",
+          "explanation": "Crear pánico es la técnica #1 del vishing. El miedo Reduce la capacidad de análisis crítico.",
+          "xpValue": 15,
+          "discovered": false
+        },
+        {
+          "id": "rf3",
+          "phrase": "número de cédula y los últimos 4 dígitos de tu tarjeta",
+          "technique": "Solicita datos sensibles",
+          "explanation": "Un banco NUNCA pide datos completos por teléfono. Solo los últimos 4 son suficiente para verificación interna.",
+          "xpValue": 20,
+          "discovered": false
+        },
+        {
+          "id": "rf4",
+          "phrase": "código de verificación que te acabamos de enviar por SMS",
+          "technique": "Robo de 2FA por voz",
+          "explanation": "El código SMS es tu segunda línea de defensa. Compartirlo equivale a entregar la llave de tu casa.",
+          "xpValue": 25,
+          "discovered": false
+        },
+        {
+          "id": "rf5",
+          "phrase": "ya estoy procesando el bloqueo",
+          "technique": "Presión de tiempo",
+          "explanation": "El 'agente' finge que ya está actuando para que no tengas tiempo de pensar o verificar.",
+          "xpValue": 15,
+          "discovered": false
+        }
       ],
       "decisionPoints": [
         {
           "id": "dp1",
           "prompt": "¿Confirmas la transacción?",
           "choices": [
-            { "id": "c1a", "label": "Sí, fui yo", "isSafe": true, "xpDelta": 5, "shieldDamage": 0, "followUpLineId": "l4", "explanation": "Al no confirmar la transacción ficticia, mantienes el control. El estafador no puede proceder sin tu 'confirmación'." },
-            { "id": "c1b", "label": "No, no fui yo", "isSafe": false, "xpDelta": -5, "shieldDamage": 10, "followUpLineId": "l4", "explanation": "Al confirmar que no fuiste tú, activas el siguiente paso del estafador: pedirte datos para 'resolver' el problema." }
+            {
+              "id": "c1a",
+              "etiqueta": "Sí, fui yo",
+              "isSafe": true,
+              "xpDelta": 5,
+              "shieldDamage": 0,
+              "followUpLineId": "l4",
+              "explanation": "Al no confirmar la transacción ficticia, mantienes el control. El estafador no puede proceder sin tu 'confirmación'."
+            },
+            {
+              "id": "c1b",
+              "etiqueta": "No, no fui yo",
+              "isSafe": false,
+              "xpDelta": -5,
+              "shieldDamage": 10,
+              "followUpLineId": "l4",
+              "explanation": "Al confirmar que no fuiste tú, activas el siguiente paso del estafador: pedirte datos para 'resolver' el problema."
+            }
           ]
         },
         {
           "id": "dp2",
           "prompt": "¿Proporcionas tu cédula y últimos 4 dígitos?",
           "choices": [
-            { "id": "c2a", "label": "No doy esos datos", "isSafe": true, "xpDelta": 20, "shieldDamage": 0, "followUpLineId": "l5", "explanation": "Correcto. Un banco legítimo ya tiene esos datos. Nunca los pide por teléfono." },
-            { "id": "c2b", "label": "Los doy para 'verificar'", "isSafe": false, "xpDelta": -15, "shieldDamage": 25, "followUpLineId": "l5", "explanation": "Estos datos son suficientes para realizar compras en línea o suplantar tu identidad." }
+            {
+              "id": "c2a",
+              "etiqueta": "No doy esos datos",
+              "isSafe": true,
+              "xpDelta": 20,
+              "shieldDamage": 0,
+              "followUpLineId": "l5",
+              "explanation": "Correcto. Un banco legítimo ya tiene esos datos. Nunca los pide por teléfono."
+            },
+            {
+              "id": "c2b",
+              "etiqueta": "Los doy para 'verificar'",
+              "isSafe": false,
+              "xpDelta": -15,
+              "shieldDamage": 25,
+              "followUpLineId": "l5",
+              "explanation": "Estos datos son suficientes para realizar compras en línea o suplantar tu identidad."
+            }
           ]
         },
         {
           "id": "dp3",
           "prompt": "¿Compartes el código SMS?",
           "choices": [
-            { "id": "c3a", "label": "Cuelgo y llamo al banco", "isSafe": true, "xpDelta": 25, "shieldDamage": 0, "followUpLineId": "l5", "explanation": "La respuesta correcta. Cuelga, busca el número oficial del banco en tu tarjeta o sitio web, y llama tú directamente." },
-            { "id": "c3b", "label": "Doy el código SMS", "isSafe": false, "xpDelta": -25, "shieldDamage": 40, "followUpLineId": "l5", "explanation": "Con tu código SMS, el estafador puede autorizar transferencias, cambiar tu contraseña, o activar 2FA en tu nombre." }
+            {
+              "id": "c3a",
+              "etiqueta": "Cuelgo y llamo al banco",
+              "isSafe": true,
+              "xpDelta": 25,
+              "shieldDamage": 0,
+              "followUpLineId": "l5",
+              "explanation": "La respuesta correcta. Cuelga, busca el número oficial del banco en tu tarjeta o sitio web, y llama tú directamente."
+            },
+            {
+              "id": "c3b",
+              "etiqueta": "Doy el código SMS",
+              "isSafe": false,
+              "xpDelta": -25,
+              "shieldDamage": 40,
+              "followUpLineId": "l5",
+              "explanation": "Con tu código SMS, el estafador puede autorizar transferencias, cambiar tu contraseña, o activar 2FA en tu nombre."
+            }
           ]
         }
       ],
@@ -791,42 +1251,165 @@
       "organization": "Microsoft Support",
       "difficulty": "intermedio",
       "transcript": [
-        { "id": "l1", "speaker": "caller", "text": "Hola, soy Miguel de soporte técnico de Microsoft. Tu computadora está enviando señales de error a nuestros servidores. ¿Estás cerca de tu PC ahora?", "redFlags": ["rf1"] },
-        { "id": "l2", "speaker": "caller", "text": "Hemos detectado 47 virus en tu máquina. Necesitamos acceso remoto URGENTE para evitar que se comprometan tus datos bancarios.", "redFlags": ["rf2", "rf3"], "decisionPointId": "dp1" },
-        { "id": "l3", "speaker": "caller", "text": "Abre la aplicación TeamViewer y dime el código que ves. Yo me conecto y limpio todo. Es gratis, pero solo hoy porque el virus está activo.", "redFlags": ["rf4", "rf5"], "decisionPointId": "dp2" },
-        { "id": "l4", "speaker": "caller", "text": "Ya estoy dentro. Veo que tienes cuentas de banco aquí. Déjame verificar que no estén comprometidas. Dame tu usuario y contraseña del banco para revisarlo.", "redFlags": ["rf6"], "decisionPointId": "dp3" }
+        {
+          "id": "l1",
+          "speaker": "caller",
+          "text": "Hola, soy Miguel de soporte técnico de Microsoft. Tu computadora está enviando señales de error a nuestros servidores. ¿Estás cerca de tu PC ahora?",
+          "redFlags": [
+            "rf1"
+          ]
+        },
+        {
+          "id": "l2",
+          "speaker": "caller",
+          "text": "Hemos detectado 47 virus en tu máquina. Necesitamos acceso remoto URGENTE para evitar que se comprometan tus datos bancarios.",
+          "redFlags": [
+            "rf2",
+            "rf3"
+          ],
+          "decisionPointId": "dp1"
+        },
+        {
+          "id": "l3",
+          "speaker": "caller",
+          "text": "Abre la aplicación TeamViewer y dime el código que ves. Yo me conecto y limpio todo. Es gratis, pero solo hoy porque el virus está activo.",
+          "redFlags": [
+            "rf4",
+            "rf5"
+          ],
+          "decisionPointId": "dp2"
+        },
+        {
+          "id": "l4",
+          "speaker": "caller",
+          "text": "Ya estoy dentro. Veo que tienes cuentas de banco aquí. Déjame verificar que no estén comprometidas. Dame tu usuario y contraseña del banco para revisarlo.",
+          "redFlags": [
+            "rf6"
+          ],
+          "decisionPointId": "dp3"
+        }
       ],
       "redFlags": [
-        { "id": "rf1", "phrase": "enviando señales de error a nuestros servidores", "technique": "Falsa capacidad técnica", "explanation": "Microsoft no monitorea tu PC individualmente ni recibe 'señales de error' de computadoras personales.", "xpValue": 15, "discovered": false },
-        { "id": "rf2", "phrase": "47 virus en tu máquina", "technique": "Cifra alarmista", "explanation": "Usar un número específico ('47') hace que suene a diagnóstico real. Es una táctica de persuasion.", "xpValue": 15, "discovered": false },
-        { "id": "rf3", "phrase": "URGENTE para evitar que se comprometan tus datos bancarios", "technique": "Urgencia + miedo financiero", "explanation": "Combinar urgencia con amenaza financiera es la receta clásica del vishing. Paraliza el pensamiento crítico.", "xpValue": 20, "discovered": false },
-        { "id": "rf4", "phrase": "Abre TeamViewer", "technique": "Acceso remoto no solicitado", "explanation": "Microsoft NUNCA pide acceso remoto por teléfono. TeamViewer otorga control total de tu computadora.", "xpValue": 25, "discovered": false },
-        { "id": "rf5", "phrase": "Es gratis, pero solo hoy", "technique": "Falsa escasez + presión temporal", "explanation": "La 'oferta limitada' presiona para actuar sin pensar. Microsoft no ofrece 'limpiezas' por teléfono.", "xpValue": 15, "discovered": false },
-        { "id": "rf6", "phrase": "Dame tu usuario y contraseña del banco", "technique": "Escalada de privilegios", "explanation": "El estafador 'escala' de soporte técnico a acceso bancario. Cada paso pide más datos sensibles.", "xpValue": 30, "discovered": false }
+        {
+          "id": "rf1",
+          "phrase": "enviando señales de error a nuestros servidores",
+          "technique": "Falsa capacidad técnica",
+          "explanation": "Microsoft no monitorea tu PC individualmente ni recibe 'señales de error' de computadoras personales.",
+          "xpValue": 15,
+          "discovered": false
+        },
+        {
+          "id": "rf2",
+          "phrase": "47 virus en tu máquina",
+          "technique": "Cifra alarmista",
+          "explanation": "Usar un número específico ('47') hace que suene a diagnóstico real. Es una táctica de persuasion.",
+          "xpValue": 15,
+          "discovered": false
+        },
+        {
+          "id": "rf3",
+          "phrase": "URGENTE para evitar que se comprometan tus datos bancarios",
+          "technique": "Urgencia + miedo financiero",
+          "explanation": "Combinar urgencia con amenaza financiera es la receta clásica del vishing. Paraliza el pensamiento crítico.",
+          "xpValue": 20,
+          "discovered": false
+        },
+        {
+          "id": "rf4",
+          "phrase": "Abre TeamViewer",
+          "technique": "Acceso remoto no solicitado",
+          "explanation": "Microsoft NUNCA pide acceso remoto por teléfono. TeamViewer otorga control total de tu computadora.",
+          "xpValue": 25,
+          "discovered": false
+        },
+        {
+          "id": "rf5",
+          "phrase": "Es gratis, pero solo hoy",
+          "technique": "Falsa escasez + presión temporal",
+          "explanation": "La 'oferta limitada' presiona para actuar sin pensar. Microsoft no ofrece 'limpiezas' por teléfono.",
+          "xpValue": 15,
+          "discovered": false
+        },
+        {
+          "id": "rf6",
+          "phrase": "Dame tu usuario y contraseña del banco",
+          "technique": "Escalada de privilegios",
+          "explanation": "El estafador 'escala' de soporte técnico a acceso bancario. Cada paso pide más datos sensibles.",
+          "xpValue": 30,
+          "discovered": false
+        }
       ],
       "decisionPoints": [
         {
           "id": "dp1",
           "prompt": "¿Accedes a abrir TeamViewer?",
           "choices": [
-            { "id": "c1a", "label": "Cierro la llamada", "isSafe": true, "xpDelta": 20, "shieldDamage": 0, "followUpLineId": "l3", "explanation": "Correcto. Microsoft nunca llama para ofrecer soporte. Cuelga inmediatamente." },
-            { "id": "c1b", "label": "Abro TeamViewer", "isSafe": false, "xpDelta": -10, "shieldDamage": 20, "followUpLineId": "l3", "explanation": "TeamViewer otorga acceso remoto total. El estafador puede robar archivos, instalar malware, o acceder a tu banco." }
+            {
+              "id": "c1a",
+              "etiqueta": "Cierro la llamada",
+              "isSafe": true,
+              "xpDelta": 20,
+              "shieldDamage": 0,
+              "followUpLineId": "l3",
+              "explanation": "Correcto. Microsoft nunca llama para ofrecer soporte. Cuelga inmediatamente."
+            },
+            {
+              "id": "c1b",
+              "etiqueta": "Abro TeamViewer",
+              "isSafe": false,
+              "xpDelta": -10,
+              "shieldDamage": 20,
+              "followUpLineId": "l3",
+              "explanation": "TeamViewer otorga acceso remoto total. El estafador puede robar archivos, instalar malware, o acceder a tu banco."
+            }
           ]
         },
         {
           "id": "dp2",
           "prompt": "¿Compartes el código de TeamViewer?",
           "choices": [
-            { "id": "c2a", "label": "No comparto nada", "isSafe": true, "xpDelta": 20, "shieldDamage": 0, "followUpLineId": "l4", "explanation": "Bien. Sin el código, no pueden conectarse. La 'urgencia' es falsa." },
-            { "id": "c2b", "label": "Doy el código", "isSafe": false, "xpDelta": -20, "shieldDamage": 30, "followUpLineId": "l4", "explanation": "Con el código TeamViewer, el estafador tiene acceso remoto completo a tu computadora." }
+            {
+              "id": "c2a",
+              "etiqueta": "No comparto nada",
+              "isSafe": true,
+              "xpDelta": 20,
+              "shieldDamage": 0,
+              "followUpLineId": "l4",
+              "explanation": "Bien. Sin el código, no pueden conectarse. La 'urgencia' es falsa."
+            },
+            {
+              "id": "c2b",
+              "etiqueta": "Doy el código",
+              "isSafe": false,
+              "xpDelta": -20,
+              "shieldDamage": 30,
+              "followUpLineId": "l4",
+              "explanation": "Con el código TeamViewer, el estafador tiene acceso remoto completo a tu computadora."
+            }
           ]
         },
         {
           "id": "dp3",
           "prompt": "¿Dás tu usuario y contraseña del banco?",
           "choices": [
-            { "id": "c3a", "label": "Nunca — cuelgo ya", "isSafe": true, "xpDelta": 25, "shieldDamage": 0, "followUpLineId": "l4", "explanation": "Ninguna empresa legítima pide credenciales bancarias por teléfono. Esta es la línea roja definitiva." },
-            { "id": "c3b", "label": "Se los doy 'para revisar'", "isSafe": false, "xpDelta": -25, "shieldDamage": 40, "followUpLineId": "l4", "explanation": "Con usuario y contraseña, el estafador vacía tu cuenta en minutos." }
+            {
+              "id": "c3a",
+              "etiqueta": "Nunca — cuelgo ya",
+              "isSafe": true,
+              "xpDelta": 25,
+              "shieldDamage": 0,
+              "followUpLineId": "l4",
+              "explanation": "Ninguna empresa legítima pide credenciales bancarias por teléfono. Esta es la línea roja definitiva."
+            },
+            {
+              "id": "c3b",
+              "etiqueta": "Se los doy 'para revisar'",
+              "isSafe": false,
+              "xpDelta": -25,
+              "shieldDamage": 40,
+              "followUpLineId": "l4",
+              "explanation": "Con usuario y contraseña, el estafador vacía tu cuenta en minutos."
+            }
           ]
         }
       ],

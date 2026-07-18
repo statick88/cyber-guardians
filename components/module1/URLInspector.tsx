@@ -35,9 +35,9 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
     if (selectedAnswer) return;
 
     setSelectedAnswer(answer);
-    const correct = answer === currentURL.classificacao;
+    const correct = answer === currentURL.clasificacion;
     setIsCorrect(correct);
-    const points = correct ? currentURL.pontos : 0;
+    const points = correct ? currentURL.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);
 
@@ -136,7 +136,7 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
                       <div className="bg-slate-800/30 rounded p-2">
                         <span className="text-slate-400">Ruta:</span>
                         <span className="text-white ml-2">
-                          {currentURL.componentes.caminho}
+                          {currentURL.componentes.ruta}
                         </span>
                       </div>
                       {currentURL.componentes.parametros && (
@@ -147,11 +147,11 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
                           </span>
                         </div>
                       )}
-                      {currentURL.componentes.porta && (
+                      {currentURL.componentes.puerto && (
                         <div className="bg-slate-800/30 rounded p-2">
                           <span className="text-slate-400">Puerto:</span>
                           <span className="text-amber-400 ml-2">
-                            {currentURL.componentes.porta}
+                            {currentURL.componentes.puerto}
                           </span>
                         </div>
                       )}
@@ -228,10 +228,10 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
                         >
                           {isCorrect
                             ? `✅ ¡Correcto! +${earnedPoints} puntos`
-                            : `❌ Incorrecto. Era: ${currentURL.classificacao}`}
+                            : `❌ Incorrecto. Era: ${currentURL.clasificacion}`}
                         </p>
                         <p className="text-slate-300 text-sm">
-                          {currentURL.elementoSuspeito}
+                          {currentURL.elementoSospechoso}
                         </p>
                         <p className="text-slate-400 text-sm">
                           {currentURL.explicacion}

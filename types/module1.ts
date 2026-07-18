@@ -11,22 +11,22 @@
 
 export interface Email {
   id: string;
-  remetente: {
-    nome: string;
+  remitente: {
+    nombre: string;
     email: string;
   };
-  assunto: string;
-  corpo: string;
-  dataEnvio: string;
-  links: Array<{
+  asunto: string;
+  cuerpo: string;
+  fechaEnvio: string;
+  enlaces: Array<{
     texto: string;
     urlReal: string;
-    urlExibida: string;
+    urlMostrada: string;
     dominio: string;
     https: boolean;
-    seloSeguranca: boolean;
+    selloSeguridad: boolean;
   }>;
-  dicasVisuais: string[];
+  pistasVisuales: string[];
 }
 
 export interface URLItem {
@@ -35,14 +35,14 @@ export interface URLItem {
   componentes: {
     protocolo: string;
     dominio: string;
-    caminho: string;
+    ruta: string;
     parametros?: string | null;
-    porta?: number;
+    puerto?: number;
   };
-  elementoSuspeito: string;
-  classificacao: "phishing" | "suspeita" | "segura";
+  elementoSospechoso: string;
+  clasificacion: "phishing" | "sospechosa" | "segura";
   explicacion: string;
-  pontos: number;
+  puntos: number;
   /** Optional educational mediator layer for this URL scenario */
   educationalLayer?: import('./educational').EducationalLayer;
 }
@@ -50,21 +50,21 @@ export interface URLItem {
 export interface Indicador {
   id: string;
   tipo: string;
-  descricao: string;
-  localizacao: string;
-  gravidade: "alta" | "media" | "baja";
+  descripcion: string;
+  ubicacion: string;
+  gravedad: "alta" | "media" | "baja";
 }
 
 export interface Escenario {
   id: string;
-  tipo: "email" | "sms" | "web" | "redes-sociais";
+  tipo: "email" | "sms" | "web" | "redes-sociales";
   titulo: string;
-  descricao: string;
-  conteudo: string;
+  descripcion: string;
+  contenido: string;
   indicadores: Indicador[];
-  acaoCorreta: "reportar" | "verificar" | "bloquear" | "ignorar";
-  pontos: number;
-  dificuldad: "basico" | "intermedio" | "avancado";
+  accionCorrecta: "reportar" | "verificar" | "bloquear" | "ignorar";
+  puntos: number;
+  dificultad: "basico" | "intermedio" | "avanzado";
   explicacion: string;
   /** Optional educational mediator layer for this scenario */
   educationalLayer?: import('./educational').EducationalLayer;
@@ -72,25 +72,25 @@ export interface Escenario {
 
 export interface DragItem {
   id: string;
-  conteudo: string;
+  contenido: string;
   tipo: string;
-  icone: string;
+  icono: string;
 }
 
 export interface DragTarget {
   id: string;
-  label: string;
+  etiqueta: string;
   tipo: string;
-  cor: string;
+  color: string;
 }
 
 export interface Ejercicio {
   id: string;
   titulo: string;
-  descricao: string;
-  itens: DragItem[];
-  alvos: DragTarget[];
-  pontos: number;
+  descripcion: string;
+  items: DragItem[];
+  objetivos: DragTarget[];
+  puntos: number;
 }
 
 /** Strict answer types per micro-activity kind */
@@ -101,7 +101,7 @@ export type RespuestaOrden = string[]; // ordered step IDs
 export interface MicroActividad {
   id: string;
   tipo: "verdadero-falso" | "completar-codigo" | "ordenar-pasos";
-  pergunta: string;
+  pregunta: string;
   respuestaCorrecta: RespuestaVF | RespuestaCodigo | RespuestaOrden;
   codigo?: string;
   pasos?: Array<{ id: string; texto: string; ordenCorrecto: number }>;

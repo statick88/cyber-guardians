@@ -175,7 +175,7 @@ export function CryptoSandbox({ challenges, onScore, onComplete }: CryptoSandbox
                         }`}
                       >
                         {sandboxState.decryptResult === "success" ? (
-                          <span>✓ Descifrado exitoso: {sandboxState.selectedOption?.label}</span>
+                          <span>✓ Descifrado exitoso: {sandboxState.selectedOption?.etiqueta}</span>
                         ) : (
                           <span>✗ Descifrado fallido: resultado incorrecto</span>
                         )}
@@ -226,7 +226,7 @@ export function CryptoSandbox({ challenges, onScore, onComplete }: CryptoSandbox
                             ? option.esCorrecta ? "text-emerald-400" : "text-rose-400"
                             : "text-gray-300"
                         }`}>
-                          {option.label}
+                          {option.etiqueta}
                         </span>
                       </div>
                     </motion.button>

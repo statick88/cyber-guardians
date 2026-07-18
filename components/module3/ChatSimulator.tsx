@@ -56,7 +56,7 @@ export default function ChatSimulator({
   const redFlagIds = useMemo(
     () =>
       new Set(
-        scenario.mensajes.filter((m) => m.esSeñal).map((m) => m.id)
+        scenario.mensajes.filter((m) => m.esSenal).map((m) => m.id)
       ),
     [scenario.mensajes]
   );
@@ -106,13 +106,13 @@ export default function ChatSimulator({
   };
 
   const getCorrectFlags = (): MensajeChat[] =>
-    scenario.mensajes.filter((m) => m.esSeñal && flaggedMessages.has(m.id));
+    scenario.mensajes.filter((m) => m.esSenal && flaggedMessages.has(m.id));
 
   const getMissedFlags = (): MensajeChat[] =>
-    scenario.mensajes.filter((m) => m.esSeñal && !flaggedMessages.has(m.id));
+    scenario.mensajes.filter((m) => m.esSenal && !flaggedMessages.has(m.id));
 
   const getFalsePositives = (): MensajeChat[] =>
-    scenario.mensajes.filter((m) => !m.esSeñal && flaggedMessages.has(m.id));
+    scenario.mensajes.filter((m) => !m.esSenal && flaggedMessages.has(m.id));
 
   const totalCorrect = getCorrectFlags().length;
   const totalMissed = getMissedFlags().length;
@@ -471,7 +471,7 @@ export default function ChatSimulator({
             <div className="space-y-2 mb-4">
               {scenario.mensajes.map((msg) => {
                 const wasFlagged = flaggedMessages.has(msg.id);
-                const isSignal = msg.esSeñal;
+                const isSignal = msg.esSenal;
                 let status: "correct" | "missed" | "false-positive" | "safe";
                 if (isSignal && wasFlagged) status = "correct";
                 else if (isSignal && !wasFlagged) status = "missed";
@@ -550,12 +550,12 @@ export default function ChatSimulator({
                 Señales que detectaste
               </h4>
               <div className="flex flex-wrap gap-2">
-                {scenario.señales.map((señal) => (
+                {scenario.senales.map((senal) => (
                   <span
-                    key={señal}
+                    key={senal}
                     className="px-2.5 py-0.5 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-semibold"
                   >
-                    {señal}
+                    {senal}
                   </span>
                 ))}
               </div>

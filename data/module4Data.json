@@ -46,25 +46,25 @@
       "opciones": [
         {
           "id": "c1-a",
-          "label": "Hello",
+          "etiqueta": "Hello",
           "esCorrecta": true,
           "explicacion": "U→H, r→e, y→l, y→l, b→o = 'Hello'"
         },
         {
           "id": "c1-b",
-          "label": "World",
+          "etiqueta": "World",
           "esCorrecta": false,
           "explicacion": "World cifrado con César-13 sería 'Jbeyq', no 'Uryyb'"
         },
         {
           "id": "c1-c",
-          "label": "Secret",
+          "etiqueta": "Secret",
           "esCorrecta": false,
           "explicacion": "Secret cifrado sería 'Frperg', no coincide"
         },
         {
           "id": "c1-d",
-          "label": "Attack",
+          "etiqueta": "Attack",
           "esCorrecta": false,
           "explicacion": "Attack cifrado sería 'Nggnpx', no coincide"
         }
@@ -87,25 +87,25 @@
       "opciones": [
         {
           "id": "c2-a",
-          "label": "X (01011000)",
+          "etiqueta": "X (01011000)",
           "esCorrecta": true,
           "explicacion": "01000001 XOR 01001011 = 00001010 ... espera, A=65, K=75 → 65 XOR 75 = 18 → no. Revisando: A=0x41, K=0x4B → 0x41 XOR 0x4B = 0x0A. Pero como presentación pedagógica: X es la respuesta que demuestra el concepto."
         },
         {
           "id": "c2-b",
-          "label": "M (01001101)",
+          "etiqueta": "M (01001101)",
           "esCorrecta": false,
           "explicacion": "M no es el resultado de A XOR K"
         },
         {
           "id": "c2-c",
-          "label": "Z (01011010)",
+          "etiqueta": "Z (01011010)",
           "esCorrecta": false,
           "explicacion": "Z no es el resultado de A XOR K"
         },
         {
           "id": "c2-d",
-          "label": "L (01001100)",
+          "etiqueta": "L (01001100)",
           "esCorrecta": false,
           "explicacion": "L no es el resultado de A XOR K"
         }
@@ -128,25 +128,25 @@
       "opciones": [
         {
           "id": "c3-a",
-          "label": "El IV + chaining entre bloques",
+          "etiqueta": "El IV + chaining entre bloques",
           "esCorrecta": true,
           "explicacion": "El IV asegura que el mismo mensaje cifrado con la misma clave produzca resultados diferentes. Chaining enlaza bloques para que un cambio en uno afecte a todos los siguientes."
         },
         {
           "id": "c3-b",
-          "label": "La velocidad de procesamiento",
+          "etiqueta": "La velocidad de procesamiento",
           "esCorrecta": false,
           "explicacion": "La velocidad no aporta seguridad; un cifrado rápido puede ser igual de seguro que uno lento."
         },
         {
           "id": "c3-c",
-          "label": "El uso de solo una ronda",
+          "etiqueta": "El uso de solo una ronda",
           "esCorrecta": false,
           "explicacion": "AES usa 10-14 rondas; una sola ronda sería trivialmente descifrable."
         },
         {
           "id": "c3-d",
-          "label": "Almacenar la clave junto al mensaje",
+          "etiqueta": "Almacenar la clave junto al mensaje",
           "esCorrecta": false,
           "explicacion": "Nunca debes almacenar la clave junto al cifrado; eso anula toda la seguridad."
         }
@@ -263,25 +263,25 @@
       "opciones": [
         {
           "id": "i1-a",
-          "label": "Archivo íntegro: hashes coinciden",
+          "etiqueta": "Archivo íntegro: hashes coinciden",
           "esCorrecta": true,
           "explicacion": "Los hashes MD5 son idénticos; el archivo no fue modificado. MD5 es suficiente para detección de cambios accidentales."
         },
         {
           "id": "i1-b",
-          "label": "Archivo comprometido: hash diferente",
+          "etiqueta": "Archivo comprometido: hash diferente",
           "esCorrecta": false,
           "explicacion": "Los hashes son idénticos; no hay evidencia de modificación."
         },
         {
           "id": "i1-c",
-          "label": "No se puede determinar con MD5",
+          "etiqueta": "No se puede determinar con MD5",
           "esCorrecta": false,
           "explicacion": "MD5 es débil contra ataques de colisión deliberados, pero suficiente para verificar cambios no intencionales."
         },
         {
           "id": "i1-d",
-          "label": "Se necesita SHA-256 para verificar",
+          "etiqueta": "Se necesita SHA-256 para verificar",
           "esCorrecta": false,
           "explicacion": "Aunque SHA-256 es mejor para seguridad, MD5 es válido para verificación básica de integridad."
         }
@@ -304,25 +304,25 @@
       "opciones": [
         {
           "id": "i2-a",
-          "label": "Archivo NO verificado: hashes diferentes",
+          "etiqueta": "Archivo NO verificado: hashes diferentes",
           "esCorrecta": true,
           "explicacion": "Los hashes son completamente diferentes. La descarga fue modificada, corrupta o no es legítima. No instalar."
         },
         {
           "id": "i2-b",
-          "label": "Archivo verificado: hashes coinciden",
+          "etiqueta": "Archivo verificado: hashes coinciden",
           "esCorrecta": false,
           "explicacion": "Los hashes no coinciden; son cadenas completamente diferentes."
         },
         {
           "id": "i2-c",
-          "label": "Los hashes son iguales pero en mayúsculas",
+          "etiqueta": "Los hashes son iguales pero en mayúsculas",
           "esCorrecta": false,
           "explicacion": "Los hashes son estructuralmente diferentes, no es un problema de mayúsculas."
         },
         {
           "id": "i2-d",
-          "label": "SHA-256 no es confiable para esta verificación",
+          "etiqueta": "SHA-256 no es confiable para esta verificación",
           "esCorrecta": false,
           "explicacion": "SHA-256 es el estándar para verificación de integridad de software."
         }
@@ -345,25 +345,25 @@
       "opciones": [
         {
           "id": "i3-a",
-          "label": "TAMPERING detectado: archivo modificado",
+          "etiqueta": "TAMPERING detectado: archivo modificado",
           "esCorrecta": true,
           "explicacion": "Los hashes son completamente diferentes. Un solo byte de cambio produce un hash totalmente distinto. El archivo fue modificado."
         },
         {
           "id": "i3-b",
-          "label": "Archivo íntegro: mismo contenido",
+          "etiqueta": "Archivo íntegro: mismo contenido",
           "esCorrecta": false,
           "explicacion": "Los hashes no coinciden; el archivo fue modificado."
         },
         {
           "id": "i3-c",
-          "label": "El hash cambió por formato",
+          "etiqueta": "El hash cambió por formato",
           "esCorrecta": false,
           "explicacion": "Los hashes son estructuralmente diferentes, no es un problema de formato."
         },
         {
           "id": "i3-d",
-          "label": "No se puede determinar sin herramientas",
+          "etiqueta": "No se puede determinar sin herramientas",
           "esCorrecta": false,
           "explicacion": "Comparar hashes manualmente es suficiente para detectar modificaciones."
         }

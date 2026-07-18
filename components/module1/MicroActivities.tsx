@@ -201,7 +201,7 @@ export function MicroActivities({
 
             <CardContent className="space-y-6">
               <div className="bg-slate-800/50 rounded-lg p-4">
-                <p className="text-white">{currentActivity.pergunta}</p>
+                <p className="text-white">{currentActivity.pregunta}</p>
               </div>
 
               {/* True/False */}

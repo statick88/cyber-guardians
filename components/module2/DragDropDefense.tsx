@@ -62,7 +62,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
     currentExercise.items.forEach((item) => {
       const assignedTarget = assignments[item.id];
       if (assignedTarget) {
-        const target = currentExercise.targets.find((t) => t.id === assignedTarget);
+        const target = currentExercise.objetivos.find((t) => t.id === assignedTarget);
         if (target && target.tipo === item.tipo) {
           correct++;
         }
@@ -150,7 +150,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-lg">{item.icono}</span>
-                      <span className="text-white text-sm">{item.conteudo}</span>
+                      <span className="text-white text-sm">{item.contenido}</span>
                       {draggedItem === item.id && (
                         <RotateCcw className="w-4 h-4 text-cyan-400 animate-spin ml-1" />
                       )}
@@ -169,45 +169,45 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
 
           {/* Targets */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {currentExercise.targets.map((target) => {
+            {currentExercise.objetivos.map((objetivo) => {
               const assignedItems = currentExercise.items.filter(
-                (item) => assignments[item.id] === target.id
+                (item) => assignments[item.id] === objetivo.id
               );
 
               return (
                 <div
-                  key={target.id}
+                  key={objetivo.id}
                   onDragOver={handleDragOver}
-                  onDrop={() => handleDrop(target.id)}
-                  onClick={() => handleTargetClick(target.id)}
+                  onDrop={() => handleDrop(objetivo.id)}
+                  onClick={() => handleTargetClick(objetivo.id)}
                   className={`rounded-lg border-2 border-dashed p-4 min-h-[140px] cursor-pointer transition-all ${
-                    target.color === "rose"
+                    objetivo.color === "rose"
                       ? "border-rose-500/30 bg-rose-500/5 hover:bg-rose-500/10 hover:border-rose-500/50"
-                      : target.color === "emerald"
+                      : objetivo.color === "emerald"
                       ? "border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500/10 hover:border-emerald-500/50"
-                      : target.color === "cyan"
+                      : objetivo.color === "cyan"
                       ? "border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 hover:border-cyan-500/50"
-                      : target.color === "purple"
+                      : objetivo.color === "purple"
                       ? "border-purple-500/30 bg-purple-500/5 hover:bg-purple-500/10 hover:border-purple-500/50"
-                      : target.color === "amber"
+                      : objetivo.color === "amber"
                       ? "border-amber-500/30 bg-amber-500/5 hover:bg-amber-500/10 hover:border-amber-500/50"
                       : "border-slate-600 hover:border-cyan-500/50"
                   } ${draggedItem ? "ring-2 ring-cyan-500/30" : ""}`}
                 >
                   <p
                     className={`font-medium mb-3 ${
-                      target.color === "rose" ? "text-rose-300" :
-                      target.color === "emerald" ? "text-emerald-300" :
-                      target.color === "cyan" ? "text-cyan-300" :
-                      target.color === "purple" ? "text-purple-300" :
-                      target.color === "amber" ? "text-amber-300" :
+                      objetivo.color === "rose" ? "text-rose-300" :
+                      objetivo.color === "emerald" ? "text-emerald-300" :
+                      objetivo.color === "cyan" ? "text-cyan-300" :
+                      objetivo.color === "purple" ? "text-purple-300" :
+                      objetivo.color === "amber" ? "text-amber-300" :
                       "text-slate-300"
                     }`}
                   >
-                    {target.label}
+                    {objetivo.etiqueta}
                   </p>
                   <div className={`text-xs text-slate-400 mb-3 ${showResult ? "hidden" : ""}`}>
-                    {target.descripcion}
+                    {objetivo.descripcion}
                   </div>
                   <div className="space-y-1 min-h-[80px]">
                     {assignedItems.map((item) => (
@@ -218,7 +218,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
                         className="bg-slate-800/50 rounded px-2 py-1 text-sm text-white flex items-center gap-1"
                       >
                         <span>{item.icono}</span>
-                        <span>{item.conteudo}</span>
+                        <span className="text-white text-sm">{item.contenido}</span>
                         {!showResult && (
                           <Button
                             variant="ghost"
@@ -249,7 +249,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
                     <div className="mt-3 pt-3 border-t border-slate-700">
                       <p className="text-xs text-slate-400">
                         {assignedItems.filter(item => {
-                          const target = currentExercise.targets.find(t => t.id === assignments[item.id]);
+                          const target = currentExercise.objetivos.find((t) => t.id === assignments[item.id]);
                           return target && target.tipo === item.tipo;
                         }).length} / {assignedItems.length} correctos
                       </p>
@@ -317,7 +317,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
               <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
                 <h5 className="text-cyan-300 text-sm font-medium mb-3">Clasificación Correcta:</h5>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {currentExercise.targets.map((target) => (
+                  {currentExercise.objetivos.map((target) => (
                     <div key={target.id} className="space-y-1">
                       <p className={`text-xs font-medium ${
                         target.color === "rose" ? "text-rose-300" :
@@ -326,7 +326,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
                         target.color === "purple" ? "text-purple-300" :
                         target.color === "amber" ? "text-amber-300" : "text-slate-300"
                       }`}>
-                        {target.label}
+{target.etiqueta}
                       </p>
                       <div className="flex flex-wrap gap-1">
                         {currentExercise.items
@@ -337,7 +337,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
                               variant="outline"
                               className="text-xs border-slate-600 text-slate-300"
                             >
-                              {item.icono} {item.conteudo}
+                              {item.icono} {item.contenido}
                             </Badge>
                           ))}
                       </div>

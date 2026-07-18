@@ -42,9 +42,9 @@ export function PhishingSimulator({
     if (selectedAction) return;
 
     setSelectedAction(action);
-    const correct = action === currentScenario.acaoCorreta;
+    const correct = action === currentScenario.accionCorrecta;
     setIsCorrect(correct);
-    const basePoints = correct ? currentScenario.pontos : 0;
+    const basePoints = correct ? currentScenario.puntos : 0;
     setEarnedPoints(basePoints);
     setPhase("indicators");
   };
@@ -125,18 +125,18 @@ export function PhishingSimulator({
                 {currentScenario.tipo === "email" && "📧"}
                 {currentScenario.tipo === "sms" && "💬"}
                 {currentScenario.tipo === "web" && "🌐"}
-                {currentScenario.tipo === "redes-sociais" && "📱"}
+                {currentScenario.tipo === "redes-sociales" && "📱"}
                 {currentScenario.titulo}
               </CardTitle>
               <CardDescription className="text-slate-400">
-                {currentScenario.descricao}
+                {currentScenario.descripcion}
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-6">
               <div className="bg-slate-800/50 rounded-lg p-4">
                 <p className="text-slate-300 text-sm whitespace-pre-line">
-                  {currentScenario.conteudo}
+                  {currentScenario.contenido}
                 </p>
               </div>
 
@@ -201,22 +201,22 @@ export function PhishingSimulator({
                             </span>
                             <div className="flex-1">
                               <p className="text-white text-sm">
-                                {ind.descricao}
+                                {ind.descripcion}
                               </p>
                               <p className="text-slate-400 text-xs mt-1">
-                                Ubicación: {ind.localizacao}
+                                Ubicación: {ind.ubicacion}
                               </p>
                             </div>
                             <Badge
                               className={`text-xs ${
-                                ind.gravidade === "alta"
+                                ind.gravedad === "alta"
                                   ? "bg-rose-500/20 text-rose-300"
-                                  : ind.gravidade === "media"
+                                  : ind.gravedad === "media"
                                   ? "bg-amber-500/20 text-amber-300"
                                   : "bg-slate-500/20 text-slate-300"
                               }`}
                             >
-                              {ind.gravidade}
+                              {ind.gravedad}
                             </Badge>
                           </div>
                         </Button>
@@ -254,7 +254,7 @@ export function PhishingSimulator({
                       >
                         {isCorrect
                           ? `✅ ¡Excelente! +${earnedPoints} puntos`
-                          : `❌ Acción incorrecta. Deberías: ${currentScenario.acaoCorreta}`}
+                          : `❌ Acción incorrecta. Deberías: ${currentScenario.accionCorrecta}`}
                       </p>
                     </AlertDescription>
                   </Alert>

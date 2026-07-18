@@ -85,14 +85,14 @@ export interface IndicadorRiesgo {
 
 export interface DragItemDefense {
   id: string;
-  conteudo: string;
+  contenido: string;
   tipo: string;
   icono: string;
 }
 
 export interface DragTargetDefense {
   id: string;
-  label: string;
+  etiqueta: string;
   tipo: string;
   color: string;
   descripcion: string;
@@ -103,7 +103,7 @@ export interface EjercicioDefensa {
   titulo: string;
   descripcion: string;
   items: DragItemDefense[];
-  targets: DragTargetDefense[];
+  objetivos: DragTargetDefense[];
   puntos: number;
 }
 
@@ -328,7 +328,7 @@ export interface VishingDecisionPoint {
 
 export interface VishingChoice {
   id: string
-  label: string
+  etiqueta: string
   /** Whether this is the safe choice */
   isSafe: boolean
   /** XP reward/penalty */

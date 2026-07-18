@@ -40,24 +40,24 @@
   "correos": [
     {
       "id": "email-01",
-      "remetente": {
-        "nome": "Netflix Soporte",
+      "remitente": {
+        "nombre": "Netflix Soporte",
         "email": "support@netfIix-security.com"
       },
-      "assunto": "⚠️ ¡Tu cuenta ha sido comprometida! Acción urgente requerida",
-      "corpo": "Estimado cliente,\n\nHemos detectado actividad sospechosa en tu cuenta de Netflix. Se ha iniciado sesión desde un dispositivo desconocido en Bogotá, Colombia.\n\nSi no reconoces esta actividad, tu cuenta puede ser suspendida en 24 horas.\n\nHaz clic en el siguiente enlace para verificar tu identidad:\nhttps://netfIix-security.com/verify?id=827361\n\nSi no completas la verificación, tu cuenta será bloqueada permanentemente.\n\nAtentamente,\nEl equipo de Netflix",
-      "dataEnvio": "Hace 2 horas",
-      "links": [
+      "asunto": "⚠️ ¡Tu cuenta ha sido comprometida! Acción urgente requerida",
+      "cuerpo": "Estimado cliente,\n\nHemos detectado actividad sospechosa en tu cuenta de Netflix. Se ha iniciado sesión desde un dispositivo desconocido en Bogotá, Colombia.\n\nSi no reconoces esta actividad, tu cuenta puede ser suspendida en 24 horas.\n\nHaz clic en el siguiente enlace para verificar tu identidad:\nhttps://netfIix-security.com/verify?id=827361\n\nSi no completas la verificación, tu cuenta será bloqueada permanentemente.\n\nAtentamente,\nEl equipo de Netflix",
+      "fechaEnvio": "Hace 2 horas",
+      "enlaces": [
         {
           "texto": "Verificar mi cuenta",
           "urlReal": "https://netfIix-security.com/verify?id=827361",
-          "urlExibida": "https://netflix.com/verify",
+          "urlMostrada": "https://netflix.com/verify",
           "dominio": "netfIix-security.com",
           "https": true,
-          "seloSeguranca": false
+          "selloSeguridad": false
         }
       ],
-      "dicasVisuais": [
+      "pistasVisuales": [
         "Dominio con 'I' mayúscula en lugar de 'l' minúscula",
         "Urgencia excesiva: '24 horas'",
         "Amenaza de suspensión permanente",
@@ -72,7 +72,10 @@
           "followUp": "¿Qué otros elementos del correo deberías examinar antes de decidir?",
           "expectedInsight": "HTTPS solo cifra la conexión, no garantiza que el sitio sea legítimo. El dominio es lo que debes verificar primero.",
           "attackerTechnique": "urgency_pressure",
-          "contradictingEvidence": ["El dominio 'netfIix-security.com' usa 'I' mayúscula en lugar de 'l'", "El sello de seguridad no aparece en el enlace"]
+          "contradictingEvidence": [
+            "El dominio 'netfIix-security.com' usa 'I' mayúscula en lugar de 'l'",
+            "El sello de seguridad no aparece en el enlace"
+          ]
         },
         "scaffoldingTip": {
           "level": "guided",
@@ -90,7 +93,10 @@
               "id": "debrief-email-01-1",
               "type": "slider",
               "prompt": "¿Qué tan seguro te sientes detectando phishing por email?",
-              "sliderLabels": { "min": "Muy inseguro", "max": "Muy seguro" },
+              "sliderLabels": {
+                "min": "Muy inseguro",
+                "max": "Muy seguro"
+              },
               "storageKey": "email_confidence",
               "competency": "threat_identification"
             },
@@ -98,10 +104,22 @@
               "id": "debrief-email-01-2",
               "type": "micro-decision",
               "prompt": "Si recibieras este correo ahora mismo, ¿qué harías?",
-              "options": [
-                { "id": "opt-a", "label": "Hacer clic para verificar", "cognitiveInsight": "Actúa por impulso sin analizar" },
-                { "id": "opt-b", "label": "Examinar el dominio primero", "cognitiveInsight": "Aplica pensamiento crítico" },
-                { "id": "opt-c", "label": "Ignorarlo completamente", "cognitiveInsight": "Evita el problema sin resolverlo" }
+              "opciones": [
+                {
+                  "id": "opt-a",
+                  "etiqueta": "Hacer clic para verificar",
+                  "cognitiveInsight": "Actúa por impulso sin analizar"
+                },
+                {
+                  "id": "opt-b",
+                  "etiqueta": "Examinar el dominio primero",
+                  "cognitiveInsight": "Aplica pensamiento crítico"
+                },
+                {
+                  "id": "opt-c",
+                  "etiqueta": "Ignorarlo completamente",
+                  "cognitiveInsight": "Evita el problema sin resolverlo"
+                }
               ],
               "storageKey": "email_decision",
               "competency": "decision_under_pressure"
@@ -114,24 +132,24 @@
     },
     {
       "id": "email-02",
-      "remetente": {
-        "nome": "Banco Nacional",
+      "remitente": {
+        "nombre": "Banco Nacional",
         "email": "alertas@banco-nacional.com.py"
       },
-      "assunto": "Confirmación de transferencia por $2,500,000 GS",
-      "corpo": "Estimado cliente,\n\nSe ha procesado una transferencia de $2,500,000 GS desde tu cuenta a la cuenta terminada en ****4521.\n\nSi no realizaste esta transferencia, haz clic en 'Cancelar transacción' inmediatamente.\n\nSi no actúas en los próximos 30 minutos, la transferencia será confirmada.\n\nCancelar transacción: https://banco-nacional.com.py/cancelar?t=827361\n\nBanco Nacional - Seguridad Online",
-      "dataEnvio": "Hace 45 minutos",
-      "links": [
+      "asunto": "Confirmación de transferencia por $2,500,000 GS",
+      "cuerpo": "Estimado cliente,\n\nSe ha procesado una transferencia de $2,500,000 GS desde tu cuenta a la cuenta terminada en ****4521.\n\nSi no realizaste esta transferencia, haz clic en 'Cancelar transacción' inmediatamente.\n\nSi no actúas en los próximos 30 minutos, la transferencia será confirmada.\n\nCancelar transacción: https://banco-nacional.com.py/cancelar?t=827361\n\nBanco Nacional - Seguridad Online",
+      "fechaEnvio": "Hace 45 minutos",
+      "enlaces": [
         {
           "texto": "Cancelar transacción",
           "urlReal": "https://banco-nacional.com.py/cancelar?t=827361",
-          "urlExibida": "https://banco-nacional.com.py/cancelar",
+          "urlMostrada": "https://banco-nacional.com.py/cancelar",
           "dominio": "banco-nacional.com.py",
           "https": true,
-          "seloSeguranca": true
+          "selloSeguridad": true
         }
       ],
-      "dicasVisuais": [
+      "pistasVisuales": [
         "Monto alarmante para generar pánico",
         "Plazo corto para presionar acción rápida",
         "El dominio parece legítimo pero el enlace tiene tracking ID sospechoso"
@@ -156,7 +174,10 @@
               "id": "debrief-email-02-1",
               "type": "slider",
               "prompt": "¿Qué tan probable es que hagas clic en un enlace 'urgente' de tu banco?",
-              "sliderLabels": { "min": "Muy probable", "max": "Muy improbable" },
+              "sliderLabels": {
+                "min": "Muy probable",
+                "max": "Muy improbable"
+              },
               "storageKey": "bank_link_click",
               "competency": "decision_under_pressure"
             },
@@ -164,10 +185,22 @@
               "id": "debrief-email-02-2",
               "type": "micro-decision",
               "prompt": "Recibes este email. ¿Qué haces?",
-              "options": [
-                { "id": "opt-click", "label": "Hago clic para cancelar", "cognitiveInsight": "Cae bajo presión de urgencia" },
-                { "id": "opt-call", "label": "Llamo al banco por teléfono oficial", "cognitiveInsight": "Verifica por canal oficial" },
-                { "id": "opt-ignore", "label": "Lo ignoro", "cognitiveInsight": "Evita el problema pero no lo resuelve" }
+              "opciones": [
+                {
+                  "id": "opt-click",
+                  "etiqueta": "Hago clic para cancelar",
+                  "cognitiveInsight": "Cae bajo presión de urgencia"
+                },
+                {
+                  "id": "opt-call",
+                  "etiqueta": "Llamo al banco por teléfono oficial",
+                  "cognitiveInsight": "Verifica por canal oficial"
+                },
+                {
+                  "id": "opt-ignore",
+                  "etiqueta": "Lo ignoro",
+                  "cognitiveInsight": "Evita el problema pero no lo resuelve"
+                }
               ],
               "storageKey": "bank_email_decision",
               "competency": "decision_under_pressure"
@@ -180,24 +213,24 @@
     },
     {
       "id": "email-03",
-      "remetente": {
-        "nome": "Google Workspace",
+      "remitente": {
+        "nombre": "Google Workspace",
         "email": "no-reply@google.com"
       },
-      "assunto": "Tu suscripción a Google Workspace ha expirado",
-      "corpo": "Hola,\n\nTu suscripción a Google Workspace Business Starter vence el 15 de julio de 2026. Si no renuevas, perderás acceso a:\n\n• Correo electrónico de tu dominio\n• Google Drive (todos tus archivos)\n• Google Meet (reuniones)\n• Google Calendar\n\nPara renovar, inicia sesión en tu panel de administración:\nhttps://admin.google.com/billing\n\nSi ya renovaste, puedes ignorar este mensaje.\n\nGoogle Workspace Team",
-      "dataEnvio": "Hace 1 día",
-      "links": [
+      "asunto": "Tu suscripción a Google Workspace ha expirado",
+      "cuerpo": "Hola,\n\nTu suscripción a Google Workspace Business Starter vence el 15 de julio de 2026. Si no renuevas, perderás acceso a:\n\n• Correo electrónico de tu dominio\n• Google Drive (todos tus archivos)\n• Google Meet (reuniones)\n• Google Calendar\n\nPara renovar, inicia sesión en tu panel de administración:\nhttps://admin.google.com/billing\n\nSi ya renovaste, puedes ignorar este mensaje.\n\nGoogle Workspace Team",
+      "fechaEnvio": "Hace 1 día",
+      "enlaces": [
         {
           "texto": "Renovar suscripción",
           "urlReal": "https://admin.google.com/billing",
-          "urlExibida": "https://admin.google.com/billing",
+          "urlMostrada": "https://admin.google.com/billing",
           "dominio": "google.com",
           "https": true,
-          "seloSeguranca": true
+          "selloSeguridad": true
         }
       ],
-      "dicasVisuais": [
+      "pistasVisuales": [
         "El dominio es legítimo (google.com)",
         "El enlace apunta al dominio oficial",
         "El tono es profesional y no urgente",
@@ -234,24 +267,24 @@
     },
     {
       "id": "email-04",
-      "remetente": {
-        "nome": "Mercado Libre",
+      "remitente": {
+        "nombre": "Mercado Libre",
         "email": "ofertas@mercadoliire.com"
       },
-      "assunto": "🎉 ¡Ganaste un cupón de $500,000! Solo por hoy",
-      "corpo": "¡Felicitaciones!\n\nHas sido seleccionado para recibir un cupón exclusivo de $500,000 para usar en cualquier tienda de Mercado Libre.\n\nPara reclamar tu premio, solo debes:\n1. Hacer clic en el botón\n2. Iniciar sesión con tus datos\n3. ¡Listo! El cupón se activará automáticamente\n\nEste cupón vence HOY a las 11:59 PM. No dejes pasar esta oportunidad.\n\nReclamar cupón: https://mercadoliire.com/cupones/premio?id=58392\n\n¡No compartas este mensaje con otros! Es exclusivo para ti.",
-      "dataEnvio": "Hace 3 horas",
-      "links": [
+      "asunto": "🎉 ¡Ganaste un cupón de $500,000! Solo por hoy",
+      "cuerpo": "¡Felicitaciones!\n\nHas sido seleccionado para recibir un cupón exclusivo de $500,000 para usar en cualquier tienda de Mercado Libre.\n\nPara reclamar tu premio, solo debes:\n1. Hacer clic en el botón\n2. Iniciar sesión con tus datos\n3. ¡Listo! El cupón se activará automáticamente\n\nEste cupón vence HOY a las 11:59 PM. No dejes pasar esta oportunidad.\n\nReclamar cupón: https://mercadoliire.com/cupones/premio?id=58392\n\n¡No compartas este mensaje con otros! Es exclusivo para ti.",
+      "fechaEnvio": "Hace 3 horas",
+      "enlaces": [
         {
           "texto": "Reclamar cupón",
           "urlReal": "https://mercadoliire.com/cupones/premio?id=58392",
-          "urlExibida": "https://mercadolibre.com/cupones",
+          "urlMostrada": "https://mercadolibre.com/cupones",
           "dominio": "mercadoliire.com",
           "https": true,
-          "seloSeguranca": false
+          "selloSeguridad": false
         }
       ],
-      "dicasVisuais": [
+      "pistasVisuales": [
         "Dominio con doble 'i' en lugar de 'libre'",
         "Oferta demasiado buena para ser verdad",
         "Urgencia: 'solo por hoy'",
@@ -266,13 +299,13 @@
       "componentes": {
         "protocolo": "https",
         "dominio": "paypa1.com",
-        "caminho": "/login/secure/verify",
+        "ruta": "/login/secure/verify",
         "parametros": null
       },
-      "elementoSuspeito": "El dominio usa '1' en lugar de 'l' en 'paypal'",
-      "classificacao": "phishing",
+      "elementoSospechoso": "El dominio usa '1' en lugar de 'l' en 'paypal'",
+      "clasificacion": "phishing",
       "explicacion": "El dominio 'paypa1.com' es una variante typosquatting de 'paypal.com'. El número '1' sustituye a la letra 'l'. Siempre verifica el dominio exacto antes de ingresar credenciales.",
-      "pontos": 15,
+      "puntos": 15,
       "capaEducativa": {
         "scenarioId": "url-01",
         "moduleId": 1,
@@ -308,13 +341,13 @@
       "componentes": {
         "protocolo": "https",
         "dominio": "google.com",
-        "caminho": "/accounts/Renovar-sesion",
+        "ruta": "/accounts/Renovar-sesion",
         "parametros": "ref=secure"
       },
-      "elementoSuspeito": "El camino mezcla español con inglés y el parámetro 'ref=secure' es inusual",
-      "classificacao": "suspeita",
+      "elementoSospechoso": "El camino mezcla español con inglés y el parámetro 'ref=secure' es inusual",
+      "clasificacion": "suspeita",
       "explicacion": "Aunque el dominio es legítimo, la ruta '/accounts/Renovar-sesion' no es un path estándar de Google. Los servicios de Google usan paths en inglés. El parámetro 'ref=secure' intenta dar falsa sensación de seguridad.",
-      "pontos": 10,
+      "puntos": 10,
       "capaEducativa": {
         "scenarioId": "url-02",
         "moduleId": 1,
@@ -350,13 +383,13 @@
       "componentes": {
         "protocolo": "https",
         "dominio": "banco.com.py",
-        "caminho": "/cliente/portal",
+        "ruta": "/cliente/portal",
         "porta": 8443
       },
-      "elementoSuspeito": "Puerto no estándar 8443 (HTTPS usa 443 por defecto)",
-      "classificacao": "suspeita",
+      "elementoSospechoso": "Puerto no estándar 8443 (HTTPS usa 443 por defecto)",
+      "clasificacion": "suspeita",
       "explicacion": "El uso de puertos no estándar como 8443 puede indicar un servidor mal configurado o intencionalmente hostil. Los sitios bancarios legítimos usan el puerto 443 (HTTPS estándar).",
-      "pontos": 10,
+      "puntos": 10,
       "capaEducativa": {
         "scenarioId": "url-03",
         "moduleId": 1,
@@ -377,10 +410,22 @@
               "id": "debrief-url-03-1",
               "type": "micro-decision",
               "prompt": "Ves https://banco.com.py:8443/portal. ¿Qué haces?",
-              "options": [
-                { "id": "opt-enter", "label": "Ingreso, el dominio es correcto", "cognitiveInsight": "Ignora el puerto, se enfoca solo en dominio" },
-                { "id": "opt-verify", "label": "Verifico en app bancaria oficial", "cognitiveInsight": "Canal oficial, no usa la URL" },
-                { "id": "opt-report", "label": "Reporto como sospechoso", "cognitiveInsight": "Reconoce indicador técnico de riesgo" }
+              "opciones": [
+                {
+                  "id": "opt-enter",
+                  "etiqueta": "Ingreso, el dominio es correcto",
+                  "cognitiveInsight": "Ignora el puerto, se enfoca solo en dominio"
+                },
+                {
+                  "id": "opt-verify",
+                  "etiqueta": "Verifico en app bancaria oficial",
+                  "cognitiveInsight": "Canal oficial, no usa la URL"
+                },
+                {
+                  "id": "opt-report",
+                  "etiqueta": "Reporto como sospechoso",
+                  "cognitiveInsight": "Reconoce indicador técnico de riesgo"
+                }
               ],
               "storageKey": "port_8443_decision",
               "competency": "decision_under_pressure"
@@ -396,13 +441,13 @@
       "componentes": {
         "protocolo": "https",
         "dominio": "amazon.com",
-        "caminho": "/gp/your-account/order-history",
+        "ruta": "/gp/your-account/order-history",
         "parametros": null
       },
-      "elementoSuspeito": "Ninguno - estructura estándar de Amazon",
-      "classificacao": "segura",
+      "elementoSospechoso": "Ninguno - estructura estándar de Amazon",
+      "clasificacion": "segura",
       "explicacion": "El dominio es legítimo (amazon.com), usa HTTPS, y la ruta '/gp/your-account/order-history' es una estructura estándar de Amazon para acceder al historial de pedidos.",
-      "pontos": 5,
+      "puntos": 5,
       "capaEducativa": {
         "scenarioId": "url-04",
         "moduleId": 1,
@@ -423,7 +468,10 @@
               "id": "debrief-url-04-1",
               "type": "slider",
               "prompt": "¿Qué tan rápido identificas URLs legítimas de tus servicios habituales?",
-              "sliderLabels": { "min": "Muy lento", "max": "Muy rápido" },
+              "sliderLabels": {
+                "min": "Muy lento",
+                "max": "Muy rápido"
+              },
               "storageKey": "legit_url_speed",
               "competency": "evidence_analysis"
             }
@@ -438,13 +486,13 @@
       "componentes": {
         "protocolo": "https",
         "dominio": "amaz0n.com.deals",
-        "caminho": "/gift-card/claim",
+        "ruta": "/gift-card/claim",
         "parametros": "code=FREE500"
       },
-      "elementoSuspeito": "Dominio compuesto: 'amaz0n.com.deals' - el TLD real es '.deals' no '.com'",
-      "classificacao": "phishing",
+      "elementoSospechoso": "Dominio compuesto: 'amaz0n.com.deals' - el TLD real es '.deals' no '.com'",
+      "clasificacion": "phishing",
       "explicacion": "El dominio real es 'amaz0n.com.deals' (TLD: .deals). El '.com' es subdominio. El '0' en lugar de 'o' es typosquatting. El parámetro 'code=FREE500' sugiere premio falso.",
-      "pontos": 15,
+      "puntos": 15,
       "capaEducativa": {
         "scenarioId": "url-05",
         "moduleId": 1,
@@ -480,34 +528,34 @@
       "id": "sim-01",
       "tipo": "email",
       "titulo": "Correo de IT: Actualización de contraseña",
-      "descricao": "Recibes este correo de 'IT Department'",
-      "conteudo": "De: it-dept@company-security.net\nAsunto: [ACCIÓN REQUERIDA] Actualiza tu contraseña en 24 horas\n\nEstimado empleado,\n\nComo parte de nuestro programa de seguridad, todos los empleados deben actualizar sus contraseñas antes del viernes.\n\nHaz clic aquí para actualizar: https://company-security.net/password-reset\n\nSi no actualizas, tu cuenta será bloqueada.\n\nSaludos,\nDepartamento de TI",
+      "descripcion": "Recibes este correo de 'IT Department'",
+      "contenido": "De: it-dept@company-security.net\nAsunto: [ACCIÓN REQUERIDA] Actualiza tu contraseña en 24 horas\n\nEstimado empleado,\n\nComo parte de nuestro programa de seguridad, todos los empleados deben actualizar sus contraseñas antes del viernes.\n\nHaz clic aquí para actualizar: https://company-security.net/password-reset\n\nSi no actualizas, tu cuenta será bloqueada.\n\nSaludos,\nDepartamento de TI",
       "indicadores": [
         {
           "id": "ind-01",
           "tipo": "dominio-suspeito",
-          "descricao": "Dominio 'company-security.net' no es el dominio corporativo oficial",
-          "localizacao": "Campo 'De:' del correo",
-          "gravidade": "alta"
+          "descripcion": "Dominio 'company-security.net' no es el dominio corporativo oficial",
+          "ubicacion": "Campo 'De:' del correo",
+          "gravedad": "alta"
         },
         {
           "id": "ind-02",
           "tipo": "urgencia",
-          "descricao": "Plazo de 24 horas para presionar acción inmediata",
-          "localizacao": "Asunto del correo",
-          "gravidade": "media"
+          "descripcion": "Plazo de 24 horas para presionar acción inmediata",
+          "ubicacion": "Asunto del correo",
+          "gravedad": "media"
         },
         {
           "id": "ind-03",
           "tipo": "solicitacao-credenciais",
-          "descricao": "Solicita actualizar contraseña mediante enlace externo",
-          "localizacao": "Cuerpo del correo",
-          "gravidade": "alta"
+          "descripcion": "Solicita actualizar contraseña mediante enlace externo",
+          "ubicacion": "Cuerpo del correo",
+          "gravedad": "alta"
         }
       ],
-      "acaoCorreta": "reportar",
-      "pontos": 20,
-      "dificuldad": "basico",
+      "accionCorrecta": "reportar",
+      "puntos": 20,
+      "dificultad": "basico",
       "explicacion": "Nunca hagas clic en enlaces de correos que soliciten credenciales. Contacta directamente a IT por un canal oficial para verificar.",
       "capaEducativa": {
         "scenarioId": "sim-01",
@@ -528,10 +576,22 @@
               "id": "debrief-sim-01-1",
               "type": "micro-decision",
               "prompt": "¿Qué hiciste cuando viste este correo y por qué?",
-              "options": [
-                { "id": "opt-report", "label": "Lo reporté como phishing", "cognitiveInsight": "Reconoció las señales y actuó correctamente" },
-                { "id": "opt-verify", "label": "Intenté verificar por otro canal", "cognitiveInsight": "Aplica verificación cruzada" },
-                { "id": "opt-click", "label": "Hice clic en el enlace", "cognitiveInsight": "Cae bajo presión de urgencia" }
+              "opciones": [
+                {
+                  "id": "opt-report",
+                  "etiqueta": "Lo reporté como phishing",
+                  "cognitiveInsight": "Reconoció las señales y actuó correctamente"
+                },
+                {
+                  "id": "opt-verify",
+                  "etiqueta": "Intenté verificar por otro canal",
+                  "cognitiveInsight": "Aplica verificación cruzada"
+                },
+                {
+                  "id": "opt-click",
+                  "etiqueta": "Hice clic en el enlace",
+                  "cognitiveInsight": "Cae bajo presión de urgencia"
+                }
               ],
               "storageKey": "sim_decision",
               "competency": "decision_under_pressure"
@@ -545,34 +605,34 @@
       "id": "sim-02",
       "tipo": "sms",
       "titulo": "SMS del banco: Movimiento sospechoso",
-      "descricao": "Recibes este SMS en tu teléfono",
-      "conteudo": "BANCO NACIONAL: Se detectó compra de $3,200,000 en tienda externa. Si no fuiste tú, cancela AHORA: https://bco-nac.com/cancelar",
+      "descripcion": "Recibes este SMS en tu teléfono",
+      "contenido": "BANCO NACIONAL: Se detectó compra de $3,200,000 en tienda externa. Si no fuiste tú, cancela AHORA: https://bco-nac.com/cancelar",
       "indicadores": [
         {
           "id": "ind-04",
           "tipo": "dominio-suspeito",
-          "descricao": "El enlace usa 'bco-nac.com' en lugar del dominio oficial del banco",
-          "localizacao": "Enlace en el SMS",
-          "gravidade": "alta"
+          "descripcion": "El enlace usa 'bco-nac.com' en lugar del dominio oficial del banco",
+          "ubicacion": "Enlace en el SMS",
+          "gravedad": "alta"
         },
         {
           "id": "ind-05",
           "tipo": "urgencia",
-          "descricao": "Palabra 'AHORA' en mayúsculas para generar pánico",
-          "localizacao": "Texto del SMS",
-          "gravidade": "media"
+          "descripcion": "Palabra 'AHORA' en mayúsculas para generar pánico",
+          "ubicacion": "Texto del SMS",
+          "gravedad": "media"
         },
         {
           "id": "ind-06",
           "tipo": "solicitacao-financeira",
-          "descricao": "Monto alarmante para generar reacción emocional",
-          "localizacao": "Monto en el SMS",
-          "gravidade": "media"
+          "descripcion": "Monto alarmante para generar reacción emocional",
+          "ubicacion": "Monto en el SMS",
+          "gravedad": "media"
         }
       ],
-      "acaoCorreta": "verificar",
-      "pontos": 25,
-      "dificuldad": "intermedio",
+      "accionCorrecta": "verificar",
+      "puntos": 25,
+      "dificultad": "intermedio",
       "explicacion": "Los bancos NUNCA envían enlaces por SMS. Llama al número oficial de tu banco (no el del SMS) para verificar movimientos.",
       "capaEducativa": {
         "scenarioId": "sim-02",
@@ -593,10 +653,22 @@
               "id": "debrief-sim-02-1",
               "type": "micro-decision",
               "prompt": "Recibes este SMS. ¿Tu reacción inmediata?",
-              "options": [
-                { "id": "opt-click", "label": "Hago clic para cancelar", "cognitiveInsight": "Cae en urgencia fabricada" },
-                { "id": "opt-call", "label": "Llamo al banco por número oficial", "cognitiveInsight": "Verifica por canal seguro" },
-                { "id": "opt-delete", "label": "Borro el SMS", "cognitiveInsight": "Evita pero no verifica" }
+              "opciones": [
+                {
+                  "id": "opt-click",
+                  "etiqueta": "Hago clic para cancelar",
+                  "cognitiveInsight": "Cae en urgencia fabricada"
+                },
+                {
+                  "id": "opt-call",
+                  "etiqueta": "Llamo al banco por número oficial",
+                  "cognitiveInsight": "Verifica por canal seguro"
+                },
+                {
+                  "id": "opt-delete",
+                  "etiqueta": "Borro el SMS",
+                  "cognitiveInsight": "Evita pero no verifica"
+                }
               ],
               "storageKey": "sms_bank_decision",
               "competency": "decision_under_pressure"
@@ -611,34 +683,34 @@
       "id": "sim-03",
       "tipo": "web",
       "titulo": "Pop-up de premio ganado",
-      "descricao": "Aparece este pop-up mientras navegas",
-      "conteudo": "🎉 ¡FELICIDADES! 🎉\n\nHas sido seleccionado como ganador de un iPhone 15 Pro Max!\n\nPara reclamar tu premio:\n1. Ingresa tus datos personales\n2. ingresa tu número de tarjeta de crédito para verificar identidad\n3. ¡Recibe tu premio en 24 horas!\n\n⚠️ Este premio vence en 5 minutos. ¡No lo pierdas!\n\n[RECLAMAR AHORA]",
+      "descripcion": "Aparece este pop-up mientras navegas",
+      "contenido": "🎉 ¡FELICIDADES! 🎉\n\nHas sido seleccionado como ganador de un iPhone 15 Pro Max!\n\nPara reclamar tu premio:\n1. Ingresa tus datos personales\n2. ingresa tu número de tarjeta de crédito para verificar identidad\n3. ¡Recibe tu premio en 24 horas!\n\n⚠️ Este premio vence en 5 minutos. ¡No lo pierdas!\n\n[RECLAMAR AHORA]",
       "indicadores": [
         {
           "id": "ind-07",
           "tipo": "oferta-irresistivel",
-          "descricao": "Premio de alto valor sin purchase previa",
-          "localizacao": "Título del pop-up",
-          "gravidade": "alta"
+          "descripcion": "Premio de alto valor sin purchase previa",
+          "ubicacion": "Título del pop-up",
+          "gravedad": "alta"
         },
         {
           "id": "ind-08",
           "tipo": "solicitacao-credenciais",
-          "descricao": "Solicita número de tarjeta de crédito 'para verificar'",
-          "localizacao": "Paso 2 del formulario",
-          "gravidade": "alta"
+          "descripcion": "Solicita número de tarjeta de crédito 'para verificar'",
+          "ubicacion": "Paso 2 del formulario",
+          "gravedad": "alta"
         },
         {
           "id": "ind-09",
           "tipo": "urgencia",
-          "descricao": "Temporizador de 5 minutos para presionar",
-          "localizacao": "Aviso de vencimiento",
-          "gravidade": "alta"
+          "descripcion": "Temporizador de 5 minutos para presionar",
+          "ubicacion": "Aviso de vencimiento",
+          "gravedad": "alta"
         }
       ],
-      "acaoCorreta": "bloquear",
-      "pontos": 30,
-      "dificuldad": "basico",
+      "accionCorrecta": "bloquear",
+      "puntos": 30,
+      "dificultad": "basico",
       "explicacion": "Nunca reclames premios que no solicitaste. Los pop-ups que piden datos de tarjeta son siempre fraudulentos.",
       "capaEducativa": {
         "scenarioId": "sim-03",
@@ -659,10 +731,22 @@
               "id": "debrief-sim-03-1",
               "type": "micro-decision",
               "prompt": "Aparece este pop-up y no se cierra. ¿Qué haces?",
-              "options": [
-                { "id": "opt-close-tab", "label": "Cierro la pestaña (Ctrl+W)", "cognitiveInsight": "Acción técnica correcta" },
-                { "id": "opt-fill", "label": "Relleno rápido para que desaparezca", "cognitiveInsight": "Cede a la presión" },
-                { "id": "opt-restart", "label": "Reinicio el navegador", "cognitiveInsight": "Solución extrema pero segura" }
+              "opciones": [
+                {
+                  "id": "opt-close-tab",
+                  "etiqueta": "Cierro la pestaña (Ctrl+W)",
+                  "cognitiveInsight": "Acción técnica correcta"
+                },
+                {
+                  "id": "opt-fill",
+                  "etiqueta": "Relleno rápido para que desaparezca",
+                  "cognitiveInsight": "Cede a la presión"
+                },
+                {
+                  "id": "opt-restart",
+                  "etiqueta": "Reinicio el navegador",
+                  "cognitiveInsight": "Solución extrema pero segura"
+                }
               ],
               "storageKey": "popup_cant_close",
               "competency": "decision_under_pressure"
@@ -677,34 +761,34 @@
       "id": "sim-04",
       "tipo": "redes-sociais",
       "titulo": "Mensaje de amigo en redes sociales",
-      "descricao": "Un 'amigo' te envía un mensaje por Instagram",
-      "conteudo": "Hola! 😊 Mira esta foto que te taggeé, está genial!\nhttps://photos-shared.com/view?id=827361\n\nHaz clic para verla antes de que la eliminen!",
+      "descripcion": "Un 'amigo' te envía un mensaje por Instagram",
+      "contenido": "Hola! 😊 Mira esta foto que te taggeé, está genial!\nhttps://photos-shared.com/view?id=827361\n\nHaz clic para verla antes de que la eliminen!",
       "indicadores": [
         {
           "id": "ind-10",
           "tipo": "link-falso",
-          "descricao": "Enlace a dominio 'photos-shared.com' no es Instagram",
-          "localizacao": "Enlace en el mensaje",
-          "gravidade": "alta"
+          "descripcion": "Enlace a dominio 'photos-shared.com' no es Instagram",
+          "ubicacion": "Enlace en el mensaje",
+          "gravedad": "alta"
         },
         {
           "id": "ind-11",
           "tipo": "urgencia",
-          "descricao": "Presión para hacer clic rápido: 'antes de que la eliminen'",
-          "localizacao": "Texto del mensaje",
-          "gravidade": "media"
+          "descripcion": "Presión para hacer clic rápido: 'antes de que la eliminen'",
+          "ubicacion": "Texto del mensaje",
+          "gravedad": "media"
         },
         {
           "id": "ind-12",
           "tipo": "gramatica",
-          "descricao": "El mensaje parece automático o forzado",
-          "localizacao": "Estilo del mensaje",
-          "gravidade": "baja"
+          "descripcion": "El mensaje parece automático o forzado",
+          "ubicacion": "Estilo del mensaje",
+          "gravedad": "baja"
         }
       ],
-      "acaoCorreta": "verificar",
-      "pontos": 25,
-      "dificuldad": "intermedio",
+      "accionCorrecta": "verificar",
+      "puntos": 25,
+      "dificultad": "intermedio",
       "explicacion": "Si un amigo comparte algo sospechoso, su cuenta puede haber sido comprometida. Verifica directamente con la persona antes de hacer clic.",
       "capaEducativa": {
         "scenarioId": "sim-04",
@@ -725,10 +809,22 @@
               "id": "debrief-sim-04-1",
               "type": "micro-decision",
               "prompt": "Tu mejor amigo te envía esto. ¿Qué haces?",
-              "options": [
-                { "id": "opt-click", "label": "Hago clic, es mi amigo", "cognitiveInsight": "Confía ciegamente sin verificar" },
-                { "id": "opt-verify", "label": "Le escribo por WhatsApp para confirmar", "cognitiveInsight": "Verifica por canal independiente" },
-                { "id": "opt-ignore", "label": "Lo ignoro", "cognitiveInsight": "Evita riesgo pero no ayuda al amigo" }
+              "opciones": [
+                {
+                  "id": "opt-click",
+                  "etiqueta": "Hago clic, es mi amigo",
+                  "cognitiveInsight": "Confía ciegamente sin verificar"
+                },
+                {
+                  "id": "opt-verify",
+                  "etiqueta": "Le escribo por WhatsApp para confirmar",
+                  "cognitiveInsight": "Verifica por canal independiente"
+                },
+                {
+                  "id": "opt-ignore",
+                  "etiqueta": "Lo ignoro",
+                  "cognitiveInsight": "Evita riesgo pero no ayuda al amigo"
+                }
               ],
               "storageKey": "friend_link_decision",
               "competency": "decision_under_pressure"
@@ -744,43 +840,113 @@
     {
       "id": "drag-01",
       "titulo": "Clasifica los correos",
-      "descricao": "Arrastra cada correo a la categoría correcta",
-      "itens": [
-        { "id": "d1-item-1", "conteudo": "📧 Netflix: Tu cuenta será suspendida", "tipo": "phishing", "icone": "⚠️" },
-        { "id": "d1-item-2", "conteudo": "📧 Google: Verificación de seguridad", "tipo": "legitimo", "icone": "✅" },
-        { "id": "d1-item-3", "conteudo": "📧 Banco: Transferencia sospechosa", "tipo": "phishing", "icone": "⚠️" },
-        { "id": "d1-item-4", "conteudo": "📧 Amazon: Tu pedido fue enviado", "tipo": "legitimo", "icone": "✅" },
-        { "id": "d1-item-5", "conteudo": "📧 ¡Ganaste un iPhone!", "tipo": "phishing", "icone": "⚠️" }
+      "descripcion": "Arrastra cada correo a la categoría correcta",
+      "items": [
+        {
+          "id": "d1-item-1",
+          "contenido": "📧 Netflix: Tu cuenta será suspendida",
+          "tipo": "phishing",
+          "icono": "⚠️"
+        },
+        {
+          "id": "d1-item-2",
+          "contenido": "📧 Google: Verificación de seguridad",
+          "tipo": "legitimo",
+          "icono": "✅"
+        },
+        {
+          "id": "d1-item-3",
+          "contenido": "📧 Banco: Transferencia sospechosa",
+          "tipo": "phishing",
+          "icono": "⚠️"
+        },
+        {
+          "id": "d1-item-4",
+          "contenido": "📧 Amazon: Tu pedido fue enviado",
+          "tipo": "legitimo",
+          "icono": "✅"
+        },
+        {
+          "id": "d1-item-5",
+          "contenido": "📧 ¡Ganaste un iPhone!",
+          "tipo": "phishing",
+          "icono": "⚠️"
+        }
       ],
-      "alvos": [
-        { "id": "d1-alvo-1", "label": "📧 Phishing / Fraudulento", "tipo": "phishing", "cor": "rose" },
-        { "id": "d1-alvo-2", "label": "✅ Legítimo / Seguro", "tipo": "legitimo", "cor": "emerald" }
+      "objetivos": [
+        {
+          "id": "d1-alvo-1",
+          "etiqueta": "📧 Phishing / Fraudulento",
+          "tipo": "phishing",
+          "color": "rose"
+        },
+        {
+          "id": "d1-alvo-2",
+          "etiqueta": "✅ Legítimo / Seguro",
+          "tipo": "legitimo",
+          "color": "emerald"
+        }
       ],
-      "pontos": 25
+      "puntos": 25
     },
     {
       "id": "drag-02",
       "titulo": "Identifica los indicadores de phishing",
-      "descricao": "Arrastra los indicadores al escenario correspondiente",
-      "itens": [
-        { "id": "d2-item-1", "conteudo": "Dominio con letras confusas (0 vs o)", "tipo": "phishing", "icone": "🔤" },
-        { "id": "d2-item-2", "conteudo": "Plazo de 24 horas para actuar", "tipo": "phishing", "icone": "⏰" },
-        { "id": "d2-item-3", "conteudo": "Solicita contraseña por enlace", "tipo": "phishing", "icone": "🔑" },
-        { "id": "d2-item-4", "conteudo": "HTTPS con certificado válido", "tipo": "legitimo", "icone": "🔒" },
-        { "id": "d2-item-5", "conteudo": "Dominio coincide con empresa oficial", "tipo": "legitimo", "icone": "🏢" }
+      "descripcion": "Arrastra los indicadores al escenario correspondiente",
+      "items": [
+        {
+          "id": "d2-item-1",
+          "contenido": "Dominio con letras confusas (0 vs o)",
+          "tipo": "phishing",
+          "icono": "🔤"
+        },
+        {
+          "id": "d2-item-2",
+          "contenido": "Plazo de 24 horas para actuar",
+          "tipo": "phishing",
+          "icono": "⏰"
+        },
+        {
+          "id": "d2-item-3",
+          "contenido": "Solicita contraseña por enlace",
+          "tipo": "phishing",
+          "icono": "🔑"
+        },
+        {
+          "id": "d2-item-4",
+          "contenido": "HTTPS con certificado válido",
+          "tipo": "legitimo",
+          "icono": "🔒"
+        },
+        {
+          "id": "d2-item-5",
+          "contenido": "Dominio coincide con empresa oficial",
+          "tipo": "legitimo",
+          "icono": "🏢"
+        }
       ],
-      "alvos": [
-        { "id": "d2-alvo-1", "label": "⚠️ Indicador de Phishing", "tipo": "phishing", "cor": "rose" },
-        { "id": "d2-alvo-2", "label": "✅ Señal de Seguridad", "tipo": "legitimo", "cor": "emerald" }
+      "objetivos": [
+        {
+          "id": "d2-alvo-1",
+          "etiqueta": "⚠️ Indicador de Phishing",
+          "tipo": "phishing",
+          "color": "rose"
+        },
+        {
+          "id": "d2-alvo-2",
+          "etiqueta": "✅ Señal de Seguridad",
+          "tipo": "legitimo",
+          "color": "emerald"
+        }
       ],
-      "pontos": 25
+      "puntos": 25
     }
   ],
   "microActividades": [
     {
       "id": "micro1-01",
       "tipo": "verdadero-falso",
-      "pergunta": "Verdadero o Falso: Un correo de Netflix con el enlace 'netfIix-security.com' es legítimo porque usa HTTPS.",
+      "pregunta": "Verdadero o Falso: Un correo de Netflix con el enlace 'netfIix-security.com' es legítimo porque usa HTTPS.",
       "respuestaCorrecta": "falso",
       "explicacion": "FALSO. El HTTPS solo indica conexión cifrada, NO que el sitio sea legítimo. El dominio 'netfIix-security.com' usa una 'I' mayúscula en lugar de 'l' — es un dominio falso (typosquatting).",
       "puntos": 10
@@ -788,7 +954,7 @@
     {
       "id": "micro1-02",
       "tipo": "verdadero-falso",
-      "pergunta": "Verdadero o Falso: Si un amigo te envía un enlace por WhatsApp, siempre es seguro hacer clic porque lo conoces.",
+      "pregunta": "Verdadero o Falso: Si un amigo te envía un enlace por WhatsApp, siempre es seguro hacer clic porque lo conoces.",
       "respuestaCorrecta": "falso",
       "explicacion": "FALSO. La cuenta de tu amigo puede haber sido comprometida. Los atacantes usan contactos de confianza para distribuir phishing. Siempre verifica directamente con la persona.",
       "puntos": 10
@@ -796,7 +962,7 @@
     {
       "id": "micro1-03",
       "tipo": "completar-codigo",
-      "pergunta": "Completa la función para detectar dominios sospechosos:",
+      "pregunta": "Completa la función para detectar dominios sospechosos:",
       "codigo": "function esDominioSospechoso(dominio: string): boolean {\n  // Verificar si el dominio contiene caracteres confusos\n  const caracteresConfusos = dominio.includes('0') && dominio.includes('o');\n  const largoInusual = dominio.length > ___;\n  return caracteresConfusos || largoInusual;\n}",
       "respuestaCorrecta": 25,
       "explicacion": "El valor correcto es 25. Dominios legítimos raramente superan los 25 caracteres. Los dominios de phishing suelen ser más largos para incluir palabras engañosas.",
@@ -805,15 +971,41 @@
     {
       "id": "micro1-04",
       "tipo": "ordenar-pasos",
-      "pergunta": "Ordena los pasos para verificar si un correo es phishing:",
+      "pregunta": "Ordena los pasos para verificar si un correo es phishing:",
       "pasos": [
-        { "id": "step-1", "texto": "Examinar el dominio del remitente", "ordenCorrecto": 1 },
-        { "id": "step-2", "texto": "Buscar errores gramaticales y de formato", "ordenCorrecto": 2 },
-        { "id": "step-3", "texto": "No hacer clic en enlaces sospechosos", "ordenCorrecto": 3 },
-        { "id": "step-4", "texto": "Contactar al remitente por canal oficial", "ordenCorrecto": 4 },
-        { "id": "step-5", "texto": "Reportar el correo como phishing", "ordenCorrecto": 5 }
+        {
+          "id": "step-1",
+          "texto": "Examinar el dominio del remitente",
+          "ordenCorrecto": 1
+        },
+        {
+          "id": "step-2",
+          "texto": "Buscar errores gramaticales y de formato",
+          "ordenCorrecto": 2
+        },
+        {
+          "id": "step-3",
+          "texto": "No hacer clic en enlaces sospechosos",
+          "ordenCorrecto": 3
+        },
+        {
+          "id": "step-4",
+          "texto": "Contactar al remitente por canal oficial",
+          "ordenCorrecto": 4
+        },
+        {
+          "id": "step-5",
+          "texto": "Reportar el correo como phishing",
+          "ordenCorrecto": 5
+        }
       ],
-      "respuestaCorrecta": ["step-1", "step-2", "step-3", "step-4", "step-5"],
+      "respuestaCorrecta": [
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4",
+        "step-5"
+      ],
       "explicacion": "El orden correcto es: 1) Examinar dominio, 2) Buscar errores, 3) No hacer clic, 4) Verificar por canal oficial, 5) Reportar.",
       "puntos": 20
     }

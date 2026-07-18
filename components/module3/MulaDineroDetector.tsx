@@ -82,7 +82,7 @@ export default function MulaDineroDetector({
   };
 
   const revealSignals = () => {
-    if (signalsRevealed < actividad.oferta.señalesRiesgo.length) {
+    if (signalsRevealed < actividad.oferta.senalesRiesgo.length) {
       setSignalsRevealed((s) => s + 1);
     }
   };
@@ -156,21 +156,21 @@ export default function MulaDineroDetector({
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <AnimatePresence>
-                    {actividad.oferta.señalesRiesgo
+                    {actividad.oferta.senalesRiesgo
                       .slice(0, signalsRevealed)
-                      .map((señal) => (
+                      .map((senal) => (
                         <motion.span
-                          key={señal}
+                          key={senal}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           className="px-2.5 py-0.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-semibold"
                         >
-                          {señal}
+{senal}
                         </motion.span>
                       ))}
                   </AnimatePresence>
                 </div>
-                {signalsRevealed < actividad.oferta.señalesRiesgo.length && (
+                {signalsRevealed < actividad.oferta.senalesRiesgo.length && (
                   <button
                     onClick={revealSignals}
                     className="mt-2 text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
