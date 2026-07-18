@@ -195,7 +195,7 @@ export default function DebriefDialog({
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.25, ease: 'easeOut' }}
           className="glass-card neon-border mx-4 w-full max-w-lg rounded-xl p-6 max-h-[85vh] overflow-y-auto"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="mb-4 flex items-center justify-between">
