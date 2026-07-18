@@ -10,7 +10,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { usePortfolio } from '../usePortfolio'
-import type { PortfolioEntry, SkillCompetencyTag } from '@/types/educational'
+import type { PortfolioEntry, SkillCompetencyTag, CompetencyScore } from '@/types/educational'
 
 // ─── Mock localStorage ────────────────────────────────────────────────────────
 
@@ -138,12 +138,12 @@ describe('usePortfolio', () => {
     const scores = result.current.competencyScores
     expect(scores).toHaveLength(2)
 
-    const emailScore = scores.find((s) => s.tag === 'email-analysis')
+    const emailScore = scores.find((s: CompetencyScore) => s.tag === 'email-analysis')
     expect(emailScore).toBeDefined()
     expect(emailScore!.score).toBe(85) // average of 80 and 90
     expect(emailScore!.attempts).toBe(2)
 
-    const urlScore = scores.find((s) => s.tag === 'url-inspection')
+    const urlScore = scores.find((s: CompetencyScore) => s.tag === 'url-inspection')
     expect(urlScore).toBeDefined()
     expect(urlScore!.score).toBe(70)
     expect(urlScore!.attempts).toBe(1)
