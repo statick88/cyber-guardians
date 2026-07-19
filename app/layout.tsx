@@ -4,6 +4,7 @@ import { Toaster } from 'sonner'
 import VolumeControl from '@/components/VolumeControl'
 import HUDProvider from '@/components/HUDProvider'
 import HUD from '@/components/HUD'
+import { MIAAgent } from '@/components/mia'
 
 export const metadata: Metadata = {
   title: 'CyberGuardians - Módulo 0: Cyber-Diagnóstico',
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body className="bg-void text-slate-100 antialiased font-sans min-h-screen pt-9 md:pt-12">
         <HUDProvider>
           <HUD />
+          <MIAAgent />
           {children}
         </HUDProvider>
         <VolumeControl />

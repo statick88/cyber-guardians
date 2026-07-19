@@ -1,0 +1,143 @@
+{
+  "dialogues": [
+    { "id": "m0-idle-1", "moduleId": 0, "emotion": "IDLE", "text": "Analizando patrones... ¿Listo para el siguiente desafío?" },
+    { "id": "m0-idle-2", "moduleId": 0, "emotion": "IDLE", "text": "Modulo de seguridad en pausa. Mis sensores detectan curiosidad en tu mirada." },
+    { "id": "m0-idle-3", "moduleId": 0, "emotion": "IDLE", "text": "En modo standby. Cuando estés listo, activamos el protocolo." },
+
+    { "id": "m0-excited-1", "moduleId": 0, "emotion": "EXCITED", "text": "¡Excelente! Tu primer paso en el mundo del ciberdefense. +50 XP" },
+    { "id": "m0-excited-2", "moduleId": 0, "emotion": "EXCITED", "text": "¡Bypass exitoso! Analizaste el patron de manera impecable. +50 XP" },
+    { "id": "m0-excited-3", "moduleId": 0, "emotion": "EXCITED", "text": "Detecto una mejora en tu instinto de defensa. ¡Sigue asi, recluta!" },
+
+    { "id": "m0-error-1", "moduleId": 0, "emotion": "SAMPLED_ERROR", "text": "¡Cuidado! Ese enlace tenia un dominio manipulado. Ajusta tu visor y vuelve a intentarlo." },
+    { "id": "m0-error-2", "moduleId": 0, "emotion": "SAMPLED_ERROR", "text": "Impacto detectado en el escudo. No te preocupes, es parte del aprendizaje." },
+    { "id": "m0-error-3", "moduleId": 0, "emotion": "SAMPLED_ERROR", "text": "Esa opcion estaba comprometida. Recarga tu analisis y busca la firma correcta." },
+
+    { "id": "m0-brief-1", "moduleId": 0, "emotion": "MISSION_BRIEF", "text": "Objetivo de la mision: interceptar las migajas digitales antes de que se propaguen." },
+    { "id": "m0-brief-2", "moduleId": 0, "emotion": "MISSION_BRIEF", "text": "Bienvenido al modulo cero. Tu mision: identificar las amenazas basicas en la red." },
+    { "id": "m0-brief-3", "moduleId": 0, "emotion": "MISSION_BRIEF", "text": "Protocolo inicial activado. Tu tarea: reconocer los vectores de ataque mas comunes." },
+
+    { "id": "m0-clue-1", "moduleId": 0, "emotion": "PROVIDING_CLUE", "text": "Pista: analiza la estructura del dominio antes de confiar en cualquier enlace." },
+    { "id": "m0-clue-2", "moduleId": 0, "emotion": "PROVIDING_CLUE", "text": "Consejo: siempre verifica el certificado SSL y la URL completa." },
+    { "id": "m0-clue-3", "moduleId": 0, "emotion": "PROVIDING_CLUE", "text": "Tip: los dominios sospechosos suelen tener caracteres que imitan a los legitimos." },
+
+    { "id": "m1-idle-1", "moduleId": 1, "emotion": "IDLE", "text": "Escaneando el perimeter... Modulo de reconnaissance en espera." },
+    { "id": "m1-idle-2", "moduleId": 1, "emotion": "IDLE", "text": "Mis algoritmos estan listos para la fase de reconocimiento. Dime cuando." },
+    { "id": "m1-idle-3", "moduleId": 1, "emotion": "IDLE", "text": "En modo vigilancia. Cada dato cuenta en esta fase." },
+
+    { "id": "m1-excited-1", "moduleId": 1, "emotion": "EXCITED", "text": "¡Reconocimiento completo! Encontraste vulnerabilidades que otros pasarian por alto. +75 XP" },
+    { "id": "m1-excited-2", "moduleId": 1, "emotion": "EXCITED", "text": "¡Increible! Tu escaneo del perimeter fue quirurgico. Eso es nivel Guardian." },
+    { "id": "m1-excited-3", "moduleId": 1, "emotion": "EXCITED", "text": "Los datos que recolectaste son oro puro para la defensa. ¡Sigue asi!" },
+
+    { "id": "m1-error-1", "moduleId": 1, "emotion": "SAMPLED_ERROR", "text": "Ese puerto estaba honeypotted. Los atacantes usan trampas como esa para detectar escaneos." },
+    { "id": "m1-error-2", "moduleId": 1, "emotion": "SAMPLED_ERROR", "text": "Cuidado, ese servicio es un decoy. Ajusta tu fingerprint y reintenta." },
+    { "id": "m1-error-3", "moduleId": 1, "emotion": "SAMPLED_ERROR", "text": "Tu escaneo fue detectado. Activa el modo sigiloso y reduce la velocidad." },
+
+    { "id": "m1-brief-1", "moduleId": 1, "emotion": "MISSION_BRIEF", "text": "Mision: mapear la superficie de ataque del objetivo sin ser detectado." },
+    { "id": "m1-brief-2", "moduleId": 1, "emotion": "MISSION_BRIEF", "text": "Fase de reconocimiento activada. Tu objetivo: descubrir puntos de entrada." },
+    { "id": "m1-brief-3", "moduleId": 1, "emotion": "MISSION_BRIEF", "text": "Instrucciones: enumera servicios, puertos y tecnologias del objetivo." },
+
+    { "id": "m1-clue-1", "moduleId": 1, "emotion": "PROVIDING_CLUE", "text": "Pista: los servicios en puertos inusuales suelen ser las puertas traseras." },
+    { "id": "m1-clue-2", "moduleId": 1, "emotion": "PROVIDING_CLUE", "text": "Consejo: revisa los subdominios. Ahi se esconden los servicios olvidados." },
+    { "id": "m1-clue-3", "moduleId": 1, "emotion": "PROVIDING_CLUE", "text": "Recuerda: un escaneo lento y gradual es mas dificil de detectar que uno agresivo." },
+
+    { "id": "m2-idle-1", "moduleId": 2, "emotion": "IDLE", "text": "Analisis de malware en pausa. Mis firmas actualizadas estan alineadas." },
+    { "id": "m2-idle-2", "moduleId": 2, "emotion": "IDLE", "text": "Sandbox en espera. Cuando quieras detonamos esa muestra." },
+    { "id": "m2-idle-3", "moduleId": 2, "emotion": "IDLE", "text": "Modo analisis estatico listo. El binario espera tu veredicto." },
+
+    { "id": "m2-excited-1", "moduleId": 2, "emotion": "EXCITED", "text": "¡Clasificacion correcta! Identificaste el malware como un trojan de acceso remoto. +100 XP" },
+    { "id": "m2-excited-2", "moduleId": 2, "emotion": "EXCITED", "text": "¡Tu analisis fue devastador! Separaste la camuflaje del payload real. +100 XP" },
+    { "id": "m2-excited-3", "moduleId": 2, "emotion": "EXCITED", "text": "Esa muestra no tenia nada que ocultarte. Tu instinto de analista esta afilado." },
+
+    { "id": "m2-error-1", "moduleId": 2, "emotion": "SAMPLED_ERROR", "text": "Esa muestra activo anti-tampering. El malware detecto el sandbox y se destruyo." },
+    { "id": "m2-error-2", "moduleId": 2, "emotion": "SAMPLED_ERROR", "text": "¡Cuidado! Ese binario tiene un packer polimorfico. Necesitas unpacking primero." },
+    { "id": "m2-error-3", "moduleId": 2, "emotion": "SAMPLED_ERROR", "text": "Tu clasificacion fue apresurada. Revisa los imports y las strings sospechosas." },
+
+    { "id": "m2-brief-1", "moduleId": 2, "emotion": "MISSION_BRIEF", "text": "Mision: analizar la muestra maliciosa y extraer sus indicadores de compromiso." },
+    { "id": "m2-brief-2", "moduleId": 2, "emotion": "MISSION_BRIEF", "text": "Operacion de reverse engineering activada. Tu objetivo: entender que hace este malware." },
+    { "id": "m2-brief-3", "moduleId": 2, "emotion": "MISSION_BRIEF", "text": "Objetivo: determinar la familia del malware y sus tecnicas de evasión." },
+
+    { "id": "m2-clue-1", "moduleId": 2, "emotion": "PROVIDING_CLUE", "text": "Pista: busca las llamadas a la API de Windows. Ahi estan las verdaderas intenciones." },
+    { "id": "m2-clue-2", "moduleId": 2, "emotion": "PROVIDING_CLUE", "text": "Consejo: compara el hash con VirusTotal antes de analizar manualmente." },
+    { "id": "m2-clue-3", "moduleId": 2, "emotion": "PROVIDING_CLUE", "text": "Tip: las strings codificadas en Base64 suelen ocultar URLs de C2." },
+
+    { "id": "m3-idle-1", "moduleId": 3, "emotion": "IDLE", "text": "Protocolo de cifrado en standby. Los datos esperan tu proteccion." },
+    { "id": "m3-idle-2", "moduleId": 3, "emotion": "IDLE", "text": "Modulo criptografico listo. Claves generadas, algoritmos en espera." },
+    { "id": "m3-idle-3", "moduleId": 3, "emotion": "IDLE", "text": "En modo pasivo. Mis modulos de cifrado estan calibrados y listos." },
+
+    { "id": "m3-excited-1", "moduleId": 3, "emotion": "EXCITED", "text": "¡Cifrado implementado correctamente! Tus datos estan blindados. +80 XP" },
+    { "id": "m3-excited-2", "moduleId": 3, "emotion": "EXCITED", "text": "¡Excelente eleccion de algoritmo! AES-256 no va a fallar hoy. +80 XP" },
+    { "id": "m3-excited-3", "moduleId": 3, "emotion": "EXCITED", "text": "Tu clave supera los estandares de seguridad. Eso es pensar como un Guardian." },
+
+    { "id": "m3-error-1", "moduleId": 3, "emotion": "SAMPLED_ERROR", "text": "Esa clave es demasiado debil. Un ataque de fuerza bruta la romperia en minutos." },
+    { "id": "m3-error-2", "moduleId": 3, "emotion": "SAMPLED_ERROR", "text": "El modo de cifrado que elegiste tiene debilidades conocidas. Cambia a GCM." },
+    { "id": "m3-error-3", "moduleId": 3, "emotion": "SAMPLED_ERROR", "text": "¡Vulnerabilidad detectada! Esa implementacion tiene un padding oracle." },
+
+    { "id": "m3-brief-1", "moduleId": 3, "emotion": "MISSION_BRIEF", "text": "Mision: implementar un sistema de cifrado que resista ataques de fuerza bruta." },
+    { "id": "m3-brief-2", "moduleId": 3, "emotion": "MISSION_BRIEF", "text": "Objetivo critico: proteger los datos en transito y en reposo con cifrado robusto." },
+    { "id": "m3-brief-3", "moduleId": 3, "emotion": "MISSION_BRIEF", "text": "Tarea: diseña un esquema de intercambio de claves seguro." },
+
+    { "id": "m3-clue-1", "moduleId": 3, "emotion": "PROVIDING_CLUE", "text": "Pista: nunca almacenes claves en texto plano. Usa un vault o HSM." },
+    { "id": "m3-clue-2", "moduleId": 3, "emotion": "PROVIDING_CLUE", "text": "Consejo: combina cifrado simetrico con asimetrico para el intercambio de claves." },
+    { "id": "m3-clue-3", "moduleId": 3, "emotion": "PROVIDING_CLUE", "text": "Recuerda: un IV (nonce) nunca debe repetirse en el mismo contexto de clave." },
+
+    { "id": "m4-idle-1", "moduleId": 4, "emotion": "IDLE", "text": "Monitoreo de red en pausa. Mis sensores de trafico estan listos." },
+    { "id": "m4-idle-2", "moduleId": 4, "emotion": "IDLE", "text": "IDS en modo pasivo. Esperando anomalias en el trafico de red." },
+    { "id": "m4-idle-3", "moduleId": 4, "emotion": "IDLE", "text": "Analisis de flujos de datos en standby. Dime cuando侦听." },
+
+    { "id": "m4-excited-1", "moduleId": 4, "emotion": "EXCITED", "text": "¡Exfiltracion detectada a tiempo! Cortaste la comunicacion con el C2. +90 XP" },
+    { "id": "m4-excited-2", "moduleId": 4, "emotion": "EXCITED", "text": "¡Identificaste el beacon de C2! Tus habilidades de analisis de red estan evolucionando. +90 XP" },
+    { "id": "m4-excited-3", "moduleId": 4, "emotion": "EXCITED", "text": "Ese patron de trafico no engana a nadie. Buen ojo para los DNS tunneling." },
+
+    { "id": "m4-error-1", "moduleId": 4, "emotion": "SAMPLED_ERROR", "text": "Ese trafico parecia legitimo pero era DNS tunneling. El dominio generaba subdominios aleatorios." },
+    { "id": "m4-error-2", "moduleId": 4, "emotion": "SAMPLED_ERROR", "text": "No detectaste el lateral movement. Esa sesion RDP no era de un admin legitimo." },
+    { "id": "m4-error-3", "moduleId": 4, "emotion": "SAMPLED_ERROR", "text": "El atacante encripto su trafico con TLS. Necesitas inspeccionar los metadatos." },
+
+    { "id": "m4-brief-1", "moduleId": 4, "emotion": "MISSION_BRIEF", "text": "Mision: detectar trafico sospechoso y aislar las comunicaciones comprometidas." },
+    { "id": "m4-brief-2", "moduleId": 4, "emotion": "MISSION_BRIEF", "text": "Operacion de defensa de red activada. Tu objetivo: encontrar el canal de C2 oculto." },
+    { "id": "m4-brief-3", "moduleId": 4, "emotion": "MISSION_BRIEF", "text": "Instrucciones: analiza los flujos de red y busca patrones anomalos." },
+
+    { "id": "m4-clue-1", "moduleId": 4, "emotion": "PROVIDING_CLUE", "text": "Pista: busca conexiones periodicas con jitter bajo. Eso huele a beaconing." },
+    { "id": "m4-clue-2", "moduleId": 4, "emotion": "PROVIDING_CLUE", "text": "Consejo: compara el volumen de datos subidos vs bajados. La asimetria revela exfiltracion." },
+    { "id": "m4-clue-3", "moduleId": 4, "emotion": "PROVIDING_CLUE", "text": "Tip: los registros DNS con TTL muy bajo suelen indicar tunelamiento activo." },
+
+    { "id": "m5-idle-1", "moduleId": 5, "emotion": "IDLE", "text": "Simulacion de phishing en pausa. Los correos falsos esperan tu deteccion." },
+    { "id": "m5-idle-2", "moduleId": 5, "emotion": "IDLE", "text": "Modulo de ingenieria social en espera. Mis plantillas de phishing estan listas." },
+    { "id": "m5-idle-3", "moduleId": 5, "emotion": "IDLE", "text": "Analisis de headers de correo en standby. Dime cuando侦听." },
+
+    { "id": "m5-excited-1", "moduleId": 5, "emotion": "EXCITED", "text": "¡Phishing detectado! Identificaste las señales de spoofing en los headers. +85 XP" },
+    { "id": "m5-excited-2", "moduleId": 5, "emotion": "EXCITED", "text": "¡Excelente juicio! Ese correo tenia todas las señales de BEC. +85 XP" },
+    { "id": "m5-excited-3", "moduleId": 5, "emotion": "EXCITED", "text": "No caiste en la trampa de ingenieria social. Tu instinto de verificacion es agudo." },
+
+    { "id": "m5-error-1", "moduleId": 5, "emotion": "SAMPLED_ERROR", "text": "Ese correo era una campana de spear phishing. El dominio parecia legitimo pero tenia un caracter Unicode." },
+    { "id": "m5-error-2", "moduleId": 5, "emotion": "SAMPLED_ERROR", "text": "No verificaste el remitente real. SPF y DKIM revelarian la falsificacion." },
+    { "id": "m5-error-3", "moduleId": 5, "emotion": "SAMPLED_ERROR", "text": "El enlace redirigia a un portal de login falso. Siempre pasa por un sandbox." },
+
+    { "id": "m5-brief-1", "moduleId": 5, "emotion": "MISSION_BRIEF", "text": "Mision: identificar y reportar correos de phishing antes de que comprometan cuentas." },
+    { "id": "m5-brief-2", "moduleId": 5, "emotion": "MISSION_BRIEF", "text": "Operacion anti-phishing activada. Tu objetivo: separar lo legitimo de lo malicioso." },
+    { "id": "m5-brief-3", "moduleId": 5, "emotion": "MISSION_BRIEF", "text": "Tarea critica: analiza cada correo con ojos de detective." },
+
+    { "id": "m5-clue-1", "moduleId": 5, "emotion": "PROVIDING_CLUE", "text": "Pista: pasa el mouse sobre el enlace sin hacer clic. La URL real aparece en el tooltip." },
+    { "id": "m5-clue-2", "moduleId": 5, "emotion": "PROVIDING_CLUE", "text": "Consejo: busca caracteres IDN suspicious en el dominio. Los atacantes usan homografos." },
+    { "id": "m5-clue-3", "moduleId": 5, "emotion": "PROVIDING_CLUE", "text": "Tip: la urgencia en el mensaje es la mayor senial de phishing." },
+
+    { "id": "m6-idle-1", "moduleId": 6, "emotion": "IDLE", "text": "Protocolo de respuesta a incidentes en pausa. El equipo de defensa espera ordenes." },
+    { "id": "m6-idle-2", "moduleId": 6, "emotion": "IDLE", "text": "Modulo de hunt de amenazas activo. Mis hipotesis de caza estan formuladas." },
+    { "id": "m6-idle-3", "moduleId": 6, "emotion": "IDLE", "text": "En modo alerta maxima. Los indicores de compromiso estan siendo correlacionados." },
+
+    { "id": "m6-excited-1", "moduleId": 6, "emotion": "EXCITED", "text": "¡Amenaza neutralizada! Tu respuesta fue rapida y efectiva. +120 XP" },
+    { "id": "m6-excited-2", "moduleId": 6, "emotion": "EXCITED", "text": "¡Cadena de ataque completa descifrada! Has demostrado nivel Guardian. +120 XP" },
+    { "id": "m6-excited-3", "moduleId": 6, "emotion": "EXCITED", "text": "Ese incidente quedo contenido en tiempo record. Tu liderazgo marca la diferencia." },
+
+    { "id": "m6-error-1", "moduleId": 6, "emotion": "SAMPLED_ERROR", "text": "El atacante se movio lateralmente antes de que lo detectaras. Revisa los logs de autenticacion." },
+    { "id": "m6-error-2", "moduleId": 6, "emotion": "SAMPLED_ERROR", "text": "EsaIndicator of Compromise era un decoy del equipo azul. Verifica contra la base de IOCs." },
+    { "id": "m6-error-3", "moduleId": 6, "emotion": "SAMPLED_ERROR", "text": "No escalaste la alerta a tiempo. En incidentes reales, cada minuto cuenta." },
+
+    { "id": "m6-brief-1", "moduleId": 6, "emotion": "MISSION_BRIEF", "text": "Mision final: detectar, contener y erradicar la amenaza persistente en la red." },
+    { "id": "m6-brief-2", "moduleId": 6, "emotion": "MISSION_BRIEF", "text": "Operacion de hunt activada. Tu objetivo: encontrar al APT antes de que exfiltra datos." },
+    { "id": "m6-brief-3", "moduleId": 6, "emotion": "MISSION_BRIEF", "text": "Instrucciones: sigue la cadena de indicadores desde el punto de entrada hasta la accion." },
+
+    { "id": "m6-clue-1", "moduleId": 6, "emotion": "PROVIDING_CLUE", "text": "Pista: busca procesos con nombres que imitan a legitimos. Los APT son expertos en living-off-the-land." },
+    { "id": "m6-clue-2", "moduleId": 6, "emotion": "PROVIDING_CLUE", "text": "Consejo: correlaciona eventos de autenticacion con creacion de procesos. Los patrones anormales revelan compromisos." },
+    { "id": "m6-clue-3", "moduleId": 6, "emotion": "PROVIDING_CLUE", "text": "Tip: un APT se mueve lento para evitar deteccion. Busca actividad sostenida en periodos prolongados." }
+  ]
+}
