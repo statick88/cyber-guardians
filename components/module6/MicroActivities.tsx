@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import useQuizSound from '@/hooks/useQuizSound'
 import { Share2, Twitter, MessageCircle, Copy, CheckCircle } from 'lucide-react'
 
 interface Props {
@@ -38,6 +39,7 @@ export default function MicroActivities({ onComplete }: Props) {
   const [showFeedback, setShowFeedback] = useState(false)
   const [score, setScore] = useState(0)
   const [copied, setCopied] = useState(false)
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   const quiz = QUIZ_QUESTIONS[currentQuestion]
   const isQuizLast = currentQuestion >= QUIZ_QUESTIONS.length - 1
@@ -46,7 +48,10 @@ export default function MicroActivities({ onComplete }: Props) {
     setSelectedAnswer(index)
     setShowFeedback(true)
     if (index === quiz.respuestaCorrecta) {
+      playCorrect()
       setScore(prev => prev + 3)
+    } else {
+      playIncorrect()
     }
   }, [quiz])
 

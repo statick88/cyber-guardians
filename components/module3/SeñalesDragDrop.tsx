@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import {
   CheckCircle,
   AlertTriangle,
@@ -86,6 +87,7 @@ export default function SeñalesDragDrop({
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<Map<string, string>>(new Map());
   const [showResults, setShowResults] = useState(false);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const sortedMensajes = useMemo(() => {
     const order = { facil: 0, medio: 1, dificil: 2 };
@@ -132,6 +134,7 @@ export default function SeñalesDragDrop({
         totalPoints += difficultyConfig[msg.dificultad]?.points ?? 1;
       }
     }
+    totalPoints > 0 ? playCorrect() : playIncorrect();
     onScore(totalPoints, "manipulacion");
     onComplete();
   };

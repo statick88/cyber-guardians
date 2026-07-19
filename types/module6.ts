@@ -58,7 +58,7 @@ export interface PyramidScheme {
   descripcion: string;
   /** Type of pyramid scheme */
   tipo: TipoPiramide;
-  /** Warning signals (e.g. "承诺回報率過高", "收入來自招募下線") */
+  /** Warning signals (e.g. "promesas de rendimientos excesivos", "ingresos provienen de reclutar nuevos miembros") */
   senalesAdvertencia: string[];
   /** Risk level assessment */
   nivelRiesgo: NivelRiesgo;

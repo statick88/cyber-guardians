@@ -78,14 +78,14 @@
           "texto": "Lleno todos los campos. ¡Una PS5 gratis vale la pena!",
           "esCorrecta": false,
           "puntos": 0,
-          "retroalimentacion": "Esto es un phishing de premios falsos usando el nombre del INEC para dar legitimidad. Ningún instituto del gobierno sorte电子产品 por encuestas online. Estás entregando tu identidad y dinero a estafadores."
+          "retroalimentacion": "Esto es un phishing de premios falsos usando el nombre del INEC para dar legitimidad. Ningún instituto del gobierno sortea productos por encuestas online. Estás entregando tu identidad y dinero a estafadores."
         },
         {
           "id": "b",
-          "texto": "No lleno nada. El INEC no sorte电子产品 por encuestas online.",
+          "texto": "No lleno nada. El INEC no sortea productos por encuestas online.",
           "esCorrecta": true,
           "puntos": 20,
-          "retroalimentacion": "¡Perfecto! El INEC realiza encuestas oficiales, no sorte电子产品. Ningún premio legítimo necesita tu tarjeta de crédito. Si suena demasiado bueno para ser verdad, probablemente es una estafa. Reporta la página."
+          "retroalimentacion": "¡Perfecto! El INEC realiza encuestas oficiales, no sortea productos. Ningún premio legítimo necesita tu tarjeta de crédito. Si suena demasiado bueno para ser verdad, probablemente es una estafa. Reporta la página."
         },
         {
           "id": "c",

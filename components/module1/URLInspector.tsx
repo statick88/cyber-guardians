@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, Link, Globe, Hash } from "lucide-react";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -28,6 +29,7 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
   const [showComponents, setShowComponents] = useState(false);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentURL = urls[currentIndex];
 
@@ -37,6 +39,7 @@ export function URLInspector({ urls, onScore, onComplete }: URLInspectorProps) {
     setSelectedAnswer(answer);
     const correct = answer === currentURL.clasificacion;
     setIsCorrect(correct);
+    correct ? playCorrect() : playIncorrect();
     const points = correct ? currentURL.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);

@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
 import { Shield, Smartphone, Key, Bell, Check, X, AlertTriangle, CheckCircle, RotateCcw, Clock } from "lucide-react";
+import { toast } from "sonner";
 import { Module2Category } from "@/types/module2";
 
 interface MFASimulatorProps {
@@ -204,18 +206,6 @@ function PracticePhaseContent({
         </motion.div>
       </AnimatePresence>
 
-      {showFatigueAttack && (
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
-          <Alert className="bg-rose-900/90 border-rose-500/30 max-w-md">
-            <AlertTriangle className="w-5 h-5 text-rose-400" />
-            <AlertDescription className="flex items-center gap-2">
-              <span className="text-rose-300 font-medium">ATAQUE DE FATIGA MFA!</span>
-              <Badge className="bg-rose-500/20 text-rose-300">{fatigueAttackCount}/5</Badge>
-            </AlertDescription>
-          </Alert>
-        </motion.div>
-      )}
-
       <Button onClick={onFinishPractice} className="w-full bg-emerald-600 hover:bg-emerald-700" size="lg">
         Finalizar Practica
       </Button>
@@ -257,6 +247,7 @@ export function MFASimulator({ onScore, onComplete }: MFASimulatorProps) {
   const [attempts, setAttempts] = useState(0);
   const [showFatigueAttack, setShowFatigueAttack] = useState(false);
   const [fatigueAttackCount, setFatigueAttackCount] = useState(0);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const fatigueIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -300,12 +291,24 @@ export function MFASimulator({ onScore, onComplete }: MFASimulatorProps) {
     return () => { if (fatigueIntervalRef.current) clearInterval(fatigueIntervalRef.current); };
   }, [showFatigueAttack, phase]);
 
+  // Show toast warning when fatigue attack starts
+  useEffect(() => {
+    if (showFatigueAttack) {
+      toast.warning("ATAQUE DE FATIGA MFA", {
+        description: "Recibes notificaciones push seguidas. El atacante espera que te canses y apruebes por error. DENEGA inmediatamente.",
+        duration: 6000,
+        className: "glass-card neon-border",
+      });
+    }
+  }, [showFatigueAttack]);
+
   const handleLearnContinue = () => {
     setPhase("practice");
     generateNewToken();
   };
 
   const handleTokenSubmit = () => {
+    playCorrect();
     setSuccessfulAuths((p) => p + 1);
     setAttempts((p) => p + 1);
     generateNewToken();
@@ -315,6 +318,7 @@ export function MFASimulator({ onScore, onComplete }: MFASimulatorProps) {
   };
 
   const handleFatigueReject = () => {
+    playIncorrect();
     setFatigueCount((p) => p + 1);
     setFatigueAttackCount((p) => p + 1);
     setShowFatigueAttack(false);

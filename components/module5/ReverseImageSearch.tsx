@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import useQuizSound from '@/hooks/useQuizSound'
 
 interface Props {
   onScore: (points: number) => void
@@ -19,6 +20,7 @@ export default function ReverseImageSearch({ onScore, onComplete }: Props) {
   const [currentEngine, setCurrentEngine] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [score, setScore] = useState(0)
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   const searchResults: SearchResult[] = [
     { engine: 'Google Images', found: true, details: 'Imagen encontrada en 15 sitios web diferentes con Contextos variados' },
@@ -45,6 +47,7 @@ export default function ReverseImageSearch({ onScore, onComplete }: Props) {
     
     const isCorrect = answerIndex === 2 // "La imagen fue robada de otro sitio"
     const points = isCorrect ? 4 : 0
+    isCorrect ? playCorrect() : playIncorrect()
     
     setScore(prev => prev + points)
     onScore(points)

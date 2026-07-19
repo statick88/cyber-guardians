@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Code, CheckCircle, XCircle, AlertTriangle, Zap, Shield, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -58,6 +59,7 @@ export function CodeDefuseSandbox({ challenges, onScore, onComplete }: CodeDefus
   });
   const [showExplanation, setShowExplanation] = useState(false);
   const [patches] = useState(() => generatePatches(challenges[0]));
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentChallenge = challenges[currentIndex];
 
@@ -76,6 +78,7 @@ export function CodeDefuseSandbox({ challenges, onScore, onComplete }: CodeDefus
 
     const isCorrect = sandboxState.selectedPatch.esCorrecta;
     const points = isCorrect ? currentChallenge.puntos : 0;
+    isCorrect ? playCorrect() : playIncorrect();
 
     setSandboxState((prev) => ({
       ...prev,

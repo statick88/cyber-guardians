@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Shield, CheckCircle, XCircle, AlertTriangle, Zap, Terminal, ChevronRight, Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -55,6 +56,7 @@ export function HardeningChecklist({ scenarios, onScore, onComplete }: Hardening
     completed: false,
   });
   const [showExplanation, setShowExplanation] = useState(false);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentScenario = scenarios[currentIndex];
   const scenarioColor = getScenarioColor(currentScenario.systemType);
@@ -86,6 +88,7 @@ export function HardeningChecklist({ scenarios, onScore, onComplete }: Hardening
     });
 
     const points = allCorrect ? currentScenario.puntos : Math.floor((passed / total) * currentScenario.puntos * 0.5);
+    allCorrect ? playCorrect() : playIncorrect();
 
     setScenarioState((prev) => ({
       ...prev,

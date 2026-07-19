@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -35,6 +36,7 @@ export function MicroActivities({
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
   const mediator = useEducationalMediator();
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentActivity = actividades[currentIndex];
 
@@ -56,6 +58,7 @@ export function MicroActivities({
     setSelectedAnswer(answer);
     const correct = answer === currentActivity.respuestaCorrecta;
     setIsCorrect(correct);
+    correct ? playCorrect() : playIncorrect();
     const points = correct ? currentActivity.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);
@@ -81,6 +84,7 @@ export function MicroActivities({
 
     const correct = Number(selectedAnswer) === currentActivity.respuestaCorrecta;
     setIsCorrect(correct);
+    correct ? playCorrect() : playIncorrect();
     const points = correct ? currentActivity.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);

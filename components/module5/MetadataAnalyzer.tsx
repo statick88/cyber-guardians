@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import useQuizSound from '@/hooks/useQuizSound'
 import type { MetadataIndicator } from '@/types/module5'
 
 interface Props {
@@ -15,6 +16,7 @@ export default function MetadataAnalyzer({ indicators, onScore, onComplete }: Pr
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
   const [score, setScore] = useState(0)
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   const currentIndicator = indicators[currentIndex]
   const isLast = currentIndex >= indicators.length - 1
@@ -26,6 +28,7 @@ export default function MetadataAnalyzer({ indicators, onScore, onComplete }: Pr
     // Correct answer is always the suspicious value (index 1)
     const isCorrect = answerIndex === 1
     const points = isCorrect ? 4 : 0
+    isCorrect ? playCorrect() : playIncorrect()
     
     setScore(prev => prev + points)
     onScore(points)

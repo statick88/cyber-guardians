@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -35,6 +36,7 @@ export function PhishingSimulator({
   const [phase, setPhase] = useState<"action" | "indicators" | "result">(
     "action"
   );
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentScenario = escenarios[currentIndex];
 
@@ -44,6 +46,7 @@ export function PhishingSimulator({
     setSelectedAction(action);
     const correct = action === currentScenario.accionCorrecta;
     setIsCorrect(correct);
+    correct ? playCorrect() : playIncorrect();
     const basePoints = correct ? currentScenario.puntos : 0;
     setEarnedPoints(basePoints);
     setPhase("indicators");

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -85,6 +86,7 @@ export function DigitalDefense({ onScore, onComplete }: DigitalDefenseProps) {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentTopic = defenseTopics[currentTopicIndex];
 
@@ -95,6 +97,7 @@ export function DigitalDefense({ onScore, onComplete }: DigitalDefenseProps) {
     const option = currentTopic.opciones.find((o) => o.id === optionId);
     const correct = option?.correcta || false;
     setIsCorrect(correct);
+    correct ? playCorrect() : playIncorrect();
     const points = correct ? currentTopic.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);

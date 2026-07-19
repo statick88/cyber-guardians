@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { Toaster } from 'sonner'
 import VolumeControl from '@/components/VolumeControl'
 import HUDProvider from '@/components/HUDProvider'
 import HUD from '@/components/HUD'
@@ -30,6 +31,21 @@ export default function RootLayout({
           {children}
         </HUDProvider>
         <VolumeControl />
+        <Toaster
+          theme="dark"
+          position="bottom-right"
+          richColors={false}
+          closeButton
+          toastOptions={{
+            style: {
+              background: 'rgba(15, 23, 42, 0.85)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(6, 182, 212, 0.25)',
+              borderRadius: '0.75rem',
+              color: '#e2e8f0',
+            },
+          }}
+        />
       </body>
     </html>
   )

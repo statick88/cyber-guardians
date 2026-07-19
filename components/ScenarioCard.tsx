@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import useQuizSound from '@/hooks/useQuizSound'
 import type { Escenario } from '@/types/module0'
 
 interface ScenarioCardProps {
@@ -13,6 +14,7 @@ interface ScenarioCardProps {
 export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   // Reset internal state when scenario changes (belt-and-suspenders with key prop)
   useEffect(() => {
@@ -24,6 +26,7 @@ export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) 
     if (selectedOption) return
     setSelectedOption(opcionId)
     setShowFeedback(true)
+    esCorrecta ? playCorrect() : playIncorrect()
     setTimeout(() => {
       onAnswer(puntos, scenario.categoria)
     }, 2000)

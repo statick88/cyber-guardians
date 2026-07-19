@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -27,6 +28,7 @@ export function SocialMediaAudit({ perfiles, onScore, onComplete }: SocialMediaA
   const [showResults, setShowResults] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
   const [profilePoints, setProfilePoints] = useState(0);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentProfile = perfiles[currentProfileIndex];
   const configs = currentProfile?.configuraciones || [];
@@ -47,6 +49,7 @@ export function SocialMediaAudit({ perfiles, onScore, onComplete }: SocialMediaA
     });
 
     setProfilePoints(points);
+    points > 0 ? playCorrect() : playIncorrect();
     setTotalPoints((prev) => prev + points);
     setShowResults(true);
   };

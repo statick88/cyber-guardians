@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import useQuizSound from '@/hooks/useQuizSound'
 
 interface MicroActivity {
   id: string
@@ -26,6 +27,7 @@ export function MicroActivities({ actividades, onScore, onComplete }: Props) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
   const [score, setScore] = useState(0)
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   const currentActivity = actividades[currentIndex]
   const isLast = currentIndex >= actividades.length - 1
@@ -36,6 +38,7 @@ export function MicroActivities({ actividades, onScore, onComplete }: Props) {
     
     const isCorrect = answer === currentActivity.respuestaCorrecta
     const points = isCorrect ? currentActivity.puntos : 0
+    isCorrect ? playCorrect() : playIncorrect()
     
     setScore(prev => prev + points)
     onScore(points, currentActivity.categoria)

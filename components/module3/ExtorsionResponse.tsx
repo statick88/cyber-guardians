@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import {
   CheckCircle,
   XCircle,
@@ -49,6 +50,7 @@ export default function ExtorsionResponse({
 }: ExtorsionResponseProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const typeCfg = typeConfig[scenario.tipo] || typeConfig.amenazas;
 
@@ -67,10 +69,11 @@ export default function ExtorsionResponse({
   };
 
   const handleFinish = () => {
-    const points =
-      selectedAnswer === scenario.respuestaCorrecta
+    const isCorrect = selectedAnswer === scenario.respuestaCorrecta;
+    const points = isCorrect
         ? scenario.puntuacionMaxima
         : 0;
+    isCorrect ? playCorrect() : playIncorrect();
     onScore(points);
     onComplete();
   };

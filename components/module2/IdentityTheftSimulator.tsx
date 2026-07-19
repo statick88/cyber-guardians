@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -30,6 +31,7 @@ export function IdentityTheftSimulator({ escenarios, onScore, onComplete }: Iden
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
   const [showIndicatorHint, setShowIndicatorHint] = useState(false);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentScenario = escenarios[currentIndex];
   const actions: { id: string; label: string; icon: React.ReactNode; color: string }[] = [
@@ -78,6 +80,7 @@ export function IdentityTheftSimulator({ escenarios, onScore, onComplete }: Iden
     setSelectedAction(actionId);
     const correct = actionId === currentScenario.accionCorrecta;
     setIsCorrect(correct);
+    correct ? playCorrect() : playIncorrect();
     const basePoints = correct ? currentScenario.puntos : 0;
     const indicatorBonus = foundIndicators.size * 2;
     const finalPoints = basePoints + indicatorBonus;

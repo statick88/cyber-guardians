@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import {
   CheckCircle,
   XCircle,
@@ -57,6 +58,7 @@ export default function MulaDineroDetector({
   const [phase, setPhase] = useState<"offer" | "quiz" | "conclusion">("offer");
   const [caseExpanded, setCaseExpanded] = useState(false);
   const [signalsRevealed, setSignalsRevealed] = useState(0);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const pregunta = actividad.preguntas[currentPregIdx];
   const risk = riskConfig[actividad.oferta.nivelRiesgo] || riskConfig.medio;
@@ -66,7 +68,10 @@ export default function MulaDineroDetector({
     setSelectedAnswer(idx);
     setShowResult(true);
     if (idx === pregunta.respuestaCorrecta) {
+      playCorrect();
       setCorrectCount((c) => c + 1);
+    } else {
+      playIncorrect();
     }
   };
 

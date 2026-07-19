@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Terminal, Lock, Unlock, Key, CheckCircle, XCircle, Zap, Shield, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -51,6 +52,7 @@ export function CryptoSandbox({ challenges, onScore, onComplete }: CryptoSandbox
     completed: false,
   });
   const [showExplanation, setShowExplanation] = useState(false);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentChallenge = challenges[currentIndex];
   const cipherColor = getCipherColor(currentChallenge.cipherType);
@@ -70,6 +72,7 @@ export function CryptoSandbox({ challenges, onScore, onComplete }: CryptoSandbox
 
     const isCorrect = sandboxState.selectedOption.esCorrecta;
     const points = isCorrect ? currentChallenge.puntos : 0;
+    isCorrect ? playCorrect() : playIncorrect();
 
     setSandboxState((prev) => ({
       ...prev,

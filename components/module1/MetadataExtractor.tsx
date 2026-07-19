@@ -11,6 +11,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useHUD } from '@/components/HUDProvider'
 import useAudioSynth from '@/hooks/useAudioSynth'
+import useQuizSound from '@/hooks/useQuizSound'
 import type {
   SuspiciousImage,
   MetadataExtractorConfig,
@@ -436,6 +437,7 @@ export default function MetadataExtractor({
 
   const { damageShield, addXP } = useHUD()
   const audio = useAudioSynth()
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   // --- Game state (refs for animation timers) ---
   const [images, setImages] = useState<SuspiciousImage[]>(() =>
@@ -630,6 +632,7 @@ export default function MetadataExtractor({
     const isCorrect = classConfig.needsPurge
 
     if (isCorrect) {
+      playCorrect()
       audio.playSuccess()
       const xpGain = mergedConfig.xpPerPurge
       addXP(xpGain)
@@ -670,6 +673,7 @@ export default function MetadataExtractor({
     const isCorrect = !classConfig.needsPurge
 
     if (isCorrect) {
+      playCorrect()
       audio.playSuccess()
       const xpGain = mergedConfig.xpPerPurge
       addXP(xpGain)
@@ -681,6 +685,7 @@ export default function MetadataExtractor({
         text: `✅ Envío seguro aprobado. +${xpGain} XP`,
       })
     } else {
+      playIncorrect()
       audio.playAlarm()
       damageShield(mergedConfig.damagePerLeak)
       setMissedLeaks((prev) => prev + 1)

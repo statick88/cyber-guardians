@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import useQuizSound from '@/hooks/useQuizSound'
 import type { DeepfakeArtifact } from '@/types/module5'
 
 interface Props {
@@ -22,6 +23,7 @@ export default function DeepfakeDetector({ artifacts, explicacion, fuente, onSco
 
   const currentArtifact = artifacts[currentIndex]
   const isLast = currentIndex >= artifacts.length - 1
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   const handleClassify = useCallback((type: Classification) => {
     setClassification(type)
@@ -30,6 +32,7 @@ export default function DeepfakeDetector({ artifacts, explicacion, fuente, onSco
     // All artifacts in this module are deepfakes for learning purposes
     const isCorrect = type === 'deepfake'
     const points = isCorrect ? 4 : 0
+    isCorrect ? playCorrect() : playIncorrect()
     
     setScore(prev => prev + points)
     onScore(points)

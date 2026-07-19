@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useQuizSound from "@/hooks/useQuizSound";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -30,6 +31,7 @@ export function EmailAnalysis({
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [completedEmails, setCompletedEmails] = useState<Set<string>>(new Set());
   const [totalPoints, setTotalPoints] = useState(0);
+  const { playCorrect, playIncorrect } = useQuizSound();
 
   const currentEmail = emails[currentIndex];
 
@@ -53,6 +55,7 @@ export function EmailAnalysis({
       (verdicto === "legitimo" && !isPhishing);
 
     setIsCorrect(correct);
+    correct ? playCorrect() : playIncorrect();
     const points = correct ? 15 : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);

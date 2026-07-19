@@ -603,7 +603,7 @@ export default function WorkedExample({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 20, scale: 0.95 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
-      className="fixed bottom-4 right-4 z-50 max-w-sm"
+      className="max-w-sm"
     >
       <div className="glass-card rounded-xl p-5 neon-border">
         {/* Header */}
