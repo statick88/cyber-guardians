@@ -20,7 +20,7 @@ const moduloForResults = {
   descripcion: 'Aprende a detectar estafas QR, esquemas piramidales y fraudes de empleo. Protege tu dinero y el de tu familia.',
   umbralAprobacion: 70,
   tiempoEstimado: '15-20 min',
-  totalPuntosPosibles: 200,
+  totalPuntosPosibles: 0, // will be set dynamically
   icono: '🛡️',
 }
 
@@ -80,8 +80,16 @@ export default function Modulo6Page() {
   const [gamePhase, setGamePhase] = useState<GamePhase>(savedProgress ? 'ACTIVITIES' : 'WELCOME')
   const [currentActivityIndex, setCurrentActivityIndex] = useState(savedProgress?.currentActivityIndex ?? 0)
   const [score, setScore] = useState(savedProgress?.score ?? 0)
-  const [maxScore] = useState(200)
-  const [categoryScores] = useState<Record<string, number>>({
+  const [maxScore] = useState(() => {
+    const qrCount = typedModule6Data.scamsQR.length
+    const pyramidCount = typedModule6Data.piramides.length
+    const employmentCount = typedModule6Data.empleosFalsos.length
+    const microPoints = typedModule6Data.microActividades?.reduce(
+      (sum: number, m: { points?: number }) => sum + (m.points ?? 3), 0
+    ) ?? 0
+    return qrCount * 4 + pyramidCount * 4 + employmentCount * 4 + microPoints
+  })
+  const [categoryScores, setCategoryScores] = useState<Record<string, number>>({
     scam_detection: 0,
     pyramid_detection: 0,
     employment_scam: 0,
@@ -139,6 +147,7 @@ export default function Modulo6Page() {
           <QRCodeInspector
             scenarios={[scenario]}
             onComplete={handleActivityComplete}
+            onScore={handleActivityScore}
           />
         )
       }
@@ -151,6 +160,7 @@ export default function Modulo6Page() {
           <PyramidDetector
             scenarios={[scenario]}
             onComplete={handleActivityComplete}
+            onScore={handleActivityScore}
           />
         )
       }
@@ -163,6 +173,7 @@ export default function Modulo6Page() {
           <EmploymentScamAlert
             scenarios={[scenario]}
             onComplete={handleActivityComplete}
+            onScore={handleActivityScore}
           />
         )
       }
@@ -171,6 +182,7 @@ export default function Modulo6Page() {
         return (
           <MicroActivities
             onComplete={handleActivityComplete}
+            onScore={handleActivityScore}
           />
         )
 
@@ -261,7 +273,7 @@ export default function Modulo6Page() {
                   color: '#f97316',
                 },
               ]}
-              modulo={moduloForResults}
+              modulo={{ ...moduloForResults, totalPuntosPosibles: maxScore }}
               onRetry={handleRetry}
               onContinue={handleContinue}
               isNavigating={isNavigating}

@@ -42,7 +42,7 @@ export function MicroActivities({ actividades, onScore, onComplete }: Props) {
     
     setScore(prev => prev + points)
     onScore(points, currentActivity.categoria)
-  }, [currentActivity, onScore])
+  }, [currentActivity, onScore, playCorrect, playIncorrect])
 
   const handleNext = useCallback(() => {
     if (isLast) {

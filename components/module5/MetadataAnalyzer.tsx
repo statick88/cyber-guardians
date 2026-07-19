@@ -32,7 +32,7 @@ export default function MetadataAnalyzer({ indicators, onScore, onComplete }: Pr
     
     setScore(prev => prev + points)
     onScore(points)
-  }, [onScore])
+  }, [onScore, playCorrect, playIncorrect])
 
   const handleNext = useCallback(() => {
     if (isLast) {

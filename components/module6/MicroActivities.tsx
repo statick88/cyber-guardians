@@ -53,7 +53,7 @@ export default function MicroActivities({ onComplete }: Props) {
     } else {
       playIncorrect()
     }
-  }, [quiz])
+  }, [quiz, playCorrect, playIncorrect])
 
   const handleNextQuiz = useCallback(() => {
     if (isQuizLast) {

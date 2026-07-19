@@ -318,7 +318,7 @@ export function MFASimulator({ onScore, onComplete }: MFASimulatorProps) {
   };
 
   const handleFatigueReject = () => {
-    playIncorrect();
+    playCorrect();
     setFatigueCount((p) => p + 1);
     setFatigueAttackCount((p) => p + 1);
     setShowFatigueAttack(false);

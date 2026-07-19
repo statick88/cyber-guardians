@@ -3,18 +3,21 @@
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Pyramid, AlertTriangle, TrendingDown, Users, DollarSign } from 'lucide-react'
+import useQuizSound from '@/hooks/useQuizSound'
 import type { PyramidScheme } from '@/types/module6'
 
 interface Props {
   scenarios: PyramidScheme[]
   onComplete: (score: number) => void
+  onScore: (points: number) => void
 }
 
-export default function PyramidDetector({ scenarios, onComplete }: Props) {
+export default function PyramidDetector({ scenarios, onComplete, onScore }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedWarnings, setSelectedWarnings] = useState<Set<string>>(new Set())
   const [showFeedback, setShowFeedback] = useState(false)
   const [score, setScore] = useState(0)
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   const currentScenario = scenarios[currentIndex]
   const isLast = currentIndex >= scenarios.length - 1
@@ -51,7 +54,9 @@ export default function PyramidDetector({ scenarios, onComplete }: Props) {
     const penalty = incorrectSelections * 0.5
     const scenarioScore = Math.max(0, Math.round((accuracy - penalty) * 4))
 
+    scenarioScore > 0 ? playCorrect() : playIncorrect()
     setScore(prev => prev + scenarioScore)
+    onScore(scenarioScore)
     setShowFeedback(true)
   }, [currentScenario, selectedWarnings])
 

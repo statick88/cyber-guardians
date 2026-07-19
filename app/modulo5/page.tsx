@@ -20,7 +20,7 @@ const moduloForResults = {
   descripcion: 'Aprende a detectar deepfakes de audio, video e imagen. Analiza metadatos, verifica fuentes y protégete del contenido generado por IA.',
   umbralAprobacion: 70,
   tiempoEstimado: '15-20 min',
-  totalPuntosPosibles: 200,
+  totalPuntosPosibles: 0, // will be set dynamically
   icono: '🎭',
 }
 
@@ -76,8 +76,15 @@ export default function Modulo5Page() {
   const [gamePhase, setGamePhase] = useState<GamePhase>(savedProgress ? 'ACTIVITIES' : 'WELCOME')
   const [currentActivityIndex, setCurrentActivityIndex] = useState(savedProgress?.currentActivityIndex ?? 0)
   const [score, setScore] = useState(savedProgress?.score ?? 0)
-  const [maxScore] = useState(200)
-  const [categoryScores] = useState<Record<string, number>>({ deepfake_detection: 0 })
+  const [maxScore] = useState(() => {
+    const deepfakePoints = typedModule5Data.escenarios.length * 4
+    const metadataPoints = typedModule5Data.indicadoresMetadata.length * 4
+    const microPoints = typedModule5Data.microActividades?.reduce(
+      (sum: number, m: { puntos?: number }) => sum + (m.puntos ?? 3), 0
+    ) ?? 0
+    return deepfakePoints + metadataPoints + microPoints
+  })
+  const [categoryScores, setCategoryScores] = useState<Record<string, number>>({ deepfake_detection: 0 })
   const [isNavigating, setIsNavigating] = useState(false)
 
   const handleStart = useCallback(() => {
@@ -211,7 +218,7 @@ export default function Modulo5Page() {
                 descripcion: 'Identifica contenido generado por IA',
                 color: '#8b5cf6',
               }]}
-              modulo={moduloForResults}
+              modulo={{ ...moduloForResults, totalPuntosPosibles: maxScore }}
               onRetry={handleRetry}
               onContinue={handleContinue}
               isNavigating={isNavigating}

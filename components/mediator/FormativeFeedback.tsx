@@ -75,14 +75,7 @@ export default function FormativeFeedback({
       .filter(Boolean)
       .join('')
 
-    const id = toast(null, {
-      duration: autoDismissMs,
-      onDismiss: () => onDismiss(),
-    })
-
-    // Render custom HTML content via the description
-    toast.dismiss(id)
-    toast(
+    const id = toast(
       <div
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: body }}

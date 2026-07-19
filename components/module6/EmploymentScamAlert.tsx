@@ -3,18 +3,21 @@
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Briefcase, AlertTriangle, DollarSign, Clock, Shield } from 'lucide-react'
+import useQuizSound from '@/hooks/useQuizSound'
 import type { EmploymentScam } from '@/types/module6'
 
 interface Props {
   scenarios: EmploymentScam[]
   onComplete: (score: number) => void
+  onScore: (points: number) => void
 }
 
-export default function EmploymentScamAlert({ scenarios, onComplete }: Props) {
+export default function EmploymentScamAlert({ scenarios, onComplete, onScore }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [decision, setDecision] = useState<'legitimo' | 'estafa' | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
   const [score, setScore] = useState(0)
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   const currentScenario = scenarios[currentIndex]
   const isLast = currentIndex >= scenarios.length - 1
@@ -26,8 +29,10 @@ export default function EmploymentScamAlert({ scenarios, onComplete }: Props) {
     const isCorrect = choice === 'estafa'
     const points = isCorrect ? 4 : 0
 
+    isCorrect ? playCorrect() : playIncorrect()
     setScore(prev => prev + points)
-  }, [])
+    onScore(points)
+  }, [playCorrect, playIncorrect, onScore])
 
   const handleNext = useCallback(() => {
     if (isLast) {

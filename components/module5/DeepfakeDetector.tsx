@@ -36,7 +36,7 @@ export default function DeepfakeDetector({ artifacts, explicacion, fuente, onSco
     
     setScore(prev => prev + points)
     onScore(points)
-  }, [onScore])
+  }, [onScore, playCorrect, playIncorrect])
 
   const handleNext = useCallback(() => {
     if (isLast) {

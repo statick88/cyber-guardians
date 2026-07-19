@@ -3,18 +3,21 @@
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { QrCode, AlertTriangle, CheckCircle, XCircle, Search } from 'lucide-react'
+import useQuizSound from '@/hooks/useQuizSound'
 import type { QRCodeScam } from '@/types/module6'
 
 interface Props {
   scenarios: QRCodeScam[]
   onComplete: (score: number) => void
+  onScore: (points: number) => void
 }
 
-export default function QRCodeInspector({ scenarios, onComplete }: Props) {
+export default function QRCodeInspector({ scenarios, onComplete, onScore }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedFlags, setSelectedFlags] = useState<Set<string>>(new Set())
   const [showFeedback, setShowFeedback] = useState(false)
   const [score, setScore] = useState(0)
+  const { playCorrect, playIncorrect } = useQuizSound()
 
   const currentScenario = scenarios[currentIndex]
   const isLast = currentIndex >= scenarios.length - 1
@@ -51,7 +54,9 @@ export default function QRCodeInspector({ scenarios, onComplete }: Props) {
     const penalty = incorrectSelections * 0.5
     const scenarioScore = Math.max(0, Math.round((accuracy - penalty) * 4))
 
+    scenarioScore > 0 ? playCorrect() : playIncorrect()
     setScore(prev => prev + scenarioScore)
+    onScore(scenarioScore)
     setShowFeedback(true)
   }, [currentScenario, selectedFlags])
 

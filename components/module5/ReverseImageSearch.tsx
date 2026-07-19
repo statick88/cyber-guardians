@@ -15,6 +15,12 @@ interface SearchResult {
   details: string
 }
 
+const SEARCH_RESULTS: SearchResult[] = [
+  { engine: 'Google Images', found: true, details: 'Imagen encontrada en 15 sitios web diferentes con Contextos variados' },
+  { engine: 'TinEye', found: true, details: 'Primera aparición: 2019 en un blog de fotografía stock' },
+  { engine: 'Yandex', found: true, details: 'Imagen vinculada a cuenta de estafa en app de citas' }
+]
+
 export default function ReverseImageSearch({ onScore, onComplete }: Props) {
   const [phase, setPhase] = useState<'intro' | 'searching' | 'results' | 'question' | 'feedback'>('intro')
   const [currentEngine, setCurrentEngine] = useState(0)
@@ -22,19 +28,13 @@ export default function ReverseImageSearch({ onScore, onComplete }: Props) {
   const [score, setScore] = useState(0)
   const { playCorrect, playIncorrect } = useQuizSound()
 
-  const searchResults: SearchResult[] = [
-    { engine: 'Google Images', found: true, details: 'Imagen encontrada en 15 sitios web diferentes con Contextos variados' },
-    { engine: 'TinEye', found: true, details: 'Primera aparición: 2019 en un blog de fotografía stock' },
-    { engine: 'Yandex', found: true, details: 'Imagen vinculada a cuenta de estafa en app de citas' }
-  ]
-
   const handleStartSearch = useCallback(() => {
     setPhase('searching')
     setCurrentEngine(0)
   }, [])
 
   const handleNextEngine = useCallback(() => {
-    if (currentEngine < searchResults.length - 1) {
+    if (currentEngine < SEARCH_RESULTS.length - 1) {
       setCurrentEngine(prev => prev + 1)
     } else {
       setPhase('results')
@@ -51,7 +51,7 @@ export default function ReverseImageSearch({ onScore, onComplete }: Props) {
     
     setScore(prev => prev + points)
     onScore(points)
-  }, [onScore])
+  }, [onScore, playCorrect, playIncorrect])
 
   const handleComplete = useCallback(() => {
     onComplete()
@@ -91,7 +91,7 @@ export default function ReverseImageSearch({ onScore, onComplete }: Props) {
         {phase === 'searching' && (
           <div>
             <div className="bg-gray-700 rounded-lg p-4 mb-4">
-              <p className="text-gray-400 text-sm mb-2">Buscando en: {searchResults[currentEngine].engine}</p>
+              <p className="text-gray-400 text-sm mb-2">Buscando en: {SEARCH_RESULTS[currentEngine].engine}</p>
               <div className="w-full bg-gray-600 rounded-full h-2 mb-4">
                 <motion.div
                   initial={{ width: 0 }}
@@ -108,10 +108,10 @@ export default function ReverseImageSearch({ onScore, onComplete }: Props) {
                     animate={{ opacity: 1, x: 0 }}
                     className="text-gray-300"
                   >
-                    {searchResults[currentEngine - 1].found ? (
-                      <p>✅ {searchResults[currentEngine - 1].details}</p>
+                    {SEARCH_RESULTS[currentEngine - 1].found ? (
+                      <p>✅ {SEARCH_RESULTS[currentEngine - 1].details}</p>
                     ) : (
-                      <p>❌ No encontrada en {searchResults[currentEngine - 1].engine}</p>
+                      <p>❌ No encontrada en {SEARCH_RESULTS[currentEngine - 1].engine}</p>
                     )}
                   </motion.div>
                 )}
@@ -124,7 +124,7 @@ export default function ReverseImageSearch({ onScore, onComplete }: Props) {
               onClick={handleNextEngine}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
             >
-              {currentEngine < searchResults.length - 1 ? 'Siguiente Motor →' : 'Ver Resultados'}
+              {currentEngine < SEARCH_RESULTS.length - 1 ? 'Siguiente Motor →' : 'Ver Resultados'}
             </motion.button>
           </div>
         )}
