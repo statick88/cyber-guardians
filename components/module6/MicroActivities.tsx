@@ -8,6 +8,7 @@ import { Share2, Twitter, MessageCircle, Copy, CheckCircle } from 'lucide-react'
 
 interface Props {
   onComplete: (score: number) => void
+  onScore?: (points: number) => void
 }
 
 const QUIZ_QUESTIONS = [
@@ -34,7 +35,7 @@ const QUIZ_QUESTIONS = [
   },
 ]
 
-export default function MicroActivities({ onComplete }: Props) {
+export default function MicroActivities({ onComplete, onScore }: Props) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
@@ -71,10 +72,11 @@ export default function MicroActivities({ onComplete }: Props) {
     if (index === quiz.respuestaCorrecta) {
       playCorrect()
       setScore(prev => prev + 3)
+      onScore?.(3)
     } else {
       playIncorrect()
     }
-  }, [quiz, playCorrect, playIncorrect])
+  }, [quiz, playCorrect, playIncorrect, onScore])
 
   const handleNextQuiz = useCallback(() => {
     if (isQuizLast) {
