@@ -178,6 +178,13 @@
   animation: mediator-scale-in 0.25s ease-out forwards;
 }
 
+/* --- MIA Agent: blinking cursor --- */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

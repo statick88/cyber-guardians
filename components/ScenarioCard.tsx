@@ -2,8 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import useQuizSound from '@/hooks/useQuizSound'
+import { useQuizShuffle } from '@/hooks/useQuizShuffle'
 import type { Escenario } from '@/types/module0'
 
 interface ScenarioCardProps {
@@ -15,6 +16,9 @@ export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) 
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
   const { playCorrect, playIncorrect } = useQuizSound()
+
+  // Shuffle options once per session — esCorrecta travels with each option
+  const shuffledOpciones = useQuizShuffle(scenario.opciones, `scenario-${scenario.id}-opts`)
 
   // Reset internal state when scenario changes (belt-and-suspenders with key prop)
   useEffect(() => {
@@ -51,7 +55,7 @@ export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) 
     return <XCircle className="w-5 h-5 text-rose-400 flex-shrink-0" />
   }
 
-  const selectedOptionData = scenario.opciones.find(o => o.id === selectedOption)
+  const selectedOptionData = shuffledOpciones.find(o => o.id === selectedOption)
 
   return (
     <motion.div
@@ -97,7 +101,7 @@ export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) 
 
       {/* Options */}
       <div className="space-y-3 mb-6">
-        {scenario.opciones.map((opcion, index) => (
+        {shuffledOpciones.map((opcion, index) => (
           <motion.button
             key={opcion.id}
             initial={{ opacity: 0, y: 20 }}

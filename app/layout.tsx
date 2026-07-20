@@ -1,10 +1,16 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import './globals.css'
 import { Toaster } from 'sonner'
 import VolumeControl from '@/components/VolumeControl'
 import HUDProvider from '@/components/HUDProvider'
 import HUD from '@/components/HUD'
 import { MIAAgent } from '@/components/mia'
+
+const BackgroundScene = dynamic(() => import('@/components/three/BackgroundScene'), {
+  ssr: false,
+  loading: () => null,
+})
 
 export const metadata: Metadata = {
   title: 'CyberGuardians - Módulo 0: Cyber-Diagnóstico',
@@ -27,6 +33,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-void text-slate-100 antialiased font-sans min-h-screen pt-9 md:pt-12">
+        <BackgroundScene />
         <HUDProvider>
           <HUD />
           <MIAAgent />

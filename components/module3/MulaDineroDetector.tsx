@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useQuizSound from "@/hooks/useQuizSound";
+import { shuffleArray, mulberry32 } from "@/lib/shuffle";
 import {
   CheckCircle,
   XCircle,
@@ -60,14 +61,35 @@ export default function MulaDineroDetector({
   const [signalsRevealed, setSignalsRevealed] = useState(0);
   const { playCorrect, playIncorrect } = useQuizSound();
 
+  // Pre-shuffle all question options once per session
+  const [shuffledData] = useState(() => {
+    const seed = (() => {
+      if (typeof window === "undefined") return Date.now();
+      const key = "quiz-shuffle-seed";
+      let s = sessionStorage.getItem(key);
+      if (!s) {
+        s = String(Math.floor(Math.random() * 2 ** 32));
+        sessionStorage.setItem(key, s);
+      }
+      return Number(s);
+    })();
+    const rng = mulberry32(seed);
+    return actividad.preguntas.map((p) => {
+      const shuffled = shuffleArray(p.opciones, rng);
+      const newCorrectIdx = shuffled.indexOf(p.opciones[p.respuestaCorrecta]);
+      return { opciones: shuffled, correctIdx: newCorrectIdx };
+    });
+  });
+
   const pregunta = actividad.preguntas[currentPregIdx];
+  const shuffled = shuffledData[currentPregIdx];
   const risk = riskConfig[actividad.oferta.nivelRiesgo] || riskConfig.medio;
 
   const handleAnswer = (idx: number) => {
     if (showResult) return;
     setSelectedAnswer(idx);
     setShowResult(true);
-    if (idx === pregunta.respuestaCorrecta) {
+    if (idx === shuffled.correctIdx) {
       playCorrect();
       setCorrectCount((c) => c + 1);
     } else {
@@ -269,9 +291,9 @@ export default function MulaDineroDetector({
                   {pregunta.pregunta}
                 </h4>
                 <div className="space-y-2">
-                  {pregunta.opciones.map((op, idx) => {
+                  {shuffled.opciones.map((op, idx) => {
                     const isSelected = selectedAnswer === idx;
-                    const isCorrect = idx === pregunta.respuestaCorrecta;
+                    const isCorrect = idx === shuffled.correctIdx;
 
                     let style =
                       "bg-slate-800 text-slate-200 border border-slate-700/50 hover:border-slate-500 cursor-pointer";
@@ -316,7 +338,7 @@ export default function MulaDineroDetector({
                       className="mt-4 pt-4 border-t border-slate-700/50 overflow-hidden"
                     >
                       <div className="flex items-start gap-2">
-                        {selectedAnswer === pregunta.respuestaCorrecta ? (
+                        {selectedAnswer === shuffled.correctIdx ? (
                           <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
                         ) : (
                           <XCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />

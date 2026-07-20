@@ -5,8 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { useMIA } from '@/hooks/useMIA'
 import type { MIAEmotion } from '@/types/mia'
 
-// ── Emotion → visual mapping ──────────────────────────────────────────────────
-
+// Emotion visual mapping
 const EMOTION_STYLES: Record<
   MIAEmotion,
   { border: string; glow: string; label: string; emoji: string; color: string }
@@ -15,58 +14,54 @@ const EMOTION_STYLES: Record<
     border: '#00f0ff',
     glow: '0 0 12px rgba(0,240,255,0.35), 0 0 4px rgba(0,240,255,0.5)',
     label: 'Neutro',
-    emoji: ' ',
+    emoji: '\u{1F916}',
     color: '#00f0ff',
   },
   EXCITED: {
     border: '#00ff88',
     glow: '0 0 14px rgba(0,255,136,0.4), 0 0 6px rgba(0,255,136,0.5)',
     label: 'Entusiasmado',
-    emoji: '⚡',
+    emoji: '\u{1F389}',
     color: '#00ff88',
   },
   SAMPLED_ERROR: {
     border: '#ff00ff',
     glow: '0 0 14px rgba(255,0,255,0.4), 0 0 6px rgba(255,0,255,0.5)',
     label: 'Preocupado',
-    emoji: ' ',
+    emoji: '\u{1F61F}',
     color: '#ff00ff',
   },
   MISSION_BRIEF: {
     border: '#ffcc00',
     glow: '0 0 14px rgba(255,204,0,0.4), 0 0 6px rgba(255,204,0,0.5)',
-    label: 'Misión',
-    emoji: ' ',
+    label: 'Misi\u00f3n',
+    emoji: '\u{1F4CB}',
     color: '#ffcc00',
   },
   PROVIDING_CLUE: {
     border: '#0088ff',
     glow: '0 0 14px rgba(0,136,255,0.4), 0 0 6px rgba(0,136,255,0.5)',
     label: 'Pista',
-    emoji: ' ',
+    emoji: '\u{1F4A1}',
     color: '#0088ff',
   },
 }
 
-// ── Comic-neon clip-path (angular speech bubble) ──────────────────────────────
-
+// Comic-neon clip-path (angular speech bubble)
 const BUBBLE_CLIP_PATH =
   'polygon(0% 0%, 100% 0%, 100% 82%, 88% 82%, 78% 100%, 72% 82%, 0% 82%)'
 
-// ── Typewriter speed (ms per character) ───────────────────────────────────────
-
+// Typewriter speed (ms per character)
 const TYPEWRITER_SPEED_MS = 30
 
-// ── Component ─────────────────────────────────────────────────────────────────
-
+// Component
 export default function MIAAgent() {
   const { emotion, currentDialogue, isVisible, dismissMIA } = useMIA()
   const prefersReducedMotion = useReducedMotion()
 
   const style = EMOTION_STYLES[emotion] ?? EMOTION_STYLES.IDLE
 
-  // ── Typewriter state ──────────────────────────────────────────────────────
-
+  // Typewriter state
   const [displayedText, setDisplayedText] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const typewriterRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -126,8 +121,7 @@ export default function MIAAgent() {
     }
   }, [isTyping, currentDialogue, clearTypewriter])
 
-  // ── Avatar animation variants ─────────────────────────────────────────────
-
+  // Avatar animation variants
   const avatarVariants = {
     initial: { scale: 1 },
     idle: { scale: 1 },
@@ -168,8 +162,7 @@ export default function MIAAgent() {
     }
   }
 
-  // ── Bubble animation ─────────────────────────────────────────────────────
-
+  // Bubble animation
   const bubbleVariants = {
     hidden: prefersReducedMotion
       ? { opacity: 0 }
@@ -187,15 +180,14 @@ export default function MIAAgent() {
       : { opacity: 0, y: 10, scale: 0.95, transition: { duration: 0.15 } },
   }
 
-  // ── Render ────────────────────────────────────────────────────────────────
-
+  // Render
   return (
     <div
       className="fixed bottom-20 right-4 md:right-8 z-40 flex flex-col items-end gap-2 pointer-events-none"
       aria-live="polite"
-      aria-label="MIA — agente de apoyo"
+      aria-label="MIA - agente de apoyo"
     >
-      {/* ── Speech Bubble ─────────────────────────────────────────────────── */}
+      {/* Speech Bubble */}
       <AnimatePresence mode="wait">
         {isVisible && currentDialogue && (
           <motion.div
@@ -208,7 +200,16 @@ export default function MIAAgent() {
             style={{ clipPath: BUBBLE_CLIP_PATH }}
           >
             <div
-              className="relative w-full bg-[#0d1117]/95 backdrop-blur-md border border-white/10 px-4 pt-3 pb-5 cursor-pointer select-none transition-colors duration-200"
+              className="
+                relative
+                w-full
+                bg-[#0d1117]/95 backdrop-blur-md
+                border border-white/10
+                px-4 pt-3 pb-5
+                cursor-pointer
+                select-none
+                transition-colors duration-200
+              "
               style={{
                 boxShadow: style.glow,
                 borderColor: `${style.border}44`,
@@ -251,7 +252,7 @@ export default function MIAAgent() {
         )}
       </AnimatePresence>
 
-      {/* ── Avatar ─────────────────────────────────────────────────────────── */}
+      {/* Avatar */}
       <motion.div
         className="pointer-events-auto relative flex items-center justify-center w-12 h-12 rounded-full cursor-pointer"
         style={{
@@ -262,8 +263,8 @@ export default function MIAAgent() {
         initial="initial"
         animate={getAvatarVariant(emotion)}
         onClick={dismissMIA}
-        title="MIA — clic para cerrar"
-        aria-label={`MIA avatar — estado: ${style.label}`}
+        title="MIA - clic para cerrar"
+        aria-label={`MIA avatar - estado: ${style.label}`}
       >
         {/* Inner ring */}
         <div className="absolute inset-[3px] rounded-full bg-[#0d1117] flex items-center justify-center">
@@ -283,6 +284,8 @@ export default function MIAAgent() {
         />
       </motion.div>
 
+      {/* Keyframes for blinking cursor */}
+      <style dangerouslySetInnerHTML={{ __html: '@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}' }} />
     </div>
   )
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useQuizSound from "@/hooks/useQuizSound";
+import { shuffleArray, mulberry32 } from "@/lib/shuffle";
 import {
   CheckCircle,
   XCircle,
@@ -52,6 +53,26 @@ export default function ExtorsionResponse({
   const [showResult, setShowResult] = useState(false);
   const { playCorrect, playIncorrect } = useQuizSound();
 
+  // Pre-shuffle options once per session
+  const [shuffled] = useState(() => {
+    const seed = (() => {
+      if (typeof window === "undefined") return Date.now();
+      const key = "quiz-shuffle-seed";
+      let s = sessionStorage.getItem(key);
+      if (!s) {
+        s = String(Math.floor(Math.random() * 2 ** 32));
+        sessionStorage.setItem(key, s);
+      }
+      return Number(s);
+    })();
+    const rng = mulberry32(seed);
+    const opcionesShuffled = shuffleArray(scenario.opciones, rng);
+    const newCorrectIdx = opcionesShuffled.indexOf(
+      scenario.opciones[scenario.respuestaCorrecta]
+    );
+    return { opciones: opcionesShuffled, correctIdx: newCorrectIdx };
+  });
+
   const typeCfg = typeConfig[scenario.tipo] || typeConfig.amenazas;
 
   const matchedResources = recursosData.filter((r) =>
@@ -69,7 +90,7 @@ export default function ExtorsionResponse({
   };
 
   const handleFinish = () => {
-    const isCorrect = selectedAnswer === scenario.respuestaCorrecta;
+    const isCorrect = selectedAnswer === shuffled.correctIdx;
     const points = isCorrect
         ? scenario.puntuacionMaxima
         : 0;
@@ -132,9 +153,9 @@ export default function ExtorsionResponse({
 
           {/* Options as decision tree */}
           <div className="space-y-2 mb-4">
-            {scenario.opciones.map((opcion, idx) => {
+            {shuffled.opciones.map((opcion, idx) => {
               const isSelected = selectedAnswer === idx;
-              const isCorrect = idx === scenario.respuestaCorrecta;
+              const isCorrect = idx === shuffled.correctIdx;
 
               let style =
                 "bg-slate-800 text-slate-200 border border-slate-700/50 hover:border-slate-500 cursor-pointer";
@@ -180,14 +201,14 @@ export default function ExtorsionResponse({
                 {/* Explanation */}
                 <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-5 mb-4">
                   <div className="flex items-start gap-2">
-                    {selectedAnswer === scenario.respuestaCorrecta ? (
+                    {selectedAnswer === shuffled.correctIdx ? (
                       <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
                     ) : (
                       <XCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                     )}
                     <div>
                       <p className="text-sm font-semibold text-white mb-1">
-                        {selectedAnswer === scenario.respuestaCorrecta
+                        {selectedAnswer === shuffled.correctIdx
                           ? "¡Correcto!"
                           : "Respuesta incorrecta"}
                       </p>

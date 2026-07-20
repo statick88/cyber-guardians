@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import useQuizSound from '@/hooks/useQuizSound'
+import { shuffleArray, mulberry32 } from '@/lib/shuffle'
 import { Share2, Twitter, MessageCircle, Copy, CheckCircle } from 'lucide-react'
 
 interface Props {
@@ -41,8 +42,28 @@ export default function MicroActivities({ onComplete }: Props) {
   const [copied, setCopied] = useState(false)
   const { playCorrect, playIncorrect } = useQuizSound()
 
-  const quiz = QUIZ_QUESTIONS[currentQuestion]
-  const isQuizLast = currentQuestion >= QUIZ_QUESTIONS.length - 1
+  // Pre-shuffle questions and options once per session
+  const [shuffledQuestions] = useState(() => {
+    const seed = (() => {
+      if (typeof window === 'undefined') return Date.now()
+      const key = 'quiz-shuffle-seed'
+      let s = sessionStorage.getItem(key)
+      if (!s) {
+        s = String(Math.floor(Math.random() * 2 ** 32))
+        sessionStorage.setItem(key, s)
+      }
+      return Number(s)
+    })()
+    const rng = mulberry32(seed)
+    return shuffleArray(QUIZ_QUESTIONS, rng).map((q) => {
+      const opcionesShuffled = shuffleArray(q.opciones, rng)
+      const newCorrectIdx = opcionesShuffled.indexOf(q.opciones[q.respuestaCorrecta])
+      return { ...q, opciones: opcionesShuffled, respuestaCorrecta: newCorrectIdx }
+    })
+  })
+
+  const quiz = shuffledQuestions[currentQuestion]
+  const isQuizLast = currentQuestion >= shuffledQuestions.length - 1
 
   const handleAnswer = useCallback((index: number) => {
     setSelectedAnswer(index)
@@ -114,7 +135,7 @@ export default function MicroActivities({ onComplete }: Props) {
             Quiz Rápido
           </h3>
           <span className="bg-purple-500/20 text-purple-300 text-sm px-3 py-1 rounded-full">
-            {currentQuestion + 1} / {QUIZ_QUESTIONS.length}
+            {currentQuestion + 1} / {shuffledQuestions.length}
           </span>
         </div>
 
