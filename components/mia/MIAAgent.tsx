@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { useMIA } from '@/hooks/useMIA'
 import type { MIAEmotion } from '@/types/mia'
+import MiaAvatar from './MiaAvatar'
 
 // ── Emotion → visual mapping ──────────────────────────────────────────────────
 
@@ -254,10 +255,6 @@ export default function MIAAgent() {
       {/* ── Avatar ─────────────────────────────────────────────────────────── */}
       <motion.div
         className="pointer-events-auto relative flex items-center justify-center w-12 h-12 rounded-full cursor-pointer"
-        style={{
-          background: `conic-gradient(from 0deg, ${style.border}, #0d1117, ${style.border})`,
-          boxShadow: style.glow,
-        }}
         variants={avatarVariants}
         initial="initial"
         animate={getAvatarVariant(emotion)}
@@ -265,21 +262,10 @@ export default function MIAAgent() {
         title="MIA — clic para cerrar"
         aria-label={`MIA avatar — estado: ${style.label}`}
       >
-        {/* Inner ring */}
-        <div className="absolute inset-[3px] rounded-full bg-[#0d1117] flex items-center justify-center">
-          <span className="text-lg leading-none">{style.emoji}</span>
-        </div>
-        {/* Pulse ring on emotion change */}
-        <motion.div
-          className="absolute inset-0 rounded-full"
-          style={{ border: `2px solid ${style.border}` }}
-          initial={{ scale: 1, opacity: 0.5 }}
-          animate={
-            prefersReducedMotion
-              ? { scale: 1, opacity: 0 }
-              : { scale: [1, 1.3], opacity: [0.5, 0] }
-          }
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+        <MiaAvatar
+          color={style.border}
+          size={48}
+          pulse={!prefersReducedMotion}
         />
       </motion.div>
 

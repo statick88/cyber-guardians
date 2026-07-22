@@ -24,7 +24,6 @@ export default function VolumeControl() {
       onClick={toggle}
       aria-label={muted ? 'Unmute sound' : 'Mute sound'}
       className={`
-        fixed top-4 right-4 z-50
         min-h-[44px] min-w-[44px]
         flex items-center justify-center
         bg-slate-800/80 backdrop-blur-sm

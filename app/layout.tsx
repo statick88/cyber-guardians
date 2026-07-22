@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Toaster } from 'sonner'
-import VolumeControl from '@/components/VolumeControl'
 import HUDProvider from '@/components/HUDProvider'
 import HUD from '@/components/HUD'
 import { MIAAgent } from '@/components/mia'
@@ -34,7 +33,6 @@ export default function RootLayout({
           <MIAAgent />
           {children}
         </HUDProvider>
-        <VolumeControl />
         <Toaster
           theme="dark"
           position="bottom-right"

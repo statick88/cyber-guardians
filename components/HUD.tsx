@@ -6,6 +6,7 @@ import { Shield, Cpu, Network, BookOpen } from 'lucide-react'
 import { useHUD } from '@/components/HUDProvider'
 import { NotebookPanel } from '@/components/mediator/NotebookPanel'
 import { Button } from '@/components/ui/button'
+import VolumeControl from '@/components/VolumeControl'
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -186,19 +187,22 @@ export default function HUD() {
             ))}
           </div>
 
-          {/* Notebook Toggle */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleNotebook}
-            className={`text-slate-400 hover:text-neon-cyan ${
-              notebookOpen ? 'text-neon-cyan' : ''
-            }`}
-            aria-label={notebookOpen ? "Cerrar cuaderno" : "Abrir cuaderno"}
-            title={notebookOpen ? "Cerrar cuaderno" : "Abrir cuaderno"}
-          >
-            <BookOpen className="w-4 h-4" />
-          </Button>
+          {/* Volume + Notebook Toggle */}
+          <div className="flex items-center gap-2">
+            <VolumeControl />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleNotebook}
+              className={`text-slate-400 hover:text-neon-cyan ${
+                notebookOpen ? 'text-neon-cyan' : ''
+              }`}
+              aria-label={notebookOpen ? "Cerrar cuaderno" : "Abrir cuaderno"}
+              title={notebookOpen ? "Cerrar cuaderno" : "Abrir cuaderno"}
+            >
+              <BookOpen className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </div>
       <NotebookPanel isOpen={notebookOpen} onClose={toggleNotebook} />
