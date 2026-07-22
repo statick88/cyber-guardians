@@ -17,6 +17,7 @@ import { MicroActivities } from '@/components/module2/MicroActivities'
 import { Module2Category, ALL_MODULE2_CATEGORIES, GameProgressModule2 } from '@/types/module2'
 import module2Data from '@/data/module2Data.json'
 import type { Modulo2Data } from '@/types/module2'
+import { useMIA } from '@/hooks/useMIA'
 
 const typedModule2Data = module2Data as Modulo2Data
 
@@ -91,6 +92,7 @@ function clearProgress() {
 
 export default function Modulo2Page() {
   const [savedProgress] = useState(() => loadProgress())
+  const { triggerMIA } = useMIA()
 
   const [gamePhase, setGamePhase] = useState<GamePhase>(
     savedProgress ? 'ACTIVITIES' : 'WELCOME'
@@ -230,6 +232,7 @@ export default function Modulo2Page() {
             ejercicios={typedModule2Data.ejercicios}
             onScore={(p) => onScore(p, 'defensa-activa')}
             onComplete={onComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
       case 'vishing':
@@ -247,6 +250,7 @@ export default function Modulo2Page() {
             actividades={typedModule2Data.microActividades}
             onScore={(p) => onScore(p, 'micro-actividades')}
             onComplete={onComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
       default:

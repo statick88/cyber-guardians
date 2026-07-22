@@ -16,28 +16,41 @@ concurrency:
 
 jobs:
   build:
+    name: Build & Export
     runs-on: ubuntu-latest
+    # Only deploy if CI checks pass (on push to main)
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js (LTS)
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: '22'
+          cache: 'pnpm'
 
-      - name: Enable pnpm via corepack
+      - name: Enable pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@11.13.0 --activate
+          corepack prepare pnpm@latest --activate
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Next.js
+      - name: Build Next.js (static export)
         run: pnpm build
         env:
           REPO_NAME: cyber-guardians
+
+      - name: Verify output
+        run: |
+          if [ ! -d "out" ]; then
+            echo "::error::Build output directory 'out' not found"
+            exit 1
+          fi
+          echo "Build output size:"
+          du -sh out/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -45,6 +58,7 @@ jobs:
           path: out
 
   deploy:
+    name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
     environment:

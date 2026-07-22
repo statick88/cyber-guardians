@@ -9,8 +9,11 @@ const dialogueBank = dialogueBankRaw as MIADialogueSchema
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-/** Cooldown in ms between emotion changes */
+/** Cooldown in ms between emotion changes (HUD source) */
 const COOLDOWN_MS = 3000
+
+/** Cooldown in ms between emotion changes (quiz source — faster) */
+const COOLDOWN_QUIZ_MS = 1500
 
 /** How many recent dialogue IDs to exclude */
 const DEDUP_WINDOW_SIZE = 5
@@ -117,11 +120,12 @@ export function useMIA(): UseMIAReturn {
 
   /** Apply emotion change with cooldown and dialogue selection */
   const applyEmotion = useCallback(
-    (newEmotion: MIAEmotion, moduleId?: number) => {
+    (newEmotion: MIAEmotion, moduleId?: number, source: 'hud' | 'quiz' = 'hud') => {
       const now = Date.now()
+      const cooldown = source === 'quiz' ? COOLDOWN_QUIZ_MS : COOLDOWN_MS
 
-      // Enforce cooldown (skip if triggered within COOLDOWN_MS)
-      if (now - lastEmotionChange.current < COOLDOWN_MS) {
+      // Enforce cooldown (skip if triggered within cooldown window)
+      if (now - lastEmotionChange.current < cooldown) {
         return
       }
 
@@ -212,11 +216,12 @@ export function useMIA(): UseMIAReturn {
   // ── Manual trigger ──────────────────────────────────────────────────────
 
   const triggerMIA = useCallback(
-    (targetEmotion: MIAEmotion, moduleId?: number) => {
+    (targetEmotion: MIAEmotion, moduleId?: number, source: 'hud' | 'quiz' = 'hud') => {
       const now = Date.now()
+      const cooldown = source === 'quiz' ? COOLDOWN_QUIZ_MS : COOLDOWN_MS
 
-      // Respect cooldown — skip if triggered within COOLDOWN_MS
-      if (now - lastEmotionChange.current < COOLDOWN_MS) {
+      // Respect cooldown — skip if triggered within cooldown window
+      if (now - lastEmotionChange.current < cooldown) {
         return
       }
 

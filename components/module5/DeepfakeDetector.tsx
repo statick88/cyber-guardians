@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import useQuizSound from '@/hooks/useQuizSound'
 import { useQuizShuffle } from '@/hooks/useQuizShuffle'
 import type { DeepfakeArtifact } from '@/types/module5'
+import type { MIAEmotionCallback } from '@/types/mia'
 
 interface Props {
   artifacts: DeepfakeArtifact[]
@@ -15,11 +16,12 @@ interface Props {
   respuestaCorrecta: number
   onScore: (points: number) => void
   onComplete: () => void
+  onMIAEmotion?: MIAEmotionCallback
 }
 
 type Classification = 'real' | 'deepfake' | null
 
-export default function DeepfakeDetector({ artifacts, explicacion, fuente, pregunta, opciones, respuestaCorrecta, onScore, onComplete }: Props) {
+export default function DeepfakeDetector({ artifacts, explicacion, fuente, pregunta, opciones, respuestaCorrecta, onScore, onComplete, onMIAEmotion }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [classification, setClassification] = useState<Classification>(null)
   const [showFeedback, setShowFeedback] = useState(false)
@@ -47,10 +49,11 @@ export default function DeepfakeDetector({ artifacts, explicacion, fuente, pregu
     const isCorrect = type === 'deepfake'
     const points = isCorrect ? 4 : 0
     isCorrect ? playCorrect() : playIncorrect()
+    onMIAEmotion?.(isCorrect ? 'CORRECT' : 'INCORRECT', 5)
     
     setScore(prev => prev + points)
     onScore(points)
-  }, [onScore, playCorrect, playIncorrect])
+  }, [onScore, playCorrect, playIncorrect, onMIAEmotion])
 
   const handleClassificationNext = useCallback(() => {
     setPhase('mc')
@@ -65,10 +68,11 @@ export default function DeepfakeDetector({ artifacts, explicacion, fuente, pregu
     const isCorrect = selectedIndex === respuestaCorrecta
     const points = isCorrect ? 4 : 0
     isCorrect ? playCorrect() : playIncorrect()
+    onMIAEmotion?.(isCorrect ? 'CORRECT' : 'INCORRECT', 5)
     
     setScore(prev => prev + points)
     onScore(points)
-  }, [selectedMcOption, respuestaCorrecta, onScore, playCorrect, playIncorrect])
+  }, [selectedMcOption, respuestaCorrecta, onScore, playCorrect, playIncorrect, onMIAEmotion])
 
   const handleNext = useCallback(() => {
     if (isLast) {

@@ -19,6 +19,7 @@ import type { ModuloData as Module1ModuloData } from '@/types/module1'
 import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
 import { GamePauseProvider } from '@/hooks/useGamePause'
 import { useEducationalMediator } from '@/hooks/useEducationalMediator'
+import { useMIA } from '@/hooks/useMIA'
 import { EducationalPanel } from '@/components/mediator'
 import DebriefDialog from '@/components/mediator/DebriefDialog'
 import { DEFAULT_DEBRIEF_PROMPTS } from '@/data/debriefPrompts'
@@ -96,6 +97,7 @@ function clearProgress() {
 function Module1GameContent() {
   const [savedProgress] = useState(() => loadProgress())
   const mediator = useEducationalMediator()
+  const { triggerMIA } = useMIA()
 
   const [gamePhase, setGamePhase] = useState<GamePhase>(
     savedProgress ? 'ACTIVITIES' : 'WELCOME'
@@ -225,6 +227,7 @@ function Module1GameContent() {
             ejercicios={typedModule1Data.ejercicios}
             onScore={(p) => onScore(p, 'clasificacion')}
             onComplete={onComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
       case 'micro':
@@ -233,6 +236,7 @@ function Module1GameContent() {
             actividades={typedModule1Data.microActividades}
             onScore={(p) => onScore(p, 'micro-actividades')}
             onComplete={onComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
       default:

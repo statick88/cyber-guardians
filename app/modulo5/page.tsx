@@ -10,6 +10,7 @@ import { navigateTo } from '@/lib/navigation'
 import { STORAGE_KEYS } from '@/lib/storage-keys'
 import module5Data from '@/data/module5Data.json'
 import type { Modulo5Data } from '@/types/module5'
+import { useMIA } from '@/hooks/useMIA'
 
 const typedModule5Data = module5Data as Modulo5Data
 
@@ -73,6 +74,7 @@ function clearProgress() {
 
 export default function Modulo5Page() {
   const [savedProgress] = useState(() => loadProgress())
+  const { triggerMIA } = useMIA()
   const [gamePhase, setGamePhase] = useState<GamePhase>(savedProgress ? 'ACTIVITIES' : 'WELCOME')
   const [currentActivityIndex, setCurrentActivityIndex] = useState(savedProgress?.currentActivityIndex ?? 0)
   const [score, setScore] = useState(savedProgress?.score ?? 0)
@@ -144,6 +146,7 @@ export default function Modulo5Page() {
             respuestaCorrecta={scenario.respuestaCorrecta}
             onScore={handleActivityScore}
             onComplete={handleActivityComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
       }
@@ -163,6 +166,7 @@ export default function Modulo5Page() {
             actividades={typedModule5Data.microActividades}
             onScore={handleActivityScore}
             onComplete={handleActivityComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
 

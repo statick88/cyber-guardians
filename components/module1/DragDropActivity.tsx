@@ -13,17 +13,20 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Ejercicio, DragItem, DragTarget, Module1Category } from "@/types/module1";
+import type { MIAEmotionCallback } from "@/types/mia";
 
 interface DragDropActivityProps {
   ejercicios: Ejercicio[];
   onScore: (points: number, category?: Module1Category) => void;
   onComplete: () => void;
+  onMIAEmotion?: MIAEmotionCallback;
 }
 
 export function DragDropActivity({
   ejercicios,
   onScore,
   onComplete,
+  onMIAEmotion,
 }: DragDropActivityProps) {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [assignments, setAssignments] = useState<Record<string, string>>({});
@@ -87,6 +90,7 @@ export function DragDropActivity({
     setScore(points);
     setTotalPoints((prev) => prev + points);
     setShowResult(true);
+    onMIAEmotion?.(correct === totalItems ? 'CORRECT' : 'INCORRECT', 1);
   };
 
   const handleNext = () => {

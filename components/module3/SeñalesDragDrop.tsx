@@ -10,11 +10,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 import type { MensajeDragDrop } from "@/types/module3";
+import type { MIAEmotionCallback } from "@/types/mia";
 
 interface SeñalesDragDropProps {
   mensajes: MensajeDragDrop[];
   onScore: (points: number, category: string) => void;
   onComplete: () => void;
+  onMIAEmotion?: MIAEmotionCallback;
 }
 
 const categorias = [
@@ -83,6 +85,7 @@ export default function SeñalesDragDrop({
   mensajes,
   onScore,
   onComplete,
+  onMIAEmotion,
 }: SeñalesDragDropProps) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<Map<string, string>>(new Map());
@@ -119,6 +122,10 @@ export default function SeñalesDragDrop({
     const next = new Map(answers);
     next.set(mensaje.id, categoria);
     setAnswers(next);
+
+    const esCorrecta = mensaje.tipo === categoria;
+    esCorrecta ? playCorrect() : playIncorrect();
+    onMIAEmotion?.(esCorrecta ? 'CORRECT' : 'INCORRECT', 3);
 
     if (currentIdx + 1 < sortedMensajes.length) {
       setCurrentIdx((i) => i + 1);

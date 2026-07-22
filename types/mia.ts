@@ -11,6 +11,9 @@ export type MIAEmotion =
   | 'SAMPLED_ERROR'
   | 'MISSION_BRIEF'
   | 'PROVIDING_CLUE'
+  | 'CORRECT'
+  | 'INCORRECT'
+  | 'THINKING'
 
 /** A single dialogue line from MIA */
 export interface MIADialogueEntry {
@@ -51,8 +54,11 @@ export interface UseMIAReturn {
   currentDialogue: MIADialogueEntry | null
   /** Whether MIA is visible */
   isVisible: boolean
-  /** Manually trigger MIA with an emotion, optionally for a specific module */
-  triggerMIA: (emotion: MIAEmotion, moduleId?: number) => void
+  /** Manually trigger MIA with an emotion, optionally for a specific module and source */
+  triggerMIA: (emotion: MIAEmotion, moduleId?: number, source?: 'hud' | 'quiz') => void
   /** Immediately dismiss the speech bubble */
   dismissMIA: () => void
 }
+
+/** Callback type for quiz components to emit MIA emotions */
+export type MIAEmotionCallback = (emotion: MIAEmotion, moduleId: number) => void

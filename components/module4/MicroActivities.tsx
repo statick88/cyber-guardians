@@ -14,17 +14,20 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Check, X, Code, ListOrdered, Shield } from "lucide-react";
 import { Module4Category, MicroActividad } from "@/types/module4";
+import type { MIAEmotionCallback } from "@/types/mia";
 
 interface MicroActivitiesProps {
   actividades: MicroActividad[];
   onScore: (points: number, category?: Module4Category) => void;
   onComplete: () => void;
+  onMIAEmotion?: MIAEmotionCallback;
 }
 
 export function MicroActivities({
   actividades,
   onScore,
   onComplete,
+  onMIAEmotion,
 }: MicroActivitiesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);
@@ -42,6 +45,7 @@ export function MicroActivities({
     const correct = answer === currentActivity.respuestaCorrecta;
     setIsCorrect(correct);
     correct ? playCorrect() : playIncorrect();
+    onMIAEmotion?.(correct ? 'CORRECT' : 'INCORRECT', 4);
     const points = correct ? currentActivity.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);
@@ -63,6 +67,7 @@ export function MicroActivities({
     const correct = Number(selectedAnswer) === currentActivity.respuestaCorrecta;
     setIsCorrect(correct);
     correct ? playCorrect() : playIncorrect();
+    onMIAEmotion?.(correct ? 'CORRECT' : 'INCORRECT', 4);
     const points = correct ? currentActivity.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);

@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import useQuizSound from '@/hooks/useQuizSound'
+import type { MIAEmotionCallback } from '@/types/mia'
 
 interface MicroActivity {
   id: string
@@ -20,9 +21,10 @@ interface Props {
   actividades: MicroActivity[]
   onScore: (points: number, category?: string) => void
   onComplete: () => void
+  onMIAEmotion?: MIAEmotionCallback
 }
 
-export function MicroActivities({ actividades, onScore, onComplete }: Props) {
+export function MicroActivities({ actividades, onScore, onComplete, onMIAEmotion }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
@@ -39,10 +41,11 @@ export function MicroActivities({ actividades, onScore, onComplete }: Props) {
     const isCorrect = answer === currentActivity.respuestaCorrecta
     const points = isCorrect ? currentActivity.puntos : 0
     isCorrect ? playCorrect() : playIncorrect()
+    onMIAEmotion?.(isCorrect ? 'CORRECT' : 'INCORRECT', 5)
     
     setScore(prev => prev + points)
     onScore(points, currentActivity.categoria)
-  }, [currentActivity, onScore, playCorrect, playIncorrect])
+  }, [currentActivity, onScore, playCorrect, playIncorrect, onMIAEmotion])
 
   const handleNext = useCallback(() => {
     if (isLast) {

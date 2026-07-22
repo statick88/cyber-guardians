@@ -3,12 +3,14 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { GripVertical, CheckCircle, RotateCcw, ArrowRight } from 'lucide-react'
+import type { MIAEmotionCallback } from '@/types/mia'
 
 interface MicroActivityProps {
   activityId: string
   title: string
   description: string
   onComplete: () => void
+  onMIAEmotion?: MIAEmotionCallback
 }
 
 interface DragItem {
@@ -257,7 +259,12 @@ function PasswordChainPuzzle({ onComplete }: { onComplete: () => void }) {
   )
 }
 
-export default function MicroActivity({ activityId, title, description, onComplete }: MicroActivityProps) {
+export default function MicroActivity({ activityId, title, description, onComplete, onMIAEmotion }: MicroActivityProps) {
+  const handleComplete = () => {
+    onMIAEmotion?.('CORRECT', 0)
+    onComplete()
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -268,8 +275,8 @@ export default function MicroActivity({ activityId, title, description, onComple
       <h4 className="text-base font-semibold text-slate-200 mb-1">{title}</h4>
       <p className="text-xs text-slate-400 mb-4">{description}</p>
 
-      {activityId === 'micro-001' && <DataFlowPuzzle onComplete={onComplete} />}
-      {activityId === 'micro-002' && <PasswordChainPuzzle onComplete={onComplete} />}
+      {activityId === 'micro-001' && <DataFlowPuzzle onComplete={handleComplete} />}
+      {activityId === 'micro-002' && <PasswordChainPuzzle onComplete={handleComplete} />}
     </motion.div>
   )
 }

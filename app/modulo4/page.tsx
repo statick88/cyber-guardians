@@ -13,6 +13,7 @@ import { Module4Category, ALL_MODULE4_CATEGORIES, GameProgressModule4 } from '@/
 import module4Data from '@/data/module4Data.json'
 import { STORAGE_KEYS } from '@/lib/storage-keys'
 import type { Modulo4Data } from '@/types/module4'
+import { useMIA } from '@/hooks/useMIA'
 
 const typedModule4Data = module4Data as Modulo4Data
 
@@ -154,6 +155,7 @@ function updateUnlockedBadges(currentScores: Record<string, number>): string[] {
 
 export default function Modulo4Page() {
   const [savedProgress] = useState(() => loadProgress())
+  const { triggerMIA } = useMIA()
 
   const [gamePhase, setGamePhase] = useState<GamePhase>(
     savedProgress ? 'ACTIVITIES' : 'WELCOME'
@@ -288,6 +290,7 @@ export default function Modulo4Page() {
             actividades={typedModule4Data.microActividades}
             onScore={(p) => onScore(p, 'micro-actividades')}
             onComplete={onComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
       default:

@@ -15,6 +15,7 @@ import { navigateTo } from '@/lib/navigation'
 import { STORAGE_KEYS } from '@/lib/storage-keys'
 import module3Data from '@/data/module3Data.json'
 import type { Modulo3Data } from '@/types/module3'
+import { useMIA } from '@/hooks/useMIA'
 
 const typedModule3Data = module3Data as Modulo3Data
 
@@ -104,6 +105,7 @@ function clearProgress() {
 
 export default function Modulo3Page() {
   const [savedProgress] = useState(() => loadProgress())
+  const { triggerMIA } = useMIA()
 
   const [gamePhase, setGamePhase] = useState<GamePhase>(
     savedProgress ? 'ACTIVITIES' : 'WELCOME'
@@ -239,6 +241,7 @@ export default function Modulo3Page() {
             mensajes={typedModule3Data.mensajesDragDrop}
             onScore={(p) => handleActivityScore(p, 'manipulacion')}
             onComplete={handleActivityComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
 
@@ -288,6 +291,7 @@ export default function Modulo3Page() {
             actividades={microActividades}
             onScore={handleActivityScore}
             onComplete={handleActivityComplete}
+            onMIAEmotion={triggerMIA}
           />
         )
       }

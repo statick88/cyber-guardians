@@ -11,6 +11,7 @@ import module0Raw from '@/data/module0Data.json'
 import type { ModuloData, GameState, GameProgress as GameProgressType } from '@/types/module0'
 import { navigateTo } from '@/lib/navigation'
 import { STORAGE_KEYS } from '@/lib/storage-keys'
+import { useMIA } from '@/hooks/useMIA'
 
 const STORAGE_KEY = STORAGE_KEYS.MODULE0
 const STALE_MS = 24 * 60 * 60 * 1000 // 24 hours
@@ -76,6 +77,7 @@ export default function Modulo0Game() {
   const [completedScenarios, setCompletedScenarios] = useState<string[]>([])
   const [microActivitiesComplete, setMicroActivitiesComplete] = useState(0)
   const [isNavigating, setIsNavigating] = useState(false)
+  const { triggerMIA } = useMIA()
 
   // Restore progress on mount
   useEffect(() => {
@@ -188,6 +190,7 @@ export default function Modulo0Game() {
                 key={data.escenarios[currentScenarioIndex].id ?? currentScenarioIndex}
                 scenario={data.escenarios[currentScenarioIndex]}
                 onAnswer={handleAnswer}
+                onMIAEmotion={triggerMIA}
               />
             </div>
           </div>

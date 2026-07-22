@@ -6,13 +6,15 @@ import { useState, useEffect, useMemo } from 'react'
 import useQuizSound from '@/hooks/useQuizSound'
 import { useQuizShuffle } from '@/hooks/useQuizShuffle'
 import type { Escenario } from '@/types/module0'
+import type { MIAEmotionCallback } from '@/types/mia'
 
 interface ScenarioCardProps {
   scenario: Escenario
   onAnswer: (puntos: number, categoria: string) => void
+  onMIAEmotion?: MIAEmotionCallback
 }
 
-export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) {
+export default function ScenarioCard({ scenario, onAnswer, onMIAEmotion }: ScenarioCardProps) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
   const { playCorrect, playIncorrect } = useQuizSound()
@@ -31,6 +33,7 @@ export default function ScenarioCard({ scenario, onAnswer }: ScenarioCardProps) 
     setSelectedOption(opcionId)
     setShowFeedback(true)
     esCorrecta ? playCorrect() : playIncorrect()
+    onMIAEmotion?.(esCorrecta ? 'CORRECT' : 'INCORRECT', 0)
     setTimeout(() => {
       onAnswer(puntos, scenario.categoria)
     }, 2000)

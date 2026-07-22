@@ -47,6 +47,27 @@ const EMOTION_STYLES: Record<
     emoji: ' ',
     color: '#0088ff',
   },
+  CORRECT: {
+    border: '#22c55e',
+    glow: '0 0 16px rgba(34,197,94,0.45), 0 0 6px rgba(34,197,94,0.55)',
+    label: 'Correcto',
+    emoji: '✅',
+    color: '#22c55e',
+  },
+  INCORRECT: {
+    border: '#ef4444',
+    glow: '0 0 16px rgba(239,68,68,0.45), 0 0 6px rgba(239,68,68,0.55)',
+    label: 'Incorrecto',
+    emoji: ' ',
+    color: '#ef4444',
+  },
+  THINKING: {
+    border: '#a855f7',
+    glow: '0 0 14px rgba(168,85,247,0.4), 0 0 6px rgba(168,85,247,0.5)',
+    label: 'Pensando',
+    emoji: ' ',
+    color: '#a855f7',
+  },
 }
 
 // ── Comic-neon clip-path (angular speech bubble) ──────────────────────────────
@@ -151,6 +172,19 @@ export default function MIAAgent() {
       scale: [1, 1.05, 1],
       transition: { duration: 1.2, repeat: Infinity, repeatDelay: 2 },
     },
+    correct: {
+      scale: [1, 1.2, 1],
+      rotate: [0, -6, 6, 0],
+      transition: { duration: 0.5 },
+    },
+    incorrect: {
+      x: [0, -6, 6, -6, 6, 0],
+      transition: { duration: 0.5 },
+    },
+    thinking: {
+      rotate: [0, -8, 8, -8, 0],
+      transition: { duration: 1.5, repeat: Infinity, repeatDelay: 0.5 },
+    },
   }
 
   const getAvatarVariant = (em: MIAEmotion) => {
@@ -164,6 +198,12 @@ export default function MIAAgent() {
         return 'missionBrief'
       case 'PROVIDING_CLUE':
         return 'providingClue'
+      case 'CORRECT':
+        return 'correct'
+      case 'INCORRECT':
+        return 'incorrect'
+      case 'THINKING':
+        return 'thinking'
       default:
         return 'idle'
     }
@@ -254,7 +294,7 @@ export default function MIAAgent() {
 
       {/* ── Avatar ─────────────────────────────────────────────────────────── */}
       <motion.div
-        className="pointer-events-auto relative flex items-center justify-center w-12 h-12 rounded-full cursor-pointer"
+        className="pointer-events-auto relative flex items-center justify-center w-16 h-16 rounded-full cursor-pointer"
         variants={avatarVariants}
         initial="initial"
         animate={getAvatarVariant(emotion)}
@@ -264,7 +304,7 @@ export default function MIAAgent() {
       >
         <MiaAvatar
           color={style.border}
-          size={48}
+          size={64}
           pulse={!prefersReducedMotion}
         />
       </motion.div>

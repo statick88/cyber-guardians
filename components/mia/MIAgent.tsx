@@ -45,6 +45,27 @@ const EMOTION_STYLES: Record<
     emoji: '\u{1F4A1}',
     color: '#0088ff',
   },
+  CORRECT: {
+    border: '#22c55e',
+    glow: '0 0 16px rgba(34,197,94,0.45), 0 0 6px rgba(34,197,94,0.55)',
+    label: 'Correcto',
+    emoji: '\u2705',
+    color: '#22c55e',
+  },
+  INCORRECT: {
+    border: '#ef4444',
+    glow: '0 0 16px rgba(239,68,68,0.45), 0 0 6px rgba(239,68,68,0.55)',
+    label: 'Incorrecto',
+    emoji: '\u{1F61F}',
+    color: '#ef4444',
+  },
+  THINKING: {
+    border: '#a855f7',
+    glow: '0 0 14px rgba(168,85,247,0.4), 0 0 6px rgba(168,85,247,0.5)',
+    label: 'Pensando',
+    emoji: '\u{1F9D0}',
+    color: '#a855f7',
+  },
 }
 
 // Comic-neon clip-path (angular speech bubble)

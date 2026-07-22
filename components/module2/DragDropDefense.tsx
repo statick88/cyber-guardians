@@ -14,14 +14,16 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Check, X, Shield, ArrowRightLeft, RotateCcw } from "lucide-react";
 import { Module2Category, EjercicioDefensa, DragItemDefense, DragTargetDefense } from "@/types/module2";
+import type { MIAEmotionCallback } from "@/types/mia";
 
 interface DragDropDefenseProps {
   ejercicios: EjercicioDefensa[];
   onScore: (points: number, category?: Module2Category) => void;
   onComplete: () => void;
+  onMIAEmotion?: MIAEmotionCallback;
 }
 
-export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDefenseProps) {
+export function DragDropDefense({ ejercicios, onScore, onComplete, onMIAEmotion }: DragDropDefenseProps) {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [assignments, setAssignments] = useState<Record<string, string>>({});
   const [showResult, setShowResult] = useState(false);
@@ -74,6 +76,7 @@ export function DragDropDefense({ ejercicios, onScore, onComplete }: DragDropDef
     setScore(points);
     setTotalPoints((prev) => prev + points);
     setShowResult(true);
+    onMIAEmotion?.(correct === totalItems ? 'CORRECT' : 'INCORRECT', 2);
   };
 
   const handleNext = () => {

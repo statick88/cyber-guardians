@@ -18,17 +18,20 @@ import { MEDIATOR_ENABLED } from "@/lib/featureFlags";
 import { useEducationalMediator } from "@/hooks/useEducationalMediator";
 import { EducationalPanel } from "@/components/mediator";
 import type { EducationalLayer } from "@/types/educational";
+import type { MIAEmotionCallback } from "@/types/mia";
 
 interface MicroActivitiesProps {
   actividades: MicroActividad[];
   onScore: (points: number, category?: Module2Category) => void;
   onComplete: () => void;
+  onMIAEmotion?: MIAEmotionCallback;
 }
 
 export function MicroActivities({
   actividades,
   onScore,
   onComplete,
+  onMIAEmotion,
 }: MicroActivitiesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);
@@ -59,6 +62,7 @@ export function MicroActivities({
     const correct = answer === currentActivity.respuestaCorrecta;
     setIsCorrect(correct);
     correct ? playCorrect() : playIncorrect();
+    onMIAEmotion?.(correct ? 'CORRECT' : 'INCORRECT', 2);
     const points = correct ? currentActivity.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);
@@ -85,6 +89,7 @@ export function MicroActivities({
     const correct = Number(selectedAnswer) === currentActivity.respuestaCorrecta;
     setIsCorrect(correct);
     correct ? playCorrect() : playIncorrect();
+    onMIAEmotion?.(correct ? 'CORRECT' : 'INCORRECT', 2);
     const points = correct ? currentActivity.puntos : 0;
     setEarnedPoints(points);
     setTotalPoints((prev) => prev + points);
