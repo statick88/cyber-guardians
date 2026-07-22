@@ -77,7 +77,7 @@ export default function Modulo5Page() {
   const [currentActivityIndex, setCurrentActivityIndex] = useState(savedProgress?.currentActivityIndex ?? 0)
   const [score, setScore] = useState(savedProgress?.score ?? 0)
   const [maxScore] = useState(() => {
-    const deepfakePoints = typedModule5Data.escenarios.length * 4
+    const deepfakePoints = typedModule5Data.escenarios.length * 8
     const metadataPoints = typedModule5Data.indicadoresMetadata.length * 4
     const microPoints = typedModule5Data.microActividades?.reduce(
       (sum: number, m: { puntos?: number }) => sum + (m.puntos ?? 3), 0
@@ -139,6 +139,9 @@ export default function Modulo5Page() {
             artifacts={scenario.artifacts}
             explicacion={scenario.explicacion}
             fuente={scenario.fuente}
+            pregunta={scenario.pregunta}
+            opciones={scenario.opciones}
+            respuestaCorrecta={scenario.respuestaCorrecta}
             onScore={handleActivityScore}
             onComplete={handleActivityComplete}
           />
