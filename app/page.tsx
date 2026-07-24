@@ -9,6 +9,8 @@ import {
 } from 'lucide-react'
 import useAudioSynth from '@/hooks/useAudioSynth'
 import { navigateTo } from '@/lib/navigation'
+import VisitCounter from '@/components/VisitCounter'
+import Footer from '@/components/Footer'
 import type {
   Mission,
   MissionStatus,
@@ -483,6 +485,15 @@ export default function Home() {
           <p className="text-sm font-mono text-neon-magenta/70 mt-1 uppercase tracking-widest">
             Central de Operaciones — Consola de Selección de Misiones
           </p>
+          <VisitCounter />
+          {/* ATT&CK Reference Link */}
+          <Link
+            href="/attack"
+            className="inline-flex items-center gap-2 mt-3 px-4 py-2 rounded-lg bg-red-900/30 border border-red-700/40 text-red-300 text-xs font-mono uppercase tracking-wider hover:bg-red-900/50 hover:border-red-600/60 transition-all"
+          >
+            <Shield className="w-4 h-4" />
+            MITRE ATT&CK — Referencia del Curso
+          </Link>
         </motion.header>
 
         {/* Two-column grid */}
@@ -529,6 +540,7 @@ export default function Home() {
           </motion.aside>
         </div>
       </motion.div>
+      <Footer />
     </div>
   )
 }
