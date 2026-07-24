@@ -5,14 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Briefcase, AlertTriangle, DollarSign, Clock, Shield } from 'lucide-react'
 import useQuizSound from '@/hooks/useQuizSound'
 import type { EmploymentScam } from '@/types/module6'
+import type { MIAEmotionCallback } from '@/types/mia'
 
 interface Props {
   scenarios: EmploymentScam[]
   onComplete: (score: number) => void
   onScore: (points: number) => void
+  onMIAEmotion?: MIAEmotionCallback
 }
 
-export default function EmploymentScamAlert({ scenarios, onComplete, onScore }: Props) {
+export default function EmploymentScamAlert({ scenarios, onComplete, onScore, onMIAEmotion }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [decision, setDecision] = useState<'legitimo' | 'estafa' | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
@@ -32,7 +34,8 @@ export default function EmploymentScamAlert({ scenarios, onComplete, onScore }: 
     isCorrect ? playCorrect() : playIncorrect()
     setScore(prev => prev + points)
     onScore(points)
-  }, [playCorrect, playIncorrect, onScore])
+    onMIAEmotion?.(isCorrect ? 'CORRECT' : 'INCORRECT', 6)
+  }, [playCorrect, playIncorrect, onScore, onMIAEmotion])
 
   const handleNext = useCallback(() => {
     if (isLast) {

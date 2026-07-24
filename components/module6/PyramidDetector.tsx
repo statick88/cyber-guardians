@@ -5,14 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Pyramid, AlertTriangle, TrendingDown, Users, DollarSign } from 'lucide-react'
 import useQuizSound from '@/hooks/useQuizSound'
 import type { PyramidScheme } from '@/types/module6'
+import type { MIAEmotionCallback } from '@/types/mia'
 
 interface Props {
   scenarios: PyramidScheme[]
   onComplete: (score: number) => void
   onScore: (points: number) => void
+  onMIAEmotion?: MIAEmotionCallback
 }
 
-export default function PyramidDetector({ scenarios, onComplete, onScore }: Props) {
+export default function PyramidDetector({ scenarios, onComplete, onScore, onMIAEmotion }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedWarnings, setSelectedWarnings] = useState<Set<string>>(new Set())
   const [showFeedback, setShowFeedback] = useState(false)
@@ -57,8 +59,9 @@ export default function PyramidDetector({ scenarios, onComplete, onScore }: Prop
     scenarioScore > 0 ? playCorrect() : playIncorrect()
     setScore(prev => prev + scenarioScore)
     onScore(scenarioScore)
+    onMIAEmotion?.(scenarioScore > 0 ? 'CORRECT' : 'INCORRECT', 6)
     setShowFeedback(true)
-  }, [currentScenario, selectedWarnings])
+  }, [currentScenario, selectedWarnings, onMIAEmotion])
 
   const handleNext = useCallback(() => {
     if (isLast) {

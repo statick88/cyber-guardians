@@ -5,14 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { QrCode, AlertTriangle, CheckCircle, XCircle, Search } from 'lucide-react'
 import useQuizSound from '@/hooks/useQuizSound'
 import type { QRCodeScam } from '@/types/module6'
+import type { MIAEmotionCallback } from '@/types/mia'
 
 interface Props {
   scenarios: QRCodeScam[]
   onComplete: (score: number) => void
   onScore: (points: number) => void
+  onMIAEmotion?: MIAEmotionCallback
 }
 
-export default function QRCodeInspector({ scenarios, onComplete, onScore }: Props) {
+export default function QRCodeInspector({ scenarios, onComplete, onScore, onMIAEmotion }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedFlags, setSelectedFlags] = useState<Set<string>>(new Set())
   const [showFeedback, setShowFeedback] = useState(false)
@@ -57,8 +59,9 @@ export default function QRCodeInspector({ scenarios, onComplete, onScore }: Prop
     scenarioScore > 0 ? playCorrect() : playIncorrect()
     setScore(prev => prev + scenarioScore)
     onScore(scenarioScore)
+    onMIAEmotion?.(scenarioScore > 0 ? 'CORRECT' : 'INCORRECT', 6)
     setShowFeedback(true)
-  }, [currentScenario, selectedFlags])
+  }, [currentScenario, selectedFlags, onMIAEmotion])
 
   const handleNext = useCallback(() => {
     if (isLast) {

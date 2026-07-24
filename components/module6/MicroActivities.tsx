@@ -5,10 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import useQuizSound from '@/hooks/useQuizSound'
 import { shuffleArray, mulberry32 } from '@/lib/shuffle'
 import { Share2, Twitter, MessageCircle, Copy, CheckCircle } from 'lucide-react'
+import type { MIAEmotionCallback } from '@/types/mia'
 
 interface Props {
   onComplete: (score: number) => void
   onScore?: (points: number) => void
+  onMIAEmotion?: MIAEmotionCallback
 }
 
 const QUIZ_QUESTIONS = [
@@ -35,7 +37,7 @@ const QUIZ_QUESTIONS = [
   },
 ]
 
-export default function MicroActivities({ onComplete, onScore }: Props) {
+export default function MicroActivities({ onComplete, onScore, onMIAEmotion }: Props) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
@@ -73,10 +75,12 @@ export default function MicroActivities({ onComplete, onScore }: Props) {
       playCorrect()
       setScore(prev => prev + 3)
       onScore?.(3)
+      onMIAEmotion?.('CORRECT', 6)
     } else {
       playIncorrect()
+      onMIAEmotion?.('INCORRECT', 6)
     }
-  }, [quiz, playCorrect, playIncorrect, onScore])
+  }, [quiz, playCorrect, playIncorrect, onScore, onMIAEmotion])
 
   const handleNextQuiz = useCallback(() => {
     if (isQuizLast) {
