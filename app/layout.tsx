@@ -7,8 +7,42 @@ import { MIAAgent } from '@/components/mia'
 import { BackgroundScene } from '@/components/three/BackgroundSceneClient'
 
 export const metadata: Metadata = {
-  title: 'CyberGuardians - Módulo 0: Cyber-Diagnóstico',
-  description: 'Diagnostic interactivo para evaluar tu nivel de ciberseguridad',
+  title: {
+    default: 'CyberGuardians - Plataforma Educativa de Ciberseguridad',
+    template: '%s | CyberGuardians',
+  },
+  description: 'Plataforma interactiva de aprendizaje de ciberseguridad con módulos gamificados, IA adaptativa y simulaciones de amenazas reales.',
+  keywords: ['ciberseguridad', 'educación', 'phishing', 'seguridad informática', 'gamificación', 'IA educativa'],
+  authors: [{ name: 'Statick', url: 'https://statick88.github.io' }],
+  creator: 'Statick',
+  metadataBase: new URL('https://statick88.github.io/cyber-guardians'),
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    url: 'https://statick88.github.io/cyber-guardians',
+    siteName: 'CyberGuardians',
+    title: 'CyberGuardians - Plataforma Educativa de Ciberseguridad',
+    description: 'Plataforma interactiva de aprendizaje de ciberseguridad con módulos gamificados, IA adaptativa y simulaciones de amenazas reales.',
+    images: [
+      {
+        url: '/og-image.png', // Create 1200x630 PNG from public/og-image.svg template
+        width: 1200,
+        height: 630,
+        alt: 'CyberGuardians - Cybersecurity Education Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CyberGuardians',
+    description: 'Plataforma interactiva de aprendizaje de ciberseguridad.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 }
 
 export default function RootLayout({
@@ -24,6 +58,58 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
           rel="stylesheet"
+        />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="canonical" href="https://statick88.github.io/cyber-guardians" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Course',
+              name: 'CyberGuardians - Plataforma Educativa de Ciberseguridad',
+              description: 'Plataforma interactiva de aprendizaje de ciberseguridad con módulos gamificados, IA adaptativa y simulaciones de amenazas reales.',
+              provider: {
+                '@type': 'Organization',
+                name: 'Statick',
+                url: 'https://statick88.github.io',
+              },
+              url: 'https://statick88.github.io/cyber-guardians',
+              inLanguage: 'es',
+              isAccessibleForFree: true,
+              hasCourseInstance: {
+                '@type': 'CourseInstance',
+                courseMode: 'online',
+                courseWorkload: 'PT2H',
+              },
+              about: [
+                'Ciberseguridad',
+                'Privacidad Digital',
+                'Ingeniería Social',
+                'Phishing',
+                'Criptografía',
+                'Deepfakes',
+                'Estafas Digitales',
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Inicio',
+                  item: 'https://statick88.github.io/cyber-guardians',
+                },
+              ],
+            }),
+          }}
         />
       </head>
       <body className="bg-void text-slate-100 antialiased font-sans min-h-screen pt-9 md:pt-12">

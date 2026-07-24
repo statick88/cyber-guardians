@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(168,85,247,0.25)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#93c5fd"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0f172a"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.4"/>
+
+  <!-- Glow -->
+  <circle cx="600" cy="315" r="250" fill="url(#glow)"/>
+
+  <!-- Badge -->
+  <rect x="370" y="180" width="460" height="50" rx="25" fill="rgba(168,85,247,0.15)" stroke="rgba(168,85,247,0.4)" stroke-width="1"/>
+  <text x="600" y="212" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#c084fc">🛡️ CyberGuardians</text>
+
+  <!-- Title -->
+  <text x="600" y="310" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="68" font-weight="bold" fill="url(#titleGrad)" letter-spacing="-1">Aprende Ciberseguridad</text>
+  <text x="600" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="68" font-weight="bold" fill="url(#titleGrad)" letter-spacing="-1">con mIA</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="460" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#94a3b8">Desafíos interactivos, detección de amenazas y tutoría</text>
+  <text x="600" y="500" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#94a3b8">con inteligencia artificial en tiempo real.</text>
+</svg>
