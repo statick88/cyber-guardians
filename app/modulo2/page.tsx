@@ -17,6 +17,12 @@ import { MicroActivities } from '@/components/module2/MicroActivities'
 import { Module2Category, ALL_MODULE2_CATEGORIES, GameProgressModule2 } from '@/types/module2'
 import module2Data from '@/data/module2Data.json'
 import type { Modulo2Data } from '@/types/module2'
+import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
+import { useEducationalMediator } from '@/hooks/useEducationalMediator'
+import { EducationalPanel } from '@/components/mediator'
+import DebriefDialog from '@/components/mediator/DebriefDialog'
+import { DEFAULT_DEBRIEF_PROMPTS } from '@/data/debriefPrompts'
+import type { EducationalLayer } from '@/types/educational'
 import { useMIA } from '@/hooks/useMIA'
 
 const typedModule2Data = module2Data as Modulo2Data
@@ -93,6 +99,7 @@ function clearProgress() {
 export default function Modulo2Page() {
   const [savedProgress] = useState(() => loadProgress())
   const { triggerMIA } = useMIA()
+  const mediator = useEducationalMediator()
 
   const [gamePhase, setGamePhase] = useState<GamePhase>(
     savedProgress ? 'ACTIVITIES' : 'WELCOME'
@@ -125,6 +132,9 @@ export default function Modulo2Page() {
   }, [])
 
   const handleActivityScore = useCallback((points: number, category: Module2Category) => {
+    if (MEDIATOR_ENABLED && points === 0) {
+      mediator.triggerMediator('onError', typedModule2Data.modulo as unknown as EducationalLayer)
+    }
     setScore((prev) => {
       const next = prev + points
       setCategoryScores((prevCat) => {
@@ -164,9 +174,12 @@ export default function Modulo2Page() {
     if (currentActivityIndex + 1 < ACTIVITIES.length) {
       setCurrentActivityIndex((prev) => prev + 1)
     } else {
+      if (MEDIATOR_ENABLED) {
+        mediator.triggerMediator('onModuleComplete', typedModule2Data.modulo as unknown as EducationalLayer)
+      }
       setGamePhase('RESULTS')
     }
-  }, [currentActivityIndex])
+  }, [currentActivityIndex, mediator])
 
   useEffect(() => {
     if (gamePhase === 'RESULTS') clearProgress()
@@ -286,6 +299,13 @@ export default function Modulo2Page() {
             <div className="flex-1 flex items-center w-full">
               {renderCurrentActivity()}
             </div>
+            {MEDIATOR_ENABLED && (
+              <EducationalPanel
+                state={mediator.state}
+                educationalLayer={mediator.currentLayer ?? undefined}
+                onDismiss={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
 
@@ -302,6 +322,17 @@ export default function Modulo2Page() {
               isNavigating={isNavigating}
               continueLabel="Continuar al Módulo 3"
             />
+            {MEDIATOR_ENABLED && mediator.state === 'onMetaReflection' && (
+              <DebriefDialog
+                prompts={DEFAULT_DEBRIEF_PROMPTS}
+                moduleName="Módulo 2"
+                onComplete={(responses: Record<string, unknown>) => {
+                  mediator.completeDebrief()
+                  void responses
+                }}
+                onSkip={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
       </AnimatePresence>

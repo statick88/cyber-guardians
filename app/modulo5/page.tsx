@@ -11,8 +11,30 @@ import { STORAGE_KEYS } from '@/lib/storage-keys'
 import module5Data from '@/data/module5Data.json'
 import type { Modulo5Data } from '@/types/module5'
 import { useMIA } from '@/hooks/useMIA'
+import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
+import { useEducationalMediator } from '@/hooks/useEducationalMediator'
+import { EducationalPanel } from '@/components/mediator'
+import DebriefDialog from '@/components/mediator/DebriefDialog'
+import { DEFAULT_DEBRIEF_PROMPTS } from '@/data/debriefPrompts'
+import type { EducationalLayer } from '@/types/educational'
 
 const typedModule5Data = module5Data as Modulo5Data
+
+const MODULE5_EDUCATIONAL_LAYER = {
+  scenarioId: 'module5-intro',
+  moduleId: 5,
+  activityType: 'metadata_extractor',
+  conflictQuestion: {
+    question: '¿Por qué crees que esta respuesta fue incorrecta?',
+    expectedInsight: 'Identificar la táctica del atacante',
+  },
+  scaffoldingTip: {
+    level: 'guided',
+    hint: 'Observa los metadatos ocultos en el archivo',
+  },
+  metacognitiveDebrief: { prompts: [] },
+  mediatorHook: 'onError',
+} as EducationalLayer
 
 const moduloForResults = {
   id: 'module5',
@@ -75,6 +97,7 @@ function clearProgress() {
 export default function Modulo5Page() {
   const [savedProgress] = useState(() => loadProgress())
   const { triggerMIA } = useMIA()
+  const mediator = useEducationalMediator()
   const [gamePhase, setGamePhase] = useState<GamePhase>(savedProgress ? 'ACTIVITIES' : 'WELCOME')
   const [currentActivityIndex, setCurrentActivityIndex] = useState(savedProgress?.currentActivityIndex ?? 0)
   const [score, setScore] = useState(savedProgress?.score ?? 0)
@@ -96,6 +119,9 @@ export default function Modulo5Page() {
   }, [])
 
   const handleActivityScore = useCallback((points: number) => {
+    if (MEDIATOR_ENABLED && points === 0) {
+      mediator.triggerMediator('onError', MODULE5_EDUCATIONAL_LAYER)
+    }
     setScore((prev: number) => {
       const next = prev + points
       saveProgress({ currentActivityIndex, score: next, timestamp: Date.now() })
@@ -107,9 +133,12 @@ export default function Modulo5Page() {
     if (currentActivityIndex + 1 < ACTIVITIES.length) {
       setCurrentActivityIndex((prev: number) => prev + 1)
     } else {
+      if (MEDIATOR_ENABLED) {
+        mediator.triggerMediator('onModuleComplete', MODULE5_EDUCATIONAL_LAYER)
+      }
       setGamePhase('RESULTS')
     }
-  }, [currentActivityIndex])
+  }, [currentActivityIndex, mediator])
 
   useEffect(() => {
     if (gamePhase === 'RESULTS') clearProgress()
@@ -209,6 +238,13 @@ export default function Modulo5Page() {
             <div className="flex-1 flex items-center w-full">
               {renderCurrentActivity()}
             </div>
+            {MEDIATOR_ENABLED && (
+              <EducationalPanel
+                state={mediator.state}
+                educationalLayer={mediator.currentLayer ?? undefined}
+                onDismiss={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
 
@@ -231,6 +267,17 @@ export default function Modulo5Page() {
               isNavigating={isNavigating}
               continueLabel="Continuar al Módulo 6"
             />
+            {MEDIATOR_ENABLED && mediator.state === 'onMetaReflection' && (
+              <DebriefDialog
+                prompts={DEFAULT_DEBRIEF_PROMPTS}
+                moduleName="Módulo 5"
+                onComplete={(responses: Record<string, unknown>) => {
+                  mediator.completeDebrief()
+                  void responses
+                }}
+                onSkip={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
       </AnimatePresence>

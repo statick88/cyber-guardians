@@ -15,6 +15,12 @@ import { navigateTo } from '@/lib/navigation'
 import { STORAGE_KEYS } from '@/lib/storage-keys'
 import module3Data from '@/data/module3Data.json'
 import type { Modulo3Data } from '@/types/module3'
+import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
+import { useEducationalMediator } from '@/hooks/useEducationalMediator'
+import { EducationalPanel } from '@/components/mediator'
+import DebriefDialog from '@/components/mediator/DebriefDialog'
+import { DEFAULT_DEBRIEF_PROMPTS } from '@/data/debriefPrompts'
+import type { EducationalLayer } from '@/types/educational'
 import { useMIA } from '@/hooks/useMIA'
 
 const typedModule3Data = module3Data as Modulo3Data
@@ -106,6 +112,7 @@ function clearProgress() {
 export default function Modulo3Page() {
   const [savedProgress] = useState(() => loadProgress())
   const { triggerMIA } = useMIA()
+  const mediator = useEducationalMediator()
 
   const [gamePhase, setGamePhase] = useState<GamePhase>(
     savedProgress ? 'ACTIVITIES' : 'WELCOME'
@@ -138,6 +145,9 @@ export default function Modulo3Page() {
   }, [])
 
   const handleActivityScore = useCallback((points: number, category?: Module3Category) => {
+    if (MEDIATOR_ENABLED && points === 0) {
+      mediator.triggerMediator('onError', { scenarioId: 'module3-intro', moduleId: 3, activityType: 'chat_simulation', conflictQuestion: { question: '¿Por qué crees que esta respuesta fue incorrecta?', expectedInsight: 'Identificar la táctica del atacante' }, scaffoldingTip: { level: 'guided', hint: 'Observa las señales de urgencia en el mensaje' }, metacognitiveDebrief: { prompts: [] }, mediatorHook: 'onError' } as EducationalLayer)
+    }
     setScore((prev) => {
       const next = prev + points
       setCategoryScores((prevCat) => {
@@ -159,9 +169,12 @@ export default function Modulo3Page() {
     if (currentActivityIndex + 1 < ACTIVITIES.length) {
       setCurrentActivityIndex((prev) => prev + 1)
     } else {
+      if (MEDIATOR_ENABLED) {
+        mediator.triggerMediator('onModuleComplete', { scenarioId: 'module3-intro', moduleId: 3, activityType: 'chat_simulation', conflictQuestion: { question: '¿Por qué crees que esta respuesta fue incorrecta?', expectedInsight: 'Identificar la táctica del atacante' }, scaffoldingTip: { level: 'guided', hint: 'Observa las señales de urgencia en el mensaje' }, metacognitiveDebrief: { prompts: [] }, mediatorHook: 'onError' } as EducationalLayer)
+      }
       setGamePhase('RESULTS')
     }
-  }, [currentActivityIndex])
+  }, [currentActivityIndex, mediator])
 
   useEffect(() => {
     if (gamePhase === 'RESULTS') clearProgress()
@@ -344,6 +357,13 @@ export default function Modulo3Page() {
             <div className="flex-1 flex items-center w-full">
               {renderCurrentActivity()}
             </div>
+            {MEDIATOR_ENABLED && (
+              <EducationalPanel
+                state={mediator.state}
+                educationalLayer={mediator.currentLayer ?? undefined}
+                onDismiss={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
 
@@ -375,6 +395,17 @@ export default function Modulo3Page() {
               isNavigating={isNavigating}
               continueLabel="Continuar al Módulo 4"
             />
+            {MEDIATOR_ENABLED && mediator.state === 'onMetaReflection' && (
+              <DebriefDialog
+                prompts={DEFAULT_DEBRIEF_PROMPTS}
+                moduleName="Módulo 3"
+                onComplete={(responses: Record<string, unknown>) => {
+                  mediator.completeDebrief()
+                  void responses
+                }}
+                onSkip={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
       </AnimatePresence>

@@ -10,6 +10,13 @@ import { navigateTo } from '@/lib/navigation'
 import { STORAGE_KEYS } from '@/lib/storage-keys'
 import module6Data from '@/data/module6Data.json'
 import type { Modulo6Data } from '@/types/module6'
+import { MEDIATOR_ENABLED } from '@/lib/featureFlags'
+import { useEducationalMediator } from '@/hooks/useEducationalMediator'
+import { useMIA } from '@/hooks/useMIA'
+import { EducationalPanel } from '@/components/mediator'
+import DebriefDialog from '@/components/mediator/DebriefDialog'
+import { DEFAULT_DEBRIEF_PROMPTS } from '@/data/debriefPrompts'
+import type { EducationalLayer } from '@/types/educational'
 
 const typedModule6Data = module6Data as Modulo6Data
 
@@ -77,6 +84,8 @@ function clearProgress() {
 
 export default function Modulo6Page() {
   const [savedProgress] = useState(() => loadProgress())
+  const mediator = useEducationalMediator()
+  const { triggerMIA } = useMIA()
   const [gamePhase, setGamePhase] = useState<GamePhase>(savedProgress ? 'ACTIVITIES' : 'WELCOME')
   const [currentActivityIndex, setCurrentActivityIndex] = useState(savedProgress?.currentActivityIndex ?? 0)
   const [score, setScore] = useState(savedProgress?.score ?? 0)
@@ -103,20 +112,42 @@ export default function Modulo6Page() {
   }, [])
 
   const handleActivityScore = useCallback((points: number) => {
+    if (MEDIATOR_ENABLED && points === 0) {
+      mediator.triggerMediator('onError', {
+        scenarioId: 'module6-intro',
+        moduleId: 6,
+        activityType: 'security_quiz',
+        conflictQuestion: { question: '¿Por qué crees que esta respuesta fue incorrecta?', expectedInsight: 'Identificar la táctica del atacante' },
+        scaffoldingTip: { level: 'guided', hint: 'Observa las señales de advertencia en el mensaje' },
+        metacognitiveDebrief: { prompts: [] },
+        mediatorHook: 'onError',
+      } as unknown as EducationalLayer)
+    }
     setScore((prev: number) => {
       const next = prev + points
       saveProgress({ currentActivityIndex, score: next, timestamp: Date.now() })
       return next
     })
-  }, [currentActivityIndex])
+  }, [currentActivityIndex, mediator])
 
   const handleActivityComplete = useCallback(() => {
     if (currentActivityIndex + 1 < ACTIVITIES.length) {
       setCurrentActivityIndex((prev: number) => prev + 1)
     } else {
+      if (MEDIATOR_ENABLED) {
+        mediator.triggerMediator('onModuleComplete', {
+          scenarioId: 'module6-complete',
+          moduleId: 6,
+          activityType: 'security_quiz',
+          conflictQuestion: { question: 'Reflexión final', expectedInsight: 'Integrar conocimientos' },
+          scaffoldingTip: { level: 'withdrawn', hint: '' },
+          metacognitiveDebrief: { prompts: [] },
+          mediatorHook: 'onModuleComplete',
+        } as unknown as EducationalLayer)
+      }
       setGamePhase('RESULTS')
     }
-  }, [currentActivityIndex])
+  }, [currentActivityIndex, mediator])
 
   useEffect(() => {
     if (gamePhase === 'RESULTS') clearProgress()
@@ -148,6 +179,7 @@ export default function Modulo6Page() {
             scenarios={[scenario]}
             onComplete={handleActivityComplete}
             onScore={handleActivityScore}
+            onMIAEmotion={triggerMIA}
           />
         )
       }
@@ -161,6 +193,7 @@ export default function Modulo6Page() {
             scenarios={[scenario]}
             onComplete={handleActivityComplete}
             onScore={handleActivityScore}
+            onMIAEmotion={triggerMIA}
           />
         )
       }
@@ -174,6 +207,7 @@ export default function Modulo6Page() {
             scenarios={[scenario]}
             onComplete={handleActivityComplete}
             onScore={handleActivityScore}
+            onMIAEmotion={triggerMIA}
           />
         )
       }
@@ -241,6 +275,13 @@ export default function Modulo6Page() {
             <div className="flex-1 flex items-center w-full">
               {renderCurrentActivity()}
             </div>
+            {MEDIATOR_ENABLED && (
+              <EducationalPanel
+                state={mediator.state}
+                educationalLayer={mediator.currentLayer ?? undefined}
+                onDismiss={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
 
@@ -279,6 +320,17 @@ export default function Modulo6Page() {
               isNavigating={isNavigating}
               continueLabel="Continuar al Módulo 7"
             />
+            {MEDIATOR_ENABLED && mediator.state === 'onMetaReflection' && (
+              <DebriefDialog
+                prompts={DEFAULT_DEBRIEF_PROMPTS}
+                moduleName="Módulo 6"
+                onComplete={(responses: Record<string, unknown>) => {
+                  mediator.completeDebrief()
+                  void responses
+                }}
+                onSkip={mediator.dismissMediator}
+              />
+            )}
           </div>
         )}
       </AnimatePresence>

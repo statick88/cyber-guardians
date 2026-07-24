@@ -109,6 +109,40 @@ export const MODULE_DEBRIEF_PROMPTS: Record<number, DebriefPrompt[]> = {
       competency: 'knowledge_transfer',
     },
   ],
+  5: [
+    ...DEFAULT_DEBRIEF_PROMPTS,
+    {
+      id: 'metadata-awareness',
+      type: 'open-reflection',
+      prompt: '¿Qué metadatos revelan las fotos que compartes en redes sociales? ¿Cómo protegerías tu privacidad?',
+      storageKey: 'metadata-awareness',
+      competency: 'knowledge_transfer' as const,
+    },
+    {
+      id: 'deepfake-detection',
+      type: 'open-reflection',
+      prompt: '¿Qué señales te ayudarían a detectar un deepfake en una videollamada sospechosa?',
+      storageKey: 'deepfake-detection',
+      competency: 'evidence_analysis' as const,
+    },
+  ],
+  6: [
+    ...DEFAULT_DEBRIEF_PROMPTS,
+    {
+      id: 'qr-code-safety',
+      type: 'open-reflection',
+      prompt: '¿Qué precauciones tomarías antes de escanear un código QR desconocido?',
+      storageKey: 'qr-code-safety',
+      competency: 'knowledge_transfer' as const,
+    },
+    {
+      id: 'employment-scam-signs',
+      type: 'open-reflection',
+      prompt: '¿Qué señales de alarma indican que una oferta de empleo es una estafa?',
+      storageKey: 'employment-scam-signs',
+      competency: 'evidence_analysis' as const,
+    },
+  ],
 }
 
 /**
